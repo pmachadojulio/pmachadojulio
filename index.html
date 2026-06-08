@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julio Machado — Pintor · Villa María, Córdoba</title>
+<meta name="description" content="Pintor de retratos, paisajes y caricaturas en Villa María, Córdoba. Obra original y encargos personalizados.">
+<meta property="og:title" content="Julio Machado — Pintor">
+<meta property="og:description" content="Retratos, paisajes y caricaturas. Encargos personalizados desde Villa María, Córdoba.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ── RESET & BASE ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1814;
+    --ink-2: #4a4740;
+    --ink-3: #8a8780;
+    --paper: #f5f2ed;
+    --paper-2: #ede9e2;
+    --paper-3: #e4dfd6;
+    --accent: #8b5e3c;
+    --accent-light: #c4956a;
+    --white: #fdfcfa;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --max: 1200px;
+    --gap: clamp(24px, 5vw, 60px);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--paper); }
+  ::-webkit-scrollbar-thumb { background: var(--ink-3); border-radius: 3px; }
+
+  /* ── UTILITIES ── */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gap); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px var(--gap);
+    background: rgba(245, 242, 237, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26,24,20,0.08);
+    transition: padding 0.3s;
+  }
+
+  nav.scrolled { padding: 14px var(--gap); }
+
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-brand em {
+    font-style: italic;
+    color: var(--ink-3);
+    font-size: 13px;
+    display: block;
+    font-family: var(--sans);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    background: var(--ink) !important;
+    color: var(--paper) !important;
+    padding: 10px 22px !important;
+    border-radius: 2px;
+    letter-spacing: 1.5px !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--accent) !important; }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  #inicio {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(48px, 8vh, 100px) var(--gap) clamp(48px, 8vh, 100px) var(--gap);
+    border-right: 1px solid rgba(26,24,20,0.1);
+    position: relative;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(26,24,20,0.04) 39px,
+      rgba(26,24,20,0.04) 40px
+    );
+    pointer-events: none;
+  }
+
+  .hero-year {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 28px;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.8;
+    max-width: 360px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 28px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.25s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-secondary {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    border-bottom: 1px solid var(--ink-3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+
+  .hero-right {
+    background: var(--paper-2);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 40px 32px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-img-wrap {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 3/4;
+    background: var(--paper-3);
+    border-radius: 2px 2px 0 0;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 -8px 60px rgba(26,24,20,0.12);
+  }
+
+  .hero-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--ink-3);
+  }
+
+  .hero-img-placeholder svg { opacity: 0.3; }
+
+  .hero-img-placeholder p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Instrucciones para agregar foto real */
+  .hero-img-wrap img { display: none; } /* Mostrar cuando tengas la foto */
+
+  .hero-tag {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: var(--white);
+    padding: 10px 16px;
+    border-radius: 2px;
+    font-size: 11px;
+    color: var(--ink-2);
+    letter-spacing: 1px;
+    box-shadow: 0 2px 20px rgba(26,24,20,0.08);
+  }
+
+  .hero-tag strong { color: var(--ink); font-weight: 500; }
+
+  /* ── TICKER / MARQUEE ── */
+  .ticker {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    gap: 0;
+    animation: ticker 22s linear infinite;
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 0 32px;
+    font-weight: 300;
+    color: rgba(245,242,237,0.7);
+  }
+
+  .ticker-item strong { color: var(--paper); font-weight: 500; }
+
+  .ticker-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--accent-light);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 24px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+  }
+
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { padding: clamp(60px, 10vh, 120px) 0; }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border: 1px solid rgba(26,24,20,0.2);
+    border-radius: 40px;
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .gallery-grid .item-wide {
+    grid-column: span 2;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    cursor: pointer;
+    background: var(--paper-2);
+  }
+
+  .gallery-item .thumb {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gallery-item.item-wide .thumb {
+    aspect-ratio: 16/9;
+  }
+
+  .thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--paper-3);
+    color: var(--ink-3);
+    transition: background 0.3s;
+  }
+
+  .thumb-placeholder svg { opacity: 0.15; }
+  .thumb-placeholder p { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+  .gallery-item:hover .thumb-placeholder { background: var(--paper-2); }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,24,20,0);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    transition: background 0.3s;
+  }
+
+  .gallery-item:hover .gallery-overlay { background: rgba(26,24,20,0.5); }
+
+  .gallery-info {
+    transform: translateY(8px);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+
+  .gallery-item:hover .gallery-info {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .gallery-info h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.2;
+  }
+
+  .gallery-info p {
+    font-size: 11px;
+    color: rgba(245,242,237,0.7);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .gallery-meta {
+    padding: 14px 16px;
+  }
+
+  .gallery-meta h3 {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+  }
+
+  .gallery-meta .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+  }
+
+  .gallery-meta .tecnica {
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.5px;
+  }
+
+  .gallery-meta .precio {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .disponible-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* ── ENCARGOS ── */
+  #encargos {
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(60px, 10vh, 120px) 0;
+  }
+
+  #encargos .eyebrow { color: var(--accent-light); }
+  #encargos .section-title { color: var(--paper); }
+  #encargos .section-title em { color: var(--accent-light); }
+
+  .encargos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .enc-body {
+    font-size: 14px;
+    color: rgba(245,242,237,0.65);
+    line-height: 1.8;
+    font-weight: 300;
+    margin: 24px 0 36px;
+    max-width: 380px;
+  }
+
+  .btn-light {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 14px 28px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.25s;
+  }
+
+  .btn-light:hover { background: var(--accent-light); color: var(--white); }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 32px;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(245,242,237,0.08);
+    align-items: flex-start;
+  }
+
+  .step-item:first-child { border-top: 1px solid rgba(245,242,237,0.08); }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--accent-light);
+    line-height: 1;
+    min-width: 32px;
+    margin-top: -4px;
+  }
+
+  .step-content strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--paper);
+  }
+
+  .step-content p {
+    font-size: 12px;
+    color: rgba(245,242,237,0.55);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .pricing-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .price-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(245,242,237,0.1);
+    border-radius: 4px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .price-card:hover {
+    border-color: rgba(196,149,106,0.4);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .price-card-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--paper);
+    margin-bottom: 3px;
+  }
+
+  .price-card-detail {
+    font-size: 11px;
+    color: rgba(245,242,237,0.45);
+    letter-spacing: 0.3px;
+  }
+
+  .price-tag {
+    text-align: right;
+  }
+
+  .price-tag .amount {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--accent-light);
+    font-weight: 300;
+  }
+
+  .price-tag .desde {
+    display: block;
+    font-size: 9px;
+    color: rgba(245,242,237,0.4);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  /* ── SOBRE MÍ ── */
+  #sobre-mi {
+    padding: clamp(60px, 10vh, 120px) 0;
+    background: var(--white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .about-img {
+    aspect-ratio: 3/4;
+    background: var(--paper-2);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .about-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--ink-3);
+  }
+
+  .about-img-placeholder svg { opacity: 0.15; }
+  .about-img-placeholder p { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+
+  .about-text { padding: 20px 0; }
+
+  .about-text .section-title { margin: 16px 0 24px; }
+
+  .about-body {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .about-body + .about-body { margin-bottom: 36px; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(26,24,20,0.1);
+    border-bottom: 1px solid rgba(26,24,20,0.1);
+    margin-bottom: 36px;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* ── CONTACTO ── */
+  #contacto {
+    padding: clamp(60px, 10vh, 120px) 0;
+    background: var(--paper-2);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-text .section-title { margin: 16px 0 24px; }
+
+  .contact-body {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--white);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.2s, transform 0.2s;
+    border: 1px solid rgba(26,24,20,0.06);
+  }
+
+  .contact-method:hover { transform: translateX(4px); background: var(--paper); }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--paper-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg { width: 18px; height: 18px; stroke: var(--ink-2); fill: none; stroke-width: 1.5; }
+
+  .contact-method-text strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .contact-method-text span {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+
+  /* Formulario */
+  .contact-form {
+    background: var(--white);
+    padding: 36px;
+    border-radius: 4px;
+    border: 1px solid rgba(26,24,20,0.08);
+  }
+
+  .contact-form h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 7px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--paper);
+    border: 1px solid rgba(26,24,20,0.12);
+    border-radius: 2px;
+    padding: 12px 14px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 14px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-top: 4px;
+    transition: background 0.25s;
+  }
+
+  .form-submit:hover { background: var(--accent); }
+
+  .form-note {
+    font-size: 11px;
+    color: var(--ink-3);
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 40px var(--gap);
+  }
+
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--paper);
+  }
+
+  .footer-brand span {
+    display: block;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,242,237,0.45);
+    margin-top: 2px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(245,242,237,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent-light); }
+
+  .footer-socials {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-socials a {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,242,237,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .footer-socials a:hover { color: var(--accent-light); }
+
+  .footer-copy {
+    width: 100%;
+    padding-top: 24px;
+    border-top: 1px solid rgba(245,242,237,0.08);
+    font-size: 11px;
+    color: rgba(245,242,237,0.3);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--paper);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--accent); }
+
+  .mobile-close {
+    position: absolute;
+    top: 20px;
+    right: var(--gap);
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--ink);
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* ── FADE-IN ANIMATION ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #inicio { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid .item-wide { grid-column: span 2; }
+    .encargos-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img { display: none; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+  }
+
+  @media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-grid .item-wide { grid-column: span 1; }
+    .about-stats { grid-template-columns: repeat(3, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .footer-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
+  <a href="#inicio" onclick="closeMobileMenu()">Inicio</a>
+  <a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a>
+  <a href="#encargos" onclick="closeMobileMenu()">Encargos</a>
+  <a href="#sobre-mi" onclick="closeMobileMenu()">Sobre mí</a>
+  <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-brand">
+    Julio Machado
+    <em>Pintor · Villa María</em>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#encargos">Encargos</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#contacto" class="nav-cta">Hacer un encargo</a></li>
+  </ul>
+  <button class="nav-toggle" onclick="openMobileMenu()" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-left">
+    <p class="hero-year">Villa María, Córdoba · Argentina</p>
+    <h1 class="hero-title">
+      Pintura<br>hecha<br><em>a mano.</em>
+    </h1>
+    <p class="hero-desc">
+      Retratos, paisajes y caricaturas pintados con dedicación. Obra original disponible y encargos personalizados para momentos que merecen perdurar.
+    </p>
+    <div class="hero-actions">
+      <a href="#encargos" class="btn-primary">Hacer un encargo</a>
+      <a href="#portfolio" class="btn-secondary">Ver portfolio →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <!-- INSTRUCCIÓN: reemplazá esto por tu foto destacada -->
+      <!-- <img src="imagenes/obra-principal.jpg" alt="Obra destacada de Julio Machado"> -->
+      <div class="hero-img-placeholder">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1"><rect x="4" y="4" width="56" height="56" rx="1"/><circle cx="22" cy="24" r="8"/><path d="M4 46 L20 32 L32 42 L44 26 L60 46"/></svg>
+        <p>Tu obra<br>aquí</p>
+      </div>
+      <div class="hero-tag">
+        <strong>Encargos abiertos</strong> · Entrega en 2–4 semanas
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item"><strong>Retratos al óleo</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item">Caricaturas digitales<span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Paisajes acrílico</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item">Encargos personalizados<span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Retratos de mascotas</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item">Villa María, Córdoba<span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Retratos al óleo</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item">Caricaturas digitales<span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Paisajes acrílico</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item">Encargos personalizados<span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Retratos de mascotas</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item">Villa María, Córdoba<span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div>
+        <p class="eyebrow">Galería de obras</p>
+        <h2 class="section-title">El <em>trabajo</em><br>habla solo.</h2>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="retrato">Retratos</button>
+        <button class="filter-btn" data-filter="paisaje">Paisajes</button>
+        <button class="filter-btn" data-filter="caricatura">Caricaturas</button>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+
+      <!-- OBRA 1 — reemplazá el placeholder por tu imagen real -->
+      <div class="gallery-item item-wide fade-up" data-category="retrato">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><circle cx="24" cy="18" r="10"/><path d="M6 44c0-9.941 8.059-18 18-18s18 8.059 18 18"/></svg>
+            <p>Retrato · Óleo</p>
+          </div>
+          <!-- <img src="imagenes/retrato-familiar.jpg" alt="Retrato familiar al óleo"> -->
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h3>Retrato familiar</h3>
+              <p>Óleo sobre tela · 60×80 cm</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <h3>Retrato familiar</h3>
+          <div class="details">
+            <span class="tecnica">Óleo sobre tela · 60×80 cm</span>
+            <span class="precio">$85.000</span>
+          </div>
+        </div>
+        <span class="disponible-badge">Disponible</span>
+      </div>
+
+      <!-- OBRA 2 -->
+      <div class="gallery-item fade-up" data-category="caricatura">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="24" cy="20" rx="14" ry="16"/><circle cx="18" cy="16" r="2"/><circle cx="30" cy="16" r="2"/><path d="M17 26 Q24 31 31 26"/></svg>
+            <p>Caricatura</p>
+          </div>
+          <!-- <img src="imagenes/caricatura-1.jpg" alt="Caricatura"> -->
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h3>Caricatura encargo</h3>
+              <p>Digital · Impresión disponible</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <h3>Caricatura encargo</h3>
+          <div class="details">
+            <span class="tecnica">Digital · A4</span>
+            <span class="precio">$18.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- OBRA 3 -->
+      <div class="gallery-item fade-up" data-category="paisaje">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 34 Q13 20 22 28 Q31 36 38 18 Q42 10 46 16"/><line x1="4" y1="42" x2="46" y2="42"/></svg>
+            <p>Paisaje · Acrílico</p>
+          </div>
+          <!-- <img src="imagenes/paisaje-1.jpg" alt="Paisaje acrílico"> -->
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h3>Pampa al atardecer</h3>
+              <p>Acrílico · 50×70 cm</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <h3>Pampa al atardecer</h3>
+          <div class="details">
+            <span class="tecnica">Acrílico · 50×70 cm</span>
+            <span class="precio">$60.000</span>
+          </div>
+        </div>
+        <span class="disponible-badge">Disponible</span>
+      </div>
+
+      <!-- OBRA 4 -->
+      <div class="gallery-item fade-up" data-category="retrato">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><circle cx="24" cy="18" r="10"/><path d="M6 44c0-9.941 8.059-18 18-18s18 8.059 18 18"/></svg>
+            <p>Retrato · Lápiz</p>
+          </div>
+          <!-- <img src="imagenes/retrato-lapiz.jpg" alt="Retrato a lápiz"> -->
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h3>Retrato en lápiz</h3>
+              <p>Lápiz · 30×40 cm</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <h3>Retrato en lápiz</h3>
+          <div class="details">
+            <span class="tecnica">Lápiz · 30×40 cm</span>
+            <span class="precio">$32.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- OBRA 5 -->
+      <div class="gallery-item fade-up" data-category="paisaje">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 34 Q13 20 22 28 Q31 36 38 18 Q42 10 46 16"/><line x1="4" y1="42" x2="46" y2="42"/></svg>
+            <p>Paisaje · Óleo</p>
+          </div>
+          <!-- <img src="imagenes/paisaje-2.jpg" alt="Paisaje al óleo"> -->
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h3>Sierra cordobesa</h3>
+              <p>Óleo · 40×60 cm</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <h3>Sierra cordobesa</h3>
+          <div class="details">
+            <span class="tecnica">Óleo · 40×60 cm</span>
+            <span class="precio">$72.000</span>
+          </div>
+        </div>
+        <span class="disponible-badge">Disponible</span>
+      </div>
+
+      <!-- OBRA 6 -->
+      <div class="gallery-item fade-up" data-category="caricatura">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="24" cy="20" rx="14" ry="16"/><circle cx="18" cy="16" r="2"/><circle cx="30" cy="16" r="2"/><path d="M17 26 Q24 31 31 26"/></svg>
+            <p>Caricatura grupal</p>
+          </div>
+          <!-- <img src="imagenes/caricatura-2.jpg" alt="Caricatura grupal"> -->
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h3>Caricatura grupal</h3>
+              <p>Digital · 3 personas</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <h3>Caricatura grupal</h3>
+          <div class="details">
+            <span class="tecnica">Digital · 3 personas</span>
+            <span class="precio">$30.000</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ENCARGOS -->
+<section id="encargos">
+  <div class="container">
+    <div class="encargos-grid">
+      <div class="fade-up">
+        <p class="eyebrow">Encargos personalizados</p>
+        <h2 class="section-title" style="color:var(--paper)">
+          Tu historia,<br>pintada <em>a mano.</em>
+        </h2>
+        <p class="enc-body">
+          Retratos de personas, mascotas o momentos especiales. Paisajes de lugares con historia. Caricaturas para regalos únicos. Cada encargo es trabajado con dedicación y entregado con certificado de autenticidad.
+        </p>
+        <a href="#contacto" class="btn-light">Consultá tu encargo →</a>
+      </div>
+      <div>
+        <div class="steps-list fade-up">
+          <div class="step-item">
+            <span class="step-num">1</span>
+            <div class="step-content">
+              <strong>Me contás la idea</strong>
+              <p>Por WhatsApp o el formulario — foto de referencia, tamaño deseado y técnica. Sin compromiso.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">2</span>
+            <div class="step-content">
+              <strong>Te envío presupuesto gratis</strong>
+              <p>Precio exacto, plazo de entrega y una muestra del estilo antes de confirmar nada.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-num">3</span>
+            <div class="step-content">
+              <strong>Pinto y te muestro avances</strong>
+              <p>Seguimiento en tiempo real. 50% al confirmar, 50% al entregar la obra terminada.</p>
+            </div>
+          </div>
+        </div>
+        <div class="pricing-cards fade-up">
+          <div class="price-card">
+            <div>
+              <div class="price-card-label">Caricatura digital</div>
+              <div class="price-card-detail">Entrega 5–7 días · Archivo digital + impresión opcional</div>
+            </div>
+            <div class="price-tag">
+              <span class="desde">desde</span>
+              <span class="amount">$15.000</span>
+            </div>
+          </div>
+          <div class="price-card">
+            <div>
+              <div class="price-card-label">Retrato en papel</div>
+              <div class="price-card-detail">30×40 cm · Lápiz o carbón · Entrega 1–2 semanas</div>
+            </div>
+            <div class="price-tag">
+              <span class="desde">desde</span>
+              <span class="amount">$35.000</span>
+            </div>
+          </div>
+          <div class="price-card">
+            <div>
+              <div class="price-card-label">Retrato al óleo</div>
+              <div class="price-card-detail">50×60 cm · Tela o madera · Entrega 3–4 semanas</div>
+            </div>
+            <div class="price-tag">
+              <span class="desde">desde</span>
+              <span class="amount">$80.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img fade-up">
+        <!-- INSTRUCCIÓN: reemplazá esto por tu foto -->
+        <!-- <img src="imagenes/julio-machado.jpg" alt="Julio Machado en su taller"> -->
+        <div class="about-img-placeholder">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1"><circle cx="32" cy="24" r="14"/><path d="M8 58c0-13.255 10.745-24 24-24s24 10.745 24 24"/></svg>
+          <p>Tu foto<br>aquí</p>
+        </div>
+      </div>
+      <div class="about-text fade-up">
+        <p class="eyebrow">El pintor</p>
+        <h2 class="section-title">Julio<br><em>Machado.</em></h2>
+        <p class="about-body">
+          Soy pintor en Villa María, Córdoba. Me dedico a retratos, paisajes y caricaturas — tres disciplinas que comparten el mismo motor: la obsesión por capturar algo verdadero en el lienzo.
+        </p>
+        <p class="about-body">
+          Trabajo con óleo, acrílico, lápiz y técnicas digitales. Cada encargo empieza con una conversación: quiero entender qué querés preservar, y por qué es importante para vos.
+        </p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <span class="stat-num">+50</span>
+            <span class="stat-label">Obras<br>realizadas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Disciplinas<br>dominadas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Hecho<br>a mano</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#contacto" class="btn-primary">Contactarme</a>
+          <a href="https://www.youtube.com/@Juliomachadoart" target="_blank" rel="noopener" class="btn-secondary">Ver mi canal de YouTube →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-text fade-up">
+        <p class="eyebrow">Contacto</p>
+        <h2 class="section-title">Hablemos<br>de tu <em>encargo.</em></h2>
+        <p class="contact-body">
+          No importa si tenés una idea muy clara o apenas una sensación de lo que querés. Escribime y lo charlamos sin compromiso.
+        </p>
+        <div class="contact-methods">
+          <a href="https://wa.me/5493XXXXXXXXX?text=Hola%20Julio!%20Me%20interesa%20hacerte%20un%20encargo." 
+             class="contact-method" target="_blank" rel="noopener">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+            <div class="contact-method-text">
+              <strong>WhatsApp</strong>
+              <span>El canal más rápido — respondés en el día</span>
+            </div>
+          </a>
+          <a href="mailto:juliopintor@gmail.com" class="contact-method">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-method-text">
+              <strong>Email</strong>
+              <span>juliopintor@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://www.youtube.com/@Juliomachadoart" target="_blank" rel="noopener" class="contact-method">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </div>
+            <div class="contact-method-text">
+              <strong>YouTube</strong>
+              <span>@Juliomachadoart — proceso y obras</span>
+            </div>
+          </a>
+          <a href="https://www.tiktok.com/@julio_cesar_machado" target="_blank" rel="noopener" class="contact-method">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.29 6.29 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.87a8.18 8.18 0 0 0 4.78 1.52V7.05a4.85 4.85 0 0 1-1.01-.36z"/></svg>
+            </div>
+            <div class="contact-method-text">
+              <strong>TikTok</strong>
+              <span>@julio_cesar_machado</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <h3>Contame tu idea</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Tu nombre</label>
+            <input type="text" id="nombre" placeholder="Juan García">
+          </div>
+          <div class="form-group">
+            <label for="email">Email o WhatsApp</label>
+            <input type="text" id="email" placeholder="tu@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tipo">¿Qué tipo de encargo?</label>
+          <select id="tipo">
+            <option value="">Seleccioná una opción</option>
+            <option>Retrato al óleo</option>
+            <option>Retrato en lápiz / carbón</option>
+            <option>Caricatura digital</option>
+            <option>Paisaje personalizado</option>
+            <option>Retrato de mascota</option>
+            <option>Otro / consulta</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Contame la idea</label>
+          <textarea id="mensaje" placeholder="¿A quién o qué querés retratar? ¿Es un regalo? ¿Tenés foto de referencia? Cualquier detalle ayuda..."></textarea>
+        </div>
+        <button class="form-submit" onclick="enviarWhatsApp()">Enviar por WhatsApp →</button>
+        <p class="form-note">Te respondo en menos de 24 horas · Presupuesto sin costo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Julio Machado
+      <span>Pintor · Villa María, Córdoba</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#encargos">Encargos</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/@Juliomachadoart" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        YouTube
+      </a>
+      <a href="https://www.tiktok.com/@julio_cesar_machado" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.29 6.29 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.87a8.18 8.18 0 0 0 4.78 1.52V7.05a4.85 4.85 0 0 1-1.01-.36z"/></svg>
+        TikTok
+      </a>
+    </div>
+    <div class="footer-copy">
+      <span>© 2025 Julio Machado · Todos los derechos reservados</span>
+      <span>Villa María, Córdoba, Argentina</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* NAV SCROLL */
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* MOBILE MENU */
+  function openMobileMenu() { document.getElementById('mobileMenu').classList.add('open'); }
+  function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  /* GALLERY FILTER */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      galleryItems.forEach(item => {
+        const show = filter === 'all' || item.dataset.category === filter;
+        item.style.display = show ? 'block' : 'none';
+      });
+    });
+  });
+
+  /* FADE-IN ON SCROLL */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* FORMULARIO → WHATSAPP */
+  function enviarWhatsApp() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const contacto = document.getElementById('email').value.trim();
+    const tipo = document.getElementById('tipo').value;
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    if (!nombre || !mensaje) {
+      alert('Por favor completá al menos tu nombre y contame la idea.');
+      return;
+    }
+
+    const texto = `Hola Julio! Me comunico desde tu web.\n\n*Nombre:* ${nombre}\n*Contacto:* ${contacto || 'No indicado'}\n*Tipo de encargo:* ${tipo || 'No especificado'}\n*Idea:* ${mensaje}`;
+    const url = `https://wa.me/5493XXXXXXXXX?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
