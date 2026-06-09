@@ -533,6 +533,140 @@
     border-radius: 2px;
   }
 
+  /* ── VENDIDA ── */
+  .vendida-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,24,20,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .vendida-stamp {
+    border: 2px solid #d94f4f;
+    color: #d94f4f;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    transform: rotate(-10deg);
+    border-radius: 2px;
+    background: rgba(217,79,79,0.08);
+  }
+
+  .gallery-item.vendida .precio {
+    text-decoration: line-through;
+    color: var(--ink-3);
+    font-size: 14px;
+  }
+
+  /* ── BOTONES DE COMPRA ── */
+  .buy-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 14px 14px;
+  }
+
+  .buy-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .buy-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    min-width: 50px;
+    flex-shrink: 0;
+  }
+
+  .btn-mp {
+    flex: 1;
+    background: #009ee3;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 7px 8px;
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    transition: background 0.2s;
+  }
+
+  .btn-mp:hover { background: #007ab8; }
+
+  .btn-pp {
+    flex: 1;
+    background: #1a2f6e;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    padding: 7px 8px;
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    transition: background 0.2s;
+  }
+
+  .btn-pp:hover { background: #0f1f4d; }
+
+  .buy-divider {
+    border: none;
+    border-top: 1px solid rgba(26,24,20,0.07);
+    margin: 1px 0;
+  }
+
+  .print-price {
+    font-size: 10px;
+    color: var(--ink-3);
+    min-width: 50px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .btn-consultar {
+    width: 100%;
+    background: transparent;
+    color: var(--ink-3);
+    border: 1px solid rgba(26,24,20,0.12);
+    border-radius: 2px;
+    padding: 6px;
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+
+  .btn-consultar:hover { background: var(--paper-2); color: var(--ink-2); }
+
   /* ── ENCARGOS ── */
   #encargos {
     background: var(--ink);
@@ -1157,43 +1291,92 @@
 
     <div class="gallery-grid">
 
-      <!-- OBRA 1 — reemplazá el placeholder por tu imagen real -->
-      <div class="gallery-item item-wide fade-up" data-category="retrato">
+      <!--
+      PLANTILLA PARA AGREGAR OBRA NUEVA — copiá este bloque:
+
+      <div class="gallery-item fade-up" data-category="retrato">
+        [agregar class="vendida" para marcar como vendida]
+        [agregar class="item-wide" para que ocupe 2 columnas]
         <div class="thumb">
-          <div class="thumb-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><circle cx="24" cy="18" r="10"/><path d="M6 44c0-9.941 8.059-18 18-18s18 8.059 18 18"/></svg>
-            <p>Retrato · Óleo</p>
-          </div>
-          <img src="imagenes/2.jpg" alt="El astronauta al óleo">
+          <img src="imagenes/MI-IMAGEN.jpg" alt="Descripción de la obra">
+          [si está vendida, agregar esto dentro del thumb:]
+          <div class="vendida-overlay"><span class="vendida-stamp">Vendida</span></div>
           <div class="gallery-overlay">
             <div class="gallery-info">
-              <h3>Retrato familiar</h3>
-              <p>Óleo sobre tela · 15×20 cm</p>
+              <h3>Nombre de la obra</h3>
+              <p>Técnica · Medidas</p>
             </div>
           </div>
         </div>
         <div class="gallery-meta">
-          <h3>Retrato familiar</h3>
+          <h3>Nombre de la obra</h3>
+          <div class="details">
+            <span class="tecnica">Técnica · Medidas</span>
+            <span class="precio">$XX.000</span>
+          </div>
+        </div>
+        <div class="buy-buttons">
+          <div class="buy-row">
+            <span class="buy-label">Original</span>
+            <a href="LINK-MP" class="btn-mp" target="_blank">Mercado Pago</a>
+            <a href="LINK-PP" class="btn-pp" target="_blank">PayPal</a>
+          </div>
+          [si tiene print, agregar:]
+          <hr class="buy-divider">
+          <div class="buy-row">
+            <span class="buy-label">Print A3</span>
+            <a href="LINK-MP-PRINT" class="btn-mp" target="_blank">Mercado Pago</a>
+            <span class="print-price">$XX.000</span>
+          </div>
+          <a href="#contacto" class="btn-consultar">Consultar</a>
+        </div>
+        <span class="disponible-badge">Disponible</span>
+      </div>
+      -->
+
+      <!-- OBRA 1 — El astronauta -->
+      <div class="gallery-item item-wide fade-up" data-category="retrato">
+        <div class="thumb">
+          <img src="imagenes/2.jpg" alt="El astronauta — Óleo sobre panel de Julio Machado">
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h3>El astronauta</h3>
+              <p>Óleo sobre panel · 30×30 cm</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-meta">
+          <h3>El astronauta</h3>
           <div class="details">
             <span class="tecnica">Óleo sobre panel · 30×30 cm</span>
             <span class="precio">$300.000</span>
           </div>
         </div>
+        <div class="buy-buttons">
+          <div class="buy-row">
+            <span class="buy-label">Original</span>
+            <a href="https://mpago.la/TU-LINK-AQUI" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <a href="https://www.paypal.com/paypalme/TU-USUARIO" class="btn-pp" target="_blank" rel="noopener">PayPal</a>
+          </div>
+          <hr class="buy-divider">
+          <div class="buy-row">
+            <span class="buy-label">Print A3</span>
+            <a href="https://mpago.la/TU-LINK-PRINT" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <span class="print-price">$XX.000</span>
+          </div>
+          <a href="#contacto" class="btn-consultar">Consultar</a>
+        </div>
         <span class="disponible-badge">Disponible</span>
       </div>
 
-      <!-- OBRA 2 -->
+      <!-- OBRA 2 — Lucy (caricatura) -->
       <div class="gallery-item fade-up" data-category="caricatura">
         <div class="thumb">
-          <div class="thumb-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="24" cy="20" rx="14" ry="16"/><circle cx="18" cy="16" r="2"/><circle cx="30" cy="16" r="2"/><path d="M17 26 Q24 31 31 26"/></svg>
-            <p>Caricatura</p>
-          </div>
-          <img src="imagenes/lucy.webp" alt="Caricatura">
+          <img src="imagenes/lucy.webp" alt="Caricatura — Julio Machado">
           <div class="gallery-overlay">
             <div class="gallery-info">
               <h3>Caricatura encargo</h3>
-              <p>Digital · Impresión disponible</p>
+              <p>Digital · A4</p>
             </div>
           </div>
         </div>
@@ -1204,124 +1387,139 @@
             <span class="precio">$200.000</span>
           </div>
         </div>
+        <div class="buy-buttons">
+          <div class="buy-row">
+            <span class="buy-label">Original</span>
+            <a href="https://mpago.la/TU-LINK-AQUI" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <a href="https://www.paypal.com/paypalme/TU-USUARIO" class="btn-pp" target="_blank" rel="noopener">PayPal</a>
+          </div>
+          <a href="#contacto" class="btn-consultar">Consultar</a>
+        </div>
       </div>
 
-      <!-- OBRA 3 -->
+      <!-- OBRA 3 — Ghoul (paisaje) -->
       <div class="gallery-item fade-up" data-category="paisaje">
         <div class="thumb">
-          <div class="thumb-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 34 Q13 20 22 28 Q31 36 38 18 Q42 10 46 16"/><line x1="4" y1="42" x2="46" y2="42"/></svg>
-            <p>Paisaje · Acrílico</p>
-          </div>
-          <img src="imagenes/ghoul.webp" alt="Paisaje acrílico">
+          <img src="imagenes/ghoul.webp" alt="Óleo sobre bastidor — Julio Machado">
           <div class="gallery-overlay">
             <div class="gallery-info">
-              <h3>Pampa al atardecer</h3>
-              <p>Acrílico · 40×40 cm</p>
+              <h3>Ghoul</h3>
+              <p>Óleo sobre bastidor · 40×40 cm</p>
             </div>
           </div>
         </div>
         <div class="gallery-meta">
-          <h3>Pampa al atardecer</h3>
+          <h3>Ghoul</h3>
           <div class="details">
-            <span class="tecnica">Oleo sobre bastidor · 40×40 cm</span>
+            <span class="tecnica">Óleo sobre bastidor · 40×40 cm</span>
             <span class="precio">$600.000</span>
           </div>
+        </div>
+        <div class="buy-buttons">
+          <div class="buy-row">
+            <span class="buy-label">Original</span>
+            <a href="https://mpago.la/TU-LINK-AQUI" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <a href="https://www.paypal.com/paypalme/TU-USUARIO" class="btn-pp" target="_blank" rel="noopener">PayPal</a>
+          </div>
+          <hr class="buy-divider">
+          <div class="buy-row">
+            <span class="buy-label">Print A3</span>
+            <a href="https://mpago.la/TU-LINK-PRINT" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <span class="print-price">$XX.000</span>
+          </div>
+          <a href="#contacto" class="btn-consultar">Consultar</a>
         </div>
         <span class="disponible-badge">Disponible</span>
       </div>
 
-      <!-- OBRA 4 — El astronauta -->
+      <!-- OBRA 4 — Ape (retrato) -->
       <div class="gallery-item fade-up" data-category="retrato">
         <div class="thumb">
-          <img src="imagenes/2.jpg" alt="El astronauta — Óleo sobre papel de Julio Machado">
+          <img src="imagenes/ape.webp" alt="Retrato — Julio Machado">
           <div class="gallery-overlay">
             <div class="gallery-info">
-              <h3>El astronauta</h3>
-              <p>Óleo sobre papel · 30×40 cm</p>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-meta">
-          <h3>El astronauta</h3>
-          <div class="details">
-            <span class="tecnica">Óleo sobre papel</span>
-            <span class="precio">$600.000</span>
-          </div>
-        </div>
-        <span class="disponible-badge">Disponible</span>
-      </div>
-      
-      <!-- OBRA 4 -->
-      <div class="gallery-item fade-up" data-category="retrato">
-        <div class="thumb">
-          <div class="thumb-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><circle cx="24" cy="18" r="10"/><path d="M6 44c0-9.941 8.059-18 18-18s18 8.059 18 18"/></svg>
-            <p>Retrato · Lápiz</p>
-          </div>
-          <img src="imagenes/ape.webp" alt="Retrato a lápiz">
-          <div class="gallery-overlay">
-            <div class="gallery-info">
-              <h3>Retrato en lápiz</h3>
+              <h3>Retrato</h3>
               <p>Lápiz · 30×40 cm</p>
             </div>
           </div>
         </div>
         <div class="gallery-meta">
-          <h3>Retrato en lápiz</h3>
+          <h3>Retrato</h3>
           <div class="details">
             <span class="tecnica">Lápiz · 30×40 cm</span>
             <span class="precio">$320.000</span>
           </div>
         </div>
+        <div class="buy-buttons">
+          <div class="buy-row">
+            <span class="buy-label">Original</span>
+            <a href="https://mpago.la/TU-LINK-AQUI" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <a href="https://www.paypal.com/paypalme/TU-USUARIO" class="btn-pp" target="_blank" rel="noopener">PayPal</a>
+          </div>
+          <a href="#contacto" class="btn-consultar">Consultar</a>
+        </div>
       </div>
 
-      <!-- OBRA 5 -->
+      <!-- OBRA 5 — Hitchcock (paisaje) -->
       <div class="gallery-item fade-up" data-category="paisaje">
         <div class="thumb">
-          <div class="thumb-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 34 Q13 20 22 28 Q31 36 38 18 Q42 10 46 16"/><line x1="4" y1="42" x2="46" y2="42"/></svg>
-            <p>Paisaje · Óleo</p>
-          </div>
-          <img src="imagenes/hitchcock.webp" alt="Paisaje al óleo">
+          <img src="imagenes/hitchcock.webp" alt="Óleo — Julio Machado">
           <div class="gallery-overlay">
             <div class="gallery-info">
-              <h3>Sierra cordobesa</h3>
+              <h3>Hitchcock</h3>
               <p>Óleo · 40×60 cm</p>
             </div>
           </div>
         </div>
         <div class="gallery-meta">
-          <h3>Sierra cordobesa</h3>
+          <h3>Hitchcock</h3>
           <div class="details">
             <span class="tecnica">Óleo · 40×60 cm</span>
             <span class="precio">$720.000</span>
           </div>
         </div>
+        <div class="buy-buttons">
+          <div class="buy-row">
+            <span class="buy-label">Original</span>
+            <a href="https://mpago.la/TU-LINK-AQUI" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <a href="https://www.paypal.com/paypalme/TU-USUARIO" class="btn-pp" target="_blank" rel="noopener">PayPal</a>
+          </div>
+          <hr class="buy-divider">
+          <div class="buy-row">
+            <span class="buy-label">Print A3</span>
+            <a href="https://mpago.la/TU-LINK-PRINT" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <span class="print-price">$XX.000</span>
+          </div>
+          <a href="#contacto" class="btn-consultar">Consultar</a>
+        </div>
         <span class="disponible-badge">Disponible</span>
       </div>
 
-      <!-- OBRA 6 -->
+      <!-- OBRA 6 — El padrino (caricatura) -->
       <div class="gallery-item fade-up" data-category="caricatura">
         <div class="thumb">
-          <div class="thumb-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="24" cy="20" rx="14" ry="16"/><circle cx="18" cy="16" r="2"/><circle cx="30" cy="16" r="2"/><path d="M17 26 Q24 31 31 26"/></svg>
-            <p>Caricatura grupal</p>
-          </div>
-            <img src="imagenes/padrino.webp" alt="Caricatura grupal">
+          <img src="imagenes/padrino.webp" alt="Caricatura El Padrino — Julio Machado">
           <div class="gallery-overlay">
             <div class="gallery-info">
-              <h3>Caricatura grupal</h3>
+              <h3>El Padrino</h3>
               <p>Digital · 3 personas</p>
             </div>
           </div>
         </div>
         <div class="gallery-meta">
-          <h3>Caricatura grupal</h3>
+          <h3>El Padrino</h3>
           <div class="details">
             <span class="tecnica">Digital · 3 personas</span>
             <span class="precio">$300.000</span>
           </div>
+        </div>
+        <div class="buy-buttons">
+          <div class="buy-row">
+            <span class="buy-label">Original</span>
+            <a href="https://mpago.la/TU-LINK-AQUI" class="btn-mp" target="_blank" rel="noopener">Mercado Pago</a>
+            <a href="https://www.paypal.com/paypalme/TU-USUARIO" class="btn-pp" target="_blank" rel="noopener">PayPal</a>
+          </div>
+          <a href="#contacto" class="btn-consultar">Consultar</a>
         </div>
       </div>
 
