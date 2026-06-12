@@ -588,13 +588,6 @@
         <div class="modal-precio" id="modalPrecio"></div>
         <p class="modal-precio-label" id="modalPrecioLabel">Precio de obra original</p>
         <div class="modal-actions" id="modalActions"></div>
-       <div class="qr-certificate-wrap" style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--ink-3); text-align: center;">
-  <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; margin-bottom: 10px; color: var(--ink-2);">
-    Certificado de Autenticidad Digital
-  </p>
-  <div id="qrcode" style="display: flex; justify-content: center; margin-bottom: 8px;"></div>
-  <small style="font-size: 0.8rem; color: var(--ink-3); display: block;">Escaneá para verificar los datos de la obra original</small>
-</div>
       </div>
     </div>
   </div>
@@ -820,58 +813,42 @@
 
   /* MODAL */
   function openModal(item) {
-  // 1. Extraer los datos existentes de la tarjeta cliqueada
-  const titulo = item.dataset.titulo || 'Obra Sin Título';
-  const tecnica = item.dataset.tecnica || '';
-  const desc = item.dataset.desc || '';
-  const precio = item.dataset.precio || '';
-  const mp = item.dataset.mp || '';
-  const pp = item.dataset.pp || '';
-  const vendida = item.dataset.vendida === 'true';
+    const d = item.dataset;
+    const imgSrc = item.querySelector('img') ? item.querySelector('img').src : '';
 
-  // 2. Rellenar los campos clásicos del modal
-  document.getElementById('modalTitulo').innerText = titulo;
-  document.getElementById('modalTecnica').innerText = tecnica;
-  document.getElementById('modalDesc').innerText = desc;
+    document.getElementById('modalImg').src = imgSrc;
+    document.getElementById('modalImg').alt = d.titulo || '';
+    document.getElementById('modalCategoria').textContent = d.categoria || '';
+    document.getElementById('modalTitulo').textContent = d.titulo || '';
+    document.getElementById('modalTecnica').textContent = d.tecnica || '';
+    document.getElementById('modalDesc').textContent = d.desc || '';
+    document.getElementById('modalPrecio').textContent = d.precio || '';
 
-  // Manejo de botones de compra...
-  const actions = document.getElementById('modalActions');
-  if (vendida) {
-    actions.innerHTML = '<span class="modal-vendida">Obra Vendida</span>';
-  } else {
-    actions.innerHTML = `
-      <div class="price-tag" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 15px;">${precio}</div>
-      <a href="${mp}" class="modal-btn-mp" target="_blank">Comprar con Mercado Pago</a>
-    `;
+    const vendidaTag = document.getElementById('modalVendidaTag');
+    vendidaTag.style.display = d.vendida === 'true' ? 'inline-block' : 'none';
+
+    const actions = document.getElementById('modalActions');
+    const precioLabel = document.getElementById('modalPrecioLabel');
+    actions.innerHTML = '';
+
+    if (d.vendida === 'true') {
+      precioLabel.textContent = 'Esta obra ya fue vendida';
+      actions.innerHTML = '<a href="#contacto" class="modal-btn-wsp" onclick="closeModal()">→ Consultame por una obra similar</a>';
+    } else {
+      precioLabel.textContent = 'Precio de obra original';
+      let html = '';
+      if (d.mp) html += '<a href="' + d.mp + '" class="modal-btn-mp" target="_blank" rel="noopener">Comprar con Mercado Pago</a>';
+      if (d.pp) html += '<a href="' + d.pp + '" class="modal-btn-pp" target="_blank" rel="noopener">Pagar con PayPal</a>';
+      if (d.printPrecio && d.printMp) {
+        html += '<a href="' + d.printMp + '" class="modal-btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>' + d.printPrecio + '</span></a>';
+      }
+      html += '<a href="https://wa.me/5493534018769?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20' + encodeURIComponent(d.titulo || '') + '" class="modal-btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp antes de comprar</a>';
+      actions.innerHTML = html;
+    }
+
+    document.getElementById('modalBackdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
-
-  // =========================================================
-  // GENERACIÓN DINÁMICA DEL QR PARA EL CERTIFICADO
-  // =========================================================
-  
-  // Limpiamos cualquier QR que haya quedado abierto de otra obra
-  document.getElementById("qrcode").innerHTML = "";
-
-  /* Construimos la URL de autenticación.
-     Apunta a tu web pasándole el título como "ancla" para que sea rastreable,
-     por ejemplo: https://www.jcmachado.com/#Luis
-  */
-  const urlCertificado = `https://www.jcmachado.com/#${encodeURIComponent(titulo)}`;
-
-  // Invocamos a la librería para que dibuje el código
-  new QRCode(document.getElementById("qrcode"), {
-    text: urlCertificado,
-    width: 128,
-    height: 128,
-    colorDark : "#1a1814", // El color de tu variable --ink
-    colorLight : "#ffffff",
-    correctLevel : QRCode.CorrectLevel.H // Máxima resistencia para impresión
-  });
-
-  // 3. Abrir el modal visualmente
-  document.getElementById('modalBackdrop').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
 
   function closeModal() {
     document.getElementById('modalBackdrop').classList.remove('open');
@@ -898,7 +875,6 @@
     const texto = 'Hola Julio! Me comunico desde tu web.\n\n*Nombre:* ' + nombre + '\n*Contacto:* ' + (contacto || 'No indicado') + '\n*Tipo de encargo:* ' + (tipo || 'No especificado') + '\n*Idea:* ' + mensaje;
     window.open('https://wa.me/5493534018769?text=' + encodeURIComponent(texto), '_blank');
   }
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </script>
 </body>
 </html>
