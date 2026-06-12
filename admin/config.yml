@@ -1,7 +1,7 @@
 
 backend:
   name: github
-  repo: TU_USUARIO/TU_REPO
+  repo: pmachadojulio/pmachadojulio
 
 media_folder: "imagenes"
 public_folder: "/imagenes"
