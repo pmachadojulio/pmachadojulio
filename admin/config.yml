@@ -5,31 +5,14 @@ media_folder: "imagenes"
 public_folder: "/imagenes"
 
 collections:
-  - name: "obras"
-    label: "Obras"
-    files:
-      - label: "Galería"
-        name: "galeria"
-        file: "data/obras.json"
+  - name: "test"
+    label: "Test"
 
-        fields:
-          - label: "Obras"
-            name: "obras"
-            widget: "list"
+    folder: "data"
 
-            fields:
-              - {label: "Título", name: "titulo", widget: "string"}
+    create: true
 
-              - {label: "Imagen", name: "imagen", widget: "image"}
-
-              - {label: "Precio", name: "precio", widget: "string"}
-
-              - {label: "Descripción", name: "descripcion", widget: "text"}
-
-              - {label: "MercadoPago Original", name: "mercadopago_original", widget: "string", required: false}
-
-              - {label: "PayPal Original", name: "paypal_original", widget: "string", required: false}
-
-              - {label: "MercadoPago Print", name: "mercadopago_print", widget: "string", required: false}
-
-              - {label: "PayPal Print", name: "paypal_print", widget: "string", required: false}
+    fields:
+      - label: "Título"
+        name: "titulo"
+        widget: "string"
