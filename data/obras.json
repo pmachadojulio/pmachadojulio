@@ -1,18 +1,20 @@
-
-[
-  {
-    "titulo": "Julian",
-    "categoria": "retrato",
-    "tecnica": "Óleo sobre papel · 15×21 cm",
-    "descripcion": "Oleo trabajado sobre panel lino",
-    "precio": "$150.000",
-    "imagen": "imagenes/Julian.webp",
-    "mercadopago_original": "",
-    "paypal_original": "",
-    "mercadopago_print": "https://mpago.la/2uNAJBk",
-    "paypal_print": "",
-    "print_precio": "$25.000",
-    "disponible": true,
-    "vendida": true
-  }
-]
+{
+  "id": "JM-2025-001",
+  "titulo": "Julian",
+  "categoria": "retrato",
+  "tecnica": "Óleo sobre papel",
+  "alto_cm": 21,
+  "ancho_cm": 15,
+  "anio": 2025,
+  "descripcion": "Oleo trabajado sobre panel lino",
+  "precio": "$150.000",
+  "print_precio": "$25.000",
+  "imagen": "imagenes/Julian.webp",
+  "mercadopago_original": "",
+  "paypal_original": "",
+  "mercadopago_print": "https://mpago.la/2uNAJBk",
+  "paypal_print": "",
+  "disponible": true,
+  "vendida": true,
+  "qr_url": ""
+}
