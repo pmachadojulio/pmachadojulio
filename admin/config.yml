@@ -6,9 +6,6 @@ publish_mode: editorial_workflow
 
 media_folder: "imagenes"
 public_folder: "/imagenes"
-  
-media_folder: "imagenes"
-public_folder: "/imagenes"
 
 collections:
   - name: "obras"
