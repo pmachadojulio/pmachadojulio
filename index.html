@@ -80,7 +80,7 @@
   .filter-bar { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
   .filter-btn { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(26,24,20,0.2); border-radius: 40px; background: transparent; color: var(--ink-2); cursor: pointer; transition: all 0.2s; }
   .filter-btn:hover, .filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
   .gallery-item { position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; background: var(--paper-2); }
   .gallery-item .thumb { aspect-ratio: 4/5; overflow: hidden; position: relative; }
   .gallery-overlay { position: absolute; inset: 0; background: rgba(26,24,20,0); display: flex; align-items: flex-end; padding: 20px; transition: background 0.3s; }
@@ -617,10 +617,19 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   /* CONSTRUIR GALERÍA DESDE obras.json */
+  function slugify(titulo) {
+    return titulo.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim().replace(/\s+/g, '-');
+  }
+
   function buildGalleryItem(obra) {
     const div = document.createElement('div');
     div.className = 'gallery-item fade-up';
     div.dataset.category = obra.categoria || '';
+
+    const slug = slugify(obra.titulo || obra.id);
 
     const vendidaOverlay = obra.vendida
       ? '<div class="vendida-overlay"><span class="vendida-stamp">Original No Disponible</span></div>'
@@ -651,7 +660,15 @@
       ${disponibleBadge}
     `;
 
-    div.addEventListener('click', () => openModal(obra));
+    div.addEventListener('click', (e) => {
+      // Click en la imagen o thumb → abre modal
+      // Click en el meta (título/precio) → va a la página de la obra
+      if (e.target.closest('.gallery-meta')) {
+        window.location.href = '/obra/' + slug;
+      } else {
+        openModal(obra);
+      }
+    });
     return div;
   }
 
@@ -662,7 +679,7 @@
     })
     .then(data => {
       const grid = document.getElementById('galleryGrid');
-      const obras = data.obras || [];
+      const obras = (data.obras || []).slice().reverse();
 
       if (obras.length === 0) {
         grid.innerHTML = '<p style="color:var(--ink-3);grid-column:1/-1;text-align:center;padding:40px 0;">No hay obras disponibles todavía.</p>';
