@@ -1,6 +1,21 @@
 {
   "obras": [
     {
+      "vendida": false,
+      "alto_cm": 21,
+      "precio": "150000",
+      "tecnica": "Oleo sobre papel",
+      "ancho_cm": 15,
+      "descripcion": "Oleo sobre panel de Steve Buscemi. Mr. Pink",
+      "categoria": "retrato",
+      "anio": 2025,
+      "imagen": "/imagenes/unknown.jpeg",
+      "disponible": true,
+      "print_precio": "25000",
+      "titulo": "Mr. Pink",
+      "id": "JM-2025-009"
+    },
+    {
       "paypal_print": "",
       "vendida": true,
       "alto_cm": 21,
@@ -167,21 +182,6 @@
       "titulo": "El Padrino",
       "id": "JM-2025-008",
       "paypal_original": ""
-    },
-    {
-      "vendida": false,
-      "alto_cm": 21,
-      "precio": "150000",
-      "tecnica": "Oleo sobre papel",
-      "ancho_cm": 15,
-      "descripcion": "Oleo sobre panel de Steve Buscemi. Mr. Pink",
-      "categoria": "retrato",
-      "anio": 2025,
-      "imagen": "/imagenes/unknown.jpeg",
-      "disponible": true,
-      "print_precio": "25000",
-      "titulo": "Mr. Pink",
-      "id": "JM-2025-009"
     }
   ]
 }
