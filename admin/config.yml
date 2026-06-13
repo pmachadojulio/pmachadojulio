@@ -1,22 +1,62 @@
 backend:
   name: git-gateway
 
-site_url: https://jcmachado.com
-display_url: https://jcmachado.com
-logo_url: /favicon.ico
-
 media_folder: "imagenes"
 public_folder: "/imagenes"
 
 collections:
-  - name: "test"
-    label: "Test"
+  - name: "obras"
+    label: "Obras"
 
-    folder: "data"
-
-    create: true
+    file: "data/obras.json"
 
     fields:
-      - label: "Título"
-        name: "titulo"
-        widget: "string"
+      - label: "Obras"
+        name: "obras"
+        widget: "list"
+
+        fields:
+
+          - { label: "ID", name: "id", widget: "string" }
+
+          - { label: "Título", name: "titulo", widget: "string" }
+
+          - label: "Categoría"
+            name: "categoria"
+            widget: "select"
+            options:
+              - retrato
+              - paisaje
+              - caricatura
+
+          - { label: "Año", name: "anio", widget: "number", required: false }
+
+          - { label: "Técnica", name: "tecnica", widget: "string" }
+
+          - { label: "Ancho (cm)", name: "ancho_cm", widget: "number", required: false }
+
+          - { label: "Alto (cm)", name: "alto_cm", widget: "number", required: false }
+
+          - { label: "Descripción", name: "descripcion", widget: "text" }
+
+          - { label: "Imagen", name: "imagen", widget: "image" }
+
+          - { label: "Precio original", name: "precio", widget: "string" }
+
+          - { label: "Precio print", name: "print_precio", widget: "string", required: false }
+
+          - { label: "MercadoPago original", name: "mercadopago_original", widget: "string", required: false }
+
+          - { label: "PayPal original", name: "paypal_original", widget: "string", required: false }
+
+          - { label: "MercadoPago print", name: "mercadopago_print", widget: "string", required: false }
+
+          - { label: "PayPal print", name: "paypal_print", widget: "string", required: false }
+
+          - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
+
+          - { label: "Vendida", name: "vendida", widget: "boolean", default: false }
+
+          - { label: "QR URL", name: "qr_url", widget: "string", required: false }
+
+          - { label: "Certificado", name: "certificado", widget: "string", required: false }
