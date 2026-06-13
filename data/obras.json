@@ -16,5 +16,6 @@
   "paypal_print": "",
   "disponible": true,
   "vendida": true,
-  "qr_url": ""
+  "qr_url": "",
+  "certificado": ""
 }
