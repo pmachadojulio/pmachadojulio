@@ -8,55 +8,58 @@ collections:
   - name: "obras"
     label: "Obras"
 
-    file: "data/obras.json"
-
-    fields:
-      - label: "Obras"
-        name: "obras"
-        widget: "list"
+    files:
+      - label: "Galería"
+        name: "galeria"
+        file: "data/obras.json"
 
         fields:
+          - label: "Obras"
+            name: "obras"
+            widget: "list"
 
-          - { label: "ID", name: "id", widget: "string" }
+            fields:
 
-          - { label: "Título", name: "titulo", widget: "string" }
+              - { label: "ID", name: "id", widget: "string" }
 
-          - label: "Categoría"
-            name: "categoria"
-            widget: "select"
-            options:
-              - retrato
-              - paisaje
-              - caricatura
+              - { label: "Título", name: "titulo", widget: "string" }
 
-          - { label: "Año", name: "anio", widget: "number", required: false }
+              - label: "Categoría"
+                name: "categoria"
+                widget: "select"
+                options:
+                  - retrato
+                  - paisaje
+                  - caricatura
 
-          - { label: "Técnica", name: "tecnica", widget: "string" }
+              - { label: "Año", name: "anio", widget: "number", required: false }
 
-          - { label: "Ancho (cm)", name: "ancho_cm", widget: "number", required: false }
+              - { label: "Técnica", name: "tecnica", widget: "string" }
 
-          - { label: "Alto (cm)", name: "alto_cm", widget: "number", required: false }
+              - { label: "Ancho (cm)", name: "ancho_cm", widget: "number", required: false }
 
-          - { label: "Descripción", name: "descripcion", widget: "text" }
+              - { label: "Alto (cm)", name: "alto_cm", widget: "number", required: false }
 
-          - { label: "Imagen", name: "imagen", widget: "image" }
+              - { label: "Descripción", name: "descripcion", widget: "text" }
 
-          - { label: "Precio original", name: "precio", widget: "string" }
+              - { label: "Imagen", name: "imagen", widget: "image" }
 
-          - { label: "Precio print", name: "print_precio", widget: "string", required: false }
+              - { label: "Precio original", name: "precio", widget: "string" }
 
-          - { label: "MercadoPago original", name: "mercadopago_original", widget: "string", required: false }
+              - { label: "Precio print", name: "print_precio", widget: "string", required: false }
 
-          - { label: "PayPal original", name: "paypal_original", widget: "string", required: false }
+              - { label: "MercadoPago original", name: "mercadopago_original", widget: "string", required: false }
 
-          - { label: "MercadoPago print", name: "mercadopago_print", widget: "string", required: false }
+              - { label: "PayPal original", name: "paypal_original", widget: "string", required: false }
 
-          - { label: "PayPal print", name: "paypal_print", widget: "string", required: false }
+              - { label: "MercadoPago print", name: "mercadopago_print", widget: "string", required: false }
 
-          - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
+              - { label: "PayPal print", name: "paypal_print", widget: "string", required: false }
 
-          - { label: "Vendida", name: "vendida", widget: "boolean", default: false }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
 
-          - { label: "QR URL", name: "qr_url", widget: "string", required: false }
+              - { label: "Vendida", name: "vendida", widget: "boolean", default: false }
 
-          - { label: "Certificado", name: "certificado", widget: "string", required: false }
+              - { label: "QR URL", name: "qr_url", widget: "string", required: false }
+
+              - { label: "Certificado", name: "certificado", widget: "string", required: false }
