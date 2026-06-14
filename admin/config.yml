@@ -2,7 +2,7 @@ backend:
   name: github
   repo: pmachadojulio/pmachadojulio
   branch: main
-  base_url: pmachadojulio.pmachado-julio.workers.dev
+  base_url: https://delicate-art-a159.pmachado-julio.workers.dev
 
 publish_mode: editorial_workflow
 
