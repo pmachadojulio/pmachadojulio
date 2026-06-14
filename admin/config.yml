@@ -11,9 +11,11 @@ media_folder: "imagenes"
 public_folder: "/imagenes"
 
 collections:
+collections:
   - name: "obras"
     label: "Obras"
-
+    identifier_field: titulo
+    
     files:
       - label: "Galería"
         name: "galeria"
