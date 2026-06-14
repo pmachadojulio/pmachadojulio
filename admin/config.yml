@@ -3,51 +3,44 @@ backend:
   repo: pmachadojulio/pmachadojulio
   branch: main
   base_url: https://delicate-art-a159.pmachado-julio.workers.dev
-  auth_endpoint: /auth
-
-publish_mode: editorial_workflow
 
 media_folder: "imagenes"
 public_folder: "/imagenes"
 
 collections:
-collections:
   - name: "obras"
     label: "Obras"
-    identifier_field: titulo
-    
     files:
       - label: "Galería"
         name: "galeria"
         file: "data/obras.json"
-
         fields:
-  - label: "Obras"
-    name: "obras"
-    widget: "list"
-    fields:
-      - { label: "Título", name: "titulo", widget: "string" }
-      - { label: "ID", name: "id", widget: "string" }
-      - label: "Categoría"
-        name: "categoria"
-        widget: "select"
-        options:
-          - retrato
-          - paisaje
-          - caricatura
-      - { label: "Año", name: "anio", widget: "number", required: false }
-      - { label: "Técnica", name: "tecnica", widget: "string" }
-      - { label: "Ancho (cm)", name: "ancho_cm", widget: "number", required: false }
-      - { label: "Alto (cm)", name: "alto_cm", widget: "number", required: false }
-      - { label: "Descripción", name: "descripcion", widget: "text" }
-      - { label: "Imagen", name: "imagen", widget: "image" }
-      - { label: "Precio original", name: "precio", widget: "string" }
-      - { label: "Precio print", name: "print_precio", widget: "string", required: false }
-      - { label: "MercadoPago original", name: "mercadopago_original", widget: "string", required: false }
-      - { label: "PayPal original", name: "paypal_original", widget: "string", required: false }
-      - { label: "MercadoPago print", name: "mercadopago_print", widget: "string", required: false }
-      - { label: "PayPal print", name: "paypal_print", widget: "string", required: false }
-      - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
-      - { label: "Vendida", name: "vendida", widget: "boolean", default: false }
-      - { label: "QR URL", name: "qr_url", widget: "string", required: false }
-      - { label: "Certificado", name: "certificado", widget: "string", required: false }
+          - label: "Obras"
+            name: "obras"
+            widget: "list"
+            fields:
+              - { label: "Título", name: "titulo", widget: "string" }
+              - { label: "ID", name: "id", widget: "string" }
+              - label: "Categoría"
+                name: "categoria"
+                widget: "select"
+                options:
+                  - retrato
+                  - paisaje
+                  - caricatura
+              - { label: "Año", name: "anio", widget: "number", required: false }
+              - { label: "Técnica", name: "tecnica", widget: "string" }
+              - { label: "Ancho (cm)", name: "ancho_cm", widget: "number", required: false }
+              - { label: "Alto (cm)", name: "alto_cm", widget: "number", required: false }
+              - { label: "Descripción", name: "descripcion", widget: "text" }
+              - { label: "Imagen", name: "imagen", widget: "image" }
+              - { label: "Precio original", name: "precio", widget: "string" }
+              - { label: "Precio print", name: "print_precio", widget: "string", required: false }
+              - { label: "MercadoPago original", name: "mercadopago_original", widget: "string", required: false }
+              - { label: "PayPal original", name: "paypal_original", widget: "string", required: false }
+              - { label: "MercadoPago print", name: "mercadopago_print", widget: "string", required: false }
+              - { label: "PayPal print", name: "paypal_print", widget: "string", required: false }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
+              - { label: "Vendida", name: "vendida", widget: "boolean", default: false }
+              - { label: "QR URL", name: "qr_url", widget: "string", required: false }
+              - { label: "Certificado", name: "certificado", widget: "string", required: false }
