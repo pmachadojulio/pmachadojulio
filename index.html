@@ -661,10 +661,8 @@
     `;
 
     div.addEventListener('click', (e) => {
-      // Click en la imagen o thumb → abre modal
-      // Click en el meta (título/precio) → va a la página de la obra
       if (e.target.closest('.gallery-meta')) {
-        window.location.href = '/obra/' + slug;
+        window.location.href = '/obra/?slug=' + slug;
       } else {
         openModal(obra);
       }
