@@ -123,9 +123,9 @@
       .trim().replace(/\s+/g, '-');
   }
 
-  // Leer el slug de la URL: /obra/julian → "julian"
-  const pathParts = window.location.pathname.split('/').filter(Boolean);
-  const slugActual = pathParts[pathParts.length - 1];
+  // Leer el slug de la URL: /obra/?slug=julian → "julian"
+  const params = new URLSearchParams(window.location.search);
+  const slugActual = params.get("slug") || "";
 
   fetch('/data/obras.json')
     .then(res => { if (!res.ok) throw new Error('Error'); return res.json(); })
