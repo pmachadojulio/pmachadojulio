@@ -3,6 +3,7 @@ backend:
   repo: pmachadojulio/pmachadojulio
   branch: main
   base_url: https://delicate-art-a159.pmachado-julio.workers.dev
+  auth_endpoint: /auth
 
 publish_mode: editorial_workflow
 
