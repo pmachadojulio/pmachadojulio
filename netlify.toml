@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/obra/*"
-  to = "/obra.html"
-  status = 200
