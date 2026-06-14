@@ -343,6 +343,7 @@
         <div class="modal-precio" id="modalPrecio"></div>
         <p class="modal-precio-label" id="modalPrecioLabel">Precio de obra original</p>
         <div class="modal-actions" id="modalActions"></div>
+        <a id="modalFichaLink" href="#" style="display:block;text-align:center;margin-top:16px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--ink-3);padding-bottom:2px;width:fit-content;margin-left:auto;margin-right:auto;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='var(--ink-3)';this.style.borderColor='var(--ink-3)'">Ver ficha completa y certificado →</a>
       </div>
     </div>
   </div>
@@ -600,6 +601,10 @@
       html += '<a href="https://wa.me/5493534018769?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20' + encodeURIComponent(obra.titulo || '') + '" class="modal-btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp antes de comprar</a>';
       actions.innerHTML = html;
     }
+
+    // Link a ficha completa (siempre visible)
+    const slug = slugify(obra.titulo || obra.id);
+    document.getElementById('modalFichaLink').href = '/obra/?slug=' + slug;
 
     document.getElementById('modalBackdrop').classList.add('open');
     document.body.style.overflow = 'hidden';
