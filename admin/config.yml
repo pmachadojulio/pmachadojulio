@@ -2,6 +2,7 @@ backend:
   name: github
   repo: pmachadojulio/pmachadojulio
   branch: main
+  base_url: pmachadojulio.pmachado-julio.workers.dev
 
 publish_mode: editorial_workflow
 
