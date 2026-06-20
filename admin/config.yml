@@ -20,6 +20,13 @@ collections:
             widget: "list"
             fields:
               - { label: "Título", name: "titulo", widget: "string" }
+              - label: "Tipo"
+                name: "tipo"
+                widget: "select"
+                default: "original"
+                options:
+                  - { label: "Original", value: "original" }
+                  - { label: "Solo Print", value: "solo_print" }
               - { label: "ID", name: "id", widget: "string" }
               - label: "Categoría"
                 name: "categoria"
