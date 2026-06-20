@@ -95,6 +95,7 @@
   .gallery-meta .tecnica { font-size: 11px; color: var(--ink-3); letter-spacing: 0.5px; }
   .gallery-meta .precio { font-family: var(--serif); font-size: 18px; color: var(--accent); font-weight: 400; }
   .disponible-badge { position: absolute; top: 12px; right: 12px; background: var(--accent); color: var(--white); font-size: 9px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+  .solo-print-badge { position: absolute; top: 12px; left: 12px; background: #2a2a3a; color: #fdfcfa; font-size: 9px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; z-index: 4; }
   /* Vendida overlay on thumb */
   .vendida-overlay { position: absolute; inset: 0; background: rgba(26,24,20,0.55); display: flex; align-items: center; justify-content: center; z-index: 3; pointer-events: none; }
   .vendida-stamp { border: 2px solid #d94f4f; color: #d94f4f; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; padding: 7px 18px; transform: rotate(-10deg); border-radius: 2px; background: rgba(217,79,79,0.08); }
@@ -587,9 +588,19 @@
     const precioLabel = document.getElementById('modalPrecioLabel');
     actions.innerHTML = '';
 
+    const esSoloPrint = obra.tipo === 'solo_print';
+
     if (obra.vendida) {
       precioLabel.textContent = 'Esta obra ya fue vendida';
       actions.innerHTML = '<a href="#contacto" class="modal-btn-wsp" onclick="closeModal()">→ Consultame por una obra similar</a>';
+    } else if (esSoloPrint) {
+      precioLabel.textContent = 'Solo disponible en print';
+      let html = '';
+      if (obra.print_precio && obra.mercadopago_print) {
+        html += '<a href="' + obra.mercadopago_print + '" class="modal-btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>' + obra.print_precio + '</span></a>';
+      }
+      html += '<a href="https://wa.me/5493534018769?text=Hola%20Julio!%20Me%20interesa%20el%20print%20de%20' + encodeURIComponent(obra.titulo || '') + '" class="modal-btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>';
+      actions.innerHTML = html;
     } else {
       precioLabel.textContent = 'Precio de obra original';
       let html = '';
@@ -636,13 +647,19 @@
 
     const slug = slugify(obra.titulo || obra.id);
 
+    const soloprint = obra.tipo === 'solo_print';
+
     const vendidaOverlay = obra.vendida
       ? '<div class="vendida-overlay"><span class="vendida-stamp">Original No Disponible</span></div>'
-      : '';
+      : soloprint
+        ? '<div class="vendida-overlay"><span class="vendida-stamp" style="border-color:#c4956a;color:#fdfcfa;background:rgba(42,42,58,0.75)">Solo Print</span></div>'
+        : '';
 
-    const disponibleBadge = (obra.disponible && !obra.vendida)
+    const disponibleBadge = (obra.disponible && !obra.vendida && !soloprint)
       ? '<span class="disponible-badge">Disponible</span>'
-      : '';
+      : soloprint
+        ? '<span class="solo-print-badge">Solo Print</span>'
+        : '';
 
     div.innerHTML = `
       ${vendidaOverlay}
