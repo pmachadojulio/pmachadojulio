@@ -213,6 +213,26 @@
             ${!o.vendida ? '<div class="obra-precio">' + o.precio + '</div>' : ''}
           </div>
           <div class="acciones">${accionesHTML}</div>
+
+          <div style="margin-top:20px;padding:16px;background:var(--paper-2);border-radius:4px;font-size:12px;color:var(--ink-2);line-height:1.8;">
+            ${!esSoloPrint && !o.vendida ? `
+            <div style="margin-bottom:8px;font-weight:500;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-3);">Qué incluye</div>
+            <div>✓ Obra original</div>
+            <div>✓ Certificado de autenticidad con QR</div>
+            <div>✓ Embalaje protegido para envío</div>
+            <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(26,24,20,0.1);">
+              <span style="font-weight:500;">Envío:</span> OCA o Andreani · $5.000–$8.000 según destino · 3 a 7 días hábiles
+            </div>
+            ` : esSoloPrint ? `
+            <div style="margin-bottom:8px;font-weight:500;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-3);">Qué incluye</div>
+            <div>✓ Print A3 de alta resolución</div>
+            <div>✓ Embalaje en tubo rígido de cartón</div>
+            <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(26,24,20,0.1);">
+              <span style="font-weight:500;">Envío:</span> OCA o Andreani · $5.000–$8.000 según destino · 3 a 7 días hábiles
+            </div>
+            ` : ''}
+          </div>
+
           ${certHTML}
         </div>
       </div>
