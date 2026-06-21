@@ -31,6 +31,14 @@
   .eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-3); }
   .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gap); }
 
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid rgba(26,24,20,0.1); padding: 0; }
+  .faq-item summary { font-family: var(--serif); font-size: 20px; font-weight: 400; padding: 20px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-family: var(--sans); font-size: 20px; font-weight: 300; color: var(--accent); flex-shrink: 0; transition: transform 0.2s; }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { font-size: 14px; color: var(--ink-2); line-height: 1.8; padding-bottom: 20px; }
+
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px var(--gap); background: rgba(245,242,237,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(26,24,20,0.08); transition: padding 0.3s; }
   nav.scrolled { padding: 14px var(--gap); }
@@ -249,6 +257,7 @@
   <a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a>
   <a href="#encargos" onclick="closeMobileMenu()">Encargos</a>
   <a href="#sobre-mi" onclick="closeMobileMenu()">Sobre mí</a>
+  <a href="#como-comprar" onclick="closeMobileMenu()">Cómo comprar</a>
   <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
 </div>
 
@@ -259,6 +268,7 @@
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#encargos">Encargos</a></li>
     <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#como-comprar">Cómo comprar</a></li>
     <li><a href="#contacto" class="nav-cta">Hacer un encargo</a></li>
   </ul>
   <button class="nav-toggle" onclick="openMobileMenu()" aria-label="Abrir menú">
@@ -443,6 +453,79 @@
           <a href="https://www.youtube.com/@Juliomachadoart" target="_blank" rel="noopener" class="btn-secondary">Ver canal de YouTube →</a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CÓMO COMPRAR -->
+<section id="como-comprar" style="background: var(--white); padding: clamp(60px,10vh,100px) 0;">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div>
+        <p class="eyebrow">Proceso de compra</p>
+        <h2 class="section-title">¿Cómo <em>comprar</em><br>una obra?</h2>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;margin-top:8px;">
+      <div class="fade-up" style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-family:var(--serif);font-size:48px;font-weight:300;color:var(--paper-3);line-height:1;">01</div>
+        <h3 style="font-family:var(--serif);font-size:22px;font-weight:400;">Elegís la obra</h3>
+        <p style="font-size:14px;color:var(--ink-2);line-height:1.75;">Explorás la galería, hacés click en la imagen para ver el modal rápido o en el título para ver la ficha completa con todos los detalles.</p>
+      </div>
+      <div class="fade-up" style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-family:var(--serif);font-size:48px;font-weight:300;color:var(--paper-3);line-height:1;">02</div>
+        <h3 style="font-family:var(--serif);font-size:22px;font-weight:400;">Consultás o comprás</h3>
+        <p style="font-size:14px;color:var(--ink-2);line-height:1.75;">Podés comprar directamente con Mercado Pago o consultar por WhatsApp si tenés dudas sobre la obra, el envío o el encargo.</p>
+      </div>
+      <div class="fade-up" style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-family:var(--serif);font-size:48px;font-weight:300;color:var(--paper-3);line-height:1;">03</div>
+        <h3 style="font-family:var(--serif);font-size:22px;font-weight:400;">Coordinamos el envío</h3>
+        <p style="font-size:14px;color:var(--ink-2);line-height:1.75;">Confirmado el pago, coordinamos el envío por OCA o Andreani. Los prints viajan en tubo rígido de cartón. Costo de envío a cargo del comprador: entre $5.000 y $8.000 según destino.</p>
+      </div>
+      <div class="fade-up" style="display:flex;flex-direction:column;gap:12px;">
+        <div style="font-family:var(--serif);font-size:48px;font-weight:300;color:var(--paper-3);line-height:1;">04</div>
+        <h3 style="font-family:var(--serif);font-size:22px;font-weight:400;">Llega a tu puerta</h3>
+        <p style="font-size:14px;color:var(--ink-2);line-height:1.75;">La obra llega embalada y protegida. Los originales incluyen certificado de autenticidad con QR único que verifica la procedencia de la obra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding: clamp(60px,10vh,100px) 0; background: var(--paper);">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div>
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 class="section-title">Lo que suelen<br><em>preguntar.</em></h2>
+      </div>
+    </div>
+    <div style="max-width:720px;margin-top:8px;">
+      <details class="faq-item fade-up" open>
+        <summary>¿Cómo pago?</summary>
+        <p>Aceptamos Mercado Pago (tarjeta de crédito, débito o dinero en cuenta) y PayPal para pagos internacionales. También podés consultar por WhatsApp para coordinar otra modalidad.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>¿Qué incluye la compra de un print?</summary>
+        <p>El print A3 de alta resolución, embalado en tubo rígido de cartón para que llegue en perfectas condiciones. El costo de envío (entre $5.000 y $8.000) se suma al precio del print y varía según el destino.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>¿Qué incluye la compra de un original?</summary>
+        <p>La obra original, certificado de autenticidad firmado con QR único que permite verificar la procedencia, y embalaje protegido para el envío.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>¿Cuánto tarda en llegar?</summary>
+        <p>Generalmente entre 3 y 7 días hábiles según el destino dentro de Argentina. Una vez confirmado el pago, te aviso el número de seguimiento.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>¿Hacen envíos internacionales?</summary>
+        <p>Por el momento solo enviamos dentro de Argentina. Para consultas internacionales escribime por WhatsApp y vemos alternativas.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>¿Qué pasa si llega dañado?</summary>
+        <p>Todos los envíos salen embalados cuidadosamente. Si aun así hay algún problema, escribime inmediatamente con fotos y lo resolvemos. Tu satisfacción es lo primero.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -651,9 +734,7 @@
 
     const vendidaOverlay = obra.vendida
       ? '<div class="vendida-overlay"><span class="vendida-stamp">Original No Disponible</span></div>'
-      : soloprint
-        ? '<div class="vendida-overlay"><span class="vendida-stamp" style="border-color:#c4956a;color:#fdfcfa;background:rgba(42,42,58,0.75)">Solo Print</span></div>'
-        : '';
+      : '';
 
     const disponibleBadge = (obra.disponible && !obra.vendida && !soloprint)
       ? '<span class="disponible-badge">Disponible</span>'
