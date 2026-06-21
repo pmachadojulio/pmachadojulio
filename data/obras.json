@@ -474,6 +474,28 @@
       "vendida": false,
       "qr_url": "",
       "certificado": ""
+    },
+    {
+      "titulo": "Carca",
+      "tipo": "solo_print",
+      "id": "JM-2026-S13",
+      "categoria": "retrato",
+      "anio": 2026,
+      "tecnica": "Oleo sobre sketchbook",
+      "ancho_cm": 15,
+      "alto_cm": 21,
+      "descripcion": "Carca",
+      "imagen": "/imagenes/Carca.webp",
+      "precio": "$30.000",
+      "print_precio": "$30.000",
+      "mercadopago_original": "",
+      "paypal_original": "",
+      "mercadopago_print": "https://mpago.la/1bk6V8H",
+      "paypal_print": "",
+      "disponible": true,
+      "vendida": false,
+      "qr_url": "",
+      "certificado": ""
     }
   ]
 }
