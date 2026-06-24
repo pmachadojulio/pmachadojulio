@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Obra — Julio Machado</title>
 <meta name="description" content="Ficha de obra · Julio Machado — Pintor">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -74,6 +75,9 @@
   .cert-title { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 8px; }
   .cert-desc { font-size: 13px; color: var(--ink-3); line-height: 1.7; margin-bottom: 16px; }
   .cert-id { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 2px; color: var(--ink-2); background: var(--paper-2); padding: 10px 16px; border-radius: 2px; display: inline-block; }
+  .obra-qr-wrap { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .obra-qr-wrap canvas, .obra-qr-wrap img { width: 64px !important; height: 64px !important; }
+  .obra-qr-label { font-size: 11px; color: var(--ink-3); line-height: 1.5; }
 
   /* LOADING / ERROR */
   .estado { text-align: center; padding: 80px var(--gap); color: var(--ink-3); font-size: 14px; }
@@ -181,11 +185,25 @@
     }
 
     // Certificado (solo si es original, no solo_print)
+    const qrUrl = 'https://jcmachado.com/obra/?slug=' + slug;
+
     const certHTML = !esSoloPrint ? `
       <div class="certificado-section">
         <h3 class="cert-title">Certificado de autenticidad</h3>
-        <p class="cert-desc">Esta obra es un original de Julio Machado. El ID único identifica y garantiza su autenticidad dentro del catálogo oficial del artista.</p>
-        <span class="cert-id">${o.id}</span>
+        <p class="cert-desc">Esta obra es un original único de Julio Machado. El ID y código QR permiten verificar su procedencia en el catálogo oficial del artista.</p>
+        <div class="obra-qr-wrap">
+          <div id="obraQr"></div>
+          <div>
+            <span class="cert-id">${o.id}</span>
+            <div class="obra-qr-label" style="margin-top:6px;">Escanear para verificar autenticidad</div>
+          </div>
+        </div>
+      </div>
+    ` : o.edicion_total ? `
+      <div class="certificado-section">
+        <h3 class="cert-title">Edición limitada</h3>
+        <p class="cert-desc">Este print pertenece a una edición limitada de <strong>${o.edicion_total} ejemplares</strong>. Cada copia está numerada y certificada por el artista.</p>
+        <span class="cert-id">${o.id} · Edición de ${o.edicion_total}</span>
       </div>
     ` : '';
 
@@ -237,6 +255,21 @@
         </div>
       </div>
     `;
+
+    // Generar QR automático si es original
+    if (!esSoloPrint) {
+      const qrEl = document.getElementById('obraQr');
+      if (qrEl) {
+        new QRCode(qrEl, {
+          text: qrUrl,
+          width: 64,
+          height: 64,
+          colorDark: '#1a1814',
+          colorLight: '#fdfcfa',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      }
+    }
   }
 
   function mostrarError() {
