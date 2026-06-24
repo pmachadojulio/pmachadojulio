@@ -15,120 +15,80 @@
   :root {
     --ink: #1a1814; --ink-2: #4a4740; --ink-3: #8a8780;
     --paper: #f5f2ed; --paper-2: #ede9e2; --accent: #8b5e3c;
-    --accent-light: #c4956a; --white: #fdfcfa;
+    --white: #fdfcfa;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
   }
   body { font-family: var(--sans); background: var(--paper-2); color: var(--ink); min-height: 100vh; padding: 40px 24px; }
 
-  /* PANEL DE CONTROL */
   .panel { max-width: 500px; margin: 0 auto 48px; background: var(--white); border-radius: 8px; padding: 36px; box-shadow: 0 4px 24px rgba(26,24,20,0.08); }
   .panel h1 { font-family: var(--serif); font-size: 32px; font-weight: 300; margin-bottom: 6px; }
-  .panel p { font-size: 13px; color: var(--ink-3); margin-bottom: 28px; }
-  .field { margin-bottom: 20px; }
+  .panel p { font-size: 13px; color: var(--ink-3); margin-bottom: 20px; }
+
+  .tipo-tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+  .tipo-tab { flex: 1; padding: 10px; border: 1.5px solid rgba(26,24,20,0.15); background: transparent; border-radius: 4px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; color: var(--ink-3); transition: all 0.2s; }
+  .tipo-tab.active { border-color: var(--accent); color: var(--accent); background: rgba(139,94,60,0.06); }
+
+  .field { margin-bottom: 16px; }
   .field label { display: block; font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 7px; }
-  .field input, .field select { width: 100%; background: var(--paper); border: 1px solid rgba(26,24,20,0.12); border-radius: 4px; padding: 12px 14px; font-family: var(--sans); font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.2s; }
-  .field input:focus, .field select:focus { border-color: var(--accent); }
-  .btn-buscar { width: 100%; background: var(--ink); color: var(--paper); border: none; padding: 14px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: background 0.2s; margin-bottom: 12px; }
+  .field input { width: 100%; background: var(--paper); border: 1px solid rgba(26,24,20,0.12); border-radius: 4px; padding: 12px 14px; font-family: var(--sans); font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.2s; }
+  .field input:focus { border-color: var(--accent); }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .btn-buscar { width: 100%; background: var(--ink); color: var(--paper); border: none; padding: 14px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: background 0.2s; margin-bottom: 10px; }
   .btn-buscar:hover { background: var(--accent); }
   .btn-pdf { width: 100%; background: var(--accent); color: var(--white); border: none; padding: 14px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: background 0.2s; display: none; }
   .btn-pdf:hover { background: #6d4a2f; }
-  .estado { font-size: 13px; color: var(--ink-3); text-align: center; margin-top: 12px; min-height: 20px; }
+  .estado { font-size: 13px; color: var(--ink-3); text-align: center; margin-top: 10px; min-height: 20px; }
   .estado.error { color: #d94f4f; }
   .estado.ok { color: #3a7a3a; }
+  .campo-print { display: none; }
 
-  /* PREVIEW DEL CERTIFICADO */
   .preview-wrap { max-width: 794px; margin: 0 auto; }
   .preview-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; text-align: center; }
 
-  /* CERTIFICADO — diseño A4 horizontal */
   #certificado {
-    width: 794px;
-    min-height: 560px;
-    background: var(--white);
-    border: 1px solid rgba(26,24,20,0.1);
-    display: none;
-    font-family: var(--sans);
-    position: relative;
-    overflow: hidden;
+    width: 794px; min-height: 560px; background: var(--white);
+    border: 1px solid rgba(26,24,20,0.1); display: none;
+    font-family: var(--sans); position: relative; overflow: hidden;
   }
-
-  .cert-borde {
-    position: absolute;
-    inset: 12px;
-    border: 1px solid rgba(139,94,60,0.2);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .cert-inner {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    min-height: 560px;
-  }
-
-  /* COLUMNA IZQUIERDA — imagen */
-  .cert-img-col {
-    background: var(--paper-2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 24px;
-    border-right: 1px solid rgba(26,24,20,0.08);
-  }
-  .cert-img-col img {
-    max-width: 100%;
-    max-height: 320px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    box-shadow: 0 4px 20px rgba(26,24,20,0.15);
-  }
-
-  /* COLUMNA DERECHA — datos */
-  .cert-data-col {
-    padding: 36px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .cert-header { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid rgba(26,24,20,0.08); }
+  .cert-borde { position: absolute; inset: 12px; border: 1px solid rgba(139,94,60,0.2); pointer-events: none; z-index: 1; }
+  .cert-inner { display: grid; grid-template-columns: 260px 1fr; min-height: 560px; }
+  .cert-img-col { background: var(--paper-2); display: flex; align-items: center; justify-content: center; padding: 32px 24px; border-right: 1px solid rgba(26,24,20,0.08); }
+  .cert-img-col img { max-width: 100%; max-height: 320px; width: auto; height: auto; object-fit: contain; display: block; box-shadow: 0 4px 20px rgba(26,24,20,0.15); }
+  .cert-data-col { padding: 36px 40px; display: flex; flex-direction: column; }
+  .cert-header { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(26,24,20,0.08); }
   .cert-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-  .cert-titulo { font-family: var(--serif); font-size: 36px; font-weight: 300; line-height: 1.0; color: var(--ink); margin-bottom: 4px; }
-  .cert-titulo em { font-style: italic; color: var(--accent); }
+  .cert-titulo { font-family: var(--serif); font-size: 34px; font-weight: 300; line-height: 1.0; color: var(--ink); margin-bottom: 4px; }
   .cert-artista { font-size: 12px; color: var(--ink-3); letter-spacing: 1px; }
-
-  .cert-ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; margin-bottom: 20px; }
-  .cert-campo { }
+  .cert-ficha { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; margin-bottom: 16px; }
   .cert-campo-label { font-size: 8px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
-  .cert-campo-val { font-size: 13px; color: var(--ink); font-weight: 400; }
-
-  .cert-precio-wrap { background: var(--paper); border-radius: 4px; padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+  .cert-campo-val { font-size: 13px; color: var(--ink); }
+  .cert-edicion { background: rgba(139,94,60,0.08); border: 1px solid rgba(139,94,60,0.2); border-radius: 4px; padding: 10px 14px; margin-bottom: 14px; font-size: 12px; color: var(--ink-2); }
+  .cert-edicion strong { color: var(--accent); font-family: var(--serif); font-size: 16px; }
+  .cert-precio-wrap { background: var(--paper); border-radius: 4px; padding: 10px 14px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
   .cert-precio-label { font-size: 9px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); }
-  .cert-precio-val { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--accent); }
-
-  .cert-footer { margin-top: auto; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; padding-top: 20px; border-top: 1px solid rgba(26,24,20,0.08); }
-
-  .cert-firma { }
-  .cert-firma-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 32px; }
-  .cert-firma-linea { border-bottom: 1px solid var(--ink-3); width: 200px; margin-bottom: 6px; }
+  .cert-precio-val { font-family: var(--serif); font-size: 26px; font-weight: 300; color: var(--accent); }
+  .cert-footer { margin-top: auto; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; padding-top: 16px; border-top: 1px solid rgba(26,24,20,0.08); }
+  .cert-firma-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 28px; }
+  .cert-firma-linea { border-bottom: 1px solid var(--ink-3); width: 180px; margin-bottom: 6px; }
   .cert-firma-nombre { font-family: var(--serif); font-size: 14px; color: var(--ink-2); font-style: italic; }
-
-  .cert-qr-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .cert-qr-wrap canvas, .cert-qr-wrap img { width: 72px !important; height: 72px !important; }
+  .cert-qr-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .cert-qr-wrap canvas, .cert-qr-wrap img { width: 68px !important; height: 68px !important; }
   .cert-id { font-size: 8px; letter-spacing: 1.5px; color: var(--ink-3); text-align: center; font-weight: 500; }
   .cert-autenticidad { font-size: 7px; color: var(--ink-3); text-align: center; max-width: 80px; line-height: 1.4; }
-
-  @media print { body { background: white; padding: 0; } .panel, .preview-label { display: none; } #certificado { display: block !important; border: none; box-shadow: none; } }
 </style>
 </head>
 <body>
 
 <div class="panel">
   <h1>Certificado<br><em style="font-style:italic;color:var(--accent)">de autenticidad</em></h1>
-  <p>Ingresá el ID de la obra para generar el certificado PDF.</p>
+  <p>Seleccioná el tipo de certificado y cargá la obra.</p>
+
+  <div class="tipo-tabs">
+    <button class="tipo-tab active" id="tabOriginal" onclick="setTipo('original')">Original</button>
+    <button class="tipo-tab" id="tabPrint" onclick="setTipo('print')">Print</button>
+  </div>
 
   <div class="field">
     <label>ID de la obra</label>
@@ -136,8 +96,19 @@
   </div>
 
   <div class="field">
-    <label>Precio de venta (opcional, sobreescribe el del JSON)</label>
+    <label>Precio de venta (opcional)</label>
     <input type="text" id="inputPrecio" placeholder="Ej: $150.000" />
+  </div>
+
+  <div class="campo-print field-row" id="campoPrint">
+    <div class="field">
+      <label>N° de ejemplar</label>
+      <input type="number" id="inputEjemplar" placeholder="Ej: 3" min="1" />
+    </div>
+    <div class="field">
+      <label>Total de la edición</label>
+      <input type="number" id="inputEdicion" placeholder="Ej: 10" min="1" />
+    </div>
   </div>
 
   <button class="btn-buscar" onclick="buscarObra()">Cargar obra</button>
@@ -155,7 +126,7 @@
       </div>
       <div class="cert-data-col">
         <div class="cert-header">
-          <div class="cert-eyebrow">Certificado de Autenticidad · Julio Machado</div>
+          <div class="cert-eyebrow" id="certEyebrow">Certificado de Autenticidad · Julio Machado</div>
           <div class="cert-titulo" id="certTitulo"></div>
           <div class="cert-artista">Julio César Machado · Pintor · Argentina</div>
         </div>
@@ -177,8 +148,9 @@
             <div class="cert-campo-val" id="certCategoria"></div>
           </div>
         </div>
+        <div class="cert-edicion" id="certEdicion" style="display:none"></div>
         <div class="cert-precio-wrap">
-          <span class="cert-precio-label">Precio de venta</span>
+          <span class="cert-precio-label" id="certPrecioLabel">Precio de venta</span>
           <span class="cert-precio-val" id="certPrecio"></span>
         </div>
         <div class="cert-footer">
@@ -190,7 +162,7 @@
           <div class="cert-qr-wrap">
             <div id="certQr"></div>
             <div class="cert-id" id="certId"></div>
-            <div class="cert-autenticidad">Escanear para verificar autenticidad</div>
+            <div class="cert-autenticidad">Verificar autenticidad</div>
           </div>
         </div>
       </div>
@@ -199,14 +171,22 @@
 </div>
 
 <script>
+  let tipoActual = 'original';
+  let obraActual = null;
+
+  function setTipo(tipo) {
+    tipoActual = tipo;
+    document.getElementById('tabOriginal').classList.toggle('active', tipo === 'original');
+    document.getElementById('tabPrint').classList.toggle('active', tipo === 'print');
+    document.getElementById('campoPrint').style.display = tipo === 'print' ? 'grid' : 'none';
+  }
+
   function slugify(titulo) {
     return titulo.toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9\s-]/g, '')
       .trim().replace(/\s+/g, '-');
   }
-
-  let obraActual = null;
 
   function setEstado(msg, tipo) {
     const el = document.getElementById('estado');
@@ -217,20 +197,20 @@
   function buscarObra() {
     const id = document.getElementById('inputId').value.trim();
     if (!id) { setEstado('Ingresá un ID de obra.', 'error'); return; }
-
     setEstado('Buscando obra…');
 
     fetch('/data/obras.json')
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(data => {
-        const obra = (data.obras || []).find(o =>
-          o.id.toLowerCase() === id.toLowerCase()
-        );
-        if (!obra) {
-          setEstado('No se encontró ninguna obra con ese ID.', 'error');
-          return;
-        }
+        const obra = (data.obras || []).find(o => o.id.toLowerCase() === id.toLowerCase());
+        if (!obra) { setEstado('No se encontró ninguna obra con ese ID.', 'error'); return; }
         obraActual = obra;
+
+        // Si la obra tiene edicion_total definida, pre-rellenar
+        if (obra.edicion_total && tipoActual === 'print') {
+          document.getElementById('inputEdicion').value = obra.edicion_total;
+        }
+
         renderCertificado(obra);
       })
       .catch(() => setEstado('Error cargando obras.json', 'error'));
@@ -238,77 +218,79 @@
 
   function renderCertificado(obra) {
     const precioManual = document.getElementById('inputPrecio').value.trim();
-    const precio = precioManual || obra.precio || '—';
+    const precio = precioManual || (tipoActual === 'print' ? obra.print_precio : obra.precio) || '—';
     const slug = slugify(obra.titulo || obra.id);
     const url = 'https://jcmachado.com/obra/?slug=' + slug;
 
-    // Datos
+    const esPrint = tipoActual === 'print';
+    const ejemplar = document.getElementById('inputEjemplar').value.trim();
+    const edicionTotal = document.getElementById('inputEdicion').value.trim() || obra.edicion_total;
+
+    // Eyebrow
+    document.getElementById('certEyebrow').textContent = esPrint
+      ? 'Certificado de Edición Limitada · Julio Machado'
+      : 'Certificado de Autenticidad · Julio Machado';
+
+    // Datos básicos
     document.getElementById('certImg').src = obra.imagen || '';
     document.getElementById('certImg').alt = obra.titulo || '';
     document.getElementById('certTitulo').textContent = obra.titulo || '';
-    document.getElementById('certTecnica').textContent = obra.tecnica || '—';
+    document.getElementById('certTecnica').textContent = esPrint ? 'Print A3 / ' + (obra.tecnica || '') : (obra.tecnica || '—');
     document.getElementById('certAnio').textContent = obra.anio || '—';
-    document.getElementById('certMedidas').textContent =
-      (obra.ancho_cm && obra.alto_cm) ? obra.ancho_cm + ' × ' + obra.alto_cm + ' cm' : '—';
-    document.getElementById('certCategoria').textContent =
-      obra.categoria ? obra.categoria.charAt(0).toUpperCase() + obra.categoria.slice(1) : '—';
+    document.getElementById('certMedidas').textContent = (obra.ancho_cm && obra.alto_cm) ? obra.ancho_cm + ' × ' + obra.alto_cm + ' cm' : '—';
+    document.getElementById('certCategoria').textContent = obra.categoria ? obra.categoria.charAt(0).toUpperCase() + obra.categoria.slice(1) : '—';
     document.getElementById('certPrecio').textContent = precio;
-    document.getElementById('certId').textContent = obra.id;
+    document.getElementById('certPrecioLabel').textContent = esPrint ? 'Precio del print' : 'Precio de venta';
+    document.getElementById('certId').textContent = esPrint && ejemplar && edicionTotal
+      ? obra.id + ' · ' + ejemplar + '/' + edicionTotal
+      : obra.id;
+
+    // Edición limitada
+    const certEdicion = document.getElementById('certEdicion');
+    if (esPrint && ejemplar && edicionTotal) {
+      certEdicion.style.display = 'block';
+      certEdicion.innerHTML = 'Ejemplar <strong>' + ejemplar + ' de ' + edicionTotal + '</strong> · Edición limitada numerada y certificada por el artista.';
+    } else if (esPrint) {
+      certEdicion.style.display = 'block';
+      certEdicion.innerHTML = 'Print de edición limitada · Certificado de autenticidad de edición.';
+    } else {
+      certEdicion.style.display = 'none';
+    }
 
     // QR
     const qrWrap = document.getElementById('certQr');
     qrWrap.innerHTML = '';
     new QRCode(qrWrap, {
-      text: url,
-      width: 72,
-      height: 72,
-      colorDark: '#1a1814',
-      colorLight: '#fdfcfa',
+      text: url, width: 68, height: 68,
+      colorDark: '#1a1814', colorLight: '#fdfcfa',
       correctLevel: QRCode.CorrectLevel.M
     });
 
-    // Mostrar
     document.getElementById('certificado').style.display = 'block';
     document.getElementById('previewLabel').style.display = 'block';
     document.getElementById('btnPdf').style.display = 'block';
-    setEstado('✓ Obra cargada: ' + obra.titulo, 'ok');
+    setEstado('✓ ' + (esPrint ? 'Certificado de print listo' : 'Certificado de original listo') + ': ' + obra.titulo, 'ok');
   }
 
   async function generarPDF() {
     if (!obraActual) return;
     setEstado('Generando PDF…');
-
     const { jsPDF } = window.jspdf;
     const cert = document.getElementById('certificado');
-
     try {
-      const canvas = await html2canvas(cert, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#fdfcfa',
-        logging: false
-      });
-
+      const canvas = await html2canvas(cert, { scale: 2, useCORS: true, backgroundColor: '#fdfcfa', logging: false });
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
-      const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'px',
-        format: [794, 562]
-      });
-
+      const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [794, 562] });
       pdf.addImage(imgData, 'JPEG', 0, 0, 794, 562);
-      pdf.save('certificado-' + (obraActual.id || 'obra') + '.pdf');
+      const suffix = tipoActual === 'print' ? '-print' : '';
+      pdf.save('certificado' + suffix + '-' + (obraActual.id || 'obra') + '.pdf');
       setEstado('✓ PDF descargado correctamente.', 'ok');
     } catch (e) {
       setEstado('Error generando PDF. Intentá de nuevo.', 'error');
-      console.error(e);
     }
   }
 
-  // Enter en el campo de ID
-  document.getElementById('inputId').addEventListener('keydown', e => {
-    if (e.key === 'Enter') buscarObra();
-  });
+  document.getElementById('inputId').addEventListener('keydown', e => { if (e.key === 'Enter') buscarObra(); });
 </script>
 </body>
 </html>
