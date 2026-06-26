@@ -498,6 +498,29 @@
       "vendida": false,
       "qr_url": "",
       "certificado": ""
+    },
+    {
+      "titulo": "Pantera",
+      "tipo": "original",
+      "id": "JM-2026-004",
+      "categoria": "retrato",
+      "anio": 2026,
+      "tecnica": "Oleo sobre tabla de madera",
+      "ancho_cm": 15,
+      "alto_cm": 15,
+      "descripcion": "Pantera",
+      "imagen": "/imagenes/Pantera.webp",
+      "precio": "150000",
+      "print_precio": "",
+      "mercadopago_original": "",
+      "paypal_original": "",
+      "mercadopago_print": "",
+      "paypal_print": "",
+      "edicion_total": null,
+      "disponible": true,
+      "vendida": false,
+      "qr_url": "",
+      "certificado": ""
     }
   ]
 }
