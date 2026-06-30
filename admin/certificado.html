@@ -250,6 +250,9 @@
     if (esPrint && ejemplar && edicionTotal) {
       certEdicion.style.display = 'block';
       certEdicion.innerHTML = 'Ejemplar <strong>' + ejemplar + ' de ' + edicionTotal + '</strong> · Edición limitada numerada y certificada por el artista.';
+      if (parseInt(ejemplar) > parseInt(edicionTotal)) {
+        setEstado('⚠ El N° de ejemplar supera el total de la edición. Revisá los datos.', 'error');
+      }
     } else if (esPrint) {
       certEdicion.style.display = 'block';
       certEdicion.innerHTML = 'Print de edición limitada · Certificado de autenticidad de edición.';
