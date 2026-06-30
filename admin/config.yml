@@ -48,6 +48,7 @@ collections:
               - { label: "MercadoPago print", name: "mercadopago_print", widget: "string", required: false }
               - { label: "PayPal print", name: "paypal_print", widget: "string", required: false }
               - { label: "Edición total (prints)", name: "edicion_total", widget: "number", required: false }
+              - { label: "Prints vendidos", name: "prints_vendidos", widget: "number", required: false, default: 0, hint: "Cuántos de la tirada ya se vendieron" }
               - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
               - { label: "Vendida", name: "vendida", widget: "boolean", default: false }
               - { label: "QR URL", name: "qr_url", widget: "string", required: false }
