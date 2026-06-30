@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Julio Machado — Pintor · Argentina</title>
-<meta name="description" content="Pintor de retratos, paisajes y caricaturas de Argentina. Obra original y encargos personalizados.">
+<meta name="description" content="No pinto caras limpias. Retrato la densidad humana. Óleos originales, prints de edición limitada y encargos personalizados. Argentina.">
 <meta property="og:title" content="Julio Machado — Pintor">
-<meta property="og:description" content="Retratos, paisajes y caricaturas. Encargos personalizados.">
+<meta property="og:description" content="No pinto caras limpias. Retrato la densidad humana. Óleos originales y encargos personalizados.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,8 +113,8 @@
   .modal-backdrop.open { display: flex; }
   .modal { background: var(--white); border-radius: 4px; max-width: 860px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; position: relative; animation: modalIn 0.28s ease; }
   @keyframes modalIn { from { opacity:0; transform:scale(0.97) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
-  .modal-img { background: var(--paper-2); overflow: hidden; border-radius: 4px 0 0 4px; min-height: 380px; }
-  .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+  .modal-img { background: var(--paper-2); overflow: hidden; border-radius: 4px 0 0 4px; min-height: 380px; display: flex; align-items: center; justify-content: center; }
+  .modal-img img { width: 100%; height: 100%; object-fit: contain; }
   .modal-body { padding: 44px 40px; display: flex; flex-direction: column; gap: 0; }
   .modal-top { flex: 1; }
   .modal-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
@@ -280,8 +280,8 @@
 <section id="inicio">
   <div class="hero-left">
     <p class="hero-year">Argentina</p>
-    <h1 class="hero-title">Pintura<br>hecha<br><em>a mano.</em></h1>
-    <p class="hero-desc">Retratos, paisajes y caricaturas pintados con dedicación. Obra original disponible y encargos personalizados para momentos que merecen perdurar.</p>
+    <h1 class="hero-title">No pinto<br>caras.<br><em>Retrato almas.</em></h1>
+    <p class="hero-desc">Cuando retrato a alguien no busco el parecido — busco la densidad humana detrás del rostro. La memoria, la identidad, lo que una persona porta sin saberlo. Obra original disponible y encargos para quienes buscan algo más que decoración.</p>
     <div class="hero-actions">
       <a href="#encargos" class="btn-primary">Hacer un encargo</a>
       <a href="#portfolio" class="btn-secondary">Ver portfolio →</a>
@@ -290,7 +290,7 @@
   <div class="hero-right">
     <div class="hero-img-wrap">
       <img src="imagenes/Julian.jpg" alt="Julio Machado — Pintor">
-      <div class="hero-tag"><strong>Encargos abiertos</strong> · Entrega en 2–4 semanas</div>
+      <div class="hero-tag"><strong>Encargos abiertos</strong> · Máx. 2 óleos por mes</div>
     </div>
   </div>
 </section>
@@ -298,17 +298,17 @@
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-inner">
-    <span class="ticker-item"><strong>Retratos al óleo</strong><span class="ticker-dot"></span></span>
-    <span class="ticker-item">Caricaturas digitales<span class="ticker-dot"></span></span>
-    <span class="ticker-item"><strong>Paisajes acrílico</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Óleos originales</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item">Prints edición limitada<span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Retratos · Densidad humana</strong><span class="ticker-dot"></span></span>
     <span class="ticker-item">Encargos personalizados<span class="ticker-dot"></span></span>
-    <span class="ticker-item"><strong>Retratos de mascotas</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Certificado de autenticidad</strong><span class="ticker-dot"></span></span>
     <span class="ticker-item">Argentina<span class="ticker-dot"></span></span>
-    <span class="ticker-item"><strong>Retratos al óleo</strong><span class="ticker-dot"></span></span>
-    <span class="ticker-item">Caricaturas digitales<span class="ticker-dot"></span></span>
-    <span class="ticker-item"><strong>Paisajes acrílico</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Óleos originales</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item">Prints edición limitada<span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Retratos · Densidad humana</strong><span class="ticker-dot"></span></span>
     <span class="ticker-item">Encargos personalizados<span class="ticker-dot"></span></span>
-    <span class="ticker-item"><strong>Retratos de mascotas</strong><span class="ticker-dot"></span></span>
+    <span class="ticker-item"><strong>Certificado de autenticidad</strong><span class="ticker-dot"></span></span>
     <span class="ticker-item">Argentina<span class="ticker-dot"></span></span>
   </div>
 </div>
@@ -366,55 +366,48 @@
     <div class="encargos-grid">
       <div class="fade-up">
         <p class="eyebrow">Encargos personalizados</p>
-        <h2 class="section-title">Tu historia,<br>pintada <em>a mano.</em></h2>
-        <p class="enc-body">Retratos de personas, mascotas o momentos especiales. Paisajes de lugares con historia. Cada encargo es trabajado con dedicación y entregado con certificado de autenticidad.</p>
-        <a href="#contacto" class="btn-light">Consultá tu encargo →</a>
+        <h2 class="section-title">Tu historia<br>merece <em>óleo.</em></h2>
+        <p class="enc-body">No acepto cualquier encargo. Trabajo retratos y paisajes urbanos al óleo — para quienes tienen una historia que vale la pena inmortalizar. Si querés un retrato urgente y barato, hay otras opciones. Si querés que alguien escarbe en la identidad del retratado o en la memoria de un lugar, hablemos.</p>
+        <a href="#contacto" class="btn-light">Quiero hablar de mi encargo →</a>
       </div>
       <div>
         <div class="steps-list fade-up">
           <div class="step-item">
             <span class="step-num">1</span>
             <div class="step-content">
-              <strong>Me contás la idea</strong>
-              <p>Por WhatsApp o el formulario — foto de referencia, tamaño deseado y técnica. Sin compromiso.</p>
+              <strong>Me contás la historia</strong>
+              <p>Por WhatsApp o el formulario — quién es, qué representa, qué querés que quede en el tiempo. La foto de referencia ayuda, pero lo importante es la historia.</p>
             </div>
           </div>
           <div class="step-item">
             <span class="step-num">2</span>
             <div class="step-content">
-              <strong>Te envío presupuesto gratis</strong>
-              <p>Precio exacto, plazo de entrega y una muestra del estilo antes de confirmar nada.</p>
+              <strong>Analizamos si tu encargo tiene fuerza</strong>
+              <p>No todo se puede pintar bien al óleo. Si la historia da, te confirmo precio, plazo y reservamos tu lugar en el taller.</p>
             </div>
           </div>
           <div class="step-item">
             <span class="step-num">3</span>
             <div class="step-content">
               <strong>Pinto y te muestro avances</strong>
-              <p>Seguimiento en tiempo real. 50% al confirmar, 50% al entregar la obra terminada.</p>
+              <p>Seguimiento en tiempo real. 50% al reservar tu lugar, 50% al entregar la obra terminada con su certificado de autenticidad.</p>
             </div>
           </div>
         </div>
         <div class="pricing-cards fade-up">
           <div class="price-card">
             <div>
-              <div class="price-card-label">Caricatura digital</div>
-              <div class="price-card-detail">Entrega 5–7 días · Archivo digital + impresión opcional</div>
+              <div class="price-card-label">Print de edición limitada</div>
+              <div class="price-card-detail">A3 · Numerado y certificado · Envío en tubo rígido</div>
             </div>
-            <div class="price-tag"><span class="desde">desde</span><span class="amount">$150.000</span></div>
+            <div class="price-tag"><span class="desde"></span><span class="amount">$30.000</span></div>
           </div>
           <div class="price-card">
             <div>
-              <div class="price-card-label">Retrato en papel</div>
-              <div class="price-card-detail">Acrílico, Lápiz o carbón · Entrega 1–2 semanas</div>
+              <div class="price-card-label">Óleo original</div>
+              <div class="price-card-detail">Retrato o paisaje urbano · Entrega 3–4 semanas · Máx. 2 por mes · Certificado incluido</div>
             </div>
-            <div class="price-tag"><span class="desde">desde</span><span class="amount">$150.000</span></div>
-          </div>
-          <div class="price-card">
-            <div>
-              <div class="price-card-label">Óleo</div>
-              <div class="price-card-detail">Panel, Tela o madera · Entrega 3–4 semanas</div>
-            </div>
-            <div class="price-tag"><span class="desde">desde</span><span class="amount">$150.000</span></div>
+            <div class="price-tag"><span class="desde">desde</span><span class="amount">$250.000</span></div>
           </div>
         </div>
       </div>
@@ -433,7 +426,7 @@
         <p class="eyebrow">El pintor</p>
         <h2 class="section-title">Julio<br><em>Machado.</em></h2>
         <p class="about-body">Soy Julio César Machado, pintor. Me formé como licenciado en sociología, y esa mirada atraviesa cada obra: cuando retrato a alguien no busco solo el parecido, sino la densidad humana detrás del rostro — la memoria, la identidad, lo que una persona porta sin saberlo.</p>
-        <p class="about-body">Trabajo principalmente con óleo, combinando el estudio riguroso de la luz y el color con una intención conceptual. El resultado son obras que intentan detener la mirada y abrir una pregunta.</p>
+        <p class="about-body">Trabajo principalmente con óleo. Combino el estudio riguroso de la luz y el color con una mirada conceptual que viene de años pensando cómo se construye la identidad. El resultado son obras que no decoran — interpelan. Que detienen la mirada y abren una pregunta que no estaba ahí antes.</p>
         <div class="about-stats">
           <div class="stat-item">
             <span class="stat-num">+50</span>
@@ -537,7 +530,7 @@
       <div class="contact-text fade-up">
         <p class="eyebrow">Contacto</p>
         <h2 class="section-title">Hablemos<br>de tu <em>encargo.</em></h2>
-        <p class="contact-body">No importa si tenés una idea muy clara o apenas una sensación de lo que querés. Escribime y lo charlamos sin compromiso.</p>
+        <p class="contact-body">No importa si tenés una idea muy clara o apenas una sensación de lo que querés. Escribime y lo charlamos — si tu historia tiene lo que necesito para pintarla bien, lo sabemos en la primera conversación.</p>
         <div class="contact-methods">
           <a href="https://wa.me/5493534018769?text=Hola%20Julio!%20Me%20interesa%20hacerte%20un%20encargo." class="contact-method" target="_blank" rel="noopener">
             <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
@@ -574,10 +567,8 @@
           <select id="tipo">
             <option value="">Seleccioná una opción</option>
             <option>Retrato al óleo</option>
-            <option>Retrato en lápiz / carbón</option>
-            <option>Caricatura digital</option>
-            <option>Paisaje personalizado</option>
-            <option>Retrato de mascota</option>
+            <option>Paisaje urbano al óleo</option>
+            <option>Print de edición limitada</option>
             <option>Otro / consulta</option>
           </select>
         </div>
@@ -586,7 +577,7 @@
           <textarea id="mensaje" placeholder="¿A quién o qué querés retratar? ¿Es un regalo? ¿Tenés foto de referencia? Cualquier detalle ayuda..."></textarea>
         </div>
         <button class="form-submit" onclick="enviarWhatsApp()">Enviar por WhatsApp →</button>
-        <p class="form-note">Te respondo en menos de 24 horas · Presupuesto sin costo</p>
+        <p class="form-note">Te respondo en menos de 24 horas.</p>
       </div>
     </div>
   </div>
