@@ -204,6 +204,12 @@
         <h3 class="cert-title">Edición limitada</h3>
         <p class="cert-desc">Este print pertenece a una edición limitada de <strong>${o.edicion_total} ejemplares</strong>. Cada copia está numerada y certificada por el artista.</p>
         <span class="cert-id">${o.id} · Edición de ${o.edicion_total}</span>
+        ${(() => {
+          const vendidos = o.prints_vendidos || 0;
+          const quedan = o.edicion_total - vendidos;
+          if (quedan <= 0) return '<div style="margin-top:10px;font-size:12px;color:#d94f4f;font-weight:500;">Tirada agotada</div>';
+          return '<div style="margin-top:10px;font-size:12px;color:var(--accent);font-weight:500;">Quedan ' + quedan + ' de ' + o.edicion_total + '</div>';
+        })()}
       </div>
     ` : '';
 
