@@ -144,7 +144,8 @@
       "paypal_original": "",
       "mercadopago_print": "https://mpago.la/2uNAJBk",
       "paypal_print": "",
-      "disponible": true,
+      "edicion_total": null,
+      "disponible": false,
       "vendida": false,
       "qr_url": "",
       "certificado": ""
