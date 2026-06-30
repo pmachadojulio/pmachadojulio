@@ -102,6 +102,7 @@
       "paypal_original": "",
       "mercadopago_print": "https://mpago.la/33VsNcZ",
       "paypal_print": "",
+      "edicion_total": null,
       "disponible": true,
       "vendida": true,
       "qr_url": "",
@@ -130,6 +131,7 @@
     },
     {
       "titulo": "El Padrino",
+      "tipo": "solo_print",
       "id": "JM-2025-008",
       "categoria": "caricatura",
       "anio": 2025,
@@ -146,7 +148,7 @@
       "paypal_print": "",
       "edicion_total": null,
       "disponible": false,
-      "vendida": false,
+      "vendida": true,
       "qr_url": "",
       "certificado": ""
     },
