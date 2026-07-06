@@ -154,6 +154,7 @@
     },
     {
       "titulo": "El astronauta",
+      "tipo": "solo_print",
       "id": "JM-2025-002",
       "categoria": "retrato",
       "anio": 2025,
@@ -168,7 +169,9 @@
       "paypal_original": "",
       "mercadopago_print": "https://mpago.la/33VsNcZ",
       "paypal_print": "",
-      "disponible": true,
+      "edicion_total": null,
+      "prints_vendidos": null,
+      "disponible": false,
       "vendida": false,
       "qr_url": "",
       "certificado": ""
