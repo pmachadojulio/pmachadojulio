@@ -696,7 +696,7 @@
 
     // Link a ficha completa (siempre visible)
     const slug = slugify(obra.titulo || obra.id);
-    document.getElementById('modalFichaLink').href = '/obra/?slug=' + slug;
+    document.getElementById('modalFichaLink').href = '/obra/' + slug + '/';
 
     document.getElementById('modalBackdrop').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -763,7 +763,7 @@
 
     div.addEventListener('click', (e) => {
       if (e.target.closest('.gallery-meta')) {
-        window.location.href = '/obra/?slug=' + slug;
+        window.location.href = '/obra/' + slug + '/';
       } else {
         openModal(obra);
       }
