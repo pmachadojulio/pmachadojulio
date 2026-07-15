@@ -73,9 +73,9 @@
   .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
   .btn-secondary { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-2); border-bottom: 1px solid var(--ink-3); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; text-decoration: none; }
   .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
-  .hero-right { background: var(--paper-2); display: flex; align-items: flex-end; justify-content: center; padding: 40px 32px 0; overflow: hidden; position: relative; }
-  .hero-img-wrap { width: 100%; max-width: 420px; aspect-ratio: 3/4; background: var(--paper-3); border-radius: 2px 2px 0 0; overflow: hidden; position: relative; box-shadow: 0 -8px 60px rgba(26,24,20,0.12); padding: 10px; box-sizing: border-box; }
-  .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; border-radius: 1px; box-shadow: inset 0 0 0 1px rgba(26,24,20,0.1); }
+  .hero-right { background: var(--paper-2); display: flex; align-items: center; justify-content: center; padding: 40px var(--gap); overflow: hidden; position: relative; }
+  .hero-img-wrap { width: auto; max-width: 420px; max-height: 70vh; background: transparent; overflow: visible; position: relative; }
+  .hero-img-wrap img { width: auto; max-width: 100%; height: auto; max-height: 70vh; object-fit: contain; display: block; box-shadow: 0 10px 50px rgba(26,24,20,0.15); border-radius: 2px; }
   .hero-tag { position: absolute; bottom: 24px; left: 24px; background: var(--white); padding: 10px 16px; border-radius: 2px; font-size: 11px; color: var(--ink-2); letter-spacing: 1px; box-shadow: 0 2px 20px rgba(26,24,20,0.08); }
   .hero-tag strong { color: var(--ink); font-weight: 500; }
 
@@ -305,7 +305,7 @@
   </div>
   <div class="hero-right">
     <div class="hero-img-wrap">
-      <img src="imagenes/Raiz.webp" alt="Julio Machado — Pintor">
+      <img src="imagenes/Julian.jpg" alt="Julio Machado — Pintor">
       <div class="hero-tag"><strong>Encargos abiertos</strong> · Máx. 2 óleos por mes</div>
     </div>
   </div>
