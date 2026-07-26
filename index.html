@@ -340,6 +340,7 @@
       </div>
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="ascenso">Serie Ascenso (Chakras)</button>
         <button class="filter-btn" data-filter="retrato">Retratos</button>
         <button class="filter-btn" data-filter="paisaje">Paisajes</button>
       </div>
@@ -697,7 +698,7 @@
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.filter-btn[data-filter="' + filter + '"]').classList.add('active');
     document.querySelectorAll('.gallery-item').forEach(item => {
-      item.style.display = (filter === 'all' || item.dataset.category === filter) ? '' : 'none';
+      item.style.display = (filter === 'all' || item.dataset.category === filter || item.dataset.coleccion === filter) ? '' : 'none';
     });
   }
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -791,6 +792,7 @@
     const div = document.createElement('div');
     div.className = 'gallery-item fade-up';
     div.dataset.category = obra.categoria || '';
+    div.dataset.coleccion = obra.coleccion || '';
 
     const slug = slugify(obra.titulo || obra.id);
 

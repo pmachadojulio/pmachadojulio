@@ -539,6 +539,7 @@
     },
     {
       "titulo": "Ascenso: Raiz",
+      "coleccion": "ascenso",
       "tipo": "original",
       "id": "JM-2026-014",
       "categoria": "retrato",
@@ -563,6 +564,7 @@
     },
     {
       "titulo": "Ascenso: Sacro",
+      "coleccion": "ascenso",
       "tipo": "original",
       "id": "JM-2026-015",
       "categoria": "retrato",
@@ -587,6 +589,7 @@
     },
     {
       "titulo": "Ascenso: Plexo",
+      "coleccion": "ascenso",
       "tipo": "original",
       "id": "JM-2026-016",
       "categoria": "retrato",
@@ -611,6 +614,7 @@
     },
     {
       "titulo": "Ascenso: Corazon",
+      "coleccion": "ascenso",
       "tipo": "original",
       "id": "JM-2026-017",
       "categoria": "retrato",
