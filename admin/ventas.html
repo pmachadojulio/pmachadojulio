@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Ventas y Stock — Julio César Machado</title>
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --card-bg: #161920;
+      --text: #f0f2f5;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --border: #2a2e39;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-weight: 300;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card-info h3 { margin: 0 0 0.5rem 0; font-weight: 500; }
+    .card-info p { margin: 0; color: #a0aec0; font-size: 0.9rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .badge-disp { background: #166534; color: #bbf7d0; }
+    .badge-vend { background: #991b1b; color: #fecaca; }
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: var(--accent-hover); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Registro Rápido de Ventas — jcmachado.com</h1>
+    <p>Utilizá esta interfaz para actualizar rápidamente el estado de tus obras o registrar ventas de prints.</p>
+    <div id="obras-container">Cargando obras...</div>
+  </div>
+
+  <script>
+    // Carga de obras desde obras.json (relativo o servidor)
+    async function cargarObras() {
+      try {
+        const res = await fetch('../data/obras.json');
+        const data = await res.json();
+        const container = document.getElementById('obras-container');
+        container.innerHTML = '';
+
+        data.obras.forEach(o => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="card-info">
+              <h3>${o.titulo} (${o.anio}) <span class="badge ${o.vendida ? 'badge-vend' : 'badge-disp'}">${o.vendida ? 'VENDIDA' : 'DISPONIBLE'}</span></h3>
+              <p>ID: ${o.id} · Tipo: ${o.tipo} · Precio Original: ${o.precio} · Precio Print: ${o.print_precio}</p>
+              <p>Prints vendidos: ${o.prints_vendidos || 0} / ${o.edicion_total || 10}</p>
+            </div>
+            <div>
+              <button class="btn" onclick="marcarVenta('${o.id}')">Marcar Venta</button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        document.getElementById('obras-container').innerText = 'Agregá o copiá data/obras.json en el directorio /web para visualizar las obras.';
+      }
+    }
+    function marcarVenta(id) {
+      alert('Procesando venta para obra ID: ' + id + '. Para guardar directamente en GitHub, configurá tu TOKEN de GitHub en el panel admin.');
+    }
+    cargarObras();
+  </script>
+</body>
+</html>
