@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanzador de Borradores Gmail — Julio César Machado</title>
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --card-bg: #161920;
+      --text: #f0f2f5;
+      --accent: #ea4335; /* Gmail Red */
+      --accent-hover: #c5221f;
+      --border: #2a2e39;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    h1 { font-weight: 300; margin: 0; font-size: 1.8rem; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+    }
+    .card-meta {
+      font-size: 0.85rem;
+      color: #a0aec0;
+      margin-bottom: 1rem;
+    }
+    .subject-preview {
+      background: #090a0f;
+      border: 1px solid var(--border);
+      padding: 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .btn-gmail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .btn-gmail:hover { background: var(--accent-hover); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>✉️ Lanzador de Borradores 1-Clic en Gmail</h1>
+      <p style="color: #a0aec0; margin-top: 0.4rem;">Hacé clic en cualquier botón para abrir Gmail con el destinatario, asunto y texto hiper-personalizado listo para enviar.</p>
+    </header>
+
+    <div id="drafts-list">Cargando borradores...</div>
+  </div>
+
+  <script>
+    async function cargarBorradores() {
+      try {
+        const res = await fetch('../data/prospects_crm.json');
+        const data = await res.json();
+        const prospectos = (data.prospects || []).filter(p => p.email);
+        const container = document.getElementById('drafts-list');
+        container.innerHTML = '';
+
+        prospectos.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          const empresa = p.empresa || 'Empresa';
+          const email = p.email;
+          const contacto = p.contacto || 'Colega';
+          const categoria = p.categoria || p.nicho || '';
+          const obraLink = p.obra_recomendada || 'jcmachado.com';
+
+          let asunto = `Propuesta de arte contemporáneo al óleo para ${empresa}`;
+          let cuerpo = `Hola ${contacto},\n\nLes escribo tras conocer la labor que realizan en ${empresa}.\n\nSoy Julio César Machado, pintor al óleo y licenciado en sociología. Mi trabajo explora la densidad humana, la identidad y la memoria.\n\nLes invito a conocer mis obras disponibles en: https://${obraLink}\n\nQuedo a disposición para enviarles un catálogo digital.\n\nUn saludo cordial,\nJulio César Machado\njcmachado.com`;
+
+          if (categoria.includes('Interiorismo') || categoria.includes('Chakras')) {
+            asunto = `Propuesta de arte al óleo para ${empresa} — Serie Ascenso (Chakras)`;
+            cuerpo = `Estimados integrantes de ${empresa},\n\nLes escribo desde Córdoba tras conocer la propuesta estética de ${empresa}.\n\nSoy Julio César Machado, pintor al óleo y licenciado en sociología. Mi trabajo explora la densidad humana, la identidad y la memoria.\n\nAcabo de publicar la Serie "Ascenso" (Chakras) — cuatro óleos originales sobre panel que exploran los centros de energía e introspección corporal, acompañados por réplicas numeradas en edición limitada.\n\nPueden ver la serie completa aquí: https://${obraLink}\n\nUn cordial saludo,\nJulio César Machado\nPintor & Sociólogo | jcmachado.com`;
+          } else if (categoria.includes('Jurídico') || categoria.includes('Escribanía')) {
+            asunto = `Retratos de autor y obras al óleo para las oficinas de ${empresa}`;
+            cuerpo = `Estimado/a ${contacto},\n\nMe dirijo a ustedes tras revisar la trayectoria institucional de ${empresa}.\n\nSoy Julio César Machado, pintor al óleo y sociólogo. Me especializo en retratos al óleo por encargo para homenajes a socios fundadores, como así también en obras de gran formato para salas de directorio.\n\nLes invito a conocer mi portfolio en: https://jcmachado.com\n\nSaludos cordiales,\nJulio César Machado\nPintor & Sociólogo | jcmachado.com`;
+          }
+
+          const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+          card.innerHTML = `
+            <div class="card-title">
+              <span>${empresa}</span>
+              <span style="font-size:0.9rem; color:#a0aec0;">${email}</span>
+            </div>
+            <div class="card-meta">Segmento: ${categoria} · Contacto: ${contacto}</div>
+            <div class="subject-preview"><strong>Asunto:</strong> ${asunto}</div>
+            <a href="${gmailUrl}" target="_blank" class="btn-gmail">✉️ Abrir Borrador en Gmail (1-Clic)</a>
+          `;
+
+          container.appendChild(card);
+        });
+
+      } catch (e) {
+        document.getElementById('drafts-list').innerHTML = '<p style="color:#f87171;">Cargando datos de data/prospects_crm.json...</p>';
+      }
+    }
+
+    cargarBorradores();
+  </script>
+</body>
+</html>

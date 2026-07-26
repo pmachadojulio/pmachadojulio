@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM & Panel de Control de Ventas — Julio César Machado</title>
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --card-bg: #161920;
+      --text: #f0f2f5;
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --border: #2a2e39;
+      --success: #10b981;
+      --info: #3b82f6;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    h1 { font-weight: 300; margin: 0; font-size: 1.8rem; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-card h4 { margin: 0 0 0.5rem 0; font-size: 0.85rem; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-card .val { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .filter-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    th {
+      background: #1a1e28;
+      color: #a0aec0;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+    }
+    tr:hover { background: #1f232e; }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-listo { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid #10b981; }
+    .badge-por { background: rgba(217, 119, 6, 0.2); color: #fde68a; border: 1px solid #d97706; }
+    .btn-action {
+      background: var(--info);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .btn-action:hover { background: #2563eb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>📋 Panel de Control CRM — jcmachado.com</h1>
+        <p style="color: #a0aec0; margin: 0.3rem 0 0 0; font-size: 0.9rem;">Gestión de prospectos, clientes B2B y oportunidades de nicho</p>
+      </div>
+      <div>
+        <a href="ventas.html" style="color: #a0aec0; text-decoration: none; margin-right: 1rem;">Ventas</a>
+        <a href="precios.html" style="color: #a0aec0; text-decoration: none;">Precios</a>
+      </div>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h4>Total Prospectos</h4>
+        <div class="val" id="stat-total">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Listos para enviar</h4>
+        <div class="val" id="stat-listos" style="color: var(--success);">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Por Contactar</h4>
+        <div class="val" id="stat-por">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>Nichos No Convencionales</h4>
+        <div class="val" id="stat-nichos" style="color: #3b82f6;">0</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filtrar('todos')">Todos</button>
+      <button class="filter-btn" onclick="filtrar('Listo para enviar')">Listos para Enviar (con Email)</button>
+      <button class="filter-btn" onclick="filtrar('Por contactar')">Por Contactar</button>
+      <button class="filter-btn" onclick="filtrar('nicho')">Nichos Especiales (Salud / Holísticos)</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Empresa / Estudio</th>
+          <th>Categoría / Nicho</th>
+          <th>Contacto</th>
+          <th>Email</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody id="crm-table-body">
+        <tr><td colspan="6" style="text-align:center;">Cargando datos del CRM...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let todosProspectos = [];
+
+    async function cargarCRM() {
+      try {
+        const res = await fetch('../data/prospects_crm.json');
+        const data = await res.json();
+        todosProspectos = data.prospects || [];
+        renderTabla(todosProspectos);
+        actualizarStats();
+      } catch (err) {
+        document.getElementById('crm-table-body').innerHTML = '<tr><td colspan="6" style="text-align:center; color:#f87171;">Cargando datos locales del CRM...</td></tr>';
+      }
+    }
+
+    function renderTabla(lista) {
+      const tbody = document.getElementById('crm-table-body');
+      tbody.innerHTML = '';
+      if (lista.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No hay prospectos en este filtro.</td></tr>';
+        return;
+      }
+      lista.forEach(p => {
+        const tr = document.createElement('tr');
+        const esListo = p.estado === 'Listo para enviar' || p.email;
+        const mailLink = p.email ? `<a href="mailto:${p.email}" class="btn-action">✉️ Mailto</a>` : '<span style="color:#6b7280;">Buscando email...</span>';
+        tr.innerHTML = `
+          <td><strong>${p.empresa}</strong></td>
+          <td>${p.categoria || p.nicho}</td>
+          <td>${p.contacto || p.cargo || '—'}</td>
+          <td>${p.email || '—'}</td>
+          <td><span class="badge ${esListo ? 'badge-listo' : 'badge-por'}">${esListo ? 'Listo para enviar' : 'Por contactar'}</span></td>
+          <td>${mailLink}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function actualizarStats() {
+      document.getElementById('stat-total').textContent = todosProspectos.length;
+      document.getElementById('stat-listos').textContent = todosProspectos.filter(p => p.email).length;
+      document.getElementById('stat-por').textContent = todosProspectos.filter(p => !p.email).length;
+      document.getElementById('stat-nichos').textContent = todosProspectos.filter(p => (p.categoria && p.categoria.includes('Salud')) || (p.nicho && p.nicho.includes('Hotel'))).length;
+    }
+
+    function filtrar(criterio) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (criterio === 'todos') {
+        renderTabla(todosProspectos);
+      } else if (criterio === 'nicho') {
+        renderTabla(todosProspectos.filter(p => (p.categoria && (p.categoria.includes('Salud') || p.categoria.includes('Hotel') || p.categoria.includes('Jurídico')))));
+      } else {
+        renderTabla(todosProspectos.filter(p => (p.estado === criterio || (criterio === 'Listo para enviar' && p.email))));
+      }
+    }
+
+    cargarCRM();
+  </script>
+</body>
+</html>
