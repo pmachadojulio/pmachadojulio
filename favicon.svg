@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="28" fill="#1a1814"/>
+  <path d="M 104,16 A 74,74 0 1,0 104,164"
+        fill="none" stroke="#c4956a" stroke-width="9" stroke-linecap="round"/>
+  <text x="62" y="130" font-family="Georgia,serif" font-size="88" font-weight="400"
+        fill="#f5f2ed" text-anchor="middle">J</text>
+  <text x="118" y="130" font-family="Georgia,serif" font-size="88" font-weight="400"
+        fill="#f5f2ed" text-anchor="middle">M</text>
+</svg>
