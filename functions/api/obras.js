@@ -1,6 +1,7 @@
-import { respond, authGuard, mutateObras, ghPut, nextId, cleanObraFields } from './_lib.js';
+import { respond, authGuard, mutateObras, ghPut, nextId, cleanObraFields, slugify, submitIndexNow } from './_lib.js';
 
-export async function onRequestPost({ env, request }) {
+export async function onRequestPost(context) {
+  const { env, request, waitUntil } = context;
   if (!(await authGuard({ env, request }))) return respond({ ok: false, error: 'No autorizado' }, 401);
   try {
     const body = await request.json();
@@ -25,6 +26,13 @@ export async function onRequestPost({ env, request }) {
       }
       return { json: { obras }, message: `Admin: ${index >= 0 ? `actualicé "${nueva.titulo}"` : `nueva obra "${nueva.titulo}"`}`, obra: nueva };
     });
+    const urlObra = `https://jcmachado.com/obra/${slugify(out.result.obra.titulo)}/`;
+    if (typeof waitUntil === 'function') {
+      waitUntil((async () => {
+        await new Promise(r => setTimeout(r, 12000));
+        await submitIndexNow([urlObra]);
+      })());
+    }
     return respond({ ok: true, obra: out.result.obra });
   } catch (err) {
     return respond({ ok: false, error: String(err.message || err) }, 500);

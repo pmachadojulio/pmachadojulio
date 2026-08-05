@@ -70,13 +70,18 @@ export async function authGuard({ env, request }) {
   return ok;
 }
 
+function ghHeaders(env) {
+  const headers = {
+    Accept: 'application/vnd.github+json',
+    'User-Agent': 'jcm-admin'
+  };
+  if (env.GITHUB_TOKEN) headers.Authorization = `Bearer ${env.GITHUB_TOKEN}`;
+  return headers;
+}
+
 export async function ghGet(env, path) {
   const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
-    headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-      Accept: 'application/vnd.github+json',
-      'User-Agent': 'jcm-admin'
-    }
+    headers: ghHeaders(env)
   });
   const data = await res.json();
   return { ok: res.ok, status: res.status, data };
@@ -87,12 +92,7 @@ export async function ghPut(env, path, contentB64, message, sha) {
   if (sha) body.sha = sha;
   const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
     method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-      Accept: 'application/vnd.github+json',
-      'Content-Type': 'application/json',
-      'User-Agent': 'jcm-admin'
-    },
+    headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   });
   const data = await res.json().catch(() => null);
@@ -176,4 +176,33 @@ export function cleanObraFields(obra) {
     qr_url: str(obra.qr_url),
     certificado: str(obra.certificado)
   };
+}
+
+export function slugify(titulo) {
+  return String(titulo || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim().replace(/\s+/g, '-');
+}
+
+const INDEXNOW_KEY = '4ca0292d3c23b515a23b8c2b0dee355f';
+
+export async function submitIndexNow(urls) {
+  try {
+    const host = new URL(urls[0]).host;
+    const res = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({
+        host,
+        key: INDEXNOW_KEY,
+        keyLocation: `https://${host}/${INDEXNOW_KEY}.txt`,
+        urlList: urls
+      })
+    });
+    return { ok: res.ok, status: res.status };
+  } catch (err) {
+    return { ok: false, error: String((err && err.message) || err) };
+  }
 }
