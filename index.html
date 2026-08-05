@@ -892,22 +892,17 @@
         '<p style="color:var(--ink-3);grid-column:1/-1;text-align:center;padding:40px 0;">Error cargando las obras. Intentá recargar la página.</p>';
     });
 
-  /* NEWSLETTER → captura real de emails vía FormSubmit (sin backend) */
+  /* NEWSLETTER → guarda en base real (D1) y avisa por mail, con fallback mailto */
   function enviarNewsletter(e) {
     e.preventDefault();
     const email = document.getElementById('newsletterEmail').value.trim();
     const nota = document.getElementById('newsletterNote');
     if (!email) return false;
     nota.textContent = 'Enviando…';
-    fetch('https://formsubmit.co/ajax/pmachado.julio@gmail.com', {
+    fetch('/api/suscriptores', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: 'Nuevo suscriptor a la newsletter — jcmachado.com',
-        _template: 'table',
-        _captcha: 'false',
-        email: email
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
     })
     .then(res => res.json())
     .then(() => {

@@ -1,36 +1,848 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin · JC Machado</title>
-  <style>
-    #cert-link {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 99999;
-      background: #8b5e3c;
-      color: #fdfcfa;
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 4px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-      transition: background 0.2s, transform 0.2s;
-    }
-    #cert-link:hover {
-      background: #6d4a2f;
-      transform: translateY(-2px);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tablero · JC Machado</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --bg: #0d0f12;
+    --bg-2: #111419;
+    --card: #161920;
+    --border: #262b36;
+    --text: #f0f2f5;
+    --muted: #9aa3b2;
+    --accent: #d97706;
+    --accent-2: #2563eb;
+    --ok: #10b981;
+    --bad: #ef4444;
+    --warn: #f59e0b;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+  }
+  a { color: var(--accent-2); text-decoration: none; }
+  button { font-family: inherit; }
+
+  /* ---------- LOGIN ---------- */
+  #login-view {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(1200px 600px at 50% -10%, #1c2028 0%, var(--bg) 55%);
+  }
+  .login-card {
+    width: 360px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.2rem;
+  }
+  .login-card h1 { font-size: 1.35rem; margin: 0 0 .4rem; font-weight: 600; }
+  .login-card p.sub { color: var(--muted); margin: 0 0 1.6rem; font-size: .85rem; }
+  .login-card input {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-2);
+    color: var(--text);
+    margin-bottom: .9rem;
+    font-size: .95rem;
+  }
+  .login-card input:focus { outline: none; border-color: var(--accent); }
+  .btn-primary {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 11px;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: #b45309; }
+  .login-err { color: var(--bad); font-size: .85rem; margin-top: .7rem; min-height: 1.2em; }
+  .login-note { color: var(--muted); font-size: .75rem; margin-top: 1.2rem; line-height: 1.5; }
+
+  /* ---------- LAYOUT ---------- */
+  #app-view { display: none; min-height: 100vh; }
+  .shell { display: flex; min-height: 100vh; }
+  .sidebar {
+    width: 230px;
+    background: var(--bg-2);
+    border-right: 1px solid var(--border);
+    padding: 1.2rem 0;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .brand { padding: 0 1.3rem 1.1rem; border-bottom: 1px solid var(--border); margin-bottom: .8rem; }
+  .brand h2 { margin: 0; font-size: 1.05rem; font-weight: 600; letter-spacing: .3px; }
+  .brand span { display: block; color: var(--muted); font-size: .72rem; margin-top: 3px; }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 1.3rem;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: .88rem;
+    border-left: 2px solid transparent;
+    transition: background .15s, color .15s;
+  }
+  .nav-item:hover { background: rgba(255,255,255,.04); color: var(--text); }
+  .nav-item.active { color: var(--text); border-left-color: var(--accent); background: rgba(217,119,6,.08); }
+  .nav-item .ic { width: 18px; text-align: center; }
+  .nav-foot { margin-top: auto; padding: 1rem 1.3rem; border-top: 1px solid var(--border); font-size: .8rem; color: var(--muted); }
+  .nav-foot button { background: none; border: none; color: var(--muted); cursor: pointer; padding: 0; font-size: .8rem; }
+  .nav-foot button:hover { color: var(--bad); }
+
+  .main { flex: 1; padding: 1.8rem 2.2rem; max-width: 1200px; }
+  .main h1 { font-size: 1.4rem; font-weight: 600; margin: 0 0 1.4rem; }
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ---------- CARDS / GRID ---------- */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+  }
+  .stat-card .label { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .8px; }
+  .stat-card .val { font-size: 1.6rem; font-weight: 700; margin-top: .3rem; }
+  .stat-card .sub { color: var(--muted); font-size: .75rem; margin-top: .2rem; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.3rem;
+    margin-bottom: 1.4rem;
+  }
+  .card h3 { margin: 0 0 1rem; font-size: 1rem; font-weight: 600; }
+  .muted { color: var(--muted); }
+
+  .banner {
+    border: 1px dashed var(--warn);
+    background: rgba(245,158,11,.06);
+    color: #fcd34d;
+    border-radius: var(--radius);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.4rem;
+    font-size: .88rem;
+    line-height: 1.6;
+  }
+  .banner.ok { border-color: var(--ok); background: rgba(16,185,129,.06); color: #6ee7b7; }
+  .banner code { background: rgba(0,0,0,.3); padding: 1px 5px; border-radius: 4px; font-size: .8rem; }
+
+  /* ---------- TABLAS ---------- */
+  .toolbar { display: flex; gap: .7rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
+  .search {
+    flex: 1;
+    min-width: 180px;
+    padding: 9px 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+  }
+  .btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: .85rem;
+  }
+  .btn:hover { background: #b45309; }
+  .btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn.ghost:hover { background: rgba(255,255,255,.05); }
+  .btn.danger { background: transparent; border: 1px solid var(--bad); color: var(--bad); }
+  .btn.danger:hover { background: rgba(239,68,68,.1); }
+  .btn.small { padding: 5px 10px; font-size: .78rem; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--border); font-size: .87rem; vertical-align: middle; }
+  th { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .6px; background: var(--bg-2); }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  .thumb {
+    width: 52px; height: 52px; object-fit: cover; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--bg-2); display: block;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: .72rem;
+    font-weight: 600;
+  }
+  .badge.ok { background: rgba(16,185,129,.15); color: #6ee7b7; }
+  .badge.warn { background: rgba(217,119,6,.15); color: #fcd34d; }
+  .badge.bad { background: rgba(239,68,68,.15); color: #fca5a5; }
+  .badge.info { background: rgba(37,99,235,.15); color: #93c5fd; }
+  .empty { color: var(--muted); text-align: center; padding: 2.5rem 0; font-size: .9rem; }
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    display: none; align-items: flex-start; justify-content: center;
+    padding: 3vh 1rem; overflow-y: auto; z-index: 100;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 760px;
+    padding: 1.6rem;
+    margin: auto 0;
+  }
+  .modal h2 { margin: 0 0 1.2rem; font-size: 1.15rem; font-weight: 600; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-grid .full { grid-column: 1 / -1; }
+  .field label { display: block; font-size: .78rem; color: var(--muted); margin-bottom: 5px; }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 9px 11px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: .9rem;
+    font-family: inherit;
+  }
+  .field textarea { min-height: 84px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+  .field.check { display: flex; align-items: center; gap: 8px; }
+  .field.check label { margin: 0; color: var(--text); font-size: .88rem; }
+  .field.check input { width: auto; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: .7rem; margin-top: 1.4rem; }
+  .form-msg { color: var(--ok); font-size: .85rem; margin-top: .8rem; min-height: 1.2em; }
+  .form-msg.err { color: var(--bad); }
+
+  .preview-img { width: 90px; height: 90px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+
+  /* ---------- PROGRESS ---------- */
+  .spinner {
+    border: 2px solid rgba(255,255,255,.15);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    width: 16px; height: 16px;
+    display: inline-block;
+    animation: spin .8s linear infinite;
+    vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .toast {
+    position: fixed; bottom: 22px; right: 22px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--ok);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: .88rem;
+    z-index: 200;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    max-width: 360px;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.err { border-left-color: var(--bad); }
+
+  iframe.legacy {
+    width: 100%;
+    height: calc(100vh - 120px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+  }
+  @media (max-width: 720px) {
+    .shell { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: static; display: flex; flex-wrap: wrap; }
+    .nav-item { padding: 8px 12px; }
+    .brand { width: 100%; }
+    .form-grid { grid-template-columns: 1fr; }
+    .main { padding: 1.2rem; }
+  }
+</style>
 </head>
 <body>
-  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
-  <a id="cert-link" href="/admin/certificado.html" target="_blank">🎖 Certificados</a>
+
+<!-- ===================== LOGIN ===================== -->
+<div id="login-view">
+  <div class="login-card">
+    <h1>🎨 Tablero JC Machado</h1>
+    <p class="sub">Panel de control · jcmachado.com</p>
+    <input type="password" id="login-pass" placeholder="Contraseña" autocomplete="current-password">
+    <button class="btn-primary" id="login-btn">Ingresar</button>
+    <div class="login-err" id="login-err"></div>
+    <p class="login-note">Sesión válida por 12 horas. Guardá bien la contraseña: no se puede recuperar.</p>
+  </div>
+</div>
+
+<!-- ===================== APP ===================== -->
+<div id="app-view">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>🎨 JC Machado</h2>
+        <span>Tablero de control</span>
+      </div>
+      <nav id="nav">
+        <div class="nav-item active" data-view="panel"><span class="ic">📊</span> Panel</div>
+        <div class="nav-item" data-view="obras"><span class="ic">🖼️</span> Obras</div>
+        <div class="nav-item" data-view="suscriptores"><span class="ic">📧</span> Suscriptores</div>
+        <div class="nav-item" data-view="analytics"><span class="ic">📈</span> Analytics</div>
+        <div class="nav-item" data-view="crm"><span class="ic">🤝</span> CRM / Prospectos</div>
+        <div class="nav-item" data-view="ventas"><span class="ic">💸</span> Ventas</div>
+        <div class="nav-item" data-view="precios"><span class="ic">💲</span> Precios</div>
+        <div class="nav-item" data-view="certificados"><span class="ic">🎖️</span> Certificados</div>
+        <div class="nav-item" data-view="gmail"><span class="ic">✉️</span> Borradores Gmail</div>
+      </nav>
+      <div class="nav-foot">
+        <button id="logout-btn">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <!-- ===== PANEL ===== -->
+      <section class="view active" id="view-panel">
+        <h1>Panel</h1>
+        <div id="panel-banner"></div>
+        <div class="stats-grid" id="panel-stats"></div>
+        <div class="card">
+          <h3>Google Analytics</h3>
+          <div id="panel-ga"></div>
+        </div>
+      </section>
+
+      <!-- ===== OBRAS ===== -->
+      <section class="view" id="view-obras">
+        <h1>Obras</h1>
+        <div class="toolbar">
+          <input class="search" id="obras-search" placeholder="Buscar por título, técnica, precio…">
+          <button class="btn" id="obras-new-btn">＋ Nueva obra</button>
+        </div>
+        <div class="card" style="padding:0; overflow:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:60px;"></th>
+                <th>Título</th>
+                <th>ID</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th style="width:170px;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="obras-body"><tr><td colspan="7"><div class="empty">Cargando obras…</div></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== SUSCRIPTORES ===== -->
+      <section class="view" id="view-suscriptores">
+        <h1>Suscriptores</h1>
+        <div class="toolbar">
+          <input class="search" id="subs-search" placeholder="Buscar por email…">
+          <button class="btn ghost" id="subs-export-btn">⬇ Exportar CSV</button>
+        </div>
+        <div class="card" style="padding:0; overflow:auto;">
+          <table>
+            <thead>
+              <tr><th>Email</th><th>Fecha</th><th>Origen</th><th style="width:90px;"></th></tr>
+            </thead>
+            <tbody id="subs-body"><tr><td colspan="4"><div class="empty">Cargando…</div></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== ANALYTICS ===== -->
+      <section class="view" id="view-analytics">
+        <h1>Analytics</h1>
+        <div class="card">
+          <h3>📈 Google Analytics 4</h3>
+          <div id="analytics-content"></div>
+        </div>
+      </section>
+
+      <!-- ===== LEGACY VIEWS ===== -->
+      <section class="view" id="view-crm"><iframe class="legacy" src="/admin/crm.html" title="CRM"></iframe></section>
+      <section class="view" id="view-ventas"><iframe class="legacy" src="/admin/ventas.html" title="Ventas"></iframe></section>
+      <section class="view" id="view-precios"><iframe class="legacy" src="/admin/precios.html" title="Precios"></iframe></section>
+      <section class="view" id="view-certificados"><iframe class="legacy" src="/admin/certificado.html" title="Certificados"></iframe></section>
+      <section class="view" id="view-gmail"><iframe class="legacy" src="/admin/borradores_gmail.html" title="Gmail"></iframe></section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ===================== MODAL OBRA ===================== -->
+<div class="modal-overlay" id="obra-modal">
+  <div class="modal">
+    <h2 id="obra-modal-title">Nueva obra</h2>
+    <div class="form-grid">
+      <div class="field"><label>Título *</label><input id="f-titulo" required></div>
+      <div class="field">
+        <label>Categoría</label>
+        <select id="f-categoria">
+          <option value="retrato">Retrato</option>
+          <option value="paisaje">Paisaje</option>
+          <option value="caricatura">Caricatura</option>
+        </select>
+      </div>
+      <div class="field"><label>Año</label><input id="f-anio" type="number" placeholder="2025"></div>
+      <div class="field"><label>Técnica</label><input id="f-tecnica" placeholder="Óleo sobre lienzo"></div>
+      <div class="field"><label>Ancho (cm)</label><input id="f-ancho" type="number" step="0.1"></div>
+      <div class="field"><label>Alto (cm)</label><input id="f-alto" type="number" step="0.1"></div>
+      <div class="field full"><label>Descripción</label><textarea id="f-descripcion"></textarea></div>
+
+      <div class="field full">
+        <label>Imagen</label>
+        <input type="file" id="f-imagen" accept="image/*">
+        <img class="preview-img" id="f-imagen-preview" style="margin-top:8px; display:none;" alt="preview">
+        <div class="muted" style="font-size:.75rem; margin-top:5px;">La imagen se sube a /imagenes/ y se publica sola.</div>
+      </div>
+
+      <div class="field"><label>Precio original</label><input id="f-precio" placeholder="$500.000"></div>
+      <div class="field"><label>Precio print</label><input id="f-print-precio" placeholder="$30.000"></div>
+      <div class="field"><label>MercadoPago original (link)</label><input id="f-mp-original" placeholder="https://mpago.la/…"></div>
+      <div class="field"><label>PayPal original (link)</label><input id="f-pp-original" placeholder="https://paypal.me/…"></div>
+      <div class="field"><label>MercadoPago print (link)</label><input id="f-mp-print" placeholder="https://mpago.la/…"></div>
+      <div class="field"><label>PayPal print (link)</label><input id="f-pp-print" placeholder="https://paypal.me/…"></div>
+      <div class="field"><label>Edición total (prints)</label><input id="f-edicion" type="number" min="0"></div>
+      <div class="field"><label>Prints vendidos</label><input id="f-prints-vendidos" type="number" min="0"></div>
+      <div class="field"><label>QR URL</label><input id="f-qr" placeholder="https://…"></div>
+      <div class="field"><label>Certificado</label><input id="f-certificado" placeholder="Ruta o ID del certificado"></div>
+      <div class="field check"><label><input type="checkbox" id="f-disponible" checked> Disponible</label></div>
+      <div class="field check"><label><input type="checkbox" id="f-vendida"> Vendida</label></div>
+      <input type="hidden" id="f-id">
+    </div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="obra-cancel-btn">Cancelar</button>
+      <button class="btn" id="obra-save-btn">Guardar obra</button>
+    </div>
+    <div class="form-msg" id="obra-form-msg"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '/api';
+let TOKEN = sessionStorage.getItem('jcm_admin_token') || '';
+
+/* ---------- helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function toast(msg, err) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.toggle('err', !!err);
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+async function api(path, opts = {}) {
+  const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
+  if (TOKEN) headers['Authorization'] = 'Bearer ' + TOKEN;
+  const res = await fetch(API + path, { ...opts, headers });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Error ' + res.status);
+  return data;
+}
+
+/* ---------- login / logout ---------- */
+function showLogin() { $('login-view').style.display = 'flex'; $('app-view').style.display = 'none'; }
+function showApp() { $('login-view').style.display = 'none'; $('app-view').style.display = 'block'; }
+
+async function doLogin() {
+  const pass = $('login-pass').value;
+  if (!pass) return;
+  const btn = $('login-btn');
+  btn.disabled = true; btn.textContent = 'Ingresando…';
+  $('login-err').textContent = '';
+  try {
+    const data = await api('/auth', { method: 'POST', body: JSON.stringify({ password: pass }) });
+    TOKEN = data.token;
+    sessionStorage.setItem('jcm_admin_token', TOKEN);
+    sessionStorage.setItem('jcm_admin_auth', 'jcm-admin-2026');
+    showApp();
+    loadPanel();
+  } catch (err) {
+    $('login-err').textContent = err.message || 'Error al ingresar';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Ingresar';
+  }
+}
+$('login-btn').addEventListener('click', doLogin);
+$('login-pass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+$('logout-btn').addEventListener('click', () => {
+  TOKEN = '';
+  sessionStorage.removeItem('jcm_admin_token');
+  sessionStorage.removeItem('jcm_admin_auth');
+  showLogin();
+});
+
+/* ---------- navigation ---------- */
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    $('view-' + item.dataset.view).classList.add('active');
+    if (item.dataset.view === 'panel') loadPanel();
+    if (item.dataset.view === 'obras') loadObras();
+    if (item.dataset.view === 'suscriptores') loadSuscriptores();
+    if (item.dataset.view === 'analytics') loadAnalytics();
+  });
+});
+
+/* ---------- PANEL ---------- */
+async function loadPanel() {
+  try {
+    const data = await api('/panel');
+    const s = data.stats;
+    $('panel-banner').innerHTML = '';
+    if (s.suscriptores === null) {
+      $('panel-banner').innerHTML =
+        '<div class="banner">⚠️ <strong>Falta configurar la base de datos (D1).</strong> ' +
+        'Los suscriptores se siguen guardando por mail, pero no se listan acá. ' +
+        'Creá una base D1 llamada <code>jcm-subscribers</code> y vincúlala al proyecto Pages como <code>DB</code>.</div>';
+    }
+    if (!data.gaConfig) {
+      $('panel-banner').innerHTML +=
+        '<div class="banner">📈 <strong>Google Analytics no está vinculado al tablero.</strong> ' +
+        'Se puede conectar con una Service Account de Google Cloud (instrucciones en la pestaña Analytics).</div>';
+    }
+    const cards = [
+      ['Obras en catálogo', s.obras.total, ''],
+      ['Disponibles', s.obras.disponibles, 'para venta'],
+      ['Vendidas', s.obras.vendidas, ''],
+      ['Prints vendidos', s.obras.printsVendidos, 'unidades'],
+      ['Inventario prints', s.obras.inventario, 'restantes'],
+      ['Suscriptores', s.suscriptores === null ? '—' : s.suscriptores, 'newsletter']
+    ];
+    $('panel-stats').innerHTML = cards.map(([l, v, sub]) =>
+      `<div class="stat-card"><div class="label">${l}</div><div class="val">${v}</div><div class="sub">${sub}</div></div>`
+    ).join('');
+
+    const ga = data.ga;
+    if (data.gaConfig && ga && ga.ok) {
+      $('panel-ga').innerHTML =
+        `<div class="stats-grid" style="margin:0;">
+          <div class="stat-card"><div class="label">Usuarios (28d)</div><div class="val">${ga.usuarios}</div></div>
+          <div class="stat-card"><div class="label">Sesiones</div><div class="val">${ga.sesiones}</div></div>
+          <div class="stat-card"><div class="label">Vistas</div><div class="val">${ga.vistas}</div></div>
+         </div>
+         <div class="muted" style="font-size:.85rem;">Páginas más vistas:</div>
+         <table><thead><tr><th>Página</th><th>Vistas</th></tr></thead><tbody>
+         ${ga.paginas.map(p => `<tr><td>${p.path}</td><td>${p.vistas}</td></tr>`).join('')}
+         </tbody></table>`;
+    } else {
+      $('panel-ga').innerHTML = ga && ga.error
+        ? `<div class="banner err" style="border-color:var(--bad);color:#fca5a5;">Error de GA: ${ga.error}</div>`
+        : '<div class="muted">Conectá Google Analytics desde la pestaña Analytics para ver métricas acá.</div>';
+    }
+  } catch (err) {
+    $('panel-banner').innerHTML = `<div class="banner" style="border-color:var(--bad);color:#fca5a5;">⚠️ No pude cargar el panel: ${err.message}</div>`;
+  }
+}
+
+/* ---------- OBRAS ---------- */
+let obrasCache = [];
+async function loadObras() {
+  const body = $('obras-body');
+  try {
+    const res = await fetch('/data/obras.json');
+    if (!res.ok) throw new Error('no pude leer obras.json');
+    const data = await res.json();
+    obrasCache = data.obras || [];
+    renderObras(obrasCache);
+  } catch (err) {
+    body.innerHTML = `<tr><td colspan="7"><div class="empty">Error: ${err.message}</div></td></tr>`;
+  }
+}
+function estadoBadge(o) {
+  if (o.vendida) return '<span class="badge bad">Vendida</span>';
+  if (o.disponible) return '<span class="badge ok">Disponible</span>';
+  return '<span class="badge warn">Oculta</span>';
+}
+function renderObras(lista) {
+  const q = ($('obras-search').value || '').toLowerCase();
+  const filtrada = lista.filter(o =>
+    !q || (o.titulo + ' ' + (o.tecnica || '') + ' ' + (o.precio || '') + ' ' + (o.categoria || '')).toLowerCase().includes(q)
+  );
+  const body = $('obras-body');
+  if (!filtrada.length) {
+    body.innerHTML = '<tr><td colspan="7"><div class="empty">No hay obras.</div></td></tr>';
+    return;
+  }
+  body.innerHTML = filtrada.map(o => `
+    <tr>
+      <td>${o.imagen ? `<img class="thumb" src="${o.imagen}" onerror="this.style.visibility='hidden'">` : '<div class="thumb"></div>'}</td>
+      <td><strong>${o.titulo}</strong><br><span class="muted" style="font-size:.75rem;">${o.tecnica || ''}</span></td>
+      <td>${o.id || '—'}</td>
+      <td>${o.categoria || '—'}</td>
+      <td>${o.precio || '—'}</td>
+      <td>${estadoBadge(o)}</td>
+      <td>
+        <button class="btn ghost small" onclick="openObraModal('${o.id}')">Editar</button>
+        <button class="btn danger small" onclick="borrarObra('${o.id}')">Borrar</button>
+      </td>
+    </tr>`).join('');
+}
+$('obras-search').addEventListener('input', () => renderObras(obrasCache));
+$('obras-new-btn').addEventListener('click', () => openObraModal(null));
+
+function openObraModal(id) {
+  $('obra-form-msg').textContent = '';
+  $('obra-form-msg').classList.remove('err');
+  const o = obrasCache.find(x => x.id === id);
+  $('obra-modal-title').textContent = o ? 'Editar obra' : 'Nueva obra';
+  $('f-id').value = o ? o.id : '';
+  $('f-titulo').value = o ? o.titulo : '';
+  $('f-categoria').value = (o && o.categoria) || 'retrato';
+  $('f-anio').value = o && o.anio ? o.anio : '';
+  $('f-tecnica').value = o ? o.tecnica : '';
+  $('f-ancho').value = o && o.ancho_cm ? o.ancho_cm : '';
+  $('f-alto').value = o && o.alto_cm ? o.alto_cm : '';
+  $('f-descripcion').value = o ? o.descripcion : '';
+  $('f-precio').value = o ? o.precio : '';
+  $('f-print-precio').value = o ? o.print_precio : '';
+  $('f-mp-original').value = o ? o.mercadopago_original : '';
+  $('f-pp-original').value = o ? o.paypal_original : '';
+  $('f-mp-print').value = o ? o.mercadopago_print : '';
+  $('f-pp-print').value = o ? o.paypal_print : '';
+  $('f-edicion').value = o && o.edicion_total ? o.edicion_total : '';
+  $('f-prints-vendidos').value = o && o.prints_vendidos ? o.prints_vendidos : '';
+  $('f-qr').value = o ? o.qr_url : '';
+  $('f-certificado').value = o ? o.certificado : '';
+  $('f-disponible').checked = o ? !!o.disponible : true;
+  $('f-vendida').checked = o ? !!o.vendida : false;
+  $('f-imagen').value = '';
+  const prev = $('f-imagen-preview');
+  if (o && o.imagen) { prev.src = o.imagen; prev.style.display = 'block'; }
+  else { prev.style.display = 'none'; }
+  $('obra-modal').classList.add('open');
+}
+$('obra-cancel-btn').addEventListener('click', () => $('obra-modal').classList.remove('open'));
+$('obra-modal').addEventListener('click', e => { if (e.target === $('obra-modal')) $('obra-modal').classList.remove('open'); });
+
+$('f-imagen').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  if (file.size > 8 * 1024 * 1024) { toast('La imagen es muy grande (máx 8MB)', true); e.target.value = ''; return; }
+  const reader = new FileReader();
+  reader.onload = () => {
+    const prev = $('f-imagen-preview');
+    prev.src = reader.result;
+    prev.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+});
+
+$('obra-save-btn').addEventListener('click', async () => {
+  const msg = $('obra-form-msg');
+  msg.textContent = '';
+  msg.classList.remove('err');
+  const titulo = $('f-titulo').value.trim();
+  if (!titulo) { msg.textContent = 'El título es obligatorio.'; msg.classList.add('err'); return; }
+
+  const file = $('f-imagen').files[0];
+  let imagen = null;
+  if (file) {
+    const base64 = await fileToBase64(file);
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+    const slug = titulo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    imagen = { base64, filename: `${slug}-${Date.now()}.${ext}` };
+  }
+
+  const obra = {
+    id: $('f-id').value || null,
+    titulo,
+    categoria: $('f-categoria').value,
+    anio: $('f-anio').value,
+    tecnica: $('f-tecnica').value,
+    ancho_cm: $('f-ancho').value,
+    alto_cm: $('f-alto').value,
+    descripcion: $('f-descripcion').value,
+    precio: $('f-precio').value,
+    print_precio: $('f-print-precio').value,
+    mercadopago_original: $('f-mp-original').value,
+    paypal_original: $('f-pp-original').value,
+    mercadopago_print: $('f-mp-print').value,
+    paypal_print: $('f-pp-print').value,
+    edicion_total: $('f-edicion').value,
+    prints_vendidos: $('f-prints-vendidos').value,
+    qr_url: $('f-qr').value,
+    certificado: $('f-certificado').value,
+    disponible: $('f-disponible').checked,
+    vendida: $('f-vendida').checked
+  };
+
+  const btn = $('obra-save-btn');
+  btn.disabled = true; btn.textContent = 'Guardando…';
+  try {
+    await api('/obras', { method: 'POST', body: JSON.stringify({ obra, imagen }) });
+    msg.textContent = '✔ Guardado. Se publica en ~1-2 min.';
+    toast('Obra guardada');
+    $('obra-modal').classList.remove('open');
+    loadObras();
+  } catch (err) {
+    msg.textContent = 'Error: ' + err.message;
+    msg.classList.add('err');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Guardar obra';
+  }
+});
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function borrarObra(id) {
+  const o = obrasCache.find(x => x.id === id);
+  if (!confirm(`¿Eliminar la obra "${o ? o.titulo : id}" del catálogo?`)) return;
+  try {
+    await api('/obras?id=' + encodeURIComponent(id), { method: 'DELETE' });
+    toast('Obra eliminada');
+    loadObras();
+  } catch (err) {
+    toast('Error: ' + err.message, true);
+  }
+}
+
+/* ---------- SUSCRIPTORES ---------- */
+let subsCache = [];
+async function loadSuscriptores() {
+  const body = $('subs-body');
+  body.innerHTML = '<tr><td colspan="4"><div class="empty">Cargando…</div></td></tr>';
+  try {
+    const data = await api('/suscriptores');
+    subsCache = data.suscriptores || [];
+    renderSubs(subsCache);
+  } catch (err) {
+    body.innerHTML = `<tr><td colspan="4"><div class="empty">${err.message}. ¿Configuraste la base D1 en Cloudflare?</div></td></tr>`;
+  }
+}
+function renderSubs(lista) {
+  const q = ($('subs-search').value || '').toLowerCase();
+  const filtrada = lista.filter(s => !q || s.email.toLowerCase().includes(q));
+  const body = $('subs-body');
+  if (!filtrada.length) {
+    body.innerHTML = '<tr><td colspan="4"><div class="empty">Sin suscriptores.</div></td></tr>';
+    return;
+  }
+  body.innerHTML = filtrada.map(s => `
+    <tr>
+      <td>${s.email}</td>
+      <td>${(s.fecha || '').replace('T', ' ')}</td>
+      <td>${s.origen || 'web'}</td>
+      <td><button class="btn danger small" onclick="borrarSub(${s.id})">Borrar</button></td>
+    </tr>`).join('');
+}
+$('subs-search').addEventListener('input', () => renderSubs(subsCache));
+$('subs-export-btn').addEventListener('click', () => {
+  const rows = [['email', 'fecha', 'origen'], ...subsCache.map(s => [s.email, s.fecha, s.origen])];
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'suscriptores.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+async function borrarSub(id) {
+  if (!confirm('¿Eliminar este suscriptor?')) return;
+  try {
+    await api('/suscriptores?id=' + id, { method: 'DELETE' });
+    toast('Suscriptor eliminado');
+    loadSuscriptores();
+  } catch (err) {
+    toast('Error: ' + err.message, true);
+  }
+}
+
+/* ---------- ANALYTICS ---------- */
+async function loadAnalytics() {
+  const el = $('analytics-content');
+  try {
+    const data = await api('/panel');
+    if (!data.gaConfig) {
+      el.innerHTML = `
+        <div class="banner">📈 Para ver métricas reales de jcmachado.com en este tablero, conectá GA4:</div>
+        <ol class="muted" style="line-height:1.9; padding-left:1.2rem;">
+          <li>Creá una <strong>Service Account</strong> en <a href="https://console.cloud.google.com/iam-admin/serviceaccounts" target="_blank" rel="noopener">Google Cloud Console</a> (proyecto libre).</li>
+          <li>Generá una clave JSON y descargala.</li>
+          <li>Agregá esa cuenta como <strong>Viewer</strong> en <a href="https://analytics.google.com" target="_blank" rel="noopener">GA4 → Administración → Gestión de acceso</a> de la propiedad <code>G-PP48JV4JK7</code>.</li>
+          <li>En Cloudflare Pages → Settings → Environment variables agregá:
+            <ul>
+              <li><code>GA_PROPERTY_ID</code> = el ID numérico de la propiedad (ej: <code>123456789</code>)</li>
+              <li><code>GA_SERVICE_ACCOUNT_JSON</code> = el contenido del JSON (multilínea, con saltos \n)</li>
+            </ul>
+          </li>
+        </ol>
+        <p class="muted" style="font-size:.85rem;">⚠️ Para saber el ID numérico: GA4 → Administración → Configuración de la propiedad → ID de la propiedad (número).</p>`;
+      return;
+    }
+    if (data.ga && data.ga.ok) {
+      const ga = data.ga;
+      el.innerHTML = `
+        <div class="stats-grid">
+          <div class="stat-card"><div class="label">Usuarios activos</div><div class="val">${ga.usuarios}</div></div>
+          <div class="stat-card"><div class="label">Sesiones</div><div class="val">${ga.sesiones}</div></div>
+          <div class="stat-card"><div class="label">Vistas de página</div><div class="val">${ga.vistas}</div></div>
+        </div>
+        <h3 style="font-size:.9rem;">Páginas más vistas (28 días)</h3>
+        <table><thead><tr><th>Página</th><th>Vistas</th></tr></thead><tbody>
+        ${ga.paginas.map(p => `<tr><td>${p.path}</td><td>${p.vistas}</td></tr>`).join('')}
+        </tbody></table>
+        <p class="muted" style="font-size:.85rem; margin-top:1rem;">
+          <a href="https://analytics.google.com/analytics/web/" target="_blank" rel="noopener">Abrir Google Analytics completo →</a>
+        </p>`;
+    } else {
+      el.innerHTML = `<div class="banner" style="border-color:var(--bad);color:#fca5a5;">Error de GA: ${(data.ga && data.ga.error) || 'desconocido'}</div>`;
+    }
+  } catch (err) {
+    el.innerHTML = `<div class="banner" style="border-color:var(--bad);color:#fca5a5;">Error: ${err.message}</div>`;
+  }
+}
+
+/* ---------- INIT ---------- */
+(function init() {
+  if (TOKEN) { showApp(); loadPanel(); } else { showLogin(); }
+})();
+</script>
 </body>
 </html>
