@@ -16,6 +16,25 @@
 <meta property="og:title" content="Julio Machado — Pintor y Sociólogo">
 <meta property="og:description" content="No pinto caras. Pinto estructura social. Óleos originales y encargos personalizados desde una mirada sociológica.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://jcmachado.com/">
+<meta property="og:image" content="https://jcmachado.com/imagenes/Raiz.webp">
+<meta property="og:locale" content="es_AR">
+<link rel="canonical" href="https://jcmachado.com/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Julio Machado",
+  "jobTitle": "Pintor y Sociólogo",
+  "url": "https://jcmachado.com/",
+  "image": "https://jcmachado.com/imagenes/Raiz.webp",
+  "description": "Pintor de óleos originales, prints de edición limitada y encargos personalizados. Argentina.",
+  "sameAs": [
+    "https://www.youtube.com/@Jcmachadoart",
+    "https://www.tiktok.com/@jcmachadoart"
+  ]
+}
+</script>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
@@ -873,15 +892,34 @@
         '<p style="color:var(--ink-3);grid-column:1/-1;text-align:center;padding:40px 0;">Error cargando las obras. Intentá recargar la página.</p>';
     });
 
-  /* NEWSLETTER → fallback por mailto (temporal, ver nota) */
+  /* NEWSLETTER → captura real de emails vía FormSubmit (sin backend) */
   function enviarNewsletter(e) {
     e.preventDefault();
     const email = document.getElementById('newsletterEmail').value.trim();
     const nota = document.getElementById('newsletterNote');
-    const asunto = 'Sumarme a la newsletter';
-    const cuerpo = 'Quiero sumarme a la newsletter mensual.\n\nMi email: ' + email;
-    window.open('mailto:pmachado.julio@gmail.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo), '_blank');
-    nota.textContent = 'Se abrió tu cliente de mail — solo tenés que enviarlo.';
+    if (!email) return false;
+    nota.textContent = 'Enviando…';
+    fetch('https://formsubmit.co/ajax/pmachado.julio@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Nuevo suscriptor a la newsletter — jcmachado.com',
+        _template: 'table',
+        _captcha: 'false',
+        email: email
+      })
+    })
+    .then(res => res.json())
+    .then(() => {
+      nota.textContent = '¡Listo! Te llega la próxima lectura sociológica del mes.';
+      document.getElementById('newsletterEmail').value = '';
+    })
+    .catch(() => {
+      const asunto = 'Sumarme a la newsletter';
+      const cuerpo = 'Quiero sumarme a la newsletter mensual.\n\nMi email: ' + email;
+      window.open('mailto:pmachado.julio@gmail.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo), '_blank');
+      nota.textContent = 'Se abrió tu cliente de mail — solo tenés que enviarlo.';
+    });
     return false;
   }
 

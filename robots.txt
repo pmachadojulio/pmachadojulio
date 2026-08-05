@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jcmachado.com/sitemap.xml
