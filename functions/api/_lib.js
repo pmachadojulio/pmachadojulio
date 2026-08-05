@@ -108,8 +108,36 @@ export async function loadObras(env) {
 export async function saveObras(env, obrasJson, message) {
   const { ok, data } = await ghGet(env, 'data/obras.json');
   if (!ok) throw new Error(`No pude leer obras.json (${data.message || data})`);
-  const { ok: okPut } = await ghPut(env, 'data/obras.json', encodeB64(JSON.stringify(obrasJson, null, 2)), message, data.sha);
-  if (!okPut) throw new Error('GitHub rechazó la actualización de obras.json');
+  const res = await ghPut(env, 'data/obras.json', encodeB64(JSON.stringify(obrasJson, null, 2)), message, data.sha);
+  if (!res.ok) throw new Error(`GitHub rechazó la actualización de obras.json (${res.data?.message || res.status})`);
+}
+
+export async function mutateObras(env, transform, maxAttempts = 5) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const { ok, data } = await ghGet(env, 'data/obras.json');
+    if (!ok) throw new Error(`No pude leer obras.json (${data.message || data})`);
+    const current = JSON.parse(decodeB64(data.content));
+    const result = transform(current);
+    if (result.json === null || result.json === undefined) {
+      return { ok: true, result };
+    }
+    const res = await ghPut(
+      env,
+      'data/obras.json',
+      encodeB64(JSON.stringify(result.json, null, 2)),
+      result.message || 'Admin: actualización de obras.json',
+      data.sha
+    );
+    if (res.ok) return { ok: true, result };
+    lastError = res;
+    if (res.status === 409 && attempt < maxAttempts) {
+      await new Promise(r => setTimeout(r, 400 * attempt));
+      continue;
+    }
+    throw new Error(`GitHub rechazó la actualización de obras.json (${res.data?.message || res.status})`);
+  }
+  throw new Error(`No pude actualizar obras.json tras ${maxAttempts} intentos (${lastError?.data?.message || lastError?.status})`);
 }
 
 export function nextId(obras) {
