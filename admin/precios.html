@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<script>
-  (function(){
-    var PASS = 'jcm-admin-2026';
-    var stored = sessionStorage.getItem('jcm_admin_auth');
-    if(stored !== PASS){
-      var input = prompt('🔒 Acceso restringido. Ingresá la contraseña:');
-      if(input !== PASS){ document.write('<h2 style="font-family:sans-serif;text-align:center;margin-top:20vh">❌ Acceso denegado. <a href="/">Volver al inicio</a></h2>'); document.close(); throw new Error('Acceso denegado'); }
-      sessionStorage.setItem('jcm_admin_auth', PASS);
-    }
-  })();
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Actualizador de Precios — Julio César Machado</title>

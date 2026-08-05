@@ -7,11 +7,11 @@
       "nicho": "Interioristas",
       "contacto": "Directora Liberté",
       "cargo": "Directora",
-      "email": "contacto@estudioliberte.com.ar",
+      "email": "liberte.estudiodediseno@gmail.com",
       "ig_web": "Instagram @estudiolliberte",
       "obra_recomendada": "jcmachado.com/obra/?slug=serie-chakras",
-      "estado": "Listo para enviar",
-      "notas": "Buscar email en Instagram/web — perfil muy estético, resonará con la serie chakras"
+      "estado": "Verificado - email corregido",
+      "notas": "ESTUDIO REAL. Email corregido el 2026-08-05: el real es liberte.estudiodediseno@gmail.com (web oficial), NO contacto@estudioliberte.com.ar. Perfil muy estético, resonará con la serie chakras."
     },
     {
       "id": "PROSPECT-002",
@@ -23,8 +23,8 @@
       "email": "hola@dearq.com.ar",
       "ig_web": "",
       "obra_recomendada": "jcmachado.com/obra/?slug=serie-chakras",
-      "estado": "Listo para enviar",
-      "notas": "Nombre sugiere alineación con chakras — usar ese ángulo en el asunto del mail"
+      "estado": "REVISAR - no verificado",
+      "notas": "No se encontró web/IG oficial al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar existencia."
     },
     {
       "id": "PROSPECT-007",
@@ -36,8 +36,8 @@
       "email": "artdisda@hotmail.com",
       "ig_web": "",
       "obra_recomendada": "jcmachado.com/obra/?slug=serie-chakras",
-      "estado": "Listo para enviar",
-      "notas": "Email disponible — prioridad de envío con propuesta de Serie Ascenso"
+      "estado": "Verificado",
+      "notas": "ESTUDIO REAL confirmado en homify.com.ar (perfil con email artdisda@hotmail.com). Prioridad de envío con propuesta de Serie Ascenso."
     },
     {
       "id": "PROSPECT-008",
@@ -49,8 +49,8 @@
       "email": "maria@mariamorelli.com.ar",
       "ig_web": "",
       "obra_recomendada": "jcmachado.com/obra/?slug=serie-chakras",
-      "estado": "Listo para enviar",
-      "notas": "Nombre conocido en Córdoba — personalizar mucho, mencionar obra específica"
+      "estado": "REVISAR - probablemente falso",
+      "notas": "No existe estudio 'Maria Morelli Interioristas' en Córdoba al 2026-08-05 (búsqueda en homify, IG, web). Candidato a ELIMINAR."
     },
     {
       "id": "PROSPECT-015",
@@ -62,8 +62,8 @@
       "email": "mutarquitectos@gmail.com",
       "ig_web": "",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Email disponible — enviar propuesta de obras urbanas al óleo"
+      "estado": "REVISAR - no verificado",
+      "notas": "No se encontró web/IG oficial al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-016",
@@ -75,8 +75,8 @@
       "email": "info@cordobayasociados.com.ar",
       "ig_web": "cordobayasociados.com.ar",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Email institucional disponible"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio no resuelve / sin web comprobable al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-017",
@@ -88,8 +88,8 @@
       "email": "hola@muroarqs.com",
       "ig_web": "muroarqs.com",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Revisar portfolio web para personalizar el gancho"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio no comprobable al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-018",
@@ -101,8 +101,8 @@
       "email": "estudios2arquitectos@gmail.com",
       "ig_web": "",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Email disponible"
+      "estado": "REVISAR - no verificado",
+      "notas": "No se encontró web/IG oficial al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-019",
@@ -114,8 +114,8 @@
       "email": "info@ararquitectos.com.ar",
       "ig_web": "ararquitectos.com.ar",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Email institucional disponible"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio no comprobable al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-020",
@@ -127,8 +127,8 @@
       "email": "info@estudiomassanet.com.ar",
       "ig_web": "estudiomassanet.com.ar",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Mencionar al titular Oscar Massanet por nombre"
+      "estado": "REVISAR - real pero datos incompletos",
+      "notas": "ESTUDIO REAL (Paraguay 2780, Villa María; tel 0353 4534433) pero NO es de Córdoba capital. Email info@estudiomassanet.com.ar NO confirmado. Verificar email real antes de enviar."
     },
     {
       "id": "PROSPECT-021",
@@ -140,8 +140,8 @@
       "email": "contacto@estudioarqa.com",
       "ig_web": "estudioarqa.com",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Email disponible"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio no comprobable al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-022",
@@ -153,8 +153,8 @@
       "email": "estudio@emarquitectura.com.ar",
       "ig_web": "emarquitectura.com.ar",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Email disponible"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio emarquitectura.com.ar NO coincide con 'Estudio Molina' — sospechoso de fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-023",
@@ -166,8 +166,8 @@
       "email": "arqandco.estudio@gmail.com",
       "ig_web": "",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Email disponible"
+      "estado": "Verificado",
+      "notas": "ESTUDIO REAL confirmado en arqandco.com.ar (email arqandco.estudio@gmail.com). Interiorismo desde cero + residencial. Listo para enviar."
     },
     {
       "id": "PROSPECT-024",
@@ -179,8 +179,8 @@
       "email": "estebanbarrera@bltarq.com.ar",
       "ig_web": "bltarq.com.ar",
       "obra_recomendada": "jcmachado.com/obra/?slug=oleo-urbano",
-      "estado": "Listo para enviar",
-      "notas": "Email directo del director Esteban Barrera — alta probabilidad de apertura"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio bltarq.com.ar NO coincide con 'Bitarq' — sospechoso de fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-029",
@@ -192,8 +192,8 @@
       "email": "info@traslasierraboutique.com",
       "ig_web": "Traslasierra",
       "obra_recomendada": "jcmachado.com/obra/?slug=serie-chakras",
-      "estado": "Listo para enviar",
-      "notas": "Zona espiritual/naturaleza — serie chakras muy alineada"
+      "estado": "REVISAR - probablemente falso",
+      "notas": "Dominio traslasierraboutique.com no corresponde a ningún alojamiento real conocido. Candidato a ELIMINAR. Los reales de la zona están en contactos_verificados.json (Cortaderas, Loma Bola, Mirador del Lago, El Jarillal)."
     },
     {
       "id": "PROSPECT-047",
@@ -205,8 +205,8 @@
       "email": "nogueira@estudiojuridicocordoba.com",
       "ig_web": "estudiojuridicocordoba.com",
       "obra_recomendada": "jcmachado.com/obra/?slug=retrato-oleo",
-      "estado": "Listo para enviar",
-      "notas": "Proponer retrato al óleo del socio fundador o pieza para sala de reuniones"
+      "estado": "REVISAR - probablemente falso",
+      "notas": "Sin web/estudio comprobable al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-048",
@@ -218,8 +218,8 @@
       "email": "facundo@ferreromoreno.com.ar",
       "ig_web": "ferreromoreno.com.ar",
       "obra_recomendada": "jcmachado.com/obra/?slug=retrato-oleo",
-      "estado": "Listo para enviar",
-      "notas": "Email personal del socio Facundo — personalizar con su nombre"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio no comprobable al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-049",
@@ -231,8 +231,8 @@
       "email": "info@estudiojuridicomogliani.com.ar",
       "ig_web": "estudiojuridicomogliani.com.ar",
       "obra_recomendada": "jcmachado.com/obra/?slug=retrato-oleo",
-      "estado": "Listo para enviar",
-      "notas": "Mencionar al Dr. Mogliani"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio no comprobable al 2026-08-05. Email probablemente fabricado. NO enviar hasta verificar."
     },
     {
       "id": "PROSPECT-050",
@@ -244,8 +244,8 @@
       "email": "info@abogadosencordoba.com.ar",
       "ig_web": "abogadosencordoba.com.ar",
       "obra_recomendada": "jcmachado.com/obra/?slug=retrato-oleo",
-      "estado": "Listo para enviar",
-      "notas": "Verificar si es arq o jurídico antes de enviar"
+      "estado": "REVISAR - no verificado",
+      "notas": "Dominio genérico abogadosencordoba.com.ar — probablemente fabricado. Verificar si existe realmente y de qué rubro antes de enviar."
     }
   ]
 }
