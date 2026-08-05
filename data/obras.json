@@ -691,6 +691,29 @@
       "vendida": false,
       "qr_url": "",
       "certificado": ""
+    },
+    {
+      "titulo": "Obra Índice Test",
+      "id": "JM-2026-204",
+      "categoria": "test",
+      "anio": null,
+      "tecnica": "",
+      "ancho_cm": null,
+      "alto_cm": null,
+      "descripcion": "verificación SEO",
+      "imagen": "",
+      "precio": "",
+      "print_precio": "",
+      "mercadopago_original": "",
+      "paypal_original": "",
+      "mercadopago_print": "",
+      "paypal_print": "",
+      "edicion_total": null,
+      "prints_vendidos": null,
+      "disponible": false,
+      "vendida": false,
+      "qr_url": "",
+      "certificado": ""
     }
   ]
 }
