@@ -62,7 +62,27 @@ directorio verificado (homify, COACo, Mercado de Arte municipal), el email NO se
 - [x] Auditoría de `prospects_crm.json` → 14 fabricados/por revisar marcados.
 - [x] `data/contactos_verificados.json` con 25 contactos reales (2 eran correctos,
       1 corregido, 15 galerías del Mercado de Arte, hoteles serranos verificados).
+- [x] **Apify configurado**: skill `apify-actorization` + `apify-cli` + `APIFY_TOKEN`
+      en `~/.zshrc` (plan FREE, $5/mes). Token NUNCA se commitea.
+- [x] Scrape de prueba validado: `compass/crawler-google-places`, "interiorista
+      cordoba argentina", 30 resultados, 75 s, **$0.12** (~$0.004 c/u).
+      → 30 interioristas reales (26 con web, 29 con teléfono) en
+      `data/scrapes/interioristas_cordoba_2026-08-05.json`. Confirmó a Estudio
+      Liberté (tel +54 351 786-5899) y Endetalle (web real, falta email).
+- [ ] Correr scrape completo Córdoba (interioristas ~150 + arq ~150 + hoteles ~100
+      + galerías ~50 ≈ **$2, dentro del crédito gratis**) y enriquecer emails con
+      crawl de webs.
 - [ ] Correr `generate_campaign_drafts.py` SOLO contra `contactos_verificados.json`
-      (NUNCA contra prospects_crm.json hasta limpiarlo).
+      + resultados enriquecidos (NUNCA contra prospects_crm.json sin limpiar).
 - [ ] Solicitar emails faltantes a hoteles/estudios por WhatsApp/IG.
-- [ ] Definir token de Apify para escalar (decisión del usuario).
+
+### Comandos Apify útiles
+```bash
+# Scrape sincrónico (espera el resultado, devuelve JSON)
+curl -X POST "https://api.apify.com/v2/acts/compass~crawler-google-places/run-sync-get-dataset-items?token=\$APIFY_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"searchStringsArray":["interiorista cordoba argentina"],"maxCrawledPlacesPerSearch":30,"language":"es-419","countryCode":"ar","maxImages":0}'
+
+# Costo del último run
+curl -s "https://api.apify.com/v2/acts/compass~crawler-google-places/runs/last?token=\$APIFY_TOKEN"
+```
