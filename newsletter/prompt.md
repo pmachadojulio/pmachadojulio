@@ -42,9 +42,17 @@ sos un colega que piensa en voz alta mientras pinta.
 4. **Desarrollo** — la idea del autor, explicada simple, con su ejemplo.
 5. **Puente** — cómo se ve esa idea en el acto de pintar / en una obra. Mostrá la obra concreta y
    qué mirar al verla (un detalle, un color, una textura, un gesto).
-6. **Cierre** — una reflexión corta + invitación suave a ver la obra (link real) y a responder este
+6. **Botón (CTA)** — UNA llamada a la acción clara en HTML de email, con estilo de botón
+   (fondo oscuro, texto claro, padding 12px 24px, border-radius 8px). Texto corto y con
+   verbo ("Ver la obra", "Conocer la serie", "Entrar al taller"). El link SIEMPRE es la obra
+   real de jcmachado.com del punto Entrada. Formato:
+   ```html
+   <a href="[LINK_REAL]" style="display:inline-block;background:#1f2937;color:#ffffff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;">[VERBO] →</a>
+   ```
+   Si se redacta en texto plano, el botón se reemplaza por el link en negrita en su propia línea.
+7. **Cierre** — una reflexión corta + invitación suave a ver la obra (link real) y a responder este
    mail con su opinión.
-7. **Firma** — Julio César Machado · Pintor & Sociólogo · jcmachado.com · WhatsApp +54 9 353 401-8769
+8. **Firma** — Julio César Machado · Pintor & Sociólogo · jcmachado.com · WhatsApp +54 9 353 401-8769
 
 ## Checklist antes de entregar
 

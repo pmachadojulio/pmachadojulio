@@ -10,7 +10,7 @@ Fecha: 2026-08-05 | Destinatarios: 40
 **ASUNTO:** Arte original para los espacios de Mirador del Lago Apart — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Mirador del Lago Apart,
+Hola Mirador del Lago Apart,
 
 Les escribo tras conocer Mirador del Lago Apart y su propuesta de estadía en la sierra cordobesa.
 
@@ -37,7 +37,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Óleos originales y serie urbana para los proyectos de Estudio Massanet (Arq Massanet)
 
 ```
-Estimados integrantes de Estudio Massanet (Arq Massanet),
+Hola Oscar,
 
 Les escribo con mucho gusto tras apreciar el nivel arquitectónico y espacial de Estudio Massanet (Arq Massanet).
 
@@ -64,7 +64,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Óleos originales y serie urbana para los proyectos de Federico Centarti Studio arquitectura RÍO CUARTO
 
 ```
-Estimados integrantes de Federico Centarti Studio arquitectura RÍO CUARTO,
+Hola Federico,
 
 Les escribo con mucho gusto tras apreciar el nivel arquitectónico y espacial de Federico Centarti Studio arquitectura RÍO CUARTO.
 
@@ -91,7 +91,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Propuesta de arte contemporáneo al óleo para Estudio Liberté — Serie Ascenso (Chakras)
 
 ```
-Estimados integrantes de Estudio Liberté,
+Hola Estudio Liberté,
 
 Les escribo desde Córdoba tras conocer la propuesta estética de Estudio Liberté.
 
@@ -120,7 +120,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Abre Galería de Arte,
+Hola Alexandro,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Abre Galería de Arte en el circuito.
 
@@ -145,7 +145,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Atelier Pablo Busano,
+Hola Atelier Pablo Busano,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Atelier Pablo Busano en el circuito.
 
@@ -170,7 +170,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Brújula Invisible,
+Hola Daniela,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Brújula Invisible en el circuito.
 
@@ -195,7 +195,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de CO ART,
+Hola CO ART,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de CO ART en el circuito.
 
@@ -220,7 +220,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Galería Cerrito,
+Hola Rafael,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Galería Cerrito en el circuito.
 
@@ -245,7 +245,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Galería Marchiaro,
+Hola Laura,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Galería Marchiaro en el circuito.
 
@@ -270,7 +270,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Lyv Gallery,
+Hola Guillermo,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Lyv Gallery en el circuito.
 
@@ -295,7 +295,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Maria Elena Kravetz Galería de Arte,
+Hola Maria Elena,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Maria Elena Kravetz Galería de Arte en el circuito.
 
@@ -320,7 +320,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Museo Provincial de Bellas Artes "Emilio Caraffa" (M.E.C.),
+Hola Equipo del Museo Caraffa,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Museo Provincial de Bellas Artes "Emilio Caraffa" (M.E.C.) en el circuito.
 
@@ -345,7 +345,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Orfila Casa de Arte,
+Hola Caro,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Orfila Casa de Arte en el circuito.
 
@@ -370,7 +370,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Rutera (arte contemporáneo),
+Hola Juan,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Rutera (arte contemporáneo) en el circuito.
 
@@ -395,7 +395,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Sasha D. Espacio y Galería de Arte,
+Hola Alejandro,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Sasha D. Espacio y Galería de Arte en el circuito.
 
@@ -420,7 +420,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Satélite,
+Hola Valeria,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Satélite en el circuito.
 
@@ -445,7 +445,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Usina de Arte,
+Hola Guadalupe,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Usina de Arte en el circuito.
 
@@ -470,7 +470,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Vía Margutta Arte Contemporáneo,
+Hola Maru,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Vía Margutta Arte Contemporáneo en el circuito.
 
@@ -495,7 +495,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Xul Gallery,
+Hola Pablo,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Xul Gallery en el circuito.
 
@@ -520,7 +520,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Mina Estudio Creativo,
+Hola Romina,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Mina Estudio Creativo en el circuito.
 
@@ -545,7 +545,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Obra original al óleo para sumar a su programación — Julio César Machado
 
 ```
-Estimados integrantes de Subterráneo,
+Hola Juan,
 
 Les escribo desde Córdoba con mucho respeto por el trabajo de Subterráneo en el circuito.
 
@@ -570,7 +570,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de 531 Hostel en Córdoba Argentina — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de 531 Hostel en Córdoba Argentina,
+Hola equipo del Hostel 531,
 
 Les escribo tras conocer 531 Hostel en Córdoba Argentina y su propuesta de estadía en la sierra cordobesa.
 
@@ -597,7 +597,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Cortaderas Hotel de Campo — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Cortaderas Hotel de Campo,
+Hola Cortaderas Hotel de Campo,
 
 Les escribo tras conocer Cortaderas Hotel de Campo y su propuesta de estadía en la sierra cordobesa.
 
@@ -624,7 +624,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de El Jarillal Hotel Boutique — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de El Jarillal Hotel Boutique,
+Hola Gonzalo,
 
 Les escribo tras conocer El Jarillal Hotel Boutique y su propuesta de estadía en la sierra cordobesa.
 
@@ -651,7 +651,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Gran Hotel ”Victoria” — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Gran Hotel ”Victoria”,
+Hola Gran Hotel ”Victoria”,
 
 Les escribo tras conocer Gran Hotel ”Victoria” y su propuesta de estadía en la sierra cordobesa.
 
@@ -678,7 +678,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Hotel Buen Pastor Capuchinos — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Hotel Buen Pastor Capuchinos,
+Hola Hotel Buen Pastor Capuchinos,
 
 Les escribo tras conocer Hotel Buen Pastor Capuchinos y su propuesta de estadía en la sierra cordobesa.
 
@@ -705,7 +705,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Hotel Loma Bola — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Hotel Loma Bola,
+Hola Hotel Loma Bola,
 
 Les escribo tras conocer Hotel Loma Bola y su propuesta de estadía en la sierra cordobesa.
 
@@ -732,7 +732,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Hotel NH Córdoba Panorama — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Hotel NH Córdoba Panorama,
+Hola Hotel NH Córdoba Panorama,
 
 Les escribo tras conocer Hotel NH Córdoba Panorama y su propuesta de estadía en la sierra cordobesa.
 
@@ -759,7 +759,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Hotel Petit Cordoba — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Hotel Petit Cordoba,
+Hola Hotel Petit Cordoba,
 
 Les escribo tras conocer Hotel Petit Cordoba y su propuesta de estadía en la sierra cordobesa.
 
@@ -786,7 +786,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Hotel Tolentino — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Hotel Tolentino,
+Hola Hotel Tolentino,
 
 Les escribo tras conocer Hotel Tolentino y su propuesta de estadía en la sierra cordobesa.
 
@@ -813,7 +813,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Neper Select Hotel — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Neper Select Hotel,
+Hola Neper Select Hotel,
 
 Les escribo tras conocer Neper Select Hotel y su propuesta de estadía en la sierra cordobesa.
 
@@ -840,7 +840,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Arte original para los espacios de Virreinato Hotel Boutique — serie Ascenso (chakras)
 
 ```
-Estimados integrantes de Virreinato Hotel Boutique,
+Hola Virreinato Hotel Boutique,
 
 Les escribo tras conocer Virreinato Hotel Boutique y su propuesta de estadía en la sierra cordobesa.
 
@@ -867,7 +867,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Propuesta de arte contemporáneo al óleo para Da! Diseño de Interiores — Serie Ascenso (Chakras)
 
 ```
-Estimados integrantes de Da! Diseño de Interiores,
+Hola Da!,
 
 Les escribo desde Córdoba tras conocer la propuesta estética de Da! Diseño de Interiores.
 
@@ -896,7 +896,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Propuesta de arte contemporáneo al óleo para Endetalle Interiores — Serie Ascenso (Chakras)
 
 ```
-Estimados integrantes de Endetalle Interiores,
+Hola Endetalle Interiores,
 
 Les escribo desde Córdoba tras conocer la propuesta estética de Endetalle Interiores.
 
@@ -925,7 +925,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Propuesta de arte contemporáneo al óleo para Ester Bais Deco Textil- CORTINAS — Serie Ascenso (Chakras)
 
 ```
-Estimados integrantes de Ester Bais Deco Textil- CORTINAS,
+Hola Ester Bais Deco Textil- CORTINAS,
 
 Les escribo desde Córdoba tras conocer la propuesta estética de Ester Bais Deco Textil- CORTINAS.
 
@@ -954,7 +954,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Propuesta de arte contemporáneo al óleo para globoevento - decoración de fiestas & globos con helio en Córdoba — Serie Ascenso (Chakras)
 
 ```
-Estimados integrantes de globoevento - decoración de fiestas & globos con helio en Córdoba,
+Hola globoevento - decoración de fiestas & globos con helio en Córdoba,
 
 Les escribo desde Córdoba tras conocer la propuesta estética de globoevento - decoración de fiestas & globos con helio en Córdoba.
 
@@ -983,7 +983,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Propuesta de arte contemporáneo al óleo para Gonhaus interior — Serie Ascenso (Chakras)
 
 ```
-Estimados integrantes de Gonhaus interior,
+Hola Gonhaus interior,
 
 Les escribo desde Córdoba tras conocer la propuesta estética de Gonhaus interior.
 
@@ -1012,7 +1012,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Propuesta de arte contemporáneo al óleo para Studio 333 Interior Design — Serie Ascenso (Chakras)
 
 ```
-Estimados integrantes de Studio 333 Interior Design,
+Hola Laris,
 
 Les escribo desde Córdoba tras conocer la propuesta estética de Studio 333 Interior Design.
 
@@ -1041,7 +1041,7 @@ WhatsApp: +54 9 353 401-8769
 **ASUNTO:** Propuesta de arte contemporáneo al óleo para Arq & Co — Serie Ascenso (Chakras)
 
 ```
-Estimados integrantes de Arq & Co,
+Hola Arq & Co,
 
 Les escribo desde Córdoba tras conocer la propuesta estética de Arq & Co.
 

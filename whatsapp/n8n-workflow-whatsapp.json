@@ -1,0 +1,46 @@
+{
+  "name": "WhatsApp — Lote Córdoba (WAHA)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-1",
+      "name": "Correr ahora",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// ============================================================\n//  WhatsApp - Lote Córdoba (vía WAHA)\n//  Edita SOLO la sección \"config\" según tu entorno.\n//  Documentación: whatsapp/README.md\n// ============================================================\nconst config = {\n  wahaUrl: 'http://localhost:3000',   // WAHA local (mismo host)\n  apiKey: 'waha-dev-key-2026',        // = WAHA_API_KEY de whatsapp/waha/.env\n  session: 'default',                 // nombre de sesión creada en el dashboard de WAHA\n  dataUrl: 'https://pmachadojulio.pages.dev/data/prospects_crm.json',\n  delayMs: 30000,                     // pausa entre mensajes (recomendado >= 25 s)\n  maxEnviar: 20,                      // límite por corrida (empezá con 10-20)\n  soloConTelefono: true,              // solo contactos que tienen teléfono\n};\n\nconst sleep = (ms) => new Promise((r) => setTimeout(r, ms));\n\nconst normalizePhone = (raw) => {\n  if (!raw) return null;\n  let n = String(raw).replace(/\\D/g, '');\n  if (!n.startsWith('54')) n = '54' + n;   // código de país Argentina\n  n = n.replace(/^540/, '54');             // quitar 0 tras el 54\n  if (n.length < 11 || n.length > 13) return null;\n  return n + '@c.us';\n};\n\nconst saludo = (p) => {\n  const contacto = String(p.contacto || '').split('/')[0].split('(')[0].trim().split(' ')[0];\n  const stop = ['Dirección', 'Equipo', 'Direc', 'Estudio', 'Casa', 'Atelier'];\n  const nombre = contacto && !stop.includes(contacto) ? contacto : (p.empresa || '');\n  return `Hola ${nombre},`;\n};\n\nconst mensaje = (p) => {\n  const base = p.categoria && /Arquitectura/i.test(p.categoria)\n    ? 'https://jcmachado.com/obra/monoblocks/'\n    : 'https://jcmachado.com/obra/ascenso-corazon/';\n  return [\n    `${saludo(p)}`,\n    'Soy Julio César Machado, pintor al óleo de Córdoba.',\n    'Te quería acercar mi trabajo y ofrecerte un catálogo sin compromiso.',\n    `Podés ver una muestra acá: ${base}`,\n    'Si te interesa, te mando por acá las obras disponibles y medidas.',\n    '¡Gracias por el tiempo!',\n  ].join('\\n');\n};\n\nconst http = this.helpers.httpRequest;\nconst data = await http({ method: 'GET', url: config.dataUrl, json: true });\nconst prospects = Array.isArray(data) ? data : (data.prospects || []);\n\nconst filtrados = prospects.filter((p) => {\n  if (!p || typeof p !== 'object') return false;\n  if (config.soloConTelefono && !p.telefono) return false;\n  return true;\n});\n\nconst yaVistos = new Set();\nlet enviados = 0;\nconst fallas = [];\n\nfor (const p of filtrados) {\n  if (enviados >= config.maxEnviar) break;\n  const chatId = normalizePhone(p.telefono);\n  if (!chatId || yaVistos.has(chatId)) continue;\n  yaVistos.add(chatId);\n  try {\n    await http({\n      method: 'POST',\n      url: `${config.wahaUrl}/api/sendText`,\n      headers: { 'X-Api-Key': config.apiKey },\n      body: { session: config.session, chatId, text: mensaje(p) },\n      json: true,\n    });\n    enviados++;\n  } catch (e) {\n    fallas.push({ empresa: p.empresa || '(sin nombre)', error: String(e && e.message || e).slice(0, 120) });\n  }\n  if (enviados < config.maxEnviar) await sleep(config.delayMs);\n}\n\nreturn [{\n  json: {\n    totalEncontrados: filtrados.length,\n    enviados,\n    maxEnviar: config.maxEnviar,\n    fallas: fallas.length,\n    detalleFallas: fallas.slice(0, 10),\n  },\n}];\n"
+      },
+      "id": "code-1",
+      "name": "Enviar lote por WhatsApp",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Correr ahora": {
+      "main": [
+        [
+          {
+            "node": "Enviar lote por WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

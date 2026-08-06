@@ -27,7 +27,9 @@ Cuando pinto, pienso en eso todo el tiempo. Un retrato como "Mr. Pink" no es una
 
 Por eso, junto a cada original, hago réplicas numeradas con certificado. No para competir con el original: para que el original, con todo su aura, se entienda mejor frente a su copia.
 
-Te invito a ver el detalle de cerca: https://jcmachado.com/obra/mr-pink/
+Te invito a ver el detalle de cerca:
+
+<a href="https://jcmachado.com/obra/mr-pink/" style="display:inline-block;background:#1f2937;color:#ffffff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;">Ver la obra →</a>
 
 ¿Te pasó alguna vez de sentir que una foto "no le hace justicia" a algo que viste en persona? Me gustaría saberlo. Respondé este mail, leo todo.
 

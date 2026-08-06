@@ -1,0 +1,35 @@
+services:
+  waha:
+    image: devlikeapro/waha:arm
+    restart: always
+    container_name: waha
+    env_file:
+      - ./waha/.env
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./.sessions:/app/.sessions
+      - ./waha/env:/app/env
+    networks:
+      - waha-net
+
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    container_name: n8n
+    environment:
+      - GENERIC_TIMEZONE=America/Argentina/Cordoba
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - N8N_SECURE_COOKIE=false
+    ports:
+      - "127.0.0.1:5678:5678"
+    volumes:
+      - ./n8n-data:/home/node/.n8n
+    networks:
+      - waha-net
+
+networks:
+  waha-net:
+    driver: bridge
