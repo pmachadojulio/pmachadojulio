@@ -473,6 +473,12 @@ async function api(path, opts = {}) {
   if (TOKEN) headers['Authorization'] = 'Bearer ' + TOKEN;
   const res = await fetch(API + path, { ...opts, headers });
   const data = await res.json().catch(() => ({}));
+  if (res.status === 401 && TOKEN) {
+    TOKEN = '';
+    sessionStorage.removeItem('jcm_admin_token');
+    showLogin();
+    throw new Error('Sesión expirada. Ingresá de nuevo.');
+  }
   if (!res.ok) throw new Error(data.error || 'Error ' + res.status);
   return data;
 }

@@ -135,39 +135,43 @@
         <div class="val" id="stat-total">0</div>
       </div>
       <div class="stat-card">
-        <h4>Listos para enviar</h4>
+        <h4>Con Email</h4>
         <div class="val" id="stat-listos" style="color: var(--success);">0</div>
       </div>
       <div class="stat-card">
-        <h4>Por Contactar</h4>
-        <div class="val" id="stat-por">0</div>
+        <h4>Con WhatsApp</h4>
+        <div class="val" id="stat-wsp" style="color: #3b82f6;">0</div>
       </div>
       <div class="stat-card">
-        <h4>Nichos No Convencionales</h4>
-        <div class="val" id="stat-nichos" style="color: #3b82f6;">0</div>
+        <h4>Galerías</h4>
+        <div class="val" id="stat-gal">0</div>
       </div>
     </div>
 
     <div class="filter-bar">
       <button class="filter-btn active" onclick="filtrar('todos')">Todos</button>
-      <button class="filter-btn" onclick="filtrar('Listo para enviar')">Listos para Enviar (con Email)</button>
-      <button class="filter-btn" onclick="filtrar('Por contactar')">Por Contactar</button>
-      <button class="filter-btn" onclick="filtrar('nicho')">Nichos Especiales (Salud / Holísticos)</button>
+      <button class="filter-btn" onclick="filtrar('email')">Con Email</button>
+      <button class="filter-btn" onclick="filtrar('wsp')">WhatsApp</button>
+      <button class="filter-btn" onclick="filtrar('Galería')">Galerías</button>
+      <button class="filter-btn" onclick="filtrar('Hotel')">Hoteles</button>
+      <button class="filter-btn" onclick="filtrar('Interiorismo')">Interiorismo</button>
+      <button class="filter-btn" onclick="filtrar('Arquitectura')">Arquitectura</button>
     </div>
 
     <table>
       <thead>
         <tr>
           <th>Empresa / Estudio</th>
-          <th>Categoría / Nicho</th>
-          <th>Contacto</th>
+          <th>Categoría</th>
+          <th>Ciudad</th>
           <th>Email</th>
+          <th>Teléfono</th>
           <th>Estado</th>
           <th>Acción</th>
         </tr>
       </thead>
       <tbody id="crm-table-body">
-        <tr><td colspan="6" style="text-align:center;">Cargando datos del CRM...</td></tr>
+        <tr><td colspan="7" style="text-align:center;">Cargando datos del CRM...</td></tr>
       </tbody>
     </table>
   </div>
@@ -183,28 +187,42 @@
         renderTabla(todosProspectos);
         actualizarStats();
       } catch (err) {
-        document.getElementById('crm-table-body').innerHTML = '<tr><td colspan="6" style="text-align:center; color:#f87171;">Cargando datos locales del CRM...</td></tr>';
+        document.getElementById('crm-table-body').innerHTML = '<tr><td colspan="7" style="text-align:center; color:#f87171;">No pude cargar los datos del CRM.</td></tr>';
       }
+    }
+
+    function waLink(tel, empresa) {
+      if (!tel) return null;
+      const d = String(tel).replace(/\D/g, '');
+      if (!d) return null;
+      let num = d.startsWith('54') ? d : '54' + d.replace(/^0/, '');
+      const msg = encodeURIComponent('Hola! Le escribo desde jcmachado.com, sitio de arte de Julio César Machado. ¿Les interesaría ver obra original para su espacio?');
+      return `https://wa.me/${num}?text=${msg}`;
     }
 
     function renderTabla(lista) {
       const tbody = document.getElementById('crm-table-body');
       tbody.innerHTML = '';
       if (lista.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No hay prospectos en este filtro.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">No hay prospectos en este filtro.</td></tr>';
         return;
       }
       lista.forEach(p => {
         const tr = document.createElement('tr');
-        const esListo = p.estado === 'Listo para enviar' || p.email;
-        const mailLink = p.email ? `<a href="mailto:${p.email}" class="btn-action">✉️ Mailto</a>` : '<span style="color:#6b7280;">Buscando email...</span>';
+        const cat = p.categoria || p.nicho || '—';
+        const mailLink = p.email ? `<a href="mailto:${p.email}" class="btn-action" style="background:#10b981;margin-bottom:0.3rem;">✉️</a>` : '';
+        const wsp = waLink(p.telefono, p.empresa);
+        const wspLink = wsp ? `<a href="${wsp}" target="_blank" rel="noopener" class="btn-action" style="background:#22c55e;">WhatsApp</a>` : '';
+        const tel = p.telefono ? `<a href="tel:${String(p.telefono).replace(/\s/g, '')}" style="color:#a0aec0;">${p.telefono}</a>` : '—';
+        const esListo = !!p.email;
         tr.innerHTML = `
           <td><strong>${p.empresa}</strong></td>
-          <td>${p.categoria || p.nicho}</td>
-          <td>${p.contacto || p.cargo || '—'}</td>
+          <td>${cat}</td>
+          <td>${p.ciudad || '—'}</td>
           <td>${p.email || '—'}</td>
-          <td><span class="badge ${esListo ? 'badge-listo' : 'badge-por'}">${esListo ? 'Listo para enviar' : 'Por contactar'}</span></td>
-          <td>${mailLink}</td>
+          <td>${tel}</td>
+          <td><span class="badge ${esListo ? 'badge-listo' : 'badge-por'}">${esListo ? 'Listo' : 'Por contactar'}</span></td>
+          <td>${mailLink}${wspLink}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -213,8 +231,8 @@
     function actualizarStats() {
       document.getElementById('stat-total').textContent = todosProspectos.length;
       document.getElementById('stat-listos').textContent = todosProspectos.filter(p => p.email).length;
-      document.getElementById('stat-por').textContent = todosProspectos.filter(p => !p.email).length;
-      document.getElementById('stat-nichos').textContent = todosProspectos.filter(p => (p.categoria && p.categoria.includes('Salud')) || (p.nicho && p.nicho.includes('Hotel'))).length;
+      document.getElementById('stat-wsp').textContent = todosProspectos.filter(p => p.telefono).length;
+      document.getElementById('stat-gal').textContent = todosProspectos.filter(p => (p.categoria || '').includes('Galería')).length;
     }
 
     function filtrar(criterio) {
@@ -223,10 +241,12 @@
 
       if (criterio === 'todos') {
         renderTabla(todosProspectos);
-      } else if (criterio === 'nicho') {
-        renderTabla(todosProspectos.filter(p => (p.categoria && (p.categoria.includes('Salud') || p.categoria.includes('Hotel') || p.categoria.includes('Jurídico')))));
+      } else if (criterio === 'email') {
+        renderTabla(todosProspectos.filter(p => p.email));
+      } else if (criterio === 'wsp') {
+        renderTabla(todosProspectos.filter(p => p.telefono));
       } else {
-        renderTabla(todosProspectos.filter(p => (p.estado === criterio || (criterio === 'Listo para enviar' && p.email))));
+        renderTabla(todosProspectos.filter(p => (p.categoria || '').includes(criterio)));
       }
     }
 
