@@ -69,9 +69,15 @@ directorio verificado (homify, COACo, Mercado de Arte municipal), el email NO se
       → 30 interioristas reales (26 con web, 29 con teléfono) en
       `data/scrapes/interioristas_cordoba_2026-08-05.json`. Confirmó a Estudio
       Liberté (tel +54 351 786-5899) y Endetalle (web real, falta email).
-- [ ] Correr scrape completo Córdoba (interioristas ~150 + arq ~150 + hoteles ~100
-      + galerías ~50 ≈ **$2, dentro del crédito gratis**) y enriquecer emails con
-      crawl de webs.
+- [x] **Scrape completo Córdoba ejecutado (2026-08-05)**: 454 resultados únicos
+      (247 de Córdoba provincia), **$1.84**. 244 prospectos nuevos en
+      `data/scrapes/prospects_cordoba_2026-08-05.json` (421 con teléfono, 330 con web).
+- [x] **Enriquecimiento de emails**: 2 pasadas con `apify/website-content-crawler`
+      (cheerio $0.14 + playwright:adaptive $1.73). Resultado: **16 prospectos con
+      email verificado** (8 hoteles, 5 galerías, 2 interiorismo, 1 arq). Los sitios
+      sin email publican formulario o usan WhatsApp/IG → para ellos el canal de
+      contacto es teléfono/WhatsApp (ya scrapeado).
+- [ ] Gastar crédito restante (~$1) solo en pasadas de browser puntuales si hace falta.
 - [ ] Correr `generate_campaign_drafts.py` SOLO contra `contactos_verificados.json`
       + resultados enriquecidos (NUNCA contra prospects_crm.json sin limpiar).
 - [ ] Solicitar emails faltantes a hoteles/estudios por WhatsApp/IG.
