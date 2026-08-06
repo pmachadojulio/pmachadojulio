@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing · JC Machado</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --bg: #0d0f12; --bg-2: #111419; --card: #161920; --border: #262b36;
+    --text: #f0f2f5; --muted: #9aa3b2; --accent: #d97706; --accent-2: #2563eb;
+    --ok: #10b981; --bad: #ef4444; --warn: #f59e0b; --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; padding: 1.6rem 2rem; }
+  h1 { font-size: 1.4rem; font-weight: 600; margin: 0 0 .2rem; }
+  h2 { font-size: 1.05rem; margin: 0 0 .9rem; }
+  h3 { font-size: .92rem; margin: 0 0 .6rem; }
+  .sub { color: var(--muted); margin: 0 0 1.5rem; font-size: .88rem; }
+  a { color: var(--accent-2); }
+  .tabs { display: flex; gap: .5rem; margin-bottom: 1.4rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); padding-bottom: .8rem; }
+  .tab { padding: 8px 16px; border-radius: 8px; cursor: pointer; color: var(--muted); font-weight: 600; font-size: .88rem; border: 1px solid transparent; }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,.04); }
+  .tab.active { color: var(--text); background: rgba(217,119,6,.12); border-color: var(--accent); }
+  .section { display: none; }
+  .section.active { display: block; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.3rem; margin-bottom: 1.4rem; }
+  .muted { color: var(--muted); }
+  .banner { border: 1px dashed var(--warn); background: rgba(245,158,11,.06); color: #fcd34d; border-radius: var(--radius); padding: 1rem 1.2rem; margin-bottom: 1.4rem; font-size: .88rem; line-height: 1.6; }
+  .banner.ok { border-color: var(--ok); background: rgba(16,185,129,.06); color: #6ee7b7; }
+  .banner.bad { border-color: var(--bad); background: rgba(239,68,68,.06); color: #fca5a5; }
+  .banner code, p code, li code { background: rgba(0,0,0,.35); padding: 1px 6px; border-radius: 4px; font-size: .8rem; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: .87rem; vertical-align: middle; }
+  th { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .6px; background: var(--bg-2); }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  .btn { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 9px 14px; font-weight: 600; cursor: pointer; font-size: .85rem; }
+  .btn:hover { background: #b45309; }
+  .btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn.ghost:hover { background: rgba(255,255,255,.05); }
+  .btn.small { padding: 5px 10px; font-size: .78rem; }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 20px; font-size: .72rem; font-weight: 600; }
+  .badge.ok { background: rgba(16,185,129,.15); color: #6ee7b7; }
+  .badge.warn { background: rgba(217,119,6,.15); color: #fcd34d; }
+  .badge.info { background: rgba(37,99,235,.15); color: #93c5fd; }
+  .steps { counter-reset: paso; padding: 0; list-style: none; margin: .4rem 0 .4rem; }
+  .steps li { counter-increment: paso; position: relative; padding-left: 2.1rem; margin-bottom: .85rem; line-height: 1.6; font-size: .9rem; }
+  .steps li::before { content: counter(paso); position: absolute; left: 0; top: 1px; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: rgba(217,119,6,.15); color: #fcd34d; font-size: .75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  pre.cmd { background: #0a0c0f; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow-x: auto; font-size: .8rem; line-height: 1.55; color: #d1d5db; }
+  pre.cmd code { background: none; padding: 0; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: none; align-items: flex-start; justify-content: center; padding: 3vh 1rem; overflow-y: auto; z-index: 100; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--card); border: 1px solid var(--border); border-radius: 12px; width: 100%; max-width: 640px; padding: 1.5rem; margin: auto 0; }
+  .modal h2 { margin: 0 0 1rem; font-size: 1.05rem; }
+  .modal pre { white-space: pre-wrap; font-family: inherit; font-size: .88rem; line-height: 1.7; color: var(--text); background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; max-height: 55vh; overflow-y: auto; margin: 0 0 1rem; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: .7rem; }
+  .empty { color: var(--muted); text-align: center; padding: 2rem 0; }
+  .radio-table input { accent-color: var(--accent); }
+  .recommended { outline: 2px solid var(--accent); }
+  .check-list { list-style: none; padding: 0; margin: 0; }
+  .check-list li { display: flex; gap: 10px; padding: 9px 10px; border-bottom: 1px solid var(--border); align-items: flex-start; line-height: 1.5; }
+  .check-list li.done { color: var(--muted); text-decoration: line-through; }
+  .check-list input { accent-color: var(--accent); margin-top: 3px; }
+  .search { flex: 1; min-width: 180px; padding: 9px 12px; background: var(--card); border: 1px solid var(--border); border-radius: 6px; color: var(--text); }
+  .toolbar { display: flex; gap: .7rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+  .toast { position: fixed; bottom: 22px; right: 22px; background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--ok); border-radius: 8px; padding: 12px 16px; font-size: .88rem; z-index: 200; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; max-width: 360px; }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  @media (max-width: 720px) { body { padding: 1rem; } }
+</style>
+</head>
+<body>
+
+<h1>📣 Marketing</h1>
+<p class="sub">Newsletter, campaña de emails, WhatsApp y radar de visibilidad — todo desde acá.</p>
+
+<div class="tabs">
+  <div class="tab active" data-sec="whatsapp">WhatsApp</div>
+  <div class="tab" data-sec="newsletter">Newsletter</div>
+  <div class="tab" data-sec="emails">Emails (40)</div>
+  <div class="tab" data-sec="radar">Radar $0</div>
+</div>
+
+<!-- ===================== WHATSAPP ===================== -->
+<section class="section active" id="sec-whatsapp">
+  <div class="banner ok">
+    <strong>¿Qué es WAHA y dónde corre?</strong> WAHA es el "puente" que conecta WhatsApp con tus
+    herramientas: se vincula a tu número con un <strong>código QR</strong> (igual que WhatsApp Web) y
+    desde ahí puede enviar los mensajes de tus campañas. Corre dentro de <strong>Docker</strong> y
+    tiene un panel web donde escaneás el QR una sola vez.
+  </div>
+
+  <div class="card">
+    <h2>¿Dónde lo pongo? Docker local vs nube</h2>
+    <table class="radio-table">
+      <thead><tr><th>Opción</th><th>Costo</th><th>¿Cuándo funciona?</th><th>Riesgo</th><th>¿Cuándo elegirla?</th></tr></thead>
+      <tbody>
+        <tr class="recommended">
+          <td><strong>Docker en tu Mac</strong> (empezar acá)</td>
+          <td>$0</td>
+          <td>Solo cuando la Mac está encendida y Docker abierto</td>
+          <td>Ninguno (tu IP normal de casa)</td>
+          <td><strong>Probar todo hoy</strong>: QR, enviar 10 mensajes, aprender el flujo</td>
+        </tr>
+        <tr>
+          <td><strong>Oracle Cloud Free Tier</strong></td>
+          <td>$0 <span class="muted">(siempre gratis, para siempre)</span></td>
+          <td>24/7, sin depender de tu Mac</td>
+          <td>Bajo: IP de datacenter; con 10-20 mensajes/día es seguro</td>
+          <td>Cuando la campaña sea <strong>continua</strong> (recomendado para producción)</td>
+        </tr>
+        <tr>
+          <td><strong>AWS Free Tier</strong></td>
+          <td>$0 solo 12 meses</td>
+          <td>24/7</td>
+          <td>Alto: WhatsApp bloquea seguido los IP de AWS → riesgo de ban del número</td>
+          <td>No recomendado para WhatsApp</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:.85rem; margin-top:.8rem;">El workflow de n8n le "apunta" a WAHA por
+    una dirección. Si WAHA está en tu Mac, esa dirección es <code>http://localhost:3000</code>. Si está
+    en la nube, es <code>http://IP_DE_LA_VM:3000</code>. Solo se cambia una línea en el workflow.</p>
+  </div>
+
+  <div class="card">
+    <h2>Paso a paso — Empezar local (hoy, en 10 minutos)</h2>
+    <ol class="steps">
+      <li>Abrí <strong>Docker Desktop</strong> en tu Mac.</li>
+      <li>En Terminal, andá a la carpeta del proyecto y levantá el stack:
+        <pre class="cmd"><code>cd ~/Desktop/jcmachado/pmachadojulio-main/whatsapp
+cp waha/.env.example waha/.env
+docker compose up -d</code></pre>
+      </li>
+      <li>Abrí el panel de WAHA: <a href="http://localhost:3000/dashboard" target="_blank" rel="noopener">http://localhost:3000/dashboard</a>
+        (usuario <code>admin</code> / clave <code>admin</code>).</li>
+      <li>Andá a <strong>Sessions → Start new session</strong>, nombre: <code>default</code>, y escaneá el
+        QR con <strong>WhatsApp → Dispositivos vinculados</strong>.</li>
+      <li>Cuando la sesión diga <strong>WORKING</strong>, abrí n8n: <a href="http://localhost:5678" target="_blank" rel="noopener">http://localhost:5678</a>,
+        importá el workflow <code>whatsapp/n8n-workflow-whatsapp.json</code> (Workflows → ⋯ → Import from File).</li>
+      <li>En el nodo <strong>"Enviar lote por WhatsApp"</strong> dejá <code>maxEnviar: 10</code> y ejecutá
+        <strong>Test workflow</strong>. Primero probá con <strong>tu propio número</strong>.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Paso a paso — Pasarlo a 24/7 en Oracle Cloud (gratis para siempre)</h2>
+    <ol class="steps">
+      <li>Creá cuenta en <a href="https://signup.oraclecloud.com" target="_blank" rel="noopener">oraclecloud.com</a>
+        (pide tarjeta solo para verificar, no cobra si te quedás en el plan Free).</li>
+      <li>Creá una VM <strong>Ampere A1</strong> (siempre gratis), sistema <strong>Ubuntu</strong> o
+        <strong>Oracle Linux</strong>, con 1 OCPU / 4 GB RAM.</li>
+      <li>Instalá Docker en la VM (te mando los comandos listos cuando quieras) y subí la carpeta
+        <code>whatsapp/</code> con <code>scp</code>.</li>
+      <li>Abrí en Oracle el puerto <strong>3000</strong> en "Security Lists" de la VM.</li>
+      <li>Repetí los pasos 3-4 de arriba pero en <code>http://IP_DE_LA_VM:3000/dashboard</code>.</li>
+      <li>En el workflow de n8n cambiá <code>wahaUrl</code> a <code>http://IP_DE_LA_VM:3000</code>.</li>
+    </ol>
+    <p class="muted" style="font-size:.85rem;">Misma cuenta, mismo QR. La sesión guardada en
+    <code>.sessions/</code> se mantiene aunque reinicies la VM.</p>
+  </div>
+
+  <div class="card">
+    <h2>Reglas para no quemar el número (importante)</h2>
+    <ul style="line-height:1.9; margin:.3rem 0 0; padding-left:1.2rem; font-size:.9rem;">
+      <li><strong>Máximo 20-30 mensajes/día</strong> a contactos que no te escribieron primero.</li>
+      <li>Espera de <strong>25-30 segundos</strong> entre mensajes (el workflow ya la tiene).</li>
+      <li>Usá un <strong>chip dedicado</strong> (línea secundaria), no tu WhatsApp personal.</li>
+      <li>Primera semana: <strong>10 mensajes/día</strong>. Después subís de a poco.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<section class="section" id="sec-newsletter">
+  <div class="card">
+    <h2>Newsletter #1 — Benjamin × el aura (con botón)</h2>
+    <p class="muted" style="margin:.2rem 0 1rem; font-size:.88rem;">Texto + botón "Ver la obra" listos para pegar en Gmail. La versión HTML ya tiene el botón con estilos compatibles con Gmail.</p>
+    <div class="toolbar">
+      <button class="btn" onclick="copiarHtmlNewsletter()">📋 Copiar HTML para Gmail</button>
+      <button class="btn ghost" onclick="abrirHtmlNewsletter()">👁 Abrir en pestaña</button>
+    </div>
+    <iframe id="nl-preview" style="width:100%; height:420px; border:1px solid var(--border); border-radius:8px; background:#fff;" title="Vista previa"></iframe>
+  </div>
+</section>
+
+<!-- ===================== EMAILS ===================== -->
+<section class="section" id="sec-emails">
+  <div class="card">
+    <h2>Campaña de emails — 40 borradores personalizados</h2>
+    <p class="muted" style="margin:.2rem 0 1rem; font-size:.88rem;">Cada borrador saluda por el nombre del contacto
+    (o de la empresa). Hacé clic para copiar el cuerpo completo. Enviá de a máximo 20/día desde Gmail.</p>
+    <div class="toolbar">
+      <input class="search" id="emails-search" placeholder="Buscar por empresa, nombre, ciudad…">
+      <span class="muted" id="emails-count" style="font-size:.85rem;"></span>
+    </div>
+    <div style="overflow:auto;">
+      <table>
+        <thead><tr><th>Empresa</th><th>Ciudad</th><th>Email</th><th>Asunto</th></tr></thead>
+        <tbody id="emails-body"><tr><td colspan="4"><div class="empty">Cargando…</div></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RADAR ===================== -->
+<section class="section" id="sec-radar">
+  <div class="banner ok"><strong>Presupuesto $0.</strong> Tiempo (no dinero). Los avances se guardan en tu navegador.</div>
+  <div class="card">
+    <h2>A. Perfiles y bases (semana 1)</h2>
+    <ul class="check-list" id="radar-a"></ul>
+  </div>
+  <div class="card">
+    <h2>B. Contenido — calendario de 14 días (1 publicación/día)</h2>
+    <table><thead><tr><th>Día</th><th>Plataforma</th><th>Contenido</th></tr></thead><tbody id="radar-b"></tbody></table>
+  </div>
+  <div class="card">
+    <h2>C. Outreach directo (los 40 emails + 200 teléfonos)</h2>
+    <ul class="check-list" id="radar-c"></ul>
+  </div>
+  <div class="card">
+    <h2>D. Prensa y espacios gratuitos</h2>
+    <ul class="check-list" id="radar-d"></ul>
+  </div>
+  <div class="card">
+    <h2>E. Métricas de la fase (revisar el día 30)</h2>
+    <ul class="check-list" id="radar-e"></ul>
+  </div>
+</section>
+
+<!-- MODAL EMAIL -->
+<div class="modal-overlay" id="email-modal">
+  <div class="modal">
+    <h2 id="email-modal-title">Borrador</h2>
+    <pre id="email-modal-body"></pre>
+    <div class="modal-actions">
+      <button class="btn ghost" onclick="cerrarModal()">Cerrar</button>
+      <button class="btn" onclick="copiarBorrador()">📋 Copiar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const NEWSLETTER_HTML = '/newsletter/enviados/2026-08-05_benjamin-aura.html';
+const CAMPAIGN_JSON = '/marketing/campanas/campana_emails_2026-08-05.json';
+let drafts = [];
+let borradorActual = '';
+
+function toast(msg, err) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderLeftColor = err ? '#ef4444' : '#10b981';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+async function copiar(texto) {
+  try { await navigator.clipboard.writeText(texto); toast('Copiado al portapapeles'); return true; }
+  catch (e) { toast('No se pudo copiar automáticamente', true); return false; }
+}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('sec-' + t.dataset.sec).classList.add('active');
+}));
+
+/* ---------- newsletter ---------- */
+document.getElementById('nl-preview').src = NEWSLETTER_HTML;
+async function copiarHtmlNewsletter() {
+  try {
+    const res = await fetch(NEWSLETTER_HTML);
+    await copiar(await res.text());
+  } catch (e) { toast('Error al leer el HTML', true); }
+}
+function abrirHtmlNewsletter() { window.open(NEWSLETTER_HTML, '_blank', 'noopener'); }
+
+/* ---------- emails ---------- */
+async function loadEmails() {
+  const body = document.getElementById('emails-body');
+  try {
+    const res = await fetch(CAMPAIGN_JSON);
+    drafts = await res.json();
+    document.getElementById('emails-count').textContent = drafts.length + ' borradores';
+    renderEmails();
+  } catch (e) {
+    body.innerHTML = '<tr><td colspan="4"><div class="empty">Error: ' + e.message + '</div></td></tr>';
+  }
+}
+function renderEmails() {
+  const q = (document.getElementById('emails-search').value || '').toLowerCase();
+  const lista = drafts.filter(d => (d.empresa + ' ' + (d.ciudad || '') + ' ' + (d.email || '') + ' ' + d.asunto).toLowerCase().includes(q));
+  const body = document.getElementById('emails-body');
+  if (!lista.length) { body.innerHTML = '<tr><td colspan="4"><div class="empty">Sin resultados.</div></td></tr>'; return; }
+  body.innerHTML = lista.map(d => `
+    <tr style="cursor:pointer;" onclick="verBorrador(${JSON.stringify(d.id)})">
+      <td><strong>${d.empresa || ''}</strong><br><span class="muted" style="font-size:.75rem;">${d.categoria || ''}</span></td>
+      <td>${d.ciudad || '—'}</td>
+      <td>${d.email || '—'}</td>
+      <td class="muted">${d.asunto || ''}</td>
+    </tr>`).join('');
+}
+function verBorrador(id) {
+  const d = drafts.find(x => x.id === id) || drafts[0];
+  const saludo = (d.cuerpo || '').split('\n')[0];
+  document.getElementById('email-modal-title').textContent = (d.empresa || '') + ' <' + (d.email || '') + '>';
+  document.getElementById('email-modal-body').textContent = 'ASUNTO: ' + (d.asunto || '') + '\n\n' + (d.cuerpo || '');
+  borradorActual = 'ASUNTO: ' + (d.asunto || '') + '\n\n' + (d.cuerpo || '');
+  document.getElementById('email-modal').classList.add('open');
+}
+function cerrarModal() { document.getElementById('email-modal').classList.remove('open'); }
+async function copiarBorrador() { await copiar(borradorActual); }
+document.getElementById('emails-search').addEventListener('input', renderEmails);
+
+/* ---------- radar (checklist con estado en localStorage) ---------- */
+const RADAR = {
+  a: [
+    'Instagram @jcmachado: bio con "Pintor al óleo | Córdoba · Serie Ascenso | jcmachado.com", link al portfolio, 9 publicaciones.',
+    'TikTok (mismo @): 3 videos cortos con proceso de pintar.',
+    'Pinterest: tableros "Óleos abstractos", "Retratos al óleo", "Arte para espacios".',
+    'Behance: 2 proyectos — "Serie Ascenso (chakras)" y "Serie Urbana: Monoblocks".',
+    'Google Business Profile del taller: verificar, horarios, 10 fotos, link al sitio.',
+    'Marketplaces: Saatchi Art, Artmajeur, Etsy (prints) y MercadoLibre con 3-5 obras.',
+  ],
+  b: [
+    ['1', 'IG/Behance', 'Serie Ascenso — foto de las 4 obras juntas'],
+    ['2', 'IG stories', 'Proceso: pincelada gruesa en primer plano (macro)'],
+    ['3', 'Pinterest', '3 pins de la serie Ascenso con títulos'],
+    ['4', 'IG', 'Detalle de Mr. Pink — "por qué no se puede copiar una pincelada"'],
+    ['5', 'TikTok', 'Time-lapse 15 s de un óleo en progreso'],
+    ['6', 'IG', 'Serie urbana: Monoblocks — la memoria de los barrios'],
+    ['7', 'Pinterest', 'Tablero "Arte para espacios de diseño"'],
+    ['8', 'IG', 'Reel con el ciclo completo de un retrato (fotos → lienzo)'],
+    ['9', 'TikTok', '"Cuánto tarda un retrato al óleo" (voz en off corta)'],
+    ['10', 'IG', 'Los prints certificados con QR (ediciones de 20)'],
+    ['11', 'Pinterest', 'Pins de "Arte para hoteles boutique"'],
+    ['12', 'IG', 'Behind the scenes del taller'],
+    ['13', 'TikTok', 'Pregunta: "¿Cuál es tu chakra favorito?"'],
+    ['14', 'IG', 'Cierre de semana + CTA a ver el portfolio'],
+  ],
+  c: [
+    'Revisar los 40 borradores (pestaña Emails) y enviarlos desde Gmail, máx 20/día.',
+    'WhatsApp: importar el workflow, arrancar con 10 mensajes/día a galerías e interioristas.',
+    'Agenda 1 visita/semana a galerías de Córdoba capital (Mercado de Arte, Cecchetto, Vía Margutta, Abre).',
+  ],
+  d: [
+    'Nota de prensa de una línea a La Voz, Perfil Córdoba, El Doce, Radio Universidad. Ángulo: pintor que trabaja la sociología del cuerpo y la ciudad.',
+    'Postular a salones y ferias gratuitas de Córdoba (Salón Provincial, ferias de diseño en el Buen Pastor).',
+    'Verificar que el sitio esté indexado en Google (Search Console).',
+  ],
+  e: [
+    'IG > 200 seguidores · Pinterest > 50 repins totales.',
+    '40 emails enviados → respuestas ≥ 5.',
+    'WhatsApp: 200 teléfonos contactados (ritmo 10/día) → respuestas ≥ 10.',
+    '3 visitas a galerías → ≥ 1 reunión programada.',
+    'Prensa: ≥ 1 publicación o mención.',
+  ],
+};
+function renderRadar() {
+  const load = key => JSON.parse(localStorage.getItem('radar-' + key) || '{}');
+  const save = (key, s) => localStorage.setItem('radar-' + key, JSON.stringify(s));
+
+  document.getElementById('radar-a').innerHTML = RADAR.a.map((t, i) => checkboxHtml('a', i, t, load)).join('');
+  document.getElementById('radar-b').innerHTML = RADAR.b.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+  document.getElementById('radar-c').innerHTML = RADAR.c.map((t, i) => checkboxHtml('c', i, t, load)).join('');
+  document.getElementById('radar-d').innerHTML = RADAR.d.map((t, i) => checkboxHtml('d', i, t, load)).join('');
+  document.getElementById('radar-e').innerHTML = RADAR.e.map((t, i) => checkboxHtml('e', i, t, load)).join('');
+
+  document.querySelectorAll('.check-list input').forEach(cb => cb.addEventListener('change', () => {
+    const s = load(cb.dataset.sec);
+    s[cb.dataset.i] = cb.checked;
+    save(cb.dataset.sec, s);
+    cb.closest('li').classList.toggle('done', cb.checked);
+  }));
+}
+function checkboxHtml(sec, i, text, estado) {
+  const checked = estado[i] ? ' checked' : '';
+  return `<li class="${estado[i] ? 'done' : ''}"><input type="checkbox" data-sec="${sec}" data-i="${i}"${checked}><span>${text}</span></li>`;
+}
+
+/* ---------- init ---------- */
+loadEmails();
+renderRadar();
+</script>
+</body>
+</html>
