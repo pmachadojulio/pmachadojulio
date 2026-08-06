@@ -344,11 +344,22 @@ obras.forEach(o => {
 
 // ---------- sitemap.xml ----------
 
+// Incluir las URLs del blog (las páginas de post ya están commiteadas).
+const blogPostsDir = path.join(__dirname, 'blog', 'posts');
+let blogUrls = [];
+if (fs.existsSync(blogPostsDir)) {
+  blogUrls = fs.readdirSync(blogPostsDir)
+    .filter(f => f.endsWith('.md'))
+    .map(f => `${SITE_URL}/blog/${f.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '')}/`);
+}
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url><loc>${u}</loc></url>`).join('\n')}
+  <url><loc>${SITE_URL}/blog/</loc></url>
+${blogUrls.map(u => `  <url><loc>${u}</loc></url>`).join('\n')}
 </urlset>
 `;
 fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemap, 'utf-8');
 
-console.log(`build-obras: listo. ${urls.length - 1} páginas de obra + sitemap.xml generado.`);
+console.log(`build-obras: listo. ${urls.length - 1} páginas de obra + ${blogUrls.length} de blog + sitemap.xml generado.`);

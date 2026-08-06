@@ -31,6 +31,9 @@
 - **2026-08-06 — Operativo:** newsletter con **botón CTA**, borradores con
   **saludo personalizado por nombre**, stack **WhatsApp (WAHA + n8n)** armado,
   **radar de visibilidad $0** y vista **Marketing** en el admin.
+- **2026-08-06 — Blog/SEO:** estructura de blog estática (`build-blog.js`,
+  posts en markdown, sitemap + RSS + JSON-LD), primer post publicado (Benjamin
+  × el aura), botón **Blog** en la navegación junto a "Hacer un encargo".
 
 ---
 
@@ -44,6 +47,7 @@
 | Newsletter | 🟡 #1 listo con botón | Falta enviar desde Gmail |
 | Emails | 🟡 40 borradores | Saludo por nombre, listos para enviar |
 | WhatsApp | 🟡 Stack armado | Falta: Docker local + QR + 1er envío |
+| Blog/SEO | ✅ Estructura + post #1 | Benjamin × el aura · RSS + sitemap + JSON-LD |
 | Radar $0 | 🔵 Checklist creado | **Pendiente de ejecución** |
 | Presupuesto | 💰 $0 de publicidad | Apify usado ~$3.83 de $5 (crédito gratis) |
 

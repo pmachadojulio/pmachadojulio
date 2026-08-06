@@ -80,6 +80,8 @@
   .nav-links a:hover { color: var(--ink); }
   .nav-cta { background: var(--ink) !important; color: var(--paper) !important; padding: 10px 22px !important; border-radius: 2px; letter-spacing: 1.5px !important; transition: background 0.2s !important; }
   .nav-cta:hover { background: var(--accent) !important; }
+  .nav-cta-blog { background: transparent !important; color: var(--ink) !important; border: 1px solid var(--ink-3) !important; padding: 9px 20px !important; }
+  .nav-cta-blog:hover { border-color: var(--accent) !important; color: var(--accent) !important; background: transparent !important; }
   .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
   .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
 
@@ -297,6 +299,7 @@
   <a href="#sobre-mi" onclick="closeMobileMenu()">Sobre mí</a>
   <a href="#marco-conceptual" onclick="closeMobileMenu()">Marco conceptual</a>
   <a href="#como-comprar" onclick="closeMobileMenu()">Cómo comprar</a>
+  <a href="/blog/" onclick="closeMobileMenu()">Blog</a>
   <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
 </div>
 
@@ -310,6 +313,7 @@
     <li><a href="#marco-conceptual">Marco conceptual</a></li>
     <li><a href="#como-comprar">Cómo comprar</a></li>
     <li><a href="#contacto" class="nav-cta">Hacer un encargo</a></li>
+    <li><a href="/blog/" class="nav-cta nav-cta-blog">Blog</a></li>
   </ul>
   <button class="nav-toggle" onclick="openMobileMenu()" aria-label="Abrir menú">
     <span></span><span></span><span></span>

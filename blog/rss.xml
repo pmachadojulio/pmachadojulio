@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Julio Machado — Blog</title>
+    <link>https://jcmachado.com/blog/</link>
+    <description>Notas sobre arte, pintura y ciencias sociales.</description>
+    <language>es-ar</language>
+    <lastBuildDate>Thu, 06 Aug 2026 16:38:57 GMT</lastBuildDate>
+    <item>
+      <title>¿Qué perdés cuando un cuadro se vuelve copia?</title>
+      <link>https://jcmachado.com/blog/aura-benjamin/</link>
+      <guid isPermaLink="true">https://jcmachado.com/blog/aura-benjamin/</guid>
+      <pubDate>Thu, 06 Aug 2026 12:00:00 GMT</pubDate>
+      <description>Lo que se pierde no está en la imagen: está en la materialidad. Una nota sobre el aura según Walter Benjamin, contada desde el taller de un pintor al óleo.</description>
+    </item>
+  </channel>
+</rss>
