@@ -68,7 +68,7 @@ async function googleToken(sa, scope) {
 async function inspectUrl(siteUrl, url, token) {
   let res;
   try {
-    res = await fetch('https://searchconsole.googleapis.com/webmasters/v3/urlInspection/index:inspect', {
+    res = await fetch('https://searchconsole.googleapis.com/v1/urlInspection/index:inspect', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ inspectionUrl: url, siteUrl })
