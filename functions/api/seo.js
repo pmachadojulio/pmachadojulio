@@ -118,9 +118,8 @@ export async function onRequestGet({ env, request }) {
 
     const keyRes = await fetch(`${SITE}/${INDEXNOW_KEY}.txt`, { method: 'HEAD' });
 
-    const google = { config: false, needSetup: false, error: null, inspectedAt: null, urls: null, saEmail: null };
+    const google = { config: false, needSetup: false, error: null, inspectedAt: null, urls: null, saEmail: null, siteUrl: null };
     const saJson = env.SC_SERVICE_ACCOUNT_JSON || env.GA_SERVICE_ACCOUNT_JSON;
-    const siteUrl = env.SC_SITE_URL || 'sc-domain:jcmachado.com';
     let sa = null;
     if (saJson) {
       try { sa = JSON.parse(saJson); } catch (_) {}
@@ -130,15 +129,26 @@ export async function onRequestGet({ env, request }) {
       google.saEmail = sa.client_email || null;
       try {
         const token = await googleToken(sa, 'https://www.googleapis.com/auth/webmasters.readonly');
-        google.urls = await pool(unique, async u => {
+        const candidates = [...new Set([env.SC_SITE_URL, 'sc-domain:jcmachado.com', 'https://jcmachado.com/'].filter(Boolean))];
+        let siteUrl = candidates[0];
+        let probe = null;
+        for (const cand of candidates) {
+          const r = await inspectUrl(cand, unique[0], token);
+          if (r.verdict) { siteUrl = cand; probe = r; break; }
+        }
+        google.siteUrl = siteUrl;
+        const resto = probe ? unique.slice(1) : unique;
+        const results = await pool(resto, async u => {
           try {
             return await inspectUrl(siteUrl, u, token);
           } catch (e) {
             return { url: u, error: String(e.message || e) };
           }
         }, 5);
-        const bloqueado = google.urls.filter(r => r.forbidden).length;
-        const conError = google.urls.filter(r => r.error).length;
+        if (probe) results.unshift({ url: unique[0], ...probe });
+        google.urls = results;
+        const bloqueado = results.filter(r => r.forbidden).length;
+        const conError = results.filter(r => r.error).length;
         google.needSetup = bloqueado === unique.length || conError === unique.length;
         google.inspectedAt = new Date().toISOString();
       } catch (err) {

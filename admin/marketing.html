@@ -573,6 +573,7 @@ async function loadSeo() {
           <li>Opcional: en Cloudflare Pages definí <code>SC_SITE_URL</code> (default: <code>sc-domain:jcmachado.com</code>).</li>
         </ol></div>`;
     } else if (g.needSetup || g.error) {
+      const primerErr = (g.urls || []).find(r => r.error)?.error || g.error;
       gcHtml.innerHTML = `<div class="banner" style="border-color:var(--bad);color:#fca5a5;">Google está conectado pero falta
         acceso a la propiedad: agregá el email de la service account como usuario en
         <a href="https://search.google.com/search-console/users" target="_blank" rel="noopener">Search Console → Usuarios y permisos</a>
@@ -580,7 +581,7 @@ async function loadSeo() {
         ${g.saEmail ? `Tu email de service account (copialo):
         <pre class="cmd" style="margin:.6rem 0;"><code id="seo-sa-email">${esc(g.saEmail)}</code></pre>
         <button class="btn small" onclick="copiarSaEmail()">📋 Copiar email</button>` : ''}
-        ${g.error ? `<br>Detalle: ${esc(g.error)}` : ''}</div>
+        <br><strong>Detalle de Google:</strong> <code>${esc(primerErr || 'sin detalle')}</code></div>
         <div class="toolbar"><button class="btn small" onclick="loadSeo()">⟳ Reintentar</button></div>`;
     } else {
       const n = g.urls.filter(u => u.indexed).length;
