@@ -557,7 +557,9 @@ async function loadSeo() {
       <tr data-url="${esc(u)}">
         <td><a href="${esc(u)}" target="_blank" rel="noopener" style="color:var(--text);">${esc(u.replace('https://jcmachado.com', ''))}</a></td>
         <td class="seo-http"><span class="muted">chequeando…</span></td>
-        <td>${g.urls ? googleBadge(g.urls.find(x => x.url === u)) + (g.urls.find(x => x.url === u) && !g.urls.find(x => x.url === u).indexed ? ` <a class="muted" style="font-size:.72rem;" target="_blank" rel="noopener" href="https://search.google.com/search-console/inspect?url=${encodeURIComponent(u)}">🔎 SC</a>` : '') : '<span class="muted" style="font-size:.75rem;">no config</span>'}</td>
+        <td>${g.urls ? googleBadge(g.urls.find(x => x.url === u)) + (g.urls.find(x => x.url === u) && !g.urls.find(x => x.url === u).indexed ? `
+          <button class="btn small" onclick="copiarTexto('${esc(u)}')">📋</button>
+          <a class="muted" style="font-size:.72rem;" target="_blank" rel="noopener" href="https://search.google.com/search-console/inspect?url=${encodeURIComponent(u)}">🔎 SC</a>` : '') : '<span class="muted" style="font-size:.75rem;">no config</span>'}</td>
       </tr>`).join('');
 
     const gcHtml = document.getElementById('seo-google-content');
@@ -593,7 +595,9 @@ async function loadSeo() {
         ${noIndexadas.length ? `<div class="toolbar" style="margin-bottom:.4rem;">
           <button class="btn small" onclick="copiarNoIndexadas()">📋 Copiar ${noIndexadas.length} URLs sin indexar</button>
         </div>
-        <p class="muted" style="font-size:.8rem;margin:.4rem 0;">Pegalas en Search Console y usá <em>Solicitar indexación</em> en cada una.</p>` : ''}`;
+        <p class="muted" style="font-size:.8rem;margin:.4rem 0;">Search Console acepta <strong>una URL por vez</strong>: usá el botón 📋 de cada fila para copiarla y pegala en
+        <a href="https://search.google.com/search-console/inspect" target="_blank" rel="noopener">Inspección de URL</a> → <em>Solicitar indexación</em>.
+        La lista completa copiada junta no se puede pegar.</p>` : ''}`;
     }
 
     checkHttpClientSide(sm.urls);
@@ -623,6 +627,15 @@ async function checkHttpClientSide(urls) {
 async function copiarSaEmail() {
   const el = document.getElementById('seo-sa-email');
   if (el) await copiar(el.textContent.trim());
+}
+
+async function copiarTexto(txt) {
+  try {
+    await navigator.clipboard.writeText(txt);
+    toast('URL copiada');
+  } catch (e) {
+    toast('No se pudo copiar', true);
+  }
 }
 
 function copiarNoIndexadas() {
