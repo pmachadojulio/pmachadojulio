@@ -103,13 +103,18 @@ export async function onRequestGet({ env, request }) {
 
     const keyRes = await fetch(`${SITE}/${INDEXNOW_KEY}.txt`, { method: 'HEAD' });
 
-    const google = { config: false, needSetup: false, error: null, inspectedAt: null, urls: null };
+    const google = { config: false, needSetup: false, error: null, inspectedAt: null, urls: null, saEmail: null };
     const saJson = env.SC_SERVICE_ACCOUNT_JSON || env.GA_SERVICE_ACCOUNT_JSON;
     const siteUrl = env.SC_SITE_URL || 'sc-domain:jcmachado.com';
+    let sa = null;
     if (saJson) {
+      try { sa = JSON.parse(saJson); } catch (_) {}
+    }
+    if (sa) {
       google.config = true;
+      google.saEmail = sa.client_email || null;
       try {
-        const token = await googleToken(JSON.parse(saJson), 'https://www.googleapis.com/auth/webmasters.readonly');
+        const token = await googleToken(sa, 'https://www.googleapis.com/auth/webmasters.readonly');
         google.urls = await pool(unique, async u => {
           const r = await inspectUrl(siteUrl, u, token);
           return { url: u, ...r };

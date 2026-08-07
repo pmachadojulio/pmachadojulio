@@ -575,7 +575,11 @@ async function loadSeo() {
     } else if (g.needSetup || g.error) {
       gcHtml.innerHTML = `<div class="banner" style="border-color:var(--bad);color:#fca5a5;">Google está conectado pero falta
         acceso a la propiedad: agregá el email de la service account como usuario en
-        <a href="https://search.google.com/search-console/users" target="_blank" rel="noopener">Search Console → Usuarios y permisos</a>.
+        <a href="https://search.google.com/search-console/users" target="_blank" rel="noopener">Search Console → Usuarios y permisos</a>
+        (rol: Usuario con permiso completo).
+        ${g.saEmail ? `Tu email de service account (copialo):
+        <pre class="cmd" style="margin:.6rem 0;"><code id="seo-sa-email">${esc(g.saEmail)}</code></pre>
+        <button class="btn small" onclick="copiarSaEmail()">📋 Copiar email</button>` : ''}
         ${g.error ? `<br>Detalle: ${esc(g.error)}` : ''}</div>
         <div class="toolbar"><button class="btn small" onclick="loadSeo()">⟳ Reintentar</button></div>`;
     } else {
@@ -608,6 +612,11 @@ async function checkHttpClientSide(urls) {
     const td = document.querySelector(`#seo-sitemap-body tr[data-url="${CSS.escape(r.url)}"] .seo-http`);
     if (td) td.innerHTML = `<span class="badge ${r.ok ? 'ok' : 'bad'}">${r.ok ? r.status : (r.status || 'sin respuesta')}</span>`;
   });
+}
+
+async function copiarSaEmail() {
+  const el = document.getElementById('seo-sa-email');
+  if (el) await copiar(el.textContent.trim());
 }
 
 async function notificarIndexNow() {
