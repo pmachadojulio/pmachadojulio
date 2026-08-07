@@ -54,20 +54,35 @@ async function googleToken(sa, scope) {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`
   });
-  const data = await res.json();
-  if (!data.access_token) throw new Error('No obtuve token de Google');
+  const txt = await res.text();
+  let data = null;
+  try { data = JSON.parse(txt); } catch (_) {
+    throw new Error(`Token Google HTTP ${res.status} — respuesta NO es JSON: ${txt.replace(/\s+/g, ' ').slice(0, 140)}`);
+  }
+  if (!data.access_token) {
+    throw new Error(`Token Google HTTP ${res.status}: ${data?.error_description || data?.error || 'sin token'}`);
+  }
   return data.access_token;
 }
 
 async function inspectUrl(siteUrl, url, token) {
-  const res = await fetch('https://searchconsole.googleapis.com/webmasters/v3/urlInspection/index:inspect', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ inspectionUrl: url, siteUrl })
-  });
-  if (res.status === 403) return { forbidden: true, status: 403 };
-  const data = await res.json();
-  if (!res.ok) return { status: res.status, error: data?.error?.message || 'Error de Search Console' };
+  let res;
+  try {
+    res = await fetch('https://searchconsole.googleapis.com/webmasters/v3/urlInspection/index:inspect', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ inspectionUrl: url, siteUrl })
+    });
+  } catch (e) {
+    return { url, error: 'Sin conexión a Google: ' + String(e.message || e) };
+  }
+  const txt = await res.text();
+  let data = null;
+  try { data = JSON.parse(txt); } catch (_) {
+    return { url, status: res.status, error: `Respuesta no JSON (HTML): ${txt.replace(/\s+/g, ' ').slice(0, 140)}` };
+  }
+  if (res.status === 403) return { url, forbidden: true, status: 403, error: data?.error?.message || '403 sin permiso' };
+  if (!res.ok) return { url, status: res.status, error: data?.error?.message || 'Error de Search Console' };
   const idx = data.inspectionResult?.indexStatusResult;
   const fetchR = data.inspectionResult?.pageFetchResult;
   return {
@@ -116,10 +131,15 @@ export async function onRequestGet({ env, request }) {
       try {
         const token = await googleToken(sa, 'https://www.googleapis.com/auth/webmasters.readonly');
         google.urls = await pool(unique, async u => {
-          const r = await inspectUrl(siteUrl, u, token);
-          return { url: u, ...r };
+          try {
+            return await inspectUrl(siteUrl, u, token);
+          } catch (e) {
+            return { url: u, error: String(e.message || e) };
+          }
         }, 5);
-        if (google.urls.some(r => r.forbidden || r.error)) google.needSetup = true;
+        const bloqueado = google.urls.filter(r => r.forbidden).length;
+        const conError = google.urls.filter(r => r.error).length;
+        google.needSetup = bloqueado === unique.length || conError === unique.length;
         google.inspectedAt = new Date().toISOString();
       } catch (err) {
         google.error = String(err.message || err);
