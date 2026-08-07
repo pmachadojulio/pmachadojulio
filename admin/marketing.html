@@ -63,6 +63,9 @@
   .check-list input { accent-color: var(--accent); margin-top: 3px; }
   .search { flex: 1; min-width: 180px; padding: 9px 12px; background: var(--card); border: 1px solid var(--border); border-radius: 6px; color: var(--text); }
   .toolbar { display: flex; gap: .7rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+  .chip { padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); font-size: .78rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all .15s; }
+  .chip:hover { color: var(--text); border-color: var(--ink-3); }
+  .chip.active { background: rgba(217,119,6,.15); border-color: var(--accent); color: #fcd34d; }
   .toast { position: fixed; bottom: 22px; right: 22px; background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--ok); border-radius: 8px; padding: 12px 16px; font-size: .88rem; z-index: 200; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; max-width: 360px; }
   .toast.show { opacity: 1; transform: translateY(0); }
   @media (max-width: 720px) { body { padding: 1rem; } }
@@ -87,6 +90,15 @@
     herramientas: se vincula a tu número con un <strong>código QR</strong> (igual que WhatsApp Web) y
     desde ahí puede enviar los mensajes de tus campañas. Corre dentro de <strong>Docker</strong> y
     tiene un panel web donde escaneás el QR una sola vez.
+  </div>
+
+  <div class="banner">
+    <strong>¿Con qué número?</strong> WAHA se vincula a un número de WhatsApp y desde ahí envía la
+    campaña. Para esto <strong>no uses tu WhatsApp personal</strong>: un envío masivo puede hacer que
+    Meta te marque la cuenta y la quedes perdiendo. Compra un <strong>chip secundario prepago</strong>
+    (Claro/Personal/Movistar, ~$3-5/mes, sirve en cualquier celular viejo) y vinculá ese número con
+    el QR. Podés probar el flujo con tu número personal con 1-2 mensajes de test, pero la campaña va
+    siempre por el número dedicado.
   </div>
 
   <div class="card">
@@ -185,18 +197,28 @@ docker compose up -d</code></pre>
 
 <!-- ===================== EMAILS ===================== -->
 <section class="section" id="sec-emails">
+  <div class="banner ok">
+    <strong>Así se lanza un email (todo desde esta pestaña):</strong> 1) Filtrá por categoría ·
+    2) Clic en <strong>🚀 Enviar en Gmail</strong> — se abre Gmail con destinatario, asunto y saludo
+    listos · 3) Revisá y enviá. <strong>Máx 20/día.</strong> Los borradores ya saludan por nombre
+    (ej. "Hola Alexandro," / "Hola Estudio Liberté,") y marcan ✔ lo que ya enviaste.
+  </div>
   <div class="card">
     <h2>Campaña de emails — 40 borradores personalizados</h2>
-    <p class="muted" style="margin:.2rem 0 1rem; font-size:.88rem;">Cada borrador saluda por el nombre del contacto
-    (o de la empresa). Hacé clic para copiar el cuerpo completo. Enviá de a máximo 20/día desde Gmail.</p>
     <div class="toolbar">
-      <input class="search" id="emails-search" placeholder="Buscar por empresa, nombre, ciudad…">
+      <span class="chip active" data-cat="all">Todas</span>
+      <span class="chip" data-cat="Galería">Galerías</span>
+      <span class="chip" data-cat="Hotel">Hoteles</span>
+      <span class="chip" data-cat="Interiorismo">Interiorismo</span>
+      <span class="chip" data-cat="Arquitectura">Arquitectura</span>
+      <span class="chip" data-cat="enviados">✔ Enviados</span>
+      <input class="search" id="emails-search" placeholder="Buscar por empresa, ciudad, email…">
       <span class="muted" id="emails-count" style="font-size:.85rem;"></span>
     </div>
     <div style="overflow:auto;">
       <table>
-        <thead><tr><th>Empresa</th><th>Ciudad</th><th>Email</th><th>Asunto</th></tr></thead>
-        <tbody id="emails-body"><tr><td colspan="4"><div class="empty">Cargando…</div></td></tr></tbody>
+        <thead><tr><th>Saludo</th><th>Empresa</th><th>Ciudad</th><th>Email</th><th style="width:210px;">Acción</th></tr></thead>
+        <tbody id="emails-body"><tr><td colspan="5"><div class="empty">Cargando…</div></td></tr></tbody>
       </table>
     </div>
   </div>
@@ -278,33 +300,79 @@ async function copiarHtmlNewsletter() {
 function abrirHtmlNewsletter() { window.open(NEWSLETTER_HTML, '_blank', 'noopener'); }
 
 /* ---------- emails ---------- */
+let filtroCat = 'all';
+const ENVIADOS_KEY = 'campana-enviados-2026-08-05';
+
+function getEnviados() {
+  try { return JSON.parse(localStorage.getItem(ENVIADOS_KEY) || '[]'); }
+  catch (e) { return []; }
+}
+function setEnviados(lista) { localStorage.setItem(ENVIADOS_KEY, JSON.stringify(lista)); }
+
+function gmailUrl(d) {
+  const body = 'ASUNTO: ' + (d.asunto || '') + '\n\n' + (d.cuerpo || '');
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(d.email || '')}&su=${encodeURIComponent(d.asunto || '')}&body=${encodeURIComponent(body)}`;
+}
+function saludoDe(d) {
+  const c = (d.cuerpo || '').split('\n')[0].trim();
+  return c ? c.replace(/,$/, '') : '';
+}
+
 async function loadEmails() {
   const body = document.getElementById('emails-body');
   try {
     const res = await fetch(CAMPAIGN_JSON);
     drafts = await res.json();
-    document.getElementById('emails-count').textContent = drafts.length + ' borradores';
     renderEmails();
   } catch (e) {
-    body.innerHTML = '<tr><td colspan="4"><div class="empty">Error: ' + e.message + '</div></td></tr>';
+    body.innerHTML = '<tr><td colspan="5"><div class="empty">Error: ' + e.message + '</div></td></tr>';
   }
 }
 function renderEmails() {
   const q = (document.getElementById('emails-search').value || '').toLowerCase();
-  const lista = drafts.filter(d => (d.empresa + ' ' + (d.ciudad || '') + ' ' + (d.email || '') + ' ' + d.asunto).toLowerCase().includes(q));
+  const enviados = getEnviados();
+  const lista = drafts.filter(d => {
+    if (q && !(d.empresa + ' ' + (d.ciudad || '') + ' ' + (d.email || '') + ' ' + d.asunto + ' ' + (d.categoria || '')).toLowerCase().includes(q)) return false;
+    const cat = (d.categoria || '');
+    if (filtroCat === 'enviados') return enviados.includes(d.id);
+    if (filtroCat === 'all') return true;
+    return cat.includes(filtroCat);
+  });
   const body = document.getElementById('emails-body');
-  if (!lista.length) { body.innerHTML = '<tr><td colspan="4"><div class="empty">Sin resultados.</div></td></tr>'; return; }
-  body.innerHTML = lista.map(d => `
-    <tr style="cursor:pointer;" onclick="verBorrador(${JSON.stringify(d.id)})">
-      <td><strong>${d.empresa || ''}</strong><br><span class="muted" style="font-size:.75rem;">${d.categoria || ''}</span></td>
+  document.getElementById('emails-count').textContent = `${lista.length} de ${drafts.length} borradores`;
+  if (!lista.length) { body.innerHTML = '<tr><td colspan="5"><div class="empty">Sin resultados.</div></td></tr>'; return; }
+  body.innerHTML = lista.map(d => {
+    const ya = enviados.includes(d.id);
+    return `
+    <tr style="${ya ? 'opacity:.5;' : ''}">
+      <td><span class="badge ${ya ? 'ok' : 'info'}">${saludoDe(d) || '—'}</span></td>
+      <td><strong>${d.empresa || ''}</strong><br><span class="muted" style="font-size:.72rem;">${d.categoria || ''}</span></td>
       <td>${d.ciudad || '—'}</td>
       <td>${d.email || '—'}</td>
-      <td class="muted">${d.asunto || ''}</td>
-    </tr>`).join('');
+      <td style="white-space:nowrap;">
+        <a class="btn small" href="${gmailUrl(d)}" target="_blank" rel="noopener">🚀 Enviar en Gmail</a>
+        <button class="btn ghost small" onclick="verBorrador(${JSON.stringify(d.id)})">Ver</button>
+        <button class="btn ghost small" onclick="toggleEnviado(${JSON.stringify(d.id)})">${ya ? '↩︎' : '✔'}</button>
+      </td>
+    </tr>`;
+  }).join('');
 }
+function toggleEnviado(id) {
+  const lista = getEnviados();
+  const i = lista.indexOf(id);
+  if (i >= 0) lista.splice(i, 1); else lista.push(id);
+  setEnviados(lista);
+  renderEmails();
+}
+document.querySelectorAll('#sec-emails .chip').forEach(ch => ch.addEventListener('click', () => {
+  document.querySelectorAll('#sec-emails .chip').forEach(x => x.classList.remove('active'));
+  ch.classList.add('active');
+  filtroCat = ch.dataset.cat;
+  renderEmails();
+}));
 function verBorrador(id) {
-  const d = drafts.find(x => x.id === id) || drafts[0];
-  const saludo = (d.cuerpo || '').split('\n')[0];
+  const d = drafts.find(x => x.id === id);
+  if (!d) return;
   document.getElementById('email-modal-title').textContent = (d.empresa || '') + ' <' + (d.email || '') + '>';
   document.getElementById('email-modal-body').textContent = 'ASUNTO: ' + (d.asunto || '') + '\n\n' + (d.cuerpo || '');
   borradorActual = 'ASUNTO: ' + (d.asunto || '') + '\n\n' + (d.cuerpo || '');

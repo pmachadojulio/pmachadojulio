@@ -48,6 +48,7 @@
 | Emails | 🟡 40 borradores | Saludo por nombre, listos para enviar |
 | WhatsApp | 🟡 Stack armado | Falta: Docker local + QR + 1er envío |
 | Blog/SEO | ✅ Estructura + post #1 | Benjamin × el aura · RSS + sitemap + JSON-LD |
+| Indexación Google | 🔵 Estructura OK, **no indexado aún** | Falta: Search Console + solicitar indexación |
 | Radar $0 | 🔵 Checklist creado | **Pendiente de ejecución** |
 | Presupuesto | 💰 $0 de publicidad | Apify usado ~$3.83 de $5 (crédito gratis) |
 
@@ -90,3 +91,8 @@
 - Antes de cada push: `git pull --rebase origin main`.
 - No subir secretos al repo público (`.env` está en `.gitignore`).
 - Los 14 contactos fabricados quedaron marcados en el CRM: no contactar.
+- **Cadencia de contenido:** 1 post de blog/semana + 1 newsletter/mes (mismo
+  contenido: newsletter 250-400 palabras → post expandido 600-900). Consistencia
+  > volumen: un post por semana constante indexa mejor que varios de golpe.
+- **Emails:** lanzar TODO desde Admin → Marketing → Emails (botón "🚀 Enviar en
+  Gmail"). Máx 20/día. WhatsApp: solo con número dedicado, máx 20-30/día.
