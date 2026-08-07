@@ -428,3 +428,25 @@ fs.writeFileSync(path.join(BLOG_DIR, 'index.html'), buildIndexPage(posts), 'utf-
 fs.writeFileSync(path.join(BLOG_DIR, 'rss.xml'), buildRss(posts), 'utf-8');
 console.log('  ✓ /blog/index.html');
 console.log('  ✓ /blog/rss.xml');
+
+// ---------- Notificar a IndexNow (Bing, Yandex, Naver, Seznam) ----------
+// No afecta a Google (no soporta IndexNow): para Google hay que usar Search Console.
+async function notificarIndexNow(posts) {
+  const urls = [`${SITE_URL}/blog/`, ...posts.map(p => `${SITE_URL}/blog/${p.slug}/`)];
+  try {
+    const res = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({
+        host: 'jcmachado.com',
+        key: '4ca0292d3c23b515a23b8c2b0dee355f',
+        keyLocation: 'https://jcmachado.com/4ca0292d3c23b515a23b8c2b0dee355f.txt',
+        urlList: urls
+      })
+    });
+    console.log(`IndexNow -> ${res.status} (${urls.length} urls del blog)`);
+  } catch (e) {
+    console.log('IndexNow: sin conexión, se omite. ' + String(e.message || e));
+  }
+}
+notificarIndexNow(posts);

@@ -55,6 +55,8 @@
   .modal pre { white-space: pre-wrap; font-family: inherit; font-size: .88rem; line-height: 1.7; color: var(--text); background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; max-height: 55vh; overflow-y: auto; margin: 0 0 1rem; }
   .modal-actions { display: flex; justify-content: flex-end; gap: .7rem; }
   .empty { color: var(--muted); text-align: center; padding: 2rem 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin-bottom: 1.4rem; }
+  .mini { background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; padding: .9rem 1rem; }
   .radio-table input { accent-color: var(--accent); }
   .recommended { outline: 2px solid var(--accent); }
   .check-list { list-style: none; padding: 0; margin: 0; }
@@ -81,6 +83,7 @@
   <div class="tab" data-sec="newsletter">Newsletter</div>
   <div class="tab" data-sec="emails">Emails (40)</div>
   <div class="tab" data-sec="radar">Radar $0</div>
+  <div class="tab" data-sec="seo">SEO</div>
 </div>
 
 <!-- ===================== WHATSAPP ===================== -->
@@ -249,6 +252,54 @@ docker compose up -d</code></pre>
   </div>
 </section>
 
+<!-- ===================== SEO ===================== -->
+<section class="section" id="sec-seo">
+  <div class="banner">
+    <strong>Qué hace este panel:</strong> controla el <strong>sitemap</strong> (que todas las URLs respondan 200),
+    <strong>IndexNow</strong> — notifica a Bing, Yandex, Naver y Seznam (que alimentan a Copilot, ChatGPT y
+    Perplexity; <strong>Google NO soporta IndexNow</strong>) — y el estado real de cada URL en
+    <strong>Google Search Console</strong> (¿está indexada o no?).
+  </div>
+
+  <div class="grid3">
+    <div class="mini">
+      <div class="muted" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.6px;">Sitemap</div>
+      <div style="font-size:1.4rem;font-weight:700;" id="seo-sitemap-count">—</div>
+      <div class="muted" id="seo-sitemap-rotos" style="font-size:.75rem;">&nbsp;</div>
+    </div>
+    <div class="mini">
+      <div class="muted" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.6px;">IndexNow (Bing/AI)</div>
+      <div style="font-size:1.4rem;font-weight:700;" id="seo-indexnow">—</div>
+      <div class="muted" style="font-size:.75rem;">key file <code>4ca0292d…f.txt</code></div>
+    </div>
+    <div class="mini">
+      <div class="muted" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.6px;">Google: indexado</div>
+      <div style="font-size:1.4rem;font-weight:700;" id="seo-google-count">—</div>
+      <div class="muted" id="seo-google-meta" style="font-size:.75rem;">&nbsp;</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Sitemap — URLs del sitio (estado HTTP y Google por URL)</h2>
+    <div class="toolbar">
+      <span class="muted" style="font-size:.85rem;" id="seo-sitemap-note"></span>
+      <button class="btn ghost small" onclick="loadSeo()">⟳ Rechequear</button>
+      <button class="btn small" id="seo-indexnow-btn" onclick="notificarIndexNow()">🚀 Notificar a IndexNow (Bing/AI)</button>
+    </div>
+    <div style="overflow:auto;">
+      <table>
+        <thead><tr><th>URL</th><th>HTTP</th><th>Google</th></tr></thead>
+        <tbody id="seo-sitemap-body"><tr><td colspan="3"><div class="empty">Cargando…</div></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Google Search Console</h2>
+    <div id="seo-google-content"><div class="empty">Cargando…</div></div>
+  </div>
+</section>
+
 <!-- MODAL EMAIL -->
 <div class="modal-overlay" id="email-modal">
   <div class="modal">
@@ -287,6 +338,7 @@ document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () =>
   document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
   t.classList.add('active');
   document.getElementById('sec-' + t.dataset.sec).classList.add('active');
+  if (t.dataset.sec === 'seo' && !seoCargado) loadSeo();
 }));
 
 /* ---------- newsletter ---------- */
@@ -446,6 +498,133 @@ function renderRadar() {
 function checkboxHtml(sec, i, text, estado) {
   const checked = estado[i] ? ' checked' : '';
   return `<li class="${estado[i] ? 'done' : ''}"><input type="checkbox" data-sec="${sec}" data-i="${i}"${checked}><span>${text}</span></li>`;
+}
+
+/* ---------- SEO ---------- */
+let seoCargado = false;
+let seoCache = null;
+const SEO_TOKEN = sessionStorage.getItem('jcm_admin_token') || '';
+
+async function apiSeo(method, body) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (SEO_TOKEN) headers.Authorization = 'Bearer ' + SEO_TOKEN;
+  const res = await fetch('/api/seo', { method, headers, body: body ? JSON.stringify(body) : undefined });
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401) throw new Error('Sesión expirada: volvé a ingresar al admin.');
+  if (!res.ok) throw new Error(data.error || 'Error ' + res.status);
+  return data;
+}
+
+function googleBadge(r) {
+  if (!r) return '<span class="badge info">—</span>';
+  if (r.forbidden || r.error) return '<span class="badge bad" title="' + (r.error || 'sin acceso a Search Console') + '">sin acceso</span>';
+  if (r.verdict === 'PASS') return '<span class="badge ok">Indexado</span>';
+  if (r.verdict === 'PARTIAL') return '<span class="badge warn">Parcial</span>';
+  if (r.verdict === 'FAIL') return '<span class="badge bad">No indexado</span>';
+  return '<span class="badge info">Pendiente</span>';
+}
+
+function esc(s) {
+  return String(s === undefined || s === null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+async function loadSeo() {
+  seoCargado = true;
+  const body = document.getElementById('seo-sitemap-body');
+  body.innerHTML = '<tr><td colspan="3"><div class="empty">Consultando…</div></td></tr>';
+  try {
+    const data = await apiSeo('GET');
+    seoCache = data;
+    const sm = data.sitemap;
+    const g = data.google;
+
+    document.getElementById('seo-sitemap-count').textContent = sm.total;
+    document.getElementById('seo-sitemap-note').textContent = `${sm.total} URLs en sitemap.xml · chequear HTTP abajo`;
+
+    const keyOk = data.indexnow.keyOk;
+    const k = document.getElementById('seo-indexnow');
+    k.textContent = keyOk ? 'Activo' : 'Revisar';
+    k.style.color = keyOk ? 'var(--ok)' : 'var(--bad)';
+
+    const indexed = g.urls ? g.urls.filter(u => u.indexed).length : null;
+    const gc = document.getElementById('seo-google-count');
+    gc.textContent = indexed === null ? '—' : `${indexed}/${g.urls.length}`;
+    gc.style.color = g.needSetup ? 'var(--bad)' : (indexed === g.urls.length ? 'var(--ok)' : 'var(--warn)');
+    document.getElementById('seo-google-meta').textContent = g.inspectedAt ? 'inspección ' + new Date(g.inspectedAt).toLocaleString('es-AR') : '';
+
+    body.innerHTML = sm.urls.map(u => `
+      <tr data-url="${esc(u)}">
+        <td><a href="${esc(u)}" target="_blank" rel="noopener" style="color:var(--text);">${esc(u.replace('https://jcmachado.com', ''))}</a></td>
+        <td class="seo-http"><span class="muted">chequeando…</span></td>
+        <td>${g.urls ? googleBadge(g.urls.find(x => x.url === u)) + (g.urls.find(x => x.url === u) && !g.urls.find(x => x.url === u).indexed ? ` <a class="muted" style="font-size:.72rem;" target="_blank" rel="noopener" href="https://search.google.com/search-console/inspect?url=${encodeURIComponent(u)}">🔎 SC</a>` : '') : '<span class="muted" style="font-size:.75rem;">no config</span>'}</td>
+      </tr>`).join('');
+
+    const gcHtml = document.getElementById('seo-google-content');
+    if (!g.config) {
+      gcHtml.innerHTML = `<div class="banner">📡 Para ver el estado de Google por URL hay que conectar la
+        <strong>Service Account</strong> (la misma que usa Analytics) a la propiedad en Search Console:
+        <ol class="steps">
+          <li>Buscá el email de la service account en
+            <a href="https://console.cloud.google.com/iam-admin/serviceaccounts" target="_blank" rel="noopener">Google Cloud → IAM → Service Accounts</a>
+            (termina en <code>@….iam.gserviceaccount.com</code>).</li>
+          <li>En <a href="https://search.google.com/search-console/users" target="_blank" rel="noopener">Search Console → Configuración → Usuarios y permisos</a>
+            agregalo como <strong>Usuario (permiso completo)</strong>.</li>
+          <li>Opcional: en Cloudflare Pages definí <code>SC_SITE_URL</code> (default: <code>sc-domain:jcmachado.com</code>).</li>
+        </ol></div>`;
+    } else if (g.needSetup || g.error) {
+      gcHtml.innerHTML = `<div class="banner" style="border-color:var(--bad);color:#fca5a5;">Google está conectado pero falta
+        acceso a la propiedad: agregá el email de la service account como usuario en
+        <a href="https://search.google.com/search-console/users" target="_blank" rel="noopener">Search Console → Usuarios y permisos</a>.
+        ${g.error ? `<br>Detalle: ${esc(g.error)}` : ''}</div>
+        <div class="toolbar"><button class="btn small" onclick="loadSeo()">⟳ Reintentar</button></div>`;
+    } else {
+      const n = g.urls.filter(u => u.indexed).length;
+      gcHtml.innerHTML = `<p class="muted" style="margin:.2rem 0 .9rem;font-size:.88rem;">
+        ${n} de ${g.urls.length} URLs indexadas en Google. Para pedirle a Google que indexe una URL nueva usá
+        <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Search Console → Inspección de URL</a>
+        (no existe API pública para solicitarlo; el sitemap + la indexación manual son el camino).</p>`;
+    }
+
+    checkHttpClientSide(sm.urls);
+  } catch (err) {
+    body.innerHTML = `<tr><td colspan="3"><div class="empty">Error: ${esc(err.message)}</div></td></tr>`;
+  }
+}
+
+async function checkHttpClientSide(urls) {
+  const resultados = await Promise.all(urls.map(async u => {
+    try {
+      const r = await fetch(u, { method: 'HEAD', redirect: 'follow' });
+      return { url: u, status: r.status, ok: r.ok };
+    } catch (e) {
+      return { url: u, status: 0, ok: false };
+    }
+  }));
+  const rotos = resultados.filter(r => !r.ok);
+  document.getElementById('seo-sitemap-rotos').textContent = rotos.length ? `${rotos.length} URL(s) rotas` : 'Todas responden 200';
+  document.getElementById('seo-sitemap-rotos').style.color = rotos.length ? 'var(--bad)' : 'var(--ok)';
+  resultados.forEach(r => {
+    const td = document.querySelector(`#seo-sitemap-body tr[data-url="${CSS.escape(r.url)}"] .seo-http`);
+    if (td) td.innerHTML = `<span class="badge ${r.ok ? 'ok' : 'bad'}">${r.ok ? r.status : (r.status || 'sin respuesta')}</span>`;
+  });
+}
+
+async function notificarIndexNow() {
+  if (!seoCache || !seoCache.sitemap) { toast('Primero cargá el panel (pestaña SEO).', true); return; }
+  const btn = document.getElementById('seo-indexnow-btn');
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+  try {
+    const res = await apiSeo('POST', { urls: seoCache.sitemap.urls });
+    if (res.ok) toast(`IndexNow aceptó (HTTP ${res.status}). Cubre Bing, Yandex, Naver y Seznam — no Google.`);
+    else toast(`IndexNow devolvió HTTP ${res.status}${res.error ? ': ' + res.error : ''}.`, true);
+  } catch (err) {
+    toast('Error: ' + err.message, true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🚀 Notificar a IndexNow (Bing/AI)';
+  }
 }
 
 /* ---------- init ---------- */
