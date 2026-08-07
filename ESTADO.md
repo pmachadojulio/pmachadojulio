@@ -44,6 +44,12 @@
   "qué mirar", referencias suaves a Freud/Lacan/Levinas + sociología y
   antropología. Conserva cada dato de disponibilidad/venta. Serie Ascenso
   pendiente (ya estaba en voz).
+- **2026-08-07 — Panel SEO conectado a Google:** resuelto el acceso — se habilitó
+  la Search Console API en el proyecto `jcmachado` de Google Cloud (dueño de la
+  service account) y se corrigió el endpoint de URL Inspection (`/v1/`, no
+  `/webmasters/v3/`). El panel ahora lee el estado real de indexación por URL y
+  ofrece copiar las URLs sin indexar para solicitar indexación manual en Search
+  Console (Google no tiene API pública para eso).
 
 ---
 
@@ -58,8 +64,8 @@
 | Emails | 🟡 40 borradores | Saludo por nombre, listos para enviar |
 | WhatsApp | 🟡 Stack armado | Falta: Docker local + QR + 1er envío |
 | Blog/SEO | ✅ Estructura + post #1 | Benjamin × el aura · RSS + sitemap + JSON-LD |
-| Panel SEO admin | ✅ Sitemap + IndexNow + Google por URL | Falta: dar acceso a la service account en Search Console |
-| Indexación Google | 🔵 Estructura OK, **no indexado aún** | Falta: Search Console + solicitar indexación |
+| Panel SEO admin | ✅ Conectado a Google | Lee indexación real por URL + botón copiar sin indexar |
+| Indexación Google | 🟡 Consultable vía panel | Falta: solicitar indexación de URLs nuevas (manual) |
 | Voz descripciones | 🟡 24/30 reescritas | Falta: serie Ascenso (7) |
 | Radar $0 | 🔵 Checklist creado | **Pendiente de ejecución** |
 | Presupuesto | 💰 $0 de publicidad | Apify usado ~$3.83 de $5 (crédito gratis) |
@@ -73,10 +79,11 @@
 ## 3. Hacia dónde vamos
 
 ### Semana (prioridad máxima)
-1. **Probar WhatsApp local**: Docker + QR + primer envío a tu propio número
+1. **Solicitar indexación en Google** de las URLs nuevas (pestaña SEO → 📋 Copiar URLs sin indexar → Search Console → Inspección de URL → Solicitar indexación).
+2. **Probar WhatsApp local**: Docker + QR + primer envío a tu propio número
    (guía en Admin → Marketing → WhatsApp).
-2. **Enviar Newsletter #1** desde Gmail (copiar HTML con botón desde el admin).
-3. **Enviar primeros 10-20 emails** de la campaña (revisar en la pestaña Emails).
+3. **Enviar Newsletter #1** desde Gmail (copiar HTML con botón desde el admin).
+4. **Enviar primeros 10-20 emails** de la campaña (revisar en la pestaña Emails).
 
 ### Mes 1 — Ejecutar el Radar $0
 - Perfiles: Instagram, TikTok, Pinterest, Behance, Google Business Profile, marketplaces.

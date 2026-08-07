@@ -585,10 +585,15 @@ async function loadSeo() {
         <div class="toolbar"><button class="btn small" onclick="loadSeo()">⟳ Reintentar</button></div>`;
     } else {
       const n = g.urls.filter(u => u.indexed).length;
+      const noIndexadas = g.urls.filter(u => !u.indexed).map(u => u.url);
       gcHtml.innerHTML = `<p class="muted" style="margin:.2rem 0 .9rem;font-size:.88rem;">
         ${n} de ${g.urls.length} URLs indexadas en Google. Para pedirle a Google que indexe una URL nueva usá
         <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Search Console → Inspección de URL</a>
-        (no existe API pública para solicitarlo; el sitemap + la indexación manual son el camino).</p>`;
+        (no existe API pública para solicitarlo; el sitemap + la indexación manual son el camino).</p>
+        ${noIndexadas.length ? `<div class="toolbar" style="margin-bottom:.4rem;">
+          <button class="btn small" onclick="copiarNoIndexadas()">📋 Copiar ${noIndexadas.length} URLs sin indexar</button>
+        </div>
+        <p class="muted" style="font-size:.8rem;margin:.4rem 0;">Pegalas en Search Console y usá <em>Solicitar indexación</em> en cada una.</p>` : ''}`;
     }
 
     checkHttpClientSide(sm.urls);
@@ -618,6 +623,15 @@ async function checkHttpClientSide(urls) {
 async function copiarSaEmail() {
   const el = document.getElementById('seo-sa-email');
   if (el) await copiar(el.textContent.trim());
+}
+
+function copiarNoIndexadas() {
+  if (!seoCache || !seoCache.google || !seoCache.google.urls) return;
+  const urls = seoCache.google.urls.filter(u => !u.indexed).map(u => u.url).join('\n');
+  navigator.clipboard.writeText(urls).then(
+    () => toast(`Copiadas ${urls.split('\n').length} URLs sin indexar`),
+    () => toast('No se pudo copiar', true)
+  );
 }
 
 async function notificarIndexNow() {
