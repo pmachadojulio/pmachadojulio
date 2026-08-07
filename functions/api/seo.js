@@ -79,7 +79,10 @@ async function inspectUrl(siteUrl, url, token) {
   const txt = await res.text();
   let data = null;
   try { data = JSON.parse(txt); } catch (_) {
-    return { url, status: res.status, error: `Respuesta no JSON (HTML): ${txt.replace(/\s+/g, ' ').slice(0, 140)}` };
+    const title = (txt.match(/<title[^>]*>(.*?)<\/title>/i) || [])[1] || null;
+    const clean = txt.replace(/\s+/g, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    const msg = title ? `${title}: ${clean.slice(0, 120)}` : clean.slice(0, 140);
+    return { url, status: res.status, error: `Respuesta no JSON (HTML): ${msg}` };
   }
   if (res.status === 403) return { url, forbidden: true, status: 403, error: data?.error?.message || '403 sin permiso' };
   if (!res.ok) return { url, status: res.status, error: data?.error?.message || 'Error de Search Console' };
