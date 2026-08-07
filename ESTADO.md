@@ -34,6 +34,16 @@
 - **2026-08-06 — Blog/SEO:** estructura de blog estática (`build-blog.js`,
   posts en markdown, sitemap + RSS + JSON-LD), primer post publicado (Benjamin
   × el aura), botón **Blog** en la navegación junto a "Hacer un encargo".
+- **2026-08-07 — Panel SEO en Admin → Marketing:** estado del sitemap (HTTP por
+  URL), IndexNow (Bing/Yandex/Naver/Seznam → Copilot/ChatGPT; Google NO lo
+  soporta) con botón de notificación + auto-ping al regenerar el blog, y estado
+  de indexación de Google por URL (Search Console URL Inspection API, reusa la
+  service account de GA).
+- **2026-08-07 — Voz "Arte + Reflexión":** 24 descripciones de obras reescritas
+  (las que no son de la serie Ascenso) en primera persona, divulgador: una idea,
+  "qué mirar", referencias suaves a Freud/Lacan/Levinas + sociología y
+  antropología. Conserva cada dato de disponibilidad/venta. Serie Ascenso
+  pendiente (ya estaba en voz).
 
 ---
 
@@ -48,7 +58,9 @@
 | Emails | 🟡 40 borradores | Saludo por nombre, listos para enviar |
 | WhatsApp | 🟡 Stack armado | Falta: Docker local + QR + 1er envío |
 | Blog/SEO | ✅ Estructura + post #1 | Benjamin × el aura · RSS + sitemap + JSON-LD |
+| Panel SEO admin | ✅ Sitemap + IndexNow + Google por URL | Falta: dar acceso a la service account en Search Console |
 | Indexación Google | 🔵 Estructura OK, **no indexado aún** | Falta: Search Console + solicitar indexación |
+| Voz descripciones | 🟡 24/30 reescritas | Falta: serie Ascenso (7) |
 | Radar $0 | 🔵 Checklist creado | **Pendiente de ejecución** |
 | Presupuesto | 💰 $0 de publicidad | Apify usado ~$3.83 de $5 (crédito gratis) |
 
