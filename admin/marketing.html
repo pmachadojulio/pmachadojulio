@@ -518,10 +518,12 @@ async function apiSeo(method, body) {
 function googleBadge(r) {
   if (!r) return '<span class="badge info">—</span>';
   if (r.forbidden || r.error) return '<span class="badge bad" title="' + (r.error || 'sin acceso a Search Console') + '">sin acceso</span>';
-  if (r.verdict === 'PASS') return '<span class="badge ok">Indexado</span>';
-  if (r.verdict === 'PARTIAL') return '<span class="badge warn">Parcial</span>';
-  if (r.verdict === 'FAIL') return '<span class="badge bad">No indexado</span>';
-  return '<span class="badge info">Pendiente</span>';
+  const tip = r.coverageState ? ` title="${esc(r.coverageState)}"` : '';
+  if (r.verdict === 'PASS') return `<span class="badge ok"${tip}>Indexado</span>`;
+  if (r.verdict === 'PARTIAL') return `<span class="badge warn"${tip}>Parcial</span>`;
+  if (r.verdict === 'FAIL') return `<span class="badge bad"${tip}>No indexado</span>`;
+  if (r.coverageState) return `<span class="badge warn"${tip}>${esc(r.coverageState)}</span>`;
+  return '<span class="badge info">Sin dato</span>';
 }
 
 function esc(s) {

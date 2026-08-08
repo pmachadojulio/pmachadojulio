@@ -89,6 +89,7 @@ async function inspectUrl(siteUrl, url, token) {
   const idx = data.inspectionResult?.indexStatusResult;
   const fetchR = data.inspectionResult?.pageFetchResult;
   return {
+    url,
     verdict: idx?.verdict || null,
     coverageState: idx?.coverageState || null,
     lastCrawlTime: idx?.lastCrawlTime || null,
