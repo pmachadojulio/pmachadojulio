@@ -12,6 +12,8 @@
  *   excerpt: "Resumen corto para el listado y meta description"
  *   image: /imagenes/Raiz.webp
  *   categoria: Ensayo
+ *   tags: "Benjamín, Aura, Materialidad"
+ *   obra: "mr-pink, ascenso-corazon"   (slugs de obras relacionadas, opcional)
  *   ---
  *   Cuerpo en markdown (##, ###, **negrita**, *cursiva*, [texto](url), - listas, > cita).
  *
@@ -136,7 +138,7 @@ function leerPosts() {
     }
     const dateFile = (f.match(/^(\d{4}-\d{2}-\d{2})/) || [])[1] || meta.date;
     const slug = (f.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, ''));
-    posts.push({ slug, file: f, date: meta.date || dateFile, title: meta.title, excerpt: meta.excerpt || '', image: meta.image || '/imagenes/Raiz.webp', categoria: meta.categoria || 'Ensayo', body: m[2] });
+    posts.push({ slug, file: f, date: meta.date || dateFile, title: meta.title, excerpt: meta.excerpt || '', image: meta.image || '/imagenes/Raiz.webp', categoria: meta.categoria || 'Ensayo', tags: (meta.tags || '').split(',').map(t => t.trim()).filter(Boolean), obra: (meta.obra || '').split(',').map(t => t.trim().toLowerCase()).filter(Boolean), body: m[2] });
   }
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
@@ -196,6 +198,16 @@ const POST_STYLE = `
   .post-cta .btn:hover { background: var(--accent-light); color: var(--white); }
   .post-cta .btn.wsp { background: transparent; color: var(--paper); border: 1px solid rgba(245,242,237,0.3); }
   .post-cta .btn.wsp:hover { border-color: var(--accent-light); color: var(--accent-light); }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(26,24,20,0.1); }
+  .post-tags .tag { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-2); border: 1px solid rgba(26,24,20,0.15); border-radius: 40px; padding: 6px 14px; text-decoration: none; transition: all 0.2s; }
+  .post-tags .tag:hover { border-color: var(--accent); color: var(--accent); }
+  .post-obras { margin-top: 28px; }
+  .post-obras h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 14px; }
+  .post-obras .obras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .post-obras .obra-card { display: block; background: var(--paper-2); border-radius: 4px; overflow: hidden; border: none; transition: transform 0.2s, box-shadow 0.2s; }
+  .post-obras .obra-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,24,20,0.1); }
+  .post-obras .obra-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .post-obras .obra-card span { display: block; padding: 10px 12px; font-family: var(--serif); font-size: 16px; color: var(--ink); }
   @media (max-width: 720px) { .post-cta { padding: 24px; } }
 `;
 
@@ -238,9 +250,26 @@ function buildPostPage(post) {
     "publisher": { "@type": "Organization", "name": "Julio Machado", "logo": { "@type": "ImageObject", "url": `${SITE_URL}/favicon.svg` } },
     "description": post.excerpt,
     "mainEntityOfPage": url,
-    "keywords": post.categoria
+    "keywords": [post.categoria, ...post.tags].join(', ')
   };
   const ctaWhatsApp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola Julio! Leí tu nota en el blog y me interesa tu trabajo.')}`;
+
+  const tagsHtml = post.tags.length
+    ? `<div class="post-tags">${post.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`
+    : '';
+
+  const obrasRel = OBRAS_BY_SLUG ? post.obra.map(slug => OBRAS_BY_SLUG[slug]).filter(Boolean) : [];
+  const obrasHtml = obrasRel.length
+    ? `<div class="post-obras">
+        <h3>Obras de las que habla esta nota</h3>
+        <div class="obras-grid">${obrasRel.map(o => `
+          <a class="obra-card" href="/obra/${o.slug}/">
+            <img src="${o.imagen}" alt="${escapeHtml(o.titulo)}" loading="lazy">
+            <span>${escapeHtml(o.titulo)}</span>
+          </a>`).join('')}
+        </div>
+      </div>`
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -282,6 +311,9 @@ ${JSON.stringify(schema, null, 2)}
     <div class="post-content">
       ${bloques(post.body)}
     </div>
+
+    ${obrasHtml}
+    ${tagsHtml}
 
     <div class="post-cta">
       <h3>¿Te quedó resonando algo?</h3>
@@ -414,6 +446,19 @@ ${items}
 
 // ---------- Escribir archivos ----------
 
+function cargarObras() {
+  try {
+    const raw = fs.readFileSync(path.join(__dirname, 'data/obras.json'), 'utf-8');
+    const d = JSON.parse(raw);
+    const obras = (d.obras || []).map(o => ({ ...o, slug: (o.slug || o.titulo || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-') }));
+    return Object.fromEntries(obras.map(o => [o.slug, o]));
+  } catch (e) {
+    console.warn('  ⚠ No pude cargar data/obras.json para las obras relacionadas:', String(e.message || e));
+    return null;
+  }
+}
+
+const OBRAS_BY_SLUG = cargarObras();
 const posts = leerPosts();
 console.log(`build-blog: ${posts.length} posts`);
 

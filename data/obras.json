@@ -649,7 +649,7 @@
       "tipo": "original",
       "id": "JM-2026-018",
       "categoria": "retrato",
-      "anio": 2016,
+      "anio": 2026,
       "tecnica": "Oleo sobre panel",
       "ancho_cm": 30,
       "alto_cm": 30,
@@ -666,12 +666,13 @@
       "disponible": true,
       "vendida": false,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "coleccion": "ascenso"
     },
     {
       "titulo": "Ascenso: Tercer Ojo",
       "tipo": "original",
-      "id": "JM-2026-018",
+      "id": "JM-2026-019",
       "categoria": "retrato",
       "anio": 2026,
       "tecnica": "Oleo sobre panel",
@@ -690,7 +691,8 @@
       "disponible": true,
       "vendida": false,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "coleccion": "ascenso"
     }
   ]
 }

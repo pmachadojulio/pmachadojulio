@@ -49,7 +49,7 @@
   },
   "description": "Lo que se pierde no está en la imagen: está en la materialidad. Una nota sobre el aura según Walter Benjamin, contada desde el taller de un pintor al óleo.",
   "mainEntityOfPage": "https://jcmachado.com/blog/aura-benjamin/",
-  "keywords": "Ensayo"
+  "keywords": "Ensayo, Benjamín, Aura, Materialidad, Originales y réplicas"
 }
 </script>
 <style>
@@ -103,6 +103,16 @@
   .post-cta .btn:hover { background: var(--accent-light); color: var(--white); }
   .post-cta .btn.wsp { background: transparent; color: var(--paper); border: 1px solid rgba(245,242,237,0.3); }
   .post-cta .btn.wsp:hover { border-color: var(--accent-light); color: var(--accent-light); }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(26,24,20,0.1); }
+  .post-tags .tag { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-2); border: 1px solid rgba(26,24,20,0.15); border-radius: 40px; padding: 6px 14px; text-decoration: none; transition: all 0.2s; }
+  .post-tags .tag:hover { border-color: var(--accent); color: var(--accent); }
+  .post-obras { margin-top: 28px; }
+  .post-obras h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 14px; }
+  .post-obras .obras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .post-obras .obra-card { display: block; background: var(--paper-2); border-radius: 4px; overflow: hidden; border: none; transition: transform 0.2s, box-shadow 0.2s; }
+  .post-obras .obra-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,24,20,0.1); }
+  .post-obras .obra-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .post-obras .obra-card span { display: block; padding: 10px 12px; font-family: var(--serif); font-size: 16px; color: var(--ink); }
   @media (max-width: 720px) { .post-cta { padding: 24px; } }
 </style>
 </head>
@@ -138,6 +148,21 @@ La obra de arte en la época de su reproductibilidad técnica — así tituló B
 <p>¿Te pasó alguna vez de sentir que una foto &quot;no le hace justicia&quot; a algo que viste en persona? Si te pasó, ya sabés de qué hablo. La próxima vez que estés frente a una obra original, acercate: mirá la arista donde la pintura se acumula, el lugar donde el pincel dudó, el grano de la tela. Ahí está el aura. Y ahí es donde yo elijo pintar.</p>
 <p><a href="/obra/mr-pink/">Ver la obra de cerca →</a></p>
     </div>
+
+    <div class="post-obras">
+        <h3>Obras de las que habla esta nota</h3>
+        <div class="obras-grid">
+          <a class="obra-card" href="/obra/mr-pink/">
+            <img src="/imagenes/unknown.webp" alt="Mr. Pink" loading="lazy">
+            <span>Mr. Pink</span>
+          </a>
+          <a class="obra-card" href="/obra/ascenso-corazon/">
+            <img src="/imagenes/Corazon.webp" alt="Ascenso: Corazon" loading="lazy">
+            <span>Ascenso: Corazon</span>
+          </a>
+        </div>
+      </div>
+    <div class="post-tags"><span class="tag">Benjamín</span><span class="tag">Aura</span><span class="tag">Materialidad</span><span class="tag">Originales y réplicas</span></div>
 
     <div class="post-cta">
       <h3>¿Te quedó resonando algo?</h3>

@@ -4,6 +4,8 @@ date: 2026-08-06
 excerpt: "Lo que se pierde no está en la imagen: está en la materialidad. Una nota sobre el aura según Walter Benjamin, contada desde el taller de un pintor al óleo."
 image: /imagenes/Raiz.webp
 categoria: Ensayo
+tags: "Benjamín, Aura, Materialidad, Originales y réplicas"
+obra: "mr-pink, ascenso-corazon"
 ---
 
 La semana pasada escaneé una obra terminada para mandarle la foto a un cliente. La miré en la pantalla: estaba todo. Los colores, el encuadre, hasta el fondo del lienzo. Y sin embargo no estaba nada. Había un "algo" que no viajó por el correo.

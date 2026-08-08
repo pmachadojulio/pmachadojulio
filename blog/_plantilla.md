@@ -4,6 +4,8 @@ date: 2026-08-06
 excerpt: "Resumen de 1-2 frases para el listado y para Google (máx ~160 caracteres)."
 image: /imagenes/Raiz.webp
 categoria: Ensayo
+tags: "Etiqueta 1, Etiqueta 2, Etiqueta 3"
+obra: "mr-pink, ascenso-corazon"
 ---
 
 Primer párrafo: el gancho. Una escena, una pregunta, algo que pasó. Sin introducción genérica.
