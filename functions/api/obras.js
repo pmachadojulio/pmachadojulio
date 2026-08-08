@@ -15,11 +15,13 @@ export async function onRequestPost(context) {
       obra.imagen = `/imagenes/${filename}`;
     }
 
+    const nuevaImagen = !!(body.imagen && body.imagen.base64 && body.imagen.filename);
     const out = await mutateObras(env, current => {
       const obras = current.obras || [];
       const index = obras.findIndex(o => o.id && obra.id && o.id === obra.id);
       const nueva = { ...obra, id: obra.id || nextId(obras) };
       if (index >= 0) {
+        if (!nuevaImagen) nueva.imagen = obras[index].imagen || '';
         obras[index] = { ...obras[index], ...nueva };
       } else {
         obras.push(nueva);
