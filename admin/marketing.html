@@ -662,6 +662,7 @@ async function notificarIndexNow() {
   try {
     const res = await apiSeo('POST', { urls: seoCache.sitemap.urls });
     if (res.ok) toast(`IndexNow aceptó (HTTP ${res.status}). Cubre Bing, Yandex, Naver y Seznam — no Google.`);
+    else if (res.status === 429) toast('IndexNow dio HTTP 429: límite de envíos (ya avisó solo al regenerar el blog). Reintentá en unos minutos.', true);
     else toast(`IndexNow devolvió HTTP ${res.status}${res.error ? ': ' + res.error : ''}.`, true);
   } catch (err) {
     toast('Error: ' + err.message, true);
