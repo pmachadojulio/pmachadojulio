@@ -41,8 +41,8 @@
       "paypal_print": "",
       "edicion_total": null,
       "prints_vendidos": null,
-      "disponible": false,
-      "vendida": true,
+      "disponible": true,
+      "vendida": false,
       "qr_url": "",
       "certificado": ""
     },
