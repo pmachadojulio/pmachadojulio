@@ -693,6 +693,29 @@
       "qr_url": "",
       "certificado": "",
       "coleccion": "ascenso"
+    },
+    {
+      "titulo": "Ascenso: Corona",
+      "id": "JM-2026-204",
+      "categoria": "retrato",
+      "anio": null,
+      "tecnica": "",
+      "ancho_cm": 30,
+      "alto_cm": 30,
+      "descripcion": "En los seis cuadros anteriores el horizonte fue ascendiendo hasta casi desaparecer. Este es el único que no lo tiene, y no por descuido: el horizonte es un límite, y la coronilla es el punto donde el cuerpo deja de tener hacia dónde mirar. Posó la misma persona que abrió la serie, siete posturas, para que la serie se cierre como un gesto y no como una lista. El color se deja sin nombre a propósito: hay cosas que se nombran para dominarlas, y hay una sola que dejamos ser.",
+      "imagen": "/imagenes/ascenso-corona-1786815130859.jpg",
+      "precio": "",
+      "print_precio": "",
+      "mercadopago_original": "",
+      "paypal_original": "",
+      "mercadopago_print": "",
+      "paypal_print": "",
+      "edicion_total": null,
+      "prints_vendidos": null,
+      "disponible": true,
+      "vendida": false,
+      "qr_url": "",
+      "certificado": ""
     }
   ]
 }
