@@ -13,8 +13,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = 'https://jcmachado.com';
-const WHATSAPP = '5493534018769';
+  const SITE_URL = 'https://jcmachado.com';
+  const WHATSAPP = '5493534018769';
+  const TIKTOK_URL = 'https://www.tiktok.com/@jcmachadoart';
 
 // ---------- Utilidades ----------
 
@@ -39,6 +40,11 @@ function precioNumero(precioStr) {
   if (!precioStr) return null;
   const n = String(precioStr).replace(/[^\d]/g, '');
   return n ? parseInt(n, 10) : null;
+}
+
+function tiktokLink(o) {
+  const url = o.tiktok_url || TIKTOK_URL;
+  return `<a href="${escapeHtml(url)}" class="btn-tiktok" target="_blank" rel="noopener">Ver el proceso en TikTok</a>`;
 }
 
 // ---------- Cargar datos ----------
@@ -104,6 +110,10 @@ const SHARED_STYLE = `
   .btn-print span { font-family: var(--serif); font-size: 18px; font-weight: 300; color: var(--accent); letter-spacing: 0; text-transform: none; }
   .btn-wsp { display: block; text-align: center; color: var(--ink-3); font-size: 11px; letter-spacing: 0.5px; padding: 8px; transition: color 0.2s; text-decoration: none; }
   .btn-wsp:hover { color: var(--ink); }
+  .btn-tiktok { display: flex; align-items: center; justify-content: center; gap: 8px; background: #111; color: #fff; padding: 12px 20px; border-radius: 2px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .btn-tiktok:hover { background: #2a2a2a; }
+  .wsp-float { position: fixed; right: 20px; bottom: 20px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: transform 0.2s; }
+  .wsp-float:hover { transform: translateY(-2px) scale(1.05); }
   .certificado-section { margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(26,24,20,0.1); }
   .cert-title { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 8px; }
   .cert-desc { font-size: 13px; color: var(--ink-3); line-height: 1.7; margin-bottom: 16px; }
@@ -179,6 +189,7 @@ function buildObraHTML(o) {
       if (o.paypal_original) acciones += `<a href="${escapeHtml(o.paypal_original)}" class="btn-pp" target="_blank" rel="noopener">Pagar con PayPal</a>`;
       acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp antes de comprar</a>`;
     }
+    acciones += tiktokLink(o);
 
     bloqueOriginal = `
       <div class="compra-block">
@@ -205,6 +216,7 @@ function buildObraHTML(o) {
     if (o.mercadopago_print) acciones += `<a href="${escapeHtml(o.mercadopago_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
     if (o.paypal_print) acciones += `<a href="${escapeHtml(o.paypal_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
     acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20el%20print%20de%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
+    acciones += tiktokLink(o);
 
     const edicionHTML = o.edicion_total ? (() => {
       const vendidos = o.prints_vendidos || 0;
@@ -339,6 +351,10 @@ ${JSON.stringify(schemaClean, null, 2)}
       </div>
   </div>
 </main>
+
+<a class="wsp-float" href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Vengo%20de%20la%20web" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="none"><path fill="#fff" d="M16 2.8A13.2 13.2 0 0 0 4.5 21.1L2.9 28l7.1-1.5A13.2 13.2 0 1 0 16 2.8zm0 24.2c-2.3 0-4.5-.6-6.4-1.8l-.5-.3-4.2.9.9-4.1-.3-.5A11 11 0 1 1 16 27zm6.2-8.2c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-1-1.6-2.1-1.8-2.5-.2-.3 0-.5.1-.7l.5-.6a.7.7 0 0 0 0-.9c-.1-.2-.2-1-1-2.5-.3-.6-.6-.5-.8-.5h-.7c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 2-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.2-.6-.3z"/></svg>
+</a>
 
 <footer>
   <div class="footer-inner">

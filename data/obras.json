@@ -22,7 +22,8 @@
       "vendida": true,
       "qr_url": "",
       "certificado": "",
-      "tipo": "original"
+      "tipo": "original",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Lucy",
@@ -46,7 +47,8 @@
       "vendida": true,
       "qr_url": "",
       "certificado": "",
-      "tipo": "original"
+      "tipo": "original",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ghoul",
@@ -70,7 +72,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Julian",
@@ -92,7 +95,8 @@
       "vendida": true,
       "qr_url": "",
       "certificado": "",
-      "tipo": "original"
+      "tipo": "original",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ray L.",
@@ -115,7 +119,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Hitchcock",
@@ -139,7 +144,8 @@
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "tipo": "original"
+      "tipo": "original",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "El Padrino",
@@ -163,7 +169,8 @@
       "disponible": false,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "El astronauta",
@@ -176,7 +183,7 @@
       "alto_cm": 21,
       "descripcion": "¿Qué le pasa a una persona cuando desaparece todo el mundo? La película lenta de Adam Sandler sobre un astronauta aislado me dio la excusa para pintar el silencio.\n\nEs óleo sobre panel rígido (15×21 cm), con mucha atención a la luz artificial y a los reflejos del casco. La figura no mira el infinito: mira hacia adentro. Eso es lo que hace el aislamiento — te convierte en tu propio espectador.\n\nEl original ya se vendió. Quedan 10 réplicas numeradas en calidad de museo, impresas para respetar cada matiz de esa luz, con mi certificado.",
       "imagen": "/imagenes/astronauta.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -187,7 +194,8 @@
       "disponible": false,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "XingXing",
@@ -211,7 +219,8 @@
       "vendida": true,
       "qr_url": "",
       "certificado": "",
-      "tipo": "original"
+      "tipo": "original",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Mr. Pink",
@@ -224,7 +233,7 @@
       "alto_cm": 21,
       "descripcion": "Casi todos los retratos buscan que mires los ojos. Este no: busca que mires lo que pasa alrededor de ellos.\n\n\"Mr. Pink\" es el personaje que no para de hablar y en el fondo no quiere que le vean las manos. Lo pinté pensando en eso: en cómo la neurosis nunca está donde uno la declara, sino en el gesto que se escapa. Por eso la pincelada acá no obedece al rostro: le desobedece. Hay trazos que no dibujan — empujan, vuelven sobre sí mismos. Eso que Freud llamó lo inconsciente y Lacan describió como un discurso que se cuela por los huecos, acá está en la superficie del óleo, a la vista.\n\nMirá la luz: no es la de una escena, es la de un interrogatorio que el personaje se hace a sí mismo. El fondo no acompaña, presiona.\n\nEl original ya tiene dueño. Quedan 10 réplicas numeradas y firmadas, impresas en calidad de museo con mi certificado. La copia también es una pregunta: qué se pierde cuando un cuadro se repite.",
       "imagen": "/imagenes/unknown.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -235,7 +244,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Tini",
@@ -248,7 +258,7 @@
       "alto_cm": 21,
       "descripcion": "Hay colores que no se llevan bien y justamente por eso se vuelven inolvidables. El negro y el amarillo son uno de esos pares: el amarillo es pura energía, el negro es el fondo contra el que esa energía se nota.\n\nTini tiene una faceta magnética, el momento en el que la figura se vuelve símbolo. Lo pinté con contraste brutal, pensando en cómo la fama nos convierte en imagen: cuánto queda de una persona cuando queda solo su silueta eléctrica. Mirá cómo el amarillo no rellena: muerde.\n\nEl original ya se vendió. Quedan 10 réplicas numeradas, impresas en máxima fidelidad y con mi certificado de autenticidad.",
       "imagen": "/imagenes/Tini.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -257,7 +267,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Maria Becerra",
@@ -270,7 +281,7 @@
       "alto_cm": 21,
       "descripcion": "La Nena de Argentina tiene una luz propia, y esa luz es violeta y amarilla. Esta obra juega con ese choque: lo profundo contra lo eléctrico.\n\nCuando pintaba pensaba en algo que me obsesiona de la cultura de masas: cómo una persona real se vuelve, de golpe, una figura que millones reconocen. El retrato no discute esa fama — la muestra. Mirá el contraste entre el violeta y el amarillo: no es decoración, es el pulso de la imagen.\n\nEl original ya se vendió y cuelga en una casa particular. Esta edición en print de papel premium le mete ese shock de color a cualquier rincón apagado. Numerada, con mi certificado.",
       "imagen": "/imagenes/Mariabecerra.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -279,7 +290,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Cazzu",
@@ -292,7 +304,7 @@
       "alto_cm": 21,
       "descripcion": "El rojo y el verde son contrarios en el círculo cromático, y Cazzu es una artista de los contrarios: la dureza y la sensibilidad conviviendo. Esta obra los hace chocar a propósito.\n\nLo que me interesaba no era la actitud como pose, sino lo que la pose protege. En el trap como en el retrato, lo que se muestra fuerte suele estar cuidando algo que no se muestra. Mirá las pinceladas: violentas de cerca, pero el conjunto sostiene un equilibrio.\n\nEl original ya voló. Quedan 10 réplicas numeradas en calidad premium, con mi certificado firmado a mano.",
       "imagen": "/imagenes/Cazzu.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -301,7 +313,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Catriel y Paco",
@@ -314,7 +327,7 @@
       "alto_cm": 21,
       "descripcion": "Ca7riel y Paco Amoroso son música de noche y de riesgo, y esta obra es eso: rojos, naranjas y un verde limón que no piden permiso.\n\nHay algo de la sociología del escenario que me fascina: la energía que dos personas se pasan entre sí en vivo. Acá no hay un retrato de uno solo — hay un retrato de un dúo, que es casi un organismo. Mirá cómo el color se mueve entre los dos: eso es la química.\n\nEl original ya tiene dueño. Quedan 10 réplicas numeradas en calidad de museo, con mi certificado de autenticidad.",
       "imagen": "/imagenes/Catrielypaco.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -323,7 +336,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Taylor",
@@ -336,7 +350,7 @@
       "alto_cm": 21,
       "descripcion": "Taylor Swift construyó una carrera entera contando historias en canciones. Esta obra intenta algo parecido en pintura: no retratar a la persona, sino el clima de sus historias — coral y violeta, luz de escenario y algo más íntimo.\n\nLo que me gusta de pintar figuras que todo el mundo reconoce es que el reconocimiento te da una ventaja: no hace falta presentarlas. Hace falta preguntarse qué son cuando nadie las mira. Este retrato intenta responder eso.\n\nEl original ya está colgado en la casa de otro coleccionista. Quedan 10 réplicas numeradas en papel premium, con mi certificado firmado.",
       "imagen": "/imagenes/Taylor.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -345,7 +359,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Luck Ra",
@@ -358,7 +373,7 @@
       "alto_cm": 21,
       "descripcion": "Es una sola pieza en el mundo. Si parpadeás, te la ganan.\n\nEl original ya encontró dueño. Quedan 10 réplicas numeradas en calidad premium, con mi certificado firmado, para que aquel azul también entre a tu casa.",
       "imagen": "/imagenes/Luckra.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -367,7 +382,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Justin",
@@ -380,7 +396,7 @@
       "alto_cm": 21,
       "descripcion": "Es un retrato para pensar, no para decorar. El original ya fue vendido; quedan prints numerados con mi certificado.",
       "imagen": "/imagenes/Justin.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -389,7 +405,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Charly",
@@ -402,7 +419,7 @@
       "alto_cm": 21,
       "descripcion": "Charly García de la época de Clics Modernos no era una persona: era una corriente eléctrica. Los rojos furiosos y los azules vivos de esta obra intentan atrapar ese cortocircuito.\n\nPintar a un ídolo tiene una trampa: uno pinta la imagen, no a la persona. Acá quise pintar la energía — lo que la imagen esconde, lo que el escenario no muestra. El rock nacional tiene eso de las mitologías: cuánto se puede sostener el peso de un nombre. Mirá los colores chocar: eso es Charly, no la pose.\n\nEl original ya tiene dueño. De este cuadro solo van a existir 10 prints numerados, con mi certificado firmado a mano.",
       "imagen": "/imagenes/Charly.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -411,7 +428,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Gustavo",
@@ -424,7 +442,7 @@
       "alto_cm": 21,
       "descripcion": "El original es único y ya tiene pared: se fue a la casa de un coleccionista. Quedan 10 réplicas numeradas en calidad premium, con mi certificado firmado.",
       "imagen": "/imagenes/Gustavo.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -433,7 +451,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Indio",
@@ -446,7 +465,7 @@
       "alto_cm": 21,
       "descripcion": "Ya vas a verla colgada en la casa de otro: el original encontró dueño. Quedan 10 réplicas numeradas con mi certificado.",
       "imagen": "/imagenes/Indio.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -456,7 +475,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Carca",
@@ -469,7 +489,7 @@
       "alto_cm": 21,
       "descripcion": "Carca tiene una elegancia de escenario difícil de explicar: el rock nacional refinado, sin necesidad de gritar. Los azules nocturnos y las luces naranjas de esta obra intentan atrapar ese momento exacto del show.\n\nLo que me interesa del escenario es la distancia: cómo el músico y el público se miran desde una separación que el arte acorta por un rato. Mirá los destellos blancos — no están para iluminar, están para marcar ese instante en el que todo se junta.\n\nEl original voló. Quedan 10 réplicas numeradas en alta fidelidad, con mi certificado de autenticidad.",
       "imagen": "/imagenes/Carca.webp",
-      "precio": "$30.000",
+      "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
       "paypal_original": "",
@@ -480,7 +500,8 @@
       "disponible": true,
       "vendida": true,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Pantera",
@@ -503,7 +524,8 @@
       "disponible": true,
       "vendida": false,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Monoblocks",
@@ -525,7 +547,8 @@
       "disponible": true,
       "vendida": false,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "A las margaritas 1",
@@ -547,7 +570,8 @@
       "disponible": true,
       "vendida": false,
       "qr_url": "",
-      "certificado": ""
+      "certificado": "",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ascenso: Raiz",
@@ -572,7 +596,8 @@
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "coleccion": "ascenso"
+      "coleccion": "ascenso",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ascenso: Sacro",
@@ -597,7 +622,8 @@
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "coleccion": "ascenso"
+      "coleccion": "ascenso",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ascenso: Plexo",
@@ -622,7 +648,8 @@
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "coleccion": "ascenso"
+      "coleccion": "ascenso",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ascenso: Corazon",
@@ -647,7 +674,8 @@
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "coleccion": "ascenso"
+      "coleccion": "ascenso",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ascenso: Garganta",
@@ -672,7 +700,8 @@
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "coleccion": "ascenso"
+      "coleccion": "ascenso",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ascenso: Tercer Ojo",
@@ -697,7 +726,8 @@
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "coleccion": "ascenso"
+      "coleccion": "ascenso",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     },
     {
       "titulo": "Ascenso: Corona",
@@ -722,7 +752,8 @@
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "coleccion": "ascenso"
+      "coleccion": "ascenso",
+      "tiktok_url": "https://www.tiktok.com/@jcmachadoart"
     }
   ]
 }
