@@ -779,8 +779,14 @@
     const esSoloPrint = obra.tipo === 'solo_print';
 
     if (obra.vendida) {
-      precioLabel.textContent = 'Esta obra ya fue vendida';
-      actions.innerHTML = '<a href="#contacto" class="modal-btn-wsp" onclick="closeModal()">→ Consultame por una obra similar</a>';
+      const tienePrint = obra.print_precio && obra.mercadopago_print;
+      precioLabel.textContent = tienePrint ? 'Original vendido · print disponible' : 'Esta obra ya fue vendida';
+      let html = '';
+      if (tienePrint) {
+        html += '<a href="' + obra.mercadopago_print + '" class="modal-btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>' + obra.print_precio + '</span></a>';
+      }
+      html += '<a href="#contacto" class="modal-btn-wsp" onclick="closeModal()">→ Consultame por una obra similar</a>';
+      actions.innerHTML = html;
     } else if (esSoloPrint) {
       precioLabel.textContent = 'Solo disponible en print';
       let html = '';
