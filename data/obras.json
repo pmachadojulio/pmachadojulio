@@ -207,8 +207,8 @@
       "paypal_print": "",
       "edicion_total": null,
       "prints_vendidos": null,
-      "disponible": true,
-      "vendida": false,
+      "disponible": false,
+      "vendida": true,
       "qr_url": "",
       "certificado": "",
       "tipo": "original"
