@@ -87,6 +87,13 @@ const SHARED_STYLE = `
   .obra-precio-label { font-size: 10px; color: var(--ink-3); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
   .obra-precio { font-family: var(--serif); font-size: 40px; font-weight: 300; color: var(--accent); line-height: 1; }
   .vendida-tag { display: inline-block; border: 1.5px solid #d94f4f; color: #d94f4f; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 5px 14px; border-radius: 2px; margin-bottom: 20px; }
+  .compra-block { border: 1px solid rgba(26,24,20,0.12); border-radius: 4px; padding: 22px; margin-bottom: 20px; background: var(--white); }
+  .compra-block:last-child { margin-bottom: 0; }
+  .compra-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .compra-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-3); }
+  .compra-precio { font-family: var(--serif); font-size: 32px; font-weight: 300; color: var(--accent); line-height: 1; }
+  .compra-quedan { font-size: 12px; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
+  .compra-incluye { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(26,24,20,0.1); font-size: 12px; color: var(--ink-2); line-height: 1.9; }
   .acciones { display: flex; flex-direction: column; gap: 10px; }
   .btn-mp { display: flex; align-items: center; justify-content: center; gap: 8px; background: #009ee3; color: #fff; padding: 14px 20px; border-radius: 2px; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .btn-mp:hover { background: #007ab8; }
@@ -130,7 +137,6 @@ const GA_SNIPPET = `<!-- Google tag (gtag.js) -->
 
 function buildObraHTML(o) {
   const slug = slugify(o.titulo || o.id);
-  const esSoloPrint = o.tipo === 'solo_print';
   const url = `${SITE_URL}/obra/${slug}/`;
   const imagenUrl = o.imagen ? (o.imagen.startsWith('http') ? o.imagen : `${SITE_URL}/${o.imagen.replace(/^\//, '')}`) : '';
   const categoria = o.categoria ? o.categoria.charAt(0).toUpperCase() + o.categoria.slice(1) : 'Obra';
@@ -150,21 +156,80 @@ function buildObraHTML(o) {
     `<div class="ficha-item"><div class="ficha-label">${escapeHtml(i.label)}</div><div class="ficha-val">${escapeHtml(i.val)}</div></div>`
   ).join('');
 
-  // Acciones de compra
-  let accionesHTML = '';
-  if (o.vendida) {
-    accionesHTML = `<a href="/#contacto" class="btn-wsp">→ Consultame por una obra similar</a>`;
-  } else if (esSoloPrint) {
-    if (o.print_precio && o.mercadopago_print) accionesHTML += `<a href="${escapeHtml(o.mercadopago_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
-    accionesHTML += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20el%20print%20de%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
-  } else {
-    if (o.mercadopago_original) accionesHTML += `<a href="${escapeHtml(o.mercadopago_original)}" class="btn-mp" target="_blank" rel="noopener">Comprar con Mercado Pago</a>`;
-    if (o.paypal_original) accionesHTML += `<a href="${escapeHtml(o.paypal_original)}" class="btn-pp" target="_blank" rel="noopener">Pagar con PayPal</a>`;
-    if (o.print_precio && o.mercadopago_print) accionesHTML += `<a href="${escapeHtml(o.mercadopago_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
-    accionesHTML += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
+  // ---------- Bloques de compra: Original y Print separados ----------
+
+  const esSoloPrint = o.tipo === 'solo_print';
+  const tieneOriginal = !esSoloPrint;
+  const tienePrint = !!o.print_precio;
+
+  // --- Bloque Obra Original ---
+  let bloqueOriginal = '';
+  if (tieneOriginal) {
+    const estadoTag = o.vendida
+      ? '<div class="vendida-tag">Original no disponible</div>'
+      : o.disponible
+        ? '<div class="vendida-tag" style="border-color:#2f7a4d;color:#2f7a4d;">Original disponible</div>'
+        : '<div class="vendida-tag">No disponible</div>';
+
+    let acciones = '';
+    if (o.vendida) {
+      acciones = `<a href="/#contacto" class="btn-wsp">→ Consultame por una obra similar</a>`;
+    } else {
+      if (o.mercadopago_original) acciones += `<a href="${escapeHtml(o.mercadopago_original)}" class="btn-mp" target="_blank" rel="noopener">Comprar con Mercado Pago</a>`;
+      if (o.paypal_original) acciones += `<a href="${escapeHtml(o.paypal_original)}" class="btn-pp" target="_blank" rel="noopener">Pagar con PayPal</a>`;
+      acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp antes de comprar</a>`;
+    }
+
+    bloqueOriginal = `
+      <div class="compra-block">
+        <div class="compra-head">
+          <span class="compra-label">Obra original</span>
+          ${o.precio ? `<span class="compra-precio">${escapeHtml(o.precio)}</span>` : ''}
+        </div>
+        ${estadoTag}
+        <div class="acciones">${acciones}</div>
+        ${o.vendida ? '' : `
+        <div class="compra-incluye">
+          <div>✓ Obra original única</div>
+          <div>✓ Certificado de autenticidad con QR</div>
+          <div>✓ Embalaje protegido para envío</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(26,24,20,0.1);"><span style="font-weight:500;">Envío:</span> OCA o Andreani · $5.000–$8.000 según destino · 3 a 7 días hábiles</div>
+        </div>`}
+      </div>`;
   }
 
-  // Certificado / edición limitada
+  // --- Bloque Print A3 ---
+  let bloquePrint = '';
+  if (tienePrint) {
+    let acciones = '';
+    if (o.mercadopago_print) acciones += `<a href="${escapeHtml(o.mercadopago_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
+    if (o.paypal_print) acciones += `<a href="${escapeHtml(o.paypal_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
+    acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20el%20print%20de%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
+
+    const edicionHTML = o.edicion_total ? (() => {
+      const vendidos = o.prints_vendidos || 0;
+      const quedan = o.edicion_total - vendidos;
+      if (quedan <= 0) return '<div class="compra-quedan" style="color:#d94f4f;">Tirada agotada</div>';
+      return `<div class="compra-quedan">Edición de ${o.edicion_total} · quedan ${quedan}</div>`;
+    })() : '';
+
+    bloquePrint = `
+      <div class="compra-block">
+        <div class="compra-head">
+          <span class="compra-label">Print A3</span>
+          <span class="compra-precio">${escapeHtml(o.print_precio)}</span>
+        </div>
+        ${edicionHTML}
+        <div class="acciones">${acciones}</div>
+        <div class="compra-incluye">
+          <div>✓ Print A3 de alta resolución</div>
+          <div>✓ Embalaje en tubo rígido de cartón</div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(26,24,20,0.1);"><span style="font-weight:500;">Envío:</span> OCA o Andreani · $5.000–$8.000 según destino · 3 a 7 días hábiles</div>
+        </div>
+      </div>`;
+  }
+
+  // Certificado de autenticidad (solo si la obra tiene original)
   const certHTML = !esSoloPrint ? `
       <div class="certificado-section">
         <h3 class="cert-title">Certificado de autenticidad</h3>
@@ -177,46 +242,32 @@ function buildObraHTML(o) {
           </div>
         </div>
       </div>
-    ` : o.edicion_total ? `
-      <div class="certificado-section">
-        <h3 class="cert-title">Edición limitada</h3>
-        <p class="cert-desc">Este print pertenece a una edición limitada de <strong>${o.edicion_total} ejemplares</strong>. Cada copia está numerada y certificada por el artista.</p>
-        <span class="cert-id">${escapeHtml(o.id)} · Edición de ${o.edicion_total}</span>
-        ${(() => {
-          const vendidos = o.prints_vendidos || 0;
-          const quedan = o.edicion_total - vendidos;
-          if (quedan <= 0) return '<div style="margin-top:10px;font-size:12px;color:#d94f4f;font-weight:500;">Tirada agotada</div>';
-          return `<div style="margin-top:10px;font-size:12px;color:var(--accent);font-weight:500;">Quedan ${quedan} de ${o.edicion_total}</div>`;
-        })()}
-      </div>
     ` : '';
-
-  const vendidaTag = o.vendida
-    ? '<div class="vendida-tag">Original no disponible</div>'
-    : esSoloPrint
-      ? '<div class="vendida-tag" style="border-color:#2a2a3a;color:#2a2a3a;">Solo disponible en Print</div>'
-      : '';
-  const precioLabel = o.vendida ? 'Esta obra ya fue vendida' : esSoloPrint ? 'Precio del print' : 'Precio de obra original';
-
-  const queIncluyeHTML = (!esSoloPrint && !o.vendida) ? `
-            <div style="margin-bottom:8px;font-weight:500;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-3);">Qué incluye</div>
-            <div>✓ Obra original</div>
-            <div>✓ Certificado de autenticidad con QR</div>
-            <div>✓ Embalaje protegido para envío</div>
-            <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(26,24,20,0.1);">
-              <span style="font-weight:500;">Envío:</span> OCA o Andreani · $5.000–$8.000 según destino · 3 a 7 días hábiles
-            </div>
-  ` : esSoloPrint ? `
-            <div style="margin-bottom:8px;font-weight:500;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-3);">Qué incluye</div>
-            <div>✓ Print A3 de alta resolución</div>
-            <div>✓ Embalaje en tubo rígido de cartón</div>
-            <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(26,24,20,0.1);">
-              <span style="font-weight:500;">Envío:</span> OCA o Andreani · $5.000–$8.000 según destino · 3 a 7 días hábiles
-            </div>
-  ` : '';
 
   // ---------- JSON-LD schema.org VisualArtwork ----------
   const precioNum = precioNumero(o.vendida ? null : o.precio);
+  const printNum = precioNumero(o.print_precio);
+  const offers = [];
+  if (!o.vendida && precioNum) {
+    offers.push({
+      "@type": "Offer",
+      "name": "Obra original",
+      "price": precioNum,
+      "priceCurrency": "ARS",
+      "availability": o.disponible ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "url": url
+    });
+  }
+  if (printNum) {
+    offers.push({
+      "@type": "Offer",
+      "name": "Print A3",
+      "price": printNum,
+      "priceCurrency": "ARS",
+      "availability": o.edicion_total && (o.edicion_total - (o.prints_vendidos || 0)) <= 0 ? "https://schema.org/OutOfStock" : "https://schema.org/InStock",
+      "url": url
+    });
+  }
   const schema = {
     "@context": "https://schema.org",
     "@type": "VisualArtwork",
@@ -235,13 +286,7 @@ function buildObraHTML(o) {
       "name": "Julio Machado",
       "url": SITE_URL
     },
-    "offers": (!o.vendida && precioNum) ? {
-      "@type": "Offer",
-      "price": precioNum,
-      "priceCurrency": "ARS",
-      "availability": o.disponible ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-      "url": url
-    } : undefined
+    "offers": offers.length ? offers : undefined
   };
   // Limpiar keys undefined
   JSON.stringify(schema, (k, v) => v === undefined ? undefined : v);
@@ -282,25 +327,16 @@ ${JSON.stringify(schemaClean, null, 2)}
     <div class="obra-img-wrap">
       <img src="${escapeHtml(o.imagen || '')}" alt="${escapeHtml(o.titulo)} — Julio Machado" loading="eager">
     </div>
-    <div class="obra-detail">
-      <p class="obra-eyebrow">${escapeHtml(categoria)} · Julio Machado</p>
-      <h1 class="obra-titulo">${escapeHtml(o.titulo)}</h1>
-      <p class="obra-tecnica">${escapeHtml(o.tecnica || '')}</p>
-      <p class="obra-desc">${escapeHtml(o.descripcion || '')}</p>
-      <div class="ficha">${fichaHTML}</div>
-      ${vendidaTag}
-      <div class="obra-precio-wrap">
-        <div class="obra-precio-label">${precioLabel}</div>
-        ${!o.vendida ? '<div class="obra-precio">' + escapeHtml(o.precio) + '</div>' : ''}
+      <div class="obra-detail">
+        <p class="obra-eyebrow">${escapeHtml(categoria)} · Julio Machado</p>
+        <h1 class="obra-titulo">${escapeHtml(o.titulo)}</h1>
+        <p class="obra-tecnica">${escapeHtml(o.tecnica || '')}</p>
+        <p class="obra-desc">${escapeHtml(o.descripcion || '')}</p>
+        <div class="ficha">${fichaHTML}</div>
+        ${bloqueOriginal}
+        ${bloquePrint}
+        ${certHTML}
       </div>
-      <div class="acciones">${accionesHTML}</div>
-
-      <div style="margin-top:20px;padding:16px;background:var(--paper-2);border-radius:4px;font-size:12px;color:var(--ink-2);line-height:1.8;">
-        ${queIncluyeHTML}
-      </div>
-
-      ${certHTML}
-    </div>
   </div>
 </main>
 

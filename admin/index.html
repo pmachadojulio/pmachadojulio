@@ -418,6 +418,14 @@
           <option value="caricatura">Caricatura</option>
         </select>
       </div>
+      <div class="field">
+        <label>¿Cómo se vende?</label>
+        <select id="f-tipo">
+          <option value="original">Original (también puede venderse en print)</option>
+          <option value="solo_print">Solo print</option>
+        </select>
+        <div class="muted" style="font-size:.75rem;">Muestra la obra en la sección "Obras originales" y/o "Prints".</div>
+      </div>
       <div class="field"><label>Año</label><input id="f-anio" type="number" placeholder="2025"></div>
       <div class="field"><label>Técnica</label><input id="f-tecnica" placeholder="Óleo sobre lienzo"></div>
       <div class="field"><label>Ancho (cm)</label><input id="f-ancho" type="number" step="0.1"></div>
@@ -634,6 +642,7 @@ function openObraModal(id) {
   $('f-id').value = o ? o.id : '';
   $('f-titulo').value = o ? o.titulo : '';
   $('f-categoria').value = (o && o.categoria) || 'retrato';
+  $('f-tipo').value = (o && o.tipo) || 'original';
   $('f-anio').value = o && o.anio ? o.anio : '';
   $('f-tecnica').value = o ? o.tecnica : '';
   $('f-ancho').value = o && o.ancho_cm ? o.ancho_cm : '';
@@ -693,6 +702,7 @@ $('obra-save-btn').addEventListener('click', async () => {
     id: $('f-id').value || null,
     titulo,
     categoria: $('f-categoria').value,
+    tipo: $('f-tipo').value,
     anio: $('f-anio').value,
     tecnica: $('f-tecnica').value,
     ancho_cm: $('f-ancho').value,

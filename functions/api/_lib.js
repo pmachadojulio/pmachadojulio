@@ -156,6 +156,7 @@ export function cleanObraFields(obra) {
   return {
     titulo: str(obra.titulo),
     id: str(obra.id),
+    tipo: str(obra.tipo),
     categoria: str(obra.categoria),
     anio: num(obra.anio),
     tecnica: str(obra.tecnica),
