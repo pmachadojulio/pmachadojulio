@@ -122,6 +122,8 @@
   .filter-bar { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
   .filter-btn { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(26,24,20,0.2); border-radius: 40px; background: transparent; color: var(--ink-2); cursor: pointer; transition: all 0.2s; }
   .filter-btn:hover, .filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .filter-btn-promo { border-color: var(--accent); color: var(--accent); }
+  .filter-btn-promo:hover, .filter-btn-promo.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
   .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
   .gallery-sub { margin-bottom: 64px; }
   .gallery-sub:last-child { margin-bottom: 0; }
@@ -374,36 +376,24 @@
       </div>
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="ascenso">Serie Ascenso (Chakras)</button>
-        <button class="filter-btn" data-filter="retrato">Retratos</button>
-        <button class="filter-btn" data-filter="paisaje">Paisajes</button>
+        <button class="filter-btn" data-filter="original">Originales</button>
+        <button class="filter-btn" data-filter="print">Prints</button>
+        <button class="filter-btn filter-btn-promo" data-filter="ascenso">Serie Ascenso (Chakras)</button>
       </div>
     </div>
 
     <div class="gallery-sub">
       <div class="gallery-subhead fade-up">
-        <p class="eyebrow">Piezas únicas</p>
-        <h3 class="gallery-subtitle">Obras <em>originales</em></h3>
-        <p class="gallery-subdesc">Óleos únicos, con certificado de autenticidad y QR.</p>
+        <p class="eyebrow">Piezas únicas y ediciones</p>
+        <h3 class="gallery-subtitle">Originales y <em>prints</em>, lado a lado</h3>
+        <p class="gallery-subdesc">Óleos únicos con certificado de autenticidad, y reproducciones firmadas en edición limitada.</p>
       </div>
-      <div class="gallery-grid" id="gridOriginales">
-        <!-- Obras originales desde data/obras.json -->
-      </div>
-    </div>
-
-    <div class="gallery-sub">
-      <div class="gallery-subhead fade-up">
-        <p class="eyebrow">Edición limitada</p>
-        <h3 class="gallery-subtitle">Prints <em>A3</em></h3>
-        <p class="gallery-subdesc">Reproducciones firmadas en edición limitada.</p>
-      </div>
-      <div class="gallery-grid" id="gridPrints">
-        <!-- Prints desde data/obras.json -->
+      <div class="gallery-grid" id="gridObras">
+        <!-- Obras desde data/obras.json: original + print consecutivos -->
       </div>
     </div>
   </div>
 
-<!-- MODAL -->
 <!-- MODAL -->
 <div class="modal-backdrop" id="modalBackdrop" onclick="closeModalBackdrop(event)">
   <div class="modal" id="modal">
@@ -750,7 +740,11 @@
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.filter-btn[data-filter="' + filter + '"]').classList.add('active');
     document.querySelectorAll('.gallery-item').forEach(item => {
-      item.style.display = (filter === 'all' || item.dataset.category === filter || item.dataset.coleccion === filter) ? '' : 'none';
+      const show = (filter === 'all')
+        || (filter === 'original' && item.dataset.tipo === 'original')
+        || (filter === 'print' && item.dataset.tipo === 'print')
+        || (filter === 'ascenso' && item.dataset.coleccion === 'ascenso');
+      item.style.display = show ? '' : 'none';
     });
   }
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -845,6 +839,7 @@
     div.className = 'gallery-item fade-up';
     div.dataset.category = obra.categoria || '';
     div.dataset.coleccion = obra.coleccion || '';
+    div.dataset.tipo = contexto;
 
     const slug = slugify(obra.titulo || obra.id);
 
@@ -914,37 +909,33 @@
       return res.json();
     })
     .then(data => {
-      const gridOriginales = document.getElementById('gridOriginales');
-      const gridPrints = document.getElementById('gridPrints');
+      const gridObras = document.getElementById('gridObras');
       const obras = (data.obras || []).slice().reverse();
 
       if (obras.length === 0) {
-        emptyState(gridOriginales, 'No hay obras disponibles todavía.');
-        emptyState(gridPrints, 'No hay prints disponibles todavía.');
+        emptyState(gridObras, 'No hay obras disponibles todavía.');
         return;
       }
 
-      const originales = obras.filter(o => o.tipo !== 'solo_print');
-      const prints = obras.filter(o => o.print_precio);
+      let contados = 0;
+      obras.forEach(obra => {
+        if (obra.tipo !== 'solo_print') {
+          gridObras.appendChild(buildGalleryItem(obra, 'original'));
+          contados++;
+        }
+        if (obra.print_precio) {
+          gridObras.appendChild(buildGalleryItem(obra, 'print'));
+          contados++;
+        }
+      });
 
-      if (originales.length === 0) {
-        emptyState(gridOriginales, 'No hay obras originales todavía.');
-      } else {
-        originales.forEach(obra => gridOriginales.appendChild(buildGalleryItem(obra, 'original')));
-      }
-
-      if (prints.length === 0) {
-        emptyState(gridPrints, 'No hay prints disponibles todavía.');
-      } else {
-        prints.forEach(obra => gridPrints.appendChild(buildGalleryItem(obra, 'print')));
-      }
+      if (contados === 0) emptyState(gridObras, 'No hay obras disponibles todavía.');
 
       observeFadeUps();
     })
     .catch(err => {
       console.error('Error cargando galería:', err);
-      emptyState(document.getElementById('gridOriginales'), 'Error cargando las obras. Intentá recargar la página.');
-      emptyState(document.getElementById('gridPrints'), 'Error cargando las obras. Intentá recargar la página.');
+      emptyState(document.getElementById('gridObras'), 'Error cargando las obras. Intentá recargar la página.');
     });
 
   /* NEWSLETTER → guarda en base real (D1) y avisa por mail, con fallback mailto */
