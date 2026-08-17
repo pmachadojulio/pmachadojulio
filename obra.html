@@ -83,6 +83,8 @@
   .btn-wsp:hover { color: var(--ink); }
   .btn-tiktok { display: flex; align-items: center; justify-content: center; gap: 8px; background: #111; color: #fff; padding: 12px 20px; border-radius: 2px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .btn-tiktok:hover { background: #2a2a2a; }
+  .proceso-block { margin-top: 24px; padding: 18px; background: var(--paper-2); border-radius: 4px; }
+  .proceso-head { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
   .wsp-float { position: fixed; right: 20px; bottom: 20px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: transform 0.2s; }
   .wsp-float:hover { transform: translateY(-2px) scale(1.05); }
 
@@ -204,10 +206,13 @@
       if (o.print_precio && o.mercadopago_print) accionesHTML += `<a href="${o.mercadopago_print}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${o.print_precio}</span></a>`;
       accionesHTML += `<a href="https://wa.me/5493534018769?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
     }
-    const tiktokLink = o.tiktok_url
-      ? `<a href="${o.tiktok_url}" class="btn-tiktok" target="_blank" rel="noopener">Ver el proceso en TikTok</a>`
+
+    const procesoBlock = o.tiktok_url
+      ? `<div class="proceso-block">
+          <div class="proceso-head">Proceso creativo</div>
+          <div class="acciones"><a href="${o.tiktok_url}" class="btn-tiktok" target="_blank" rel="noopener">Ver el proceso de esta obra en TikTok</a></div>
+        </div>`
       : '';
-    accionesHTML += tiktokLink;
 
     // Certificado (solo si es original, no solo_print)
     const qrUrl = 'https://jcmachado.com/obra/?slug=' + slug;
@@ -256,6 +261,7 @@
           <p class="obra-tecnica">${o.tecnica || ''}</p>
           <p class="obra-desc">${o.descripcion || ''}</p>
           <div class="ficha">${fichaHTML}</div>
+          ${procesoBlock}
           ${vendidaTag}
           <div class="obra-precio-wrap">
             <div class="obra-precio-label">${precioLabel}</div>

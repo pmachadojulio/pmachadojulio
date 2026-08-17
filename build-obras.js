@@ -44,7 +44,17 @@ function precioNumero(precioStr) {
 
 function tiktokLink(o) {
   const url = o.tiktok_url || TIKTOK_URL;
-  return `<a href="${escapeHtml(url)}" class="btn-tiktok" target="_blank" rel="noopener">Ver el proceso en TikTok</a>`;
+  if (!url) return '';
+  return `<a href="${escapeHtml(url)}" class="btn-tiktok" target="_blank" rel="noopener">Ver el proceso de esta obra en TikTok</a>`;
+}
+
+function procesoHTML(o) {
+  const t = tiktokLink(o);
+  if (!t) return '';
+  return `<div class="proceso-block">
+    <div class="proceso-head">Proceso creativo</div>
+    <div class="acciones">${t}</div>
+  </div>`;
 }
 
 // ---------- Cargar datos ----------
@@ -112,6 +122,8 @@ const SHARED_STYLE = `
   .btn-wsp:hover { color: var(--ink); }
   .btn-tiktok { display: flex; align-items: center; justify-content: center; gap: 8px; background: #111; color: #fff; padding: 12px 20px; border-radius: 2px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .btn-tiktok:hover { background: #2a2a2a; }
+  .proceso-block { margin-top: 24px; padding: 18px; background: var(--paper-2); border-radius: 4px; }
+  .proceso-head { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
   .wsp-float { position: fixed; right: 20px; bottom: 20px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: transform 0.2s; }
   .wsp-float:hover { transform: translateY(-2px) scale(1.05); }
   .certificado-section { margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(26,24,20,0.1); }
@@ -189,7 +201,6 @@ function buildObraHTML(o) {
       if (o.paypal_original) acciones += `<a href="${escapeHtml(o.paypal_original)}" class="btn-pp" target="_blank" rel="noopener">Pagar con PayPal</a>`;
       acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp antes de comprar</a>`;
     }
-    acciones += tiktokLink(o);
 
     bloqueOriginal = `
       <div class="compra-block">
@@ -216,7 +227,6 @@ function buildObraHTML(o) {
     if (o.mercadopago_print) acciones += `<a href="${escapeHtml(o.mercadopago_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
     if (o.paypal_print) acciones += `<a href="${escapeHtml(o.paypal_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
     acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20el%20print%20de%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
-    acciones += tiktokLink(o);
 
     const edicionHTML = o.edicion_total ? (() => {
       const vendidos = o.prints_vendidos || 0;
@@ -345,6 +355,7 @@ ${JSON.stringify(schemaClean, null, 2)}
         <p class="obra-tecnica">${escapeHtml(o.tecnica || '')}</p>
         <p class="obra-desc">${escapeHtml(o.descripcion || '')}</p>
         <div class="ficha">${fichaHTML}</div>
+        ${procesoHTML(o)}
         ${bloqueOriginal}
         ${bloquePrint}
         ${certHTML}
