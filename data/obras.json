@@ -521,11 +521,12 @@
       "mercadopago_print": "https://mpago.la/33VsNcZ",
       "paypal_print": "",
       "edicion_total": null,
-      "disponible": true,
-      "vendida": false,
+      "disponible": false,
+      "vendida": true,
       "qr_url": "",
       "certificado": "",
-      "youtube_url": "https://www.youtube.com/@Jcmachadoart"
+      "youtube_url": "https://www.youtube.com/@Jcmachadoart",
+      "prints_vendidos": null
     },
     {
       "titulo": "Monoblocks",
