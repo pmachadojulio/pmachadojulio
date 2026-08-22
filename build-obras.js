@@ -165,6 +165,9 @@ const GA_SNIPPET = `<!-- Google tag (gtag.js) -->
   gtag('config', 'G-PP48JV4JK7');
 </script>`;
 
+const CS_SNIPPET = `<!-- Contentsquare -->
+<script src="https://t.contentsquare.net/uxa/714b6ae7c74ab.js" defer></script>`;
+
 // ---------- Generar página por obra ----------
 
 function buildObraHTML(o) {
@@ -328,6 +331,7 @@ function buildObraHTML(o) {
 <html lang="es">
 <head>
 ${GA_SNIPPET}
+${CS_SNIPPET}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${escapeHtml(o.titulo)} — Julio Machado</title>
