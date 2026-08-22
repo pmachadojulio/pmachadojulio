@@ -1,0 +1,1055 @@
+[
+ {
+  "nombre": "HiperTehuelche Bariloche",
+  "categoria": "Interiorismo",
+  "ciudad": "San Carlos de Bariloche",
+  "telefono": "+54 2944 449444",
+  "web": "http://www.hipertehuelche.com/",
+  "emails": [
+   "tuemail@email.com"
+  ]
+ },
+ {
+  "nombre": "HiperTehuelche Calafate",
+  "categoria": "Interiorismo",
+  "ciudad": "El Calafate",
+  "telefono": "+54 2902 494136",
+  "web": "http://www.hipertehuelche.com/",
+  "emails": [
+   "tuemail@email.com"
+  ]
+ },
+ {
+  "nombre": "HiperTehuelche - Caleta Oliva",
+  "categoria": "Interiorismo",
+  "ciudad": "Caleta Olivia",
+  "telefono": "+54 2974 850640",
+  "web": "http://www.hipertehuelche.com/",
+  "emails": [
+   "tuemail@email.com"
+  ]
+ },
+ {
+  "nombre": "MICELI",
+  "categoria": "Interiorismo",
+  "ciudad": "Rosario",
+  "telefono": "+54 3415 288924",
+  "web": "https://www.miceli.com.ar/",
+  "emails": [
+   "consultas@miceli.com.ar",
+   "cordoba1@miceli.com.ar",
+   "support@webkul.com"
+  ]
+ },
+ {
+  "nombre": "ClimateUrbanLab",
+  "categoria": "Arquitectura",
+  "ciudad": "Posadas",
+  "telefono": "+54 9 37641 47888",
+  "web": "https://www.climateurbanlab.com.ar/",
+  "emails": [
+   "climateurbanlab@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Estudio arquitectura ALMA",
+  "categoria": "Arquitectura",
+  "ciudad": "Rosario",
+  "telefono": "+54 3416 831880",
+  "web": "https://estudioalma.com.ar/",
+  "emails": [
+   "arquitectura.alma1@gmail.com"
+  ]
+ },
+ {
+  "nombre": "MYN Estudio abierto",
+  "categoria": "Arquitectura",
+  "ciudad": "Martínez",
+  "telefono": "+54 1147 930345",
+  "web": "http://www.estudioabiertosrl.com.ar/",
+  "emails": [
+   "info@estudioabiertosrl.com.ar"
+  ]
+ },
+ {
+  "nombre": "DESPA / GRUPOFABS",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1168 600525",
+  "web": "http://grupofabs.com/",
+  "emails": [
+   "grupofabsobera@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Habitar Sustentable",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1162 721980",
+  "web": "http://www.habitarsustentable.com/",
+  "emails": [
+   "info@habitarsustentable.com"
+  ]
+ },
+ {
+  "nombre": "Arquitectos en Lanús, Zona Sur, Dibujo y Habilitación de Planos Municipales.",
+  "categoria": "Arquitectura",
+  "ciudad": "Lanús",
+  "telefono": "+54 1144 772748",
+  "web": "https://www.planosparacasas.net/",
+  "emails": [
+   "arquiefil@gmail.com"
+  ]
+ },
+ {
+  "nombre": "AISENSON Arquitectos",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1147 880575",
+  "web": "https://aisenson.com.ar/",
+  "emails": [
+   "info@aisenson.com.ar"
+  ]
+ },
+ {
+  "nombre": "Joison.Pedrazzoli - Arquitectos en General Roca",
+  "categoria": "Arquitectura",
+  "ciudad": "Gral. Roca",
+  "telefono": "+54 2984 291477",
+  "web": "https://joisonpedrazzoli.com/",
+  "emails": [
+   "mauro@joisonpedrazzoli.com",
+   "victoria@joisonpedrazzoli.com"
+  ]
+ },
+ {
+  "nombre": "AFT Arquitectos I BA",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": null,
+  "web": "http://www.aftarquitectos.com.ar/",
+  "emails": [
+   "info@aftarquitectos.com",
+   "info@aftarquitectos.com.ar"
+  ]
+ },
+ {
+  "nombre": "Bustillo Arquitectura",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1152 175048",
+  "web": "http://www.estudiobustillo.com/",
+  "emails": [
+   "esteban@estudiobustillo.com",
+   "info@estudiobustillo.com"
+  ]
+ },
+ {
+  "nombre": "ET Consultores",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1155 713440",
+  "web": "https://www.etconsultores.com.ar/",
+  "emails": [
+   "contacto@etconsultores.com.ar"
+  ]
+ },
+ {
+  "nombre": "Arquitectura y Feng shui Mario Avalos Arq.",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 9 11331 50236",
+  "web": "https://www.fengshuiarqmarioavalos.com/",
+  "emails": [
+   "avalosmarioarq@gmail.com"
+  ]
+ },
+ {
+  "nombre": "D+A Arquitectos",
+  "categoria": "Arquitectura",
+  "ciudad": "Olivos",
+  "telefono": "+54 1147 903340",
+  "web": "http://www.dyaarquitectos.com.ar/",
+  "emails": [
+   "dya.arquitectos@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Schulz + Schulz Arquitectos",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 9 11516 46210",
+  "web": "https://www.schulzarquitectos.com/contacto.html",
+  "emails": [
+   "arquitecto@ricardoschulz.com",
+   "arquitectoschulz@gmail.com"
+  ]
+ },
+ {
+  "nombre": "SCHULZ + SCHULZ ARQUITECTOS",
+  "categoria": "Arquitectura",
+  "ciudad": "Pilar",
+  "telefono": "+54 1151 646210",
+  "web": "http://www.schulzarquitectos.com/",
+  "emails": [
+   "arquitecto@ricardoschulz.com",
+   "arquitectoschulz@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Estudio Gebetsberger",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1147 880823",
+  "web": "http://www.gagarq.com.ar/",
+  "emails": [
+   "info@gagarq.com.ar"
+  ]
+ },
+ {
+  "nombre": "Facultad de Arte y Arquitectura - Universidad del Salvador (USAL)",
+  "categoria": "Arquitectura",
+  "ciudad": "ADN",
+  "telefono": "+54 1122 064740",
+  "web": "https://www.usal.edu.ar/arteyarquitectura/",
+  "emails": [
+   "arteyarq@usal.edu.ar"
+  ]
+ },
+ {
+  "nombre": "PALOARQ SRL",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1175 245489",
+  "web": "http://www.paloarq.com/",
+  "emails": [
+   "adm@paloarq.com"
+  ]
+ },
+ {
+  "nombre": "UBA, Facultad de Ingeniería - Sede Las Heras",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1145 143000",
+  "web": "http://www.fi.uba.ar/",
+  "emails": [
+   "becasing@fi.uba.ar",
+   "cultura@fi.uba.ar",
+   "cursogenero@uba.ar",
+   "depto.cye@fi.uba.ar",
+   "empleos@fi.uba.ar",
+   "graduados@fi.uba.ar",
+   "inclusion@fi.uba.ar",
+   "interac@fi.uba.ar",
+   "jiafes@fi.uba.ar",
+   "revista.elektron@fi.uba.ar",
+   "ssec.relacionesinternacionales@fi.uba.ar",
+   "tramitesalumnosmecanica@fi.uba.ar"
+  ]
+ },
+ {
+  "nombre": "cordovaestevez arquitectura",
+  "categoria": "Arquitectura",
+  "ciudad": "Quilmes",
+  "telefono": "+54 9 11309 41981",
+  "web": "http://cordovaestevez.com/",
+  "emails": [
+   "info@cordovaestevez.com"
+  ]
+ },
+ {
+  "nombre": "CAPBAUNO Colegio de Arquitectos de la Provincia de Buenos Aires Distrito Uno",
+  "categoria": "Arquitectura",
+  "ciudad": "La Plata",
+  "telefono": "+54 2214 271533",
+  "web": "http://www.capbauno.org.ar/",
+  "emails": [
+   "info@caubauno.org"
+  ]
+ },
+ {
+  "nombre": "Azcuy",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1135 888854",
+  "web": "http://azcuy.com.ar/",
+  "emails": [
+   "clientes@estudioazcuy.com"
+  ]
+ },
+ {
+  "nombre": "Universidad de Palermo",
+  "categoria": "Arquitectura",
+  "ciudad": "ABT",
+  "telefono": "+54 1149 644600",
+  "web": "http://www.palermo.edu/",
+  "emails": [
+   "informes@palermo.edu"
+  ]
+ },
+ {
+  "nombre": "Ayassa Fombella y Cia",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1148 113825",
+  "web": "http://www.ayassafombella.com/",
+  "emails": [
+   "info@ayassafombella.com"
+  ]
+ },
+ {
+  "nombre": "UAI - CESYT",
+  "categoria": "Arquitectura",
+  "ciudad": "San Isidro",
+  "telefono": "+54 1147 439678",
+  "web": "https://cesyt.edu.ar/",
+  "emails": [
+   "alejandra.nieto@uai.edu.ar",
+   "bedeliaalumnoscesyt@uai.edu.ar",
+   "bedeliaalumnoscesyt@uai.edu.armirta.corvalan",
+   "contacto@uai.edu.ar",
+   "contactoscesyt@uai.edu.ar",
+   "juanaugusto.ibarramolina@uai.edu.ar",
+   "mariela.mazzone@uai.edu.ar",
+   "mirta.corvalan@uai.edu.ar",
+   "ncesyt@uai.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Grupo Torcello",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1143 114370",
+  "web": "http://www.grupotorcello.com/esp/",
+  "emails": [
+   "gtsa@grupotorcello.com"
+  ]
+ },
+ {
+  "nombre": "USAL - Campus \"Nuestra Señora del Pilar\"",
+  "categoria": "Arquitectura",
+  "ciudad": "Pilar",
+  "telefono": "+54 2304 431260",
+  "web": "http://pilar.usal.edu.ar/",
+  "emails": [
+   "pilar@usal.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Aberturas Alukolor",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1145 539454",
+  "web": "http://www.alukolor.com.ar/",
+  "emails": [
+   "ventas@alukolor.com.ar"
+  ]
+ },
+ {
+  "nombre": "Secretaría de Extensión Universitaria U.T.N. F.R.G.P",
+  "categoria": "Arquitectura",
+  "ciudad": "Gral. Pacheco",
+  "telefono": "+54 1147 405040",
+  "web": "https://www.frgp.utn.edu.ar/",
+  "emails": [
+   "academgp@red.frgp.utn.edu.ar",
+   "capacitacion@red.frgp.utn.edu.ar",
+   "centrotecnologico@red.frgp.utn.edu.ar",
+   "clubdeemprendedores@red.frgp.utn.edu.ar",
+   "info@red.frgp.utn.edu.ar",
+   "ingreso@red.frgp.utn.edu.ar",
+   "posgrado@departamentos.frgp.utn.edu.ar",
+   "postitulo@departamentos.frgp.utn.edu.ar",
+   "sad@autoridades.frgp.utn.edu.ar",
+   "scyt@red.frgp.utn.edu.ar",
+   "tsgia@red.frgp.utn.edu.ar",
+   "tsmmyd@red.frgp.utn.edu.ar",
+   "tsp@red.frgp.utn.edu.ar",
+   "tua@red.frgp.utn.edu.ar",
+   "tutoria@red.frgp.utn.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Cubero Rubio",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1168 695905",
+  "web": "https://www.cuberorubio.com.ar/",
+  "emails": [
+   "info@cuberorubio.com.ar"
+  ]
+ },
+ {
+  "nombre": "Escuela Argentina de Diseño (EAD)",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1150 313404",
+  "web": "http://www.ead.edu.ar/",
+  "emails": [
+   "info@ead.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Universidad de Belgrano",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1147 885400",
+  "web": "http://www.ub.edu.ar/",
+  "emails": [
+   "busquedas.rrhh@ub.edu.ar",
+   "postulaciones.docentes@ub.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Puro Paisajismo - Estudio de paisajismo",
+  "categoria": "Arquitectura",
+  "ciudad": "C1428CVO",
+  "telefono": "+54 1127 234756",
+  "web": "http://www.puropaisajismo.com.ar/",
+  "emails": [
+   "info@puropaisajismo.com.ar",
+   "usuario@email.com.ar"
+  ]
+ },
+ {
+  "nombre": "Universidad Argentina John F Kennedy",
+  "categoria": "Arquitectura",
+  "ciudad": "Buenos Aires",
+  "telefono": "+54 1147 658772",
+  "web": "https://www.kennedy.edu.ar/",
+  "emails": [
+   "alumnos@kennedy.edu.ar",
+   "posgrados@kennedy.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Rectorado - Universidad del Salvador (USAL)",
+  "categoria": "Arquitectura",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1122 064700",
+  "web": "http://www.usal.edu.ar/",
+  "emails": [
+   "info@usal.edu.ar",
+   "pilar@usal.edu.ar",
+   "uds-vira@usal.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Apart Hotel pueblo viejo",
+  "categoria": "Hotel boutique",
+  "ciudad": "San Juan",
+  "telefono": "+54 2644 203765",
+  "web": "https://www.puebloviejoapart.com.ar/",
+  "emails": [
+   "reservaspuebloviejo@yahoo.com.ar"
+  ]
+ },
+ {
+  "nombre": "Lucania Palazzo Hotel",
+  "categoria": "Hotel boutique",
+  "ciudad": "Comodoro Rivadavia",
+  "telefono": "+54 2974 499300",
+  "web": "http://www.lucania-palazzo.com/",
+  "emails": [
+   "reservas@lucania-palazzo.com"
+  ]
+ },
+ {
+  "nombre": "UdelaCiudad",
+  "categoria": "Arquitectura",
+  "ciudad": "C1038AAR",
+  "telefono": "+54 43239870",
+  "web": "http://udelaciudad.edu.ar/",
+  "emails": [
+   "info@udelaciudad.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Hotel Bh Boutique",
+  "categoria": "Hotel boutique",
+  "ciudad": "Venado Tuerto",
+  "telefono": "+54 3462 273008",
+  "web": "https://bhhotelboutique.com.ar/",
+  "emails": [
+   "reservas@bhhotelboutique.com.ar"
+  ]
+ },
+ {
+  "nombre": "Huellas Del Trapiche Apart",
+  "categoria": "Hotel boutique",
+  "ciudad": "Chilecito",
+  "telefono": null,
+  "web": "http://huellasdeltrapiche.wixsite.com/country-bed-break-es",
+  "emails": [
+   "huellasdeltrapicheapart@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Cilene del Fuego Suites & Spa",
+  "categoria": "Hotel boutique",
+  "ciudad": "Ushuaia",
+  "telefono": "+54 2901 591200",
+  "web": "https://cilenedelfuego.com/es/",
+  "emails": [
+   "reservas@cileneushuaia.com"
+  ]
+ },
+ {
+  "nombre": "Amérian Executive Córdoba",
+  "categoria": "Hotel boutique",
+  "ciudad": "X5000ATB",
+  "telefono": "+54 3515 266660",
+  "web": "http://www.amerian.com/hotel/amerian-executive-cordoba-hotel?utm_source=GoogleMaps&utm_medium=MyBusiness",
+  "emails": [
+   "info@amerian.com"
+  ]
+ },
+ {
+  "nombre": "Hotel Albatros",
+  "categoria": "Hotel boutique",
+  "ciudad": "Ushuaia",
+  "telefono": "+54 2901 437300",
+  "web": "http://www.albatroshotel.com.ar/",
+  "emails": [
+   "reservas1@albatroshotel.com.ar",
+   "reservas@albatroshotel.com.ar"
+  ]
+ },
+ {
+  "nombre": "Del Bono Central Hotel 5 estrellas",
+  "categoria": "Hotel boutique",
+  "ciudad": "San Juan",
+  "telefono": "+54 2644 771856",
+  "web": "https://delbonocentral.delbonohotels.com/",
+  "emails": [
+   "hoteldelbonocentral@reservadirecto.com"
+  ]
+ },
+ {
+  "nombre": "Hotel Albertina",
+  "categoria": "Hotel boutique",
+  "ciudad": "San Juan",
+  "telefono": "+54 2644 214222",
+  "web": "http://www.hotelalbertina.com/",
+  "emails": [
+   "reservas@hotelalbertina.com"
+  ]
+ },
+ {
+  "nombre": "Tolkeyén Ushuaia Hotel",
+  "categoria": "Hotel boutique",
+  "ciudad": "Ushuaia",
+  "telefono": "+54 2901 445316",
+  "web": "http://www.tolkeyen.com/",
+  "emails": [
+   "info@tolkeyen.com",
+   "reservas@arakur.com"
+  ]
+ },
+ {
+  "nombre": "Los Acebos Ushuaia Hotel",
+  "categoria": "Hotel boutique",
+  "ciudad": "Ushuaia",
+  "telefono": "+54 2901 442200",
+  "web": "http://www.losacebos.com.ar/",
+  "emails": [
+   "acebos@tremun.com.ar",
+   "losacebos@tremun.com.ar"
+  ]
+ },
+ {
+  "nombre": "Flow Apart",
+  "categoria": "Hotel boutique",
+  "ciudad": "Las Gaviotas",
+  "telefono": "+54 1132 152001",
+  "web": "https://www.flowapart.com.ar/",
+  "emails": [
+   "info@flowapart.com.ar"
+  ]
+ },
+ {
+  "nombre": "Hotel Mónaco",
+  "categoria": "Hotel boutique",
+  "ciudad": "Ushuaia",
+  "telefono": "+54 2901 471438",
+  "web": "https://www.hotelmonacoushuaia.com/",
+  "emails": [
+   "hotelmonaco@reservadirecto.com"
+  ]
+ },
+ {
+  "nombre": "Hotel Treinta-Seis",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 2236 285625",
+  "web": "http://www.hoteltreintaseis.com.ar/",
+  "emails": [
+   "reservas@hoteltreintaseis.com.ar"
+  ]
+ },
+ {
+  "nombre": "Hotel Spa República",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 1170 905605",
+  "web": "https://www.hotelsparepublica.com.ar/es/",
+  "emails": [
+   "reservas@hotelsparepublica.com.ar"
+  ]
+ },
+ {
+  "nombre": "Altos de Ostende Apart & SPA",
+  "categoria": "Hotel boutique",
+  "ciudad": "Ostende",
+  "telefono": "+54 9 11408 78423",
+  "web": "https://www.altosdeostende.com.ar/",
+  "emails": [
+   "altosdeostende.spa@gmail.com",
+   "info@altosdeostende.com.ar"
+  ]
+ },
+ {
+  "nombre": "Hotel Las Rocas",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 2234 515362",
+  "web": "http://www.hotellasrocas.com.ar/",
+  "emails": [
+   "info@hotellasrocas.com.ar"
+  ]
+ },
+ {
+  "nombre": "HOTEL SAINTE JEANNE",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 2234 209200",
+  "web": "http://hotelsaintejeanne.com/es/",
+  "emails": [
+   "info@hotelsaintejeanne.com"
+  ]
+ },
+ {
+  "nombre": "Dos Reyes - Hoteles en Mar del Plata",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 2234 910383",
+  "web": "https://www.dosreyes.com.ar/",
+  "emails": [
+   "info@dosreyes.com.ar"
+  ]
+ },
+ {
+  "nombre": "SEC Hotel",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 8002 223454",
+  "web": "https://sechotel.com.ar/portal/es-es/6/Home",
+  "emails": [
+   "secreservas@ohshoteles.com.ar"
+  ]
+ },
+ {
+  "nombre": "Hotel Hermitage",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 2234 181000",
+  "web": "http://www.hermitagehotel.com.ar/",
+  "emails": [
+   "reservas@hermitagehotel.com.ar"
+  ]
+ },
+ {
+  "nombre": "La Morada Apart Boutique & Spa",
+  "categoria": "Hotel boutique",
+  "ciudad": "Villa Gesell",
+  "telefono": "+54 2255 409015",
+  "web": "http://www.lamoradagesell.com/?utm_source=google&utm_medium=wix_google_business_profile&utm_campaign=797925770560384658",
+  "emails": [
+   "lamoradagesell@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Casa Daupi Hotel Boutique",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 9 22357 69691",
+  "web": "https://www.casadaupi.com/",
+  "emails": [
+   "info@casadaupi.com"
+  ]
+ },
+ {
+  "nombre": "Hotel Riviera",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 2234 326444",
+  "web": "https://www.hotelriviera.com.ar/",
+  "emails": [
+   "reservas@hotelriviera.com.ar"
+  ]
+ },
+ {
+  "nombre": "Gran Hotel Continental",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 9 22351 16383",
+  "web": "http://www.hotelcontinentalmdq.com.ar/",
+  "emails": [
+   "reservas@hotelcontinentalmdq.com.ar"
+  ]
+ },
+ {
+  "nombre": "Denver Hotel & Spa",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 2234 916020",
+  "web": "http://www.hoteldenver.com.ar/",
+  "emails": [
+   "info@hoteldenver.com.ar"
+  ]
+ },
+ {
+  "nombre": "Las Terrazas Hotel Boutique",
+  "categoria": "Hotel boutique",
+  "ciudad": "Tilcara",
+  "telefono": "+54 3884 955589",
+  "web": "http://www.lasterrazastilcara.com.ar/",
+  "emails": [
+   "lasterrazastilcara@gmail.com",
+   "terrazastilcara@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Las Marias Hotel Boutique Tilcara",
+  "categoria": "Hotel boutique",
+  "ciudad": "Tilcara",
+  "telefono": "+54 3884 955525",
+  "web": "http://www.lasmariastilcara.com.ar/",
+  "emails": [
+   "info@lasmariastilcara.com.ar"
+  ]
+ },
+ {
+  "nombre": "Mirador del Virrey, Cabañas Boutique",
+  "categoria": "Hotel boutique",
+  "ciudad": null,
+  "telefono": "+54 3814 643648",
+  "web": "https://www.xn--cabaas-zwa.com/mirador-del-virrey-cabanas-boutique",
+  "emails": [
+   "miradordelvirrey@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Hotel Spa Fonte Arcada",
+  "categoria": "Hotel boutique",
+  "ciudad": "Villa Gesell",
+  "telefono": "+54 2255 474701",
+  "web": "http://www.fontearcada.com.ar/",
+  "emails": [
+   "hotelspafontearcada@reservadirecto.com"
+  ]
+ },
+ {
+  "nombre": "Colores de Purmamarca",
+  "categoria": "Hotel boutique",
+  "ciudad": "Purmamarca",
+  "telefono": "+54 9 38874 07059",
+  "web": "http://www.coloresdepurmamarca.com/",
+  "emails": [
+   "reservas@coloresdepurmamarca.com"
+  ]
+ },
+ {
+  "nombre": "Hostal Paseo Los Colorados",
+  "categoria": "Hotel boutique",
+  "ciudad": "Purmamarca",
+  "telefono": "+54 3884 908179",
+  "web": "http://www.hostalloscolorados.com.ar/",
+  "emails": [
+   "info@hostalloscolorados.com.ar"
+  ]
+ },
+ {
+  "nombre": "Rincones de Jujuy Hotel",
+  "categoria": "Hotel boutique",
+  "ciudad": "Tilcara",
+  "telefono": "+54 9 38868 51326",
+  "web": "http://www.rinconesdejujuy.com.ar/",
+  "emails": [
+   "rinconesdejujuytilcara@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Tilcara Hostal Niña Coya",
+  "categoria": "Hotel boutique",
+  "ciudad": "Tilcara",
+  "telefono": "+54 3886 823582",
+  "web": "http://tilcaraniniacoya.com/",
+  "emails": [
+   "info@tilcaraniniacoya.com",
+   "tilcaraniniacoya@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Posada con los Angeles",
+  "categoria": "Hotel boutique",
+  "ciudad": "Tilcara",
+  "telefono": "+54 3884 611024",
+  "web": "http://posadaconlosangeles.com.ar/",
+  "emails": [
+   "info@posadaconlosangeles.com.ar"
+  ]
+ },
+ {
+  "nombre": "Ecohotel Posta de Purmamarca",
+  "categoria": "Hotel boutique",
+  "ciudad": "Purmamarca",
+  "telefono": "+54 3884 908029",
+  "web": "http://www.postadepurmamarca.com.ar/",
+  "emails": [
+   "consultas@postadepurmamarca.com.ar"
+  ]
+ },
+ {
+  "nombre": "Hotel Nuevo Ostende by bund",
+  "categoria": "Hotel boutique",
+  "ciudad": "Mar del Plata",
+  "telefono": "+54 8003 459090",
+  "web": "http://www.nuevoostendehotel.com.ar/",
+  "emails": [
+   "info@nuevoostendehotel.com.ar"
+  ]
+ },
+ {
+  "nombre": "El Reposo del Diablo - Hotel con Encanto",
+  "categoria": "Hotel boutique",
+  "ciudad": "Tilcara",
+  "telefono": "+54 3884 955907",
+  "web": "http://www.reposodeldiablo.com/",
+  "emails": [
+   "elreposodeldiablo@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Abre - Galería de Arte",
+  "categoria": "Galería de arte",
+  "ciudad": "La Calera",
+  "telefono": "+54 3515 185093",
+  "web": "https://abregaleriadearte.com/",
+  "emails": [
+   "abre.consultorasdearte@gmail.com",
+   "galeriadearteabre@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Hotel Territorio Puerto Madryn",
+  "categoria": "Hotel boutique",
+  "ciudad": "Puerto Madryn",
+  "telefono": "+54 9 28041 98622",
+  "web": "https://www.smyhotels.com/es/hotel-territorio.html?utm_source=google&utm_medium=organic&utm_campaign=google-my-business&utm_term=google-local&utm_id=smy-territorio",
+  "emails": [
+   "info.territorio@smyhotels.com"
+  ]
+ },
+ {
+  "nombre": "Facultad de Artes, Diseño y Ciencias de la Cultura (FADyCC - UNNE))",
+  "categoria": "Galería de arte",
+  "ciudad": "Resistencia",
+  "telefono": "+54 3624 452829",
+  "web": "http://www.artes.unne.edu.ar/",
+  "emails": [
+   "diplogestionfadycc@artes.unne.edu.ar",
+   "info@artes.unne.edu.ar"
+  ]
+ },
+ {
+  "nombre": "Hotel Península Valdés",
+  "categoria": "Hotel boutique",
+  "ciudad": "Puerto Madryn",
+  "telefono": "+54 2804 471292",
+  "web": "http://www.hotelpeninsula.com.ar/",
+  "emails": [
+   "info@hotelpeninsula.com.ar"
+  ]
+ },
+ {
+  "nombre": "Mite",
+  "categoria": "Galería de arte",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": null,
+  "web": "http://mitegaleria.com.ar/",
+  "emails": [
+   "info@mitegaleria.com.ar"
+  ]
+ },
+ {
+  "nombre": "Hotel Luna Daniela",
+  "categoria": "Hotel boutique",
+  "ciudad": "Purmamarca",
+  "telefono": "+54 3884 042439",
+  "web": "https://www.hotellunadaniela.com.ar/",
+  "emails": [
+   "hosterialunadaniela@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Yene hue",
+  "categoria": "Hotel boutique",
+  "ciudad": "Puerto Madryn",
+  "telefono": "+54 2804 471496",
+  "web": "http://www.yenehue.com.ar/",
+  "emails": [
+   "reservas.madryn@tremunhoteles.com.ar"
+  ]
+ },
+ {
+  "nombre": "Galerías Pacífico Shopping Mall",
+  "categoria": "Galería de arte",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1155 555110",
+  "web": "http://www.galeriaspacifico.com.ar/",
+  "emails": [
+   "293-lider@farmacity.com",
+   "47pacifico@47-street.com.ar",
+   "amarettirestaurant@gmail.com",
+   "antiagegpacifico@tua.com.ar",
+   "atencionalcliente@prune.com.ar",
+   "bbwwgaleriapacifico@metasargentina.com",
+   "boutique4@loccitania.com.ar",
+   "bplusdpacifico@gmail.com",
+   "brooksfieldpacifico@gmail.com",
+   "chanel.pacifico@juleriaque.com.ar",
+   "crocsflorida@gmail.com",
+   "desiderata.pacifico@mazalosa.com.ar",
+   "ellocal031@carocuore.com.ar",
+   "encargadoretiro4@farmaplus.com.ar",
+   "epacifico2@leuru.com.ar",
+   "florida@jackiesmith.com.ar",
+   "florida@perramus.com.ar",
+   "freddogalerias@gmail.com",
+   "galeria@magdalenaesposito.com.ar",
+   "galerias@adrianacostantini.com.ar",
+   "galerias@cardon.com.ar",
+   "galerias@carteraslucaya.com.ar",
+   "galerias@equipajeurbano.com",
+   "galerias@ositoazul.com.ar",
+   "galerias@scandinavian.com.ar",
+   "galerias@wanamaboysandgirls.com",
+   "galeriasbiutiful@gmail.com",
+   "galeriaspacifico@azzaroparis.com.ar",
+   "galeriaspacifico@havanna.com.ar",
+   "galeriaspacifico@juleriaque.com.ar",
+   "galeriaspacifico@justaosadia.com.ar",
+   "galeriaspacifico@kfc.com.ar",
+   "galeriaspacifico@lamartina.com.ar",
+   "galeriaspacifico@masvision.com.ar",
+   "galeriaspacifico@samsonite.com",
+   "galeriaspacifico@skinhouse.com.ar",
+   "galeriaspacifico@thecandleshop.com.ar",
+   "galeriaspacifico@winnerssport.com",
+   "gerencia@madisoncafe.com.ar",
+   "gpacifico@cachafaz.com",
+   "gpacifico@galeriaspacifico.com.ar",
+   "greenpacifico1@gmail.com",
+   "grpacifico@grimoldisucursales.com",
+   "hello@editionprivee.com",
+   "info@dorianargentina.com",
+   "info@elboyero.com",
+   "info@homecollection.com.ar",
+   "info@simmons.com.ar",
+   "info@testorelli.com",
+   "info@vipeluquerias.com.ar",
+   "isgaleriaspacifico@indiastyle.com.ar",
+   "joesgrill.galerias@hotmail.com",
+   "lacabeautygalerias@gmail.com",
+   "lancomepacifico@juleriaque.com.ar",
+   "lazaro-ba@sinectis.com.ar",
+   "lbdpacifico@le-duff.com.ar",
+   "littlepacifico@akiabara.com",
+   "maisondoree@le-duff.com.ar",
+   "matestore.oficial@gmail.com",
+   "mistralflorida@gmail.com",
+   "mouguetbijou@gmail.com",
+   "ojo.point@gmail.com",
+   "ossira@gmail.com",
+   "pacifico@akiabara.com",
+   "pacifico@bensimon.com.ar",
+   "pacifico@bigbox.com.ar",
+   "pacifico@cuestablanca.com.ar",
+   "pacifico@cuspide.com.ar",
+   "pacifico@debarricas.com.ar",
+   "pacifico@etiquetanegra.us",
+   "pacifico@laspepas.com.ar",
+   "pacifico@local.mimo.com.ar",
+   "pacifico@mariarivolta.com",
+   "pacifico@mishka.com.ar",
+   "pacifico@morph.com.ar",
+   "pacifico@rapsodia.com.ar",
+   "pacifico@rickysarkany.com",
+   "pacifico@sastreriagonzalez.net",
+   "pacifico@sunglasshut.net.ar",
+   "pacifico@tascani.com.ar",
+   "pacifico@wanama.com",
+   "paruologalerias@yahoo.com.ar",
+   "pasionariapacifico@gmail.com",
+   "pcpacificom@ibgsa.com.ar",
+   "penguinpacifico@penguinargentina.com",
+   "persiccogaleriaspacifico@gmail.com",
+   "pgiar435@lacoste.com",
+   "portsaid.pacifico@mazalosa.com.ar",
+   "rochaspacifico@yahoo.com",
+   "sbux-galerias2@starbucks.com.ar",
+   "ses.florida@mirgor.com.ar",
+   "suc05@avecaesar.com",
+   "suc29@avecaesar.com",
+   "suc81@luquin.com.ar",
+   "sucpacifico@alparamis.com.ar",
+   "sucursal.pacifico@markova.com",
+   "sucursal03@avecaesar.com",
+   "swgalerias@swarovski-crystal.com.ar",
+   "thgaleriasp@gmail.com",
+   "tissotgalerias@oxxal.com.ar",
+   "vsgaleriaspacifico@metasargentina.com"
+  ]
+ },
+ {
+  "nombre": "Samay Huasi Hotel & Spa",
+  "categoria": "Hotel boutique",
+  "ciudad": "Puerto Madryn",
+  "telefono": "+54 2804 993858",
+  "web": "https://www.shhotelspa.com/",
+  "emails": [
+   "samayhuasihotelspa@reservadirecto.com"
+  ]
+ },
+ {
+  "nombre": "Ruth Benzacar Galería de Arte",
+  "categoria": "Galería de arte",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1148 573322",
+  "web": "http://www.ruthbenzacar.com/",
+  "emails": [
+   "consultas@ruthbenzacar.com"
+  ]
+ },
+ {
+  "nombre": "Asociación Estímulo de Bellas Artes",
+  "categoria": "Galería de arte",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 1125 787448",
+  "web": "https://asociacionestimulobellasartes.com.ar/",
+  "emails": [
+   "estimulobellasartes@gmail.com"
+  ]
+ },
+ {
+  "nombre": "Galería Nora Fisch",
+  "categoria": "Galería de arte",
+  "ciudad": "Cdad. Autónoma de Buenos Aires",
+  "telefono": "+54 9 11623 52030",
+  "web": "http://www.norafisch.com/",
+  "emails": [
+   "contact@norafisch.com"
+  ]
+ }
+]

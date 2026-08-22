@@ -126,6 +126,16 @@ const SHARED_STYLE = `
   .proceso-head { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
   .wsp-float { position: fixed; right: 20px; bottom: 20px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: transform 0.2s; }
   .wsp-float:hover { transform: translateY(-2px) scale(1.05); }
+
+  /* COMPARTIR */
+  .compartir-block { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(26,24,20,0.1); }
+  .compartir-head { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+  .compartir-sub { font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 14px; }
+  .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--ink); padding: 11px 20px; border: 1px solid rgba(26,24,20,0.25); border-radius: 2px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+  .btn-share:hover { background: var(--paper-2); border-color: rgba(26,24,20,0.5); }
+  .acciones-share { display: flex; gap: 10px; flex-wrap: wrap; }
+  .share-ok { font-size: 11px; color: var(--accent); margin-top: 8px; display: none; }
+
   .certificado-section { margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(26,24,20,0.1); }
   .cert-title { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 8px; }
   .cert-desc { font-size: 13px; color: var(--ink-3); line-height: 1.7; margin-bottom: 16px; }
@@ -358,6 +368,17 @@ ${JSON.stringify(schemaClean, null, 2)}
         ${procesoHTML(o)}
         ${bloqueOriginal}
         ${bloquePrint}
+        <div class="compartir-block">
+          <div class="compartir-head">Compartir</div>
+          <div class="compartir-sub">¿Conocés a alguien que le encantaría esta obra?</div>
+          <div class="acciones-share">
+            <a href="https://wa.me/?text=${encodeURIComponent('Mirá "' + o.titulo + '" — óleo original de Julio Machado: ' + url)}" target="_blank" rel="noopener" class="btn-share">Enviar por WhatsApp</a>
+            <button id="btnCopyLink" type="button" class="btn-share">Copiar enlace</button>
+            <button id="btnNativeShare" type="button" class="btn-share" style="display:none;">Más opciones…</button>
+          </div>
+          <span id="shareOk" class="share-ok">Enlace copiado ✓</span>
+        </div>
+
         ${certHTML}
       </div>
   </div>
@@ -384,6 +405,42 @@ ${!esSoloPrint ? `<script>
     correctLevel: QRCode.CorrectLevel.M
   });
 </script>` : ''}
+
+<script>
+(function () {
+  var shareUrl = '${url}';
+  var copyBtn = document.getElementById('btnCopyLink');
+  if (copyBtn) copyBtn.addEventListener('click', function () {
+    function done() {
+      var ok = document.getElementById('shareOk');
+      ok.style.display = 'inline';
+      setTimeout(function () { ok.style.display = 'none'; }, 2500);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareUrl).then(done, function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      var tmp = document.createElement('textarea');
+      tmp.value = shareUrl;
+      document.body.appendChild(tmp);
+      tmp.select();
+      document.execCommand('copy');
+      document.body.removeChild(tmp);
+      done();
+    }
+  });
+  var nativeBtn = document.getElementById('btnNativeShare');
+  if (nativeBtn && navigator.share) {
+    nativeBtn.style.display = '';
+    nativeBtn.addEventListener('click', function () {
+      navigator.share({
+        title: ${JSON.stringify(o.titulo)} + ' — Julio Machado',
+        url: shareUrl
+      }).catch(function () {});
+    });
+  }
+})();
+</script>
 </body>
 </html>
 `;

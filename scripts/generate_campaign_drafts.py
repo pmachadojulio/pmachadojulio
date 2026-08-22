@@ -44,7 +44,9 @@ TITULOS = {"arq", "arg", "prof", "lic", "dir", "dr"}
 
 
 def firma():
-    return f"""Atentamente,
+    return f"""P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
+Atentamente,
 
 Julio César Machado
 Pintor & Sociólogo | {BASE}

@@ -316,7 +316,10 @@ docker compose up -d</code></pre>
 
 <script>
 const NEWSLETTER_HTML = '/newsletter/enviados/2026-08-05_benjamin-aura.html';
-const CAMPAIGN_JSON = '/marketing/campanas/campana_emails_2026-08-05.json';
+const CAMPAIGN_JSONS = [
+  { file: '/marketing/campanas/campana_emails_2026-08-05.json', tanda: '1', key: '2026-08-05' },
+  { file: '/marketing/campanas/campana_emails_tanda2_2026-08-22.json', tanda: '2', key: 'tanda2-2026-08-22' }
+];
 let drafts = [];
 let borradorActual = '';
 
@@ -353,13 +356,17 @@ function abrirHtmlNewsletter() { window.open(NEWSLETTER_HTML, '_blank', 'noopene
 
 /* ---------- emails ---------- */
 let filtroCat = 'all';
-const ENVIADOS_KEY = 'campana-enviados-2026-08-05';
 
-function getEnviados() {
-  try { return JSON.parse(localStorage.getItem(ENVIADOS_KEY) || '[]'); }
+function enviadosKey(tanda) {
+  const cfg = CAMPAIGN_JSONS.find(c => c.tanda === (tanda || '1'));
+  return 'campana-enviados-' + ((cfg && cfg.key) || '2026-08-05');
+}
+
+function getEnviados(tanda) {
+  try { return JSON.parse(localStorage.getItem(enviadosKey(tanda)) || '[]'); }
   catch (e) { return []; }
 }
-function setEnviados(lista) { localStorage.setItem(ENVIADOS_KEY, JSON.stringify(lista)); }
+function setEnviados(lista, tanda) { localStorage.setItem(enviadosKey(tanda), JSON.stringify(lista)); }
 
 function gmailUrl(d) {
   const body = 'ASUNTO: ' + (d.asunto || '') + '\n\n' + (d.cuerpo || '');
@@ -373,8 +380,12 @@ function saludoDe(d) {
 async function loadEmails() {
   const body = document.getElementById('emails-body');
   try {
-    const res = await fetch(CAMPAIGN_JSON);
-    drafts = await res.json();
+    const resultados = await Promise.all(CAMPAIGN_JSONS.map(async cfg => {
+      const res = await fetch(cfg.file);
+      const lista = await res.json();
+      return lista.map(d => ({ ...d, tanda: cfg.tanda }));
+    }));
+    drafts = resultados.flat();
     renderEmails();
   } catch (e) {
     body.innerHTML = '<tr><td colspan="5"><div class="empty">Error: ' + e.message + '</div></td></tr>';
@@ -382,11 +393,10 @@ async function loadEmails() {
 }
 function renderEmails() {
   const q = (document.getElementById('emails-search').value || '').toLowerCase();
-  const enviados = getEnviados();
   const lista = drafts.filter(d => {
     if (q && !(d.empresa + ' ' + (d.ciudad || '') + ' ' + (d.email || '') + ' ' + d.asunto + ' ' + (d.categoria || '')).toLowerCase().includes(q)) return false;
     const cat = (d.categoria || '');
-    if (filtroCat === 'enviados') return enviados.includes(d.id);
+    if (filtroCat === 'enviados') return getEnviados(d.tanda).includes(d.id);
     if (filtroCat === 'all') return true;
     return cat.includes(filtroCat);
   });
@@ -394,11 +404,11 @@ function renderEmails() {
   document.getElementById('emails-count').textContent = `${lista.length} de ${drafts.length} borradores`;
   if (!lista.length) { body.innerHTML = '<tr><td colspan="5"><div class="empty">Sin resultados.</div></td></tr>'; return; }
   body.innerHTML = lista.map(d => {
-    const ya = enviados.includes(d.id);
+    const ya = getEnviados(d.tanda).includes(d.id);
     return `
     <tr style="${ya ? 'opacity:.5;' : ''}">
       <td><span class="badge ${ya ? 'ok' : 'info'}">${saludoDe(d) || '—'}</span></td>
-      <td><strong>${d.empresa || ''}</strong><br><span class="muted" style="font-size:.72rem;">${d.categoria || ''}</span></td>
+      <td><strong>${d.empresa || ''}</strong>${d.tanda === '2' ? ' <span class="badge info">T2</span>' : ''}<br><span class="muted" style="font-size:.72rem;">${d.categoria || ''}</span></td>
       <td>${d.ciudad || '—'}</td>
       <td>${d.email || '—'}</td>
       <td style="white-space:nowrap;">
@@ -410,10 +420,12 @@ function renderEmails() {
   }).join('');
 }
 function toggleEnviado(id) {
-  const lista = getEnviados();
+  const d = drafts.find(x => x.id === id);
+  if (!d) return;
+  const lista = getEnviados(d.tanda);
   const i = lista.indexOf(id);
   if (i >= 0) lista.splice(i, 1); else lista.push(id);
-  setEnviados(lista);
+  setEnviados(lista, d.tanda);
   renderEmails();
 }
 document.querySelectorAll('#sec-emails .chip').forEach(ch => ch.addEventListener('click', () => {

@@ -22,6 +22,8 @@ Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -49,6 +51,8 @@ Pueden recorrer las obras y fichas técnicas aquí: https://jcmachado.com/obra/m
 
 Quedo a disposición para enviarles un dossier digital o coordinar una breve llamada.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -75,6 +79,8 @@ Trabajo junto a estudios de arquitectura e interiorismo acercando óleos origina
 Pueden recorrer las obras y fichas técnicas aquí: https://jcmachado.com/obra/monoblocks/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una breve llamada.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -105,6 +111,8 @@ Pueden ver la serie completa y las fichas de cada obra aquí: https://jcmachado.
 
 Me encantaría enviarles una presentación digital breve o coordinar una visita a mi taller.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -129,6 +137,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -155,6 +165,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -179,6 +191,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -205,6 +219,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -229,6 +245,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -255,6 +273,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -279,6 +299,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -305,6 +327,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -329,6 +353,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -355,6 +381,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -379,6 +407,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -405,6 +435,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -429,6 +461,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -455,6 +489,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -479,6 +515,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -505,6 +543,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -530,6 +570,8 @@ Considero que estas obras pueden dialogar con su programación y sumar a su rost
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -554,6 +596,8 @@ Soy Julio César Machado, pintor al óleo y licenciado en sociología. Trabajo s
 Considero que estas obras pueden dialogar con su programación y sumar a su roster de artistas. Pueden recorrer el portfolio completo en https://jcmachado.com/obra
 
 Me encantaría acercarles un dossier impreso o coordinar una visita al taller para que conozcan las piezas en persona.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -582,6 +626,8 @@ Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -608,6 +654,8 @@ Estas obras funcionan muy bien en habitaciones, halles y espacios comunes, tanto
 Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -636,6 +684,8 @@ Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -662,6 +712,8 @@ Estas obras funcionan muy bien en habitaciones, halles y espacios comunes, tanto
 Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -690,6 +742,8 @@ Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -716,6 +770,8 @@ Estas obras funcionan muy bien en habitaciones, halles y espacios comunes, tanto
 Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -744,6 +800,8 @@ Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -770,6 +828,8 @@ Estas obras funcionan muy bien en habitaciones, halles y espacios comunes, tanto
 Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -798,6 +858,8 @@ Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -825,6 +887,8 @@ Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -851,6 +915,8 @@ Estas obras funcionan muy bien en habitaciones, halles y espacios comunes, tanto
 Pueden ver la serie aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Quedo a disposición para enviarles un dossier digital o coordinar una visita para ver las piezas.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -881,6 +947,8 @@ Pueden ver la serie completa y las fichas de cada obra aquí: https://jcmachado.
 
 Me encantaría enviarles una presentación digital breve o coordinar una visita a mi taller.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -909,6 +977,8 @@ Considero que la paleta y la carga conceptual de estas piezas encajan de manera 
 Pueden ver la serie completa y las fichas de cada obra aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Me encantaría enviarles una presentación digital breve o coordinar una visita a mi taller.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -939,6 +1009,8 @@ Pueden ver la serie completa y las fichas de cada obra aquí: https://jcmachado.
 
 Me encantaría enviarles una presentación digital breve o coordinar una visita a mi taller.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -967,6 +1039,8 @@ Considero que la paleta y la carga conceptual de estas piezas encajan de manera 
 Pueden ver la serie completa y las fichas de cada obra aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Me encantaría enviarles una presentación digital breve o coordinar una visita a mi taller.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
@@ -997,6 +1071,8 @@ Pueden ver la serie completa y las fichas de cada obra aquí: https://jcmachado.
 
 Me encantaría enviarles una presentación digital breve o coordinar una visita a mi taller.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -1026,6 +1102,8 @@ Pueden ver la serie completa y las fichas de cada obra aquí: https://jcmachado.
 
 Me encantaría enviarles una presentación digital breve o coordinar una visita a mi taller.
 
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
+
 Atentamente,
 
 Julio César Machado
@@ -1054,6 +1132,8 @@ Considero que la paleta y la carga conceptual de estas piezas encajan de manera 
 Pueden ver la serie completa y las fichas de cada obra aquí: https://jcmachado.com/obra/ascenso-corazon/
 
 Me encantaría enviarles una presentación digital breve o coordinar una visita a mi taller.
+
+P.D.: Si conocés a alguien a quien le pueda interesar la obra, te agradezco que le reenvíes este correo.
 
 Atentamente,
 
