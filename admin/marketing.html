@@ -412,7 +412,7 @@ function renderEmails() {
       <td>${d.ciudad || '—'}</td>
       <td>${d.email || '—'}</td>
       <td style="white-space:nowrap;">
-        <a class="btn small" href="${gmailUrl(d)}" target="_blank" rel="noopener">🚀 Enviar en Gmail</a>
+        <a class="btn small" href="${gmailUrl(d)}" target="_blank" rel="noopener" onclick="marcarEnviado(${JSON.stringify(d.id)})">🚀 Enviar en Gmail</a>
         <button class="btn ghost small" onclick="verBorrador(${JSON.stringify(d.id)})">Ver</button>
         <button class="btn ghost small" onclick="toggleEnviado(${JSON.stringify(d.id)})">${ya ? '↩︎' : '✔'}</button>
       </td>
@@ -427,6 +427,12 @@ function toggleEnviado(id) {
   if (i >= 0) lista.splice(i, 1); else lista.push(id);
   setEnviados(lista, d.tanda);
   renderEmails();
+}
+function marcarEnviado(id) {
+  const d = drafts.find(x => x.id === id);
+  if (!d) return;
+  const lista = getEnviados(d.tanda);
+  if (!lista.includes(id)) { lista.push(id); setEnviados(lista, d.tanda); renderEmails(); }
 }
 document.querySelectorAll('#sec-emails .chip').forEach(ch => ch.addEventListener('click', () => {
   document.querySelectorAll('#sec-emails .chip').forEach(x => x.classList.remove('active'));
