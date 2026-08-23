@@ -6,3 +6,6 @@ whatsapp/n8n-data/
 .cs-wizard/
 marketing/mercadolibre/ml_tokens.json
 marketing/mercadolibre/ml_log.json
+marketing/pinterest/pinterest_tokens.json
+marketing/pinterest/pinterest_log.json
+.github/
