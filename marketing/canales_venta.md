@@ -39,11 +39,17 @@
 - Óleos en USD para compradores EEUU/Europa. Sin costo fijo (~35% comisión).
 - Requiere fotos profesionales y bio en inglés — hacerlo cuando el pipeline local esté corriendo solo.
 
-### 6. Google Search Console (10 min, técnico)
-- Subir `https://jcmachado.com/sitemap.xml` → las 31 fichas entran a búsquedas tipo "retrato al óleo Argentina".
+### 6. Google Search Console ✅ HECHO (2026-08-23)
+- Propiedad `jcmachado.com` verificada vía DNS TXT (`google-site-verification=45MuOoG...`).
+- Sitemap declarado en robots.txt y enviado. Las 31 fichas + 2 posts entran a indexación.
+- Revisar "Rendimiento" en unas semanas para ver qué queries traen tráfico.
 
 ### 7. Canal de WhatsApp
 - Difusión gratuita a seguidores. Complemento del newsletter mensual.
+
+### 8. Pinterest
+- CSV bulk generado en `marketing/pinterest/pines_bulk.csv` → Pinterest Business → Crear → Importar CSV.
+- 31 pines (uno por obra) con link UTM `?utm_source=pinterest` a cada ficha.
 
 ## 📅 Rutina semanal fija
 Ver `marketing/calendario_30_dias.md`. Resumen: emails diarios ~20, 1 post blog/semana (`scripts/nuevo_post.js`), clips verticales de los 16 videos de proceso, Pinterest progresivo, viernes 15' revisando Contentsquare/GA4.
