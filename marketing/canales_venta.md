@@ -12,11 +12,16 @@
 
 ## 📋 Canales por probar (orden por velocidad de primera venta)
 
-### 1. Mercado Libre ⬅ SIGUIENTE
-- Qué: réplicas numeradas ($30.000, hay 19 disponibles) + sketchbooks/originales chicos ($100k–$150k).
-- Por qué: única plataforma con demanda ACTIVA de arte en Argentina. Comisión solo si vendés.
-- Estado: fichas generadas en `marketing/mercadolibre/`. Publicación automatizable vía API oficial (ver abajo).
-- Setup único necesario: crear app en developers.mercadolibre.com.ar → autorizar una vez → el script publica solo.
+### 1. Mercado Libre ✅ EN VIVO (2026-08-23)
+- **33 publicaciones activas**: 31 réplicas numeradas ($30.000) + 2 originales ($100k–$150k).
+- Categoría: Cuadros de Autor (MLA432710). Ejemplo: https://articulo.mercadolibre.com.ar/MLA-3847861832-
+- Publicación 100% automatizada con `scripts/ml_publicar.js` (tokens en ml_tokens.json, NO subir a git).
+- Cuota de publicaciones "Gratis" agotada → el resto salió como **Clásica** (sin costo fijo; comisión solo al vender).
+- **Pendientes del usuario**:
+  - Revisar las publicaciones en mercadolibre.com.ar → Mis publicaciones (fotos, precios, envío).
+  - Configurar los paquetes/envío si ML lo pide (modo me2 = ML maneja el envío).
+  - Responder preguntas/compras RÁPIDO (la reputación es todo en ML).
+  - Cuando agregue obras nuevas: `node scripts/ml_fichas.js && node scripts/ml_publicar.js publish`
 
 ### 2. Facebook Marketplace + grupos locales
 - Grupos: "Arte y decoración Córdoba", compra/venta de la zona. Publicar réplicas y Ascenso 30×30.
