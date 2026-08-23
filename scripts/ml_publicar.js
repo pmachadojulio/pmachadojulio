@@ -23,6 +23,7 @@ const DIR = path.join(ROOT, 'marketing', 'mercadolibre');
 const TOKENS = path.join(DIR, 'ml_tokens.json');
 const LOG = path.join(DIR, 'ml_log.json');
 const API = 'https://api.mercadolibre.com';
+const AUTH = 'https://auth.mercadolibre.com';
 const REDIRECT_URI = 'https://jcmachado.com/admin/ml-callback.html';
 
 function config() {
@@ -47,8 +48,10 @@ async function apiFetch(url, opts = {}) {
 
 async function tokenRefresh(force = false) {
   const t = tokens();
+  // Token de larga duración (ML ya no emite refresh_token): usar directo si sigue vigente
+  if (t.access_token && t.expires_at && !force && Date.now() < t.expires_at - 10 * 60 * 1000) return t.access_token;
   const { appId, secret } = config();
-  if (!t.refresh_token) { console.error('Sin refresh_token. Corré primero: node scripts/ml_publicar.js auth <code>'); process.exit(1); }
+  if (!t.refresh_token) { console.error('Token vencido o ausente. Regenerar con: node scripts/ml_publicar.js auth-url'); process.exit(1); }
   // ML access tokens duran 6h; refrescar si falta >10 min para vencer
   if (!force && t.expires_at && Date.now() < t.expires_at - 10 * 60 * 1000) return t.access_token;
   const params = new URLSearchParams({ grant_type: 'refresh_token', refresh_token: t.refresh_token, client_id: appId, client_secret: secret });
@@ -60,35 +63,49 @@ async function tokenRefresh(force = false) {
 }
 
 async function categoria(token, q) {
-  const rows = await apiFetch(`${API}/sites/MLA/domain_discovery?q=${encodeURIComponent(q)}&limit=3`, { headers: { Authorization: `Bearer ${token}` } });
+  const rows = await apiFetch(`${API}/sites/MLA/domain_discovery/search?q=${encodeURIComponent(q)}&limit=3`, { headers: { Authorization: `Bearer ${token}` } });
   return rows[0];
 }
 
 async function publicarUno(token, l, dry) {
   const cat = await categoria(token, `${l.tipo === 'replica' ? 'retrato arte impresion' : 'pintura original arte'}`);
   const payload = {
-    title: l.titulo_ml,
+    // Dominios nuevos de ML: sin "title" — el nombre sale de family_name + attributes
+    family_name: l.titulo_ml,
     category_id: cat.category_id,
     price: l.price,
     currency_id: 'ARS',
     available_quantity: l.available_quantity,
     buying_mode: 'buy_it_now',
     condition: 'new',
-    listing_type: 'free',
+    listing_type_id: 'free',
     description: { plain_text: l.descripcion },
     pictures: l.pictures.map(u => ({ source: u })),
     shipping: { mode: 'me2', local_pick_up: true, free_shipping: l.price >= 35000 },
-    sale_terms: [{ id: 'WARRANTY_TYPE', value_name: 'Garantía del vendedor' }]
+    attributes: [
+      { id: 'BRAND', value_name: 'Julio Machado' },
+      { id: 'MODEL', value_name: (l.tipo === 'replica' ? 'Réplica numerada - ' : 'Original - ') + l.key.replace(/^(replica|original)-/, '') }
+    ]
   };
   if (dry) {
     console.log(`[DRY] ${l.key} → ${payload.title} | $${payload.price} | cat ${cat.category_id} (${cat.category_name})`);
     return { key: l.key, ok: true, dry: true };
   }
-  const item = await apiFetch(`${API}/items`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
+  const intento = async (listingTypeId) => {
+    payload.listing_type_id = listingTypeId;
+    return apiFetch(`${API}/items`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  };
+  let item;
+  try {
+    item = await intento('free');
+  } catch (e) {
+    if (/temporarily_unavailable/.test(e.message)) item = await intento('silver'); // Clásica
+    else throw e;
+  }
   console.log(`✓ PUBLICADO ${l.key}: ${item.permalink}`);
   return { key: l.key, ok: true, permalink: item.permalink, id: item.id };
 }
@@ -102,7 +119,7 @@ if (cmd === 'save-config') {
 }
 if (cmd === 'auth-url') {
   const { appId } = config();
-  const url = `${API}/authorization?response_type=code&client_id=${appId}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+  const url = `${AUTH}/authorization?response_type=code&client_id=${appId}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
   console.log('\n1. Abrí esta URL en el navegador y autorizá la app:\n\n' + url);
   console.log('\n2. Te va a redirigir a ' + REDIRECT_URI + ' mostrando un código.');
   console.log('3. Copialo y corré:  node scripts/ml_publicar.js auth EL_CODIGO\n');
@@ -113,18 +130,17 @@ if (cmd === 'auth') {
   if (!code) { console.error('Uso: auth <codigo>'); process.exit(1); }
   const { appId, secret } = config();
   const params = new URLSearchParams({ grant_type: 'authorization_code', client_id: appId, client_secret: secret, redirect_uri: REDIRECT_URI, code });
-  fetch(`${API}/oauth/token`, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' }, body: params.toString() })
-    .then(r => r.json()).then(async j => {
-      if (j.error) throw new Error(JSON.stringify(j));
-      const me = await apiFetch(`${API}/users/me`, { headers: { Authorization: `Bearer ${j.access_token}` } });
-      saveTokens({ ...tokens(), ...j, expires_at: Date.now() + j.expires_in * 1000, user_id: me.id, nickname: me.nickname });
-      console.log(`✓ Autenticado como ${me.nickname} (user ${me.id}). Ya podés: node scripts/ml_publicar.js publish --dry`);
-    }).catch(e => { console.error('✗', e.message); process.exit(1); });
-  process.exit(0);
-}
-if (cmd === 'refresh') { tokenRefresh(true).then(() => console.log('✓ token refrescado')).catch(e => { console.error(e.message); process.exit(1); }); process.exit(0); }
-
-if (cmd === 'publish') {
+  (async () => {
+    const r = await fetch(`${API}/oauth/token`, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' }, body: params.toString() });
+    const j = await r.json();
+    if (j.error) throw new Error(JSON.stringify(j));
+    const me = await apiFetch(`${API}/users/me`, { headers: { Authorization: `Bearer ${j.access_token}` } });
+    saveTokens({ ...tokens(), ...j, expires_at: Date.now() + j.expires_in * 1000, user_id: me.id, nickname: me.nickname });
+    console.log(`✓ Autenticado como ${me.nickname} (user ${me.id}). Ya podés: node scripts/ml_publicar.js publish --dry`);
+  })().catch(e => { console.error('✗', e.message); process.exit(1); });
+} else if (cmd === 'refresh') {
+  tokenRefresh(true).then(() => console.log('✓ token refrescado')).catch(e => { console.error(e.message); process.exit(1); });
+} else if (cmd === 'publish') {
   const dry = rest.includes('--dry');
   const max = Number(argVal('--max') || 9999);
   const listas = JSON.parse(fs.readFileSync(path.join(DIR, 'listas.json'), 'utf8')).filter(l => l.publicar !== false && l.pictures.length);
@@ -147,8 +163,7 @@ if (cmd === 'publish') {
     fs.writeFileSync(LOG, JSON.stringify(log, null, 2));
     console.log(`\nLog actualizado: ${LOG}. Publicadas sin error: ${log.filter(x => x.ok && !x.dry).length}/${listas.length}`);
   })().catch(e => { console.error('✗', e.message); process.exit(1); });
-  process.exit(0);
-}
+} else {
 
 console.log([
   'Uso:',
@@ -158,3 +173,4 @@ console.log([
   '  refresh                         fuerza refresh del token',
   '  publish [--dry] [--max N]       publica fichas de listas.json'
 ].join('\n'));
+}
