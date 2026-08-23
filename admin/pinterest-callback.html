@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Pinterest — autorización</title></head>
+<body style="font-family:monospace;max-width:640px;margin:60px auto;padding:0 20px;">
+<h2>Pinterest — autorización</h2>
+<p id="st">Leyendo…</p>
+<pre id="code" style="background:#f5f2ed;padding:14px;border-radius:6px;font-size:1.05em;user-select:all;word-break:break-all;"></pre>
+<p>Copiá ese código y pegalo en la terminal:<br>
+<code>node scripts/pinterest_publicar.js auth EL_CODIGO</code></p>
+<script>
+const p=new URLSearchParams(location.search);
+const c=p.get('code');
+if(c){document.getElementById('st').textContent='✓ Código recibido — copialo:';document.getElementById('code').textContent=c;}
+else if(p.get('error')) document.getElementById('st').textContent='✗ Error: '+p.get('error');
+else document.getElementById('st').textContent='No vino ningún code en la URL. Revisá que autorizaste la app.';
+</script>
+</body></html>
