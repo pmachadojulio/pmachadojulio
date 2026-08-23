@@ -11,6 +11,19 @@
 </script>
 <!-- Contentsquare -->
 <script src="https://t.contentsquare.net/uxa/714b6ae7c74ab.js" defer></script>
+<!-- Eventos de conversion GA4 -->
+<script>
+(function(){
+  function ev(n,p){ if(window.gtag) gtag('event',n,p||{}); }
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    var wa=t.closest&&t.closest('a[href*="wa.me"]');
+    if(wa){ev('whatsapp_click',{page:location.pathname});return;}
+    if(t.id==='btnCopyLink'){ev('share_copy',{page:location.pathname});return;}
+    if(t.id==='btnNativeShare'){ev('share_native',{page:location.pathname});}
+  },true);
+})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog — Julio Machado, Pintor y Sociólogo</title>
@@ -111,6 +124,7 @@
     <p class="blog-sub">Notas breves que salen del taller: ideas de las ciencias sociales para mirar mejor la pintura — y la vida. Se pueden leer en 4 minutos.</p>
   </div>
   <ul class="post-list">
+    <!-- posts-inicio -->
     
       <li class="post-item">
         <a href="/blog/aura-benjamin/"><img class="post-thumb" src="/imagenes/Raiz.webp" alt="¿Qué perdés cuando un cuadro se vuelve copia?" loading="lazy"></a>
@@ -121,6 +135,7 @@
           <span class="date">6 de agosto de 2026</span>
         </div>
       </li>
+    <!-- posts-fin -->
   </ul>
 </main>
 

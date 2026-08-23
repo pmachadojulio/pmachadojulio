@@ -168,6 +168,20 @@ const GA_SNIPPET = `<!-- Google tag (gtag.js) -->
 const CS_SNIPPET = `<!-- Contentsquare -->
 <script src="https://t.contentsquare.net/uxa/714b6ae7c74ab.js" defer></script>`;
 
+const TRACKING_JS = `<!-- Eventos de conversion GA4 -->
+<script>
+(function(){
+  function ev(n,p){ if(window.gtag) gtag('event',n,p||{}); }
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    var wa=t.closest&&t.closest('a[href*="wa.me"]');
+    if(wa){ev('whatsapp_click',{page:location.pathname});return;}
+    if(t.id==='btnCopyLink'){ev('share_copy',{page:location.pathname});return;}
+    if(t.id==='btnNativeShare'){ev('share_native',{page:location.pathname});}
+  },true);
+})();
+</script>`;
+
 // ---------- Generar página por obra ----------
 
 function buildObraHTML(o) {
@@ -332,6 +346,7 @@ function buildObraHTML(o) {
 <head>
 ${GA_SNIPPET}
 ${CS_SNIPPET}
+${TRACKING_JS}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${escapeHtml(o.titulo)} — Julio Machado</title>
