@@ -81,7 +81,7 @@ async function publicarUno(token, l, dry) {
     listing_type_id: 'free',
     description: { plain_text: l.descripcion },
     pictures: l.pictures.map(u => ({ source: u })),
-    shipping: { mode: 'me2', local_pick_up: true, free_shipping: l.price >= 35000 },
+    shipping: { mode: 'me2', local_pick_up: true, free_shipping: l.price >= 35000 && l.price < 300000 },
     attributes: [
       { id: 'BRAND', value_name: 'Julio Machado' },
       { id: 'MODEL', value_name: (l.tipo === 'replica' ? 'Réplica numerada - ' : 'Original - ') + l.key.replace(/^(replica|original)-/, '') }

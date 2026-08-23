@@ -108,9 +108,9 @@ for (const o of obras) {
     publicar: true
   });
 
-  // Original barato (sketchbooks $100k y óleos chicos hasta $200k)
+  // Original disponible (todos, sin tope de precio)
   const po = precioNum(o.precio);
-  if (disp && po > 0 && po <= 200000) {
+  if (disp && po > 0) {
     listas.push({
       key: `original-${slug}`,
       tipo: 'original',

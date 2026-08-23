@@ -1,6 +1,6 @@
 # Fichas Mercado Libre — vista previa
 
-Total: **33** publicaciones (31 réplicas + 2 originales). Publicación automática: `node scripts/ml_publicar.js publish`
+Total: **35** publicaciones (31 réplicas + 4 originales). Publicación automática: `node scripts/ml_publicar.js publish`
 
 ## [REPLICA] Réplica Numerada "Luis" Julio Machado Certificada
 
@@ -558,6 +558,31 @@ Julio Machado — Pintor y sociólogo. Retratos al óleo y obra gráfica. jcmach
 
 ---
 
+## [ORIGINAL] Monoblocks — Óleo Original Julio Machado 30x30
+
+- **Precio:** $700.000 ARS
+- **Título (46/60 chars):** Monoblocks — Óleo Original Julio Machado 30x30
+- **Foto:** https://jcmachado.com/imagenes/ml/Monoblocks.jpg
+
+```
+"Monoblocks" — OBRA ORIGINAL de Julio Machado
+
+Oleo sobre panel. Medidas: 30×30 cm. Año 2026.
+
+No hay una sola persona en este cuadro. Y, sin embargo, es de los que más personas tiene. 
+
+✔ Obra original única, firmada
+✔ Certificado de autenticidad
+✔ Se entrega con certificado y QR verificable
+
+Más fotos, video del proceso y detalle de la pincelada: https://jcmachado.com/obra/monoblocks/
+Consultas directas por WhatsApp: https://wa.me/5493534018769
+
+Julio Machado — Pintor y sociólogo. jcmachado.com
+```
+
+---
+
 ## [REPLICA] Réplica Numerada "A las margaritas 1" Julio Machado…
 
 - **Precio:** $30.000 ARS
@@ -576,6 +601,31 @@ Medidas: 40×40 cm.
 Conocé la obra completa, su proceso y más fotos acá: https://jcmachado.com/obra/a-las-margaritas-1/
 Consultas directas por WhatsApp: https://wa.me/5493534018769
 Julio Machado — Pintor y sociólogo. Retratos al óleo y obra gráfica. jcmachado.com
+```
+
+---
+
+## [ORIGINAL] A las margaritas 1 — Óleo Original Julio Machado 40x40
+
+- **Precio:** $800.000 ARS
+- **Título (54/60 chars):** A las margaritas 1 — Óleo Original Julio Machado 40x40
+- **Foto:** https://jcmachado.com/imagenes/ml/Margaritas.jpg
+
+```
+"A las margaritas 1" — OBRA ORIGINAL de Julio Machado
+
+Oleo sobre bastidor. Medidas: 40×40 cm. Año 2026.
+
+Hay cuadros que quieren decir algo y cuadros que quieren hacer silencio. "A las margaritas" es de los segundos. 
+
+✔ Obra original única, firmada
+✔ Certificado de autenticidad
+✔ Se entrega con certificado y QR verificable
+
+Más fotos, video del proceso y detalle de la pincelada: https://jcmachado.com/obra/a-las-margaritas-1/
+Consultas directas por WhatsApp: https://wa.me/5493534018769
+
+Julio Machado — Pintor y sociólogo. jcmachado.com
 ```
 
 ---
