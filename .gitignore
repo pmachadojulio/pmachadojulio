@@ -4,3 +4,5 @@ whatsapp/waha/.env
 whatsapp/waha/env/
 whatsapp/n8n-data/
 .cs-wizard/
+marketing/mercadolibre/ml_tokens.json
+marketing/mercadolibre/ml_log.json
