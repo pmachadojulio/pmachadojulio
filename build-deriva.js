@@ -195,9 +195,9 @@ const HTML = `<!DOCTYPE html>
 
 <header class="hero">
   <div class="wrap">
-    <div class="kicker">Arte en movimiento · Curaduría por IA</div>
+    <div class="kicker">Arte en movimiento · Curaduría viva</div>
     <h1>Deriva<br><em>galería nómada</em></h1>
-    <p class="lede">Una galería que no tiene pared fija. Recorre espacios, manos y miradas: obra de autor que transita ciudades y colecciones. Fundada sobre la obra de Julio C. Machado y abierta a quienes derivan con intención.</p>
+    <p class="lede">No somos una galería: somos una técnica. Un colectivo que no tiene pared fija y recorre espacios, manos y miradas. La obra no es de quien firma abajo, sino de quien la habita al mirarla. Deriva se funda en una primera deriva —la serie Ascenso— y se abre a quienes transitan con intención.</p>
     <div class="cta-row">
       <a class="btn solid" href="#coleccion">Ver la colección</a>
       <a class="btn" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hola, escribo desde Deriva. Quiero saber más sobre la galería.')}" target="_blank" rel="noopener">Escribir por WhatsApp</a>
@@ -213,13 +213,14 @@ const HTML = `<!DOCTYPE html>
         <h2>No exponemos. <em>Derivamos.</em></h2>
         <div style="margin-top:18px">
           <span class="pill">Sin sede fija</span><span class="pill">Curaduría viva</span>
-          <span class="pill">Obra de autor</span><span class="pill">Convoca abierta</span>
+          <span class="pill">Obra de autor</span><span class="pill">Colectivo abierto</span>
           <span class="pill">Córdoba · Argentina · el mundo</span>
         </div>
       </div>
       <div class="prose">
-        <p><strong>Deriva</strong> es una galería nómada: no depende de una pared ni de un horario. Habita lo digital, lo efímero y lo que cada espacio permita.</p>
-        <p style="margin-top:14px">Cada curaduría parte de la obra de <strong>Julio C. Machado</strong> —pintor y sociólogo— como pieza fundadora, y se abre a artistas que trabajan desde lo íntimo, lo urbano y lo que no se deja atrapar. Toda obra se ofrece con certificado de autenticidad.</p>
+        <p>Deriva toma su nombre de la <strong>dérive</strong> de Guy Debord (1958): el "pasaje rápido por ambientes variados", abandonar la ruta y dejarse llevar por el encuentro. Una respuesta a la ciudad que nos enumera y al white cube que nos enmarca.</p>
+        <p style="margin-top:14px">Partimos de un hecho simple: el arte no cabe en una pared. Toda obra es un <em>rostro</em> (Levinas) que nos interroga antes de que lo nombremos; un decir que se resiste a lo indecible (Lacan) y a lo que el inconsciente no entrega (Freud). Por eso no "mostramos": ponemos en circulación —la obra como <em>trace</em> (Derrida), que circula y significa aun ausente quien la firmó. El visitante no es cliente sino <strong>espectador emancipado</strong> (Rancière) —y la galería, un campo abierto, no la reserva de clase que denunciaba Bourdieu.</p>
+        <p style="margin-top:14px">La primera deriva se armó sobre la serie <strong>Ascenso</strong> de Julio C. Machado —pintor y sociólogo— como nodo fundador. Pero Deriva no le pertenece: crece con cada artista que entra. (Más adelante exploraremos el <em>trabajo de cara</em>: el frente y el telón de fondo de toda presentación, como señalaba Goffman.)</p>
       </div>
     </div>
   </div>
@@ -234,7 +235,7 @@ const HTML = `<!DOCTYPE html>
       </div>
       <div class="count">2 disponibles hoy · 7 ya en colección</div>
     </div>
-    <p class="prose" style="margin-bottom:28px">La primera deriva parte de la serie <strong>Ascenso</strong> (los 7 chakras) —obra fundadora de Julio C. Machado— y se abre a <strong>Monoblocks</strong> y <strong>A las margaritas 1</strong>. Las vendidas se muestran como portafolio de la casa; las disponibles, para consultar.</p>
+    <p class="prose" style="margin-bottom:28px">La primera deriva se armó sobre la serie <strong>Ascenso</strong> (los 7 chakras) y se abrió a <strong>Monoblocks</strong> y <strong>A las margaritas 1</strong>. No es un catálogo de autor: es el punto de partida de un colectivo. Las ya en colección se muestran como memoria de la casa; las disponibles, para circular.</p>
     <div class="grid">
       ${cards}
     </div>
@@ -246,7 +247,8 @@ const HTML = `<!DOCTYPE html>
     <div class="conv">
       <div class="sec-label">Convocatoria abierta</div>
       <h2>Derivá con nosotros</h2>
-      <p class="prose" style="margin-bottom:24px">Buscamos obras de autor para futuras curadurías nómadas: pintura, dibujo, gráfica, objeto. No pedimos exposición fija ni exclusividad. Pedimos intención.</p>
+      <p class="prose" style="margin-bottom:24px">Buscamos obras de autor para futuras derivas: pintura, dibujo, gráfica, objeto. No pedimos exposición fija ni exclusividad. Pedimos intención.</p>
+      <p class="prose" style="margin-bottom:24px">Creemos que toda obra dice algo que su autor no controla del todo —lo que el psicoanálisis llama lo <em>inconsciente</em> y la antropología, el <em>habitus</em> que nos habita antes de la voluntad. Por eso convocamos desde la sociología y el psicoanálisis: no para etiquetar, sino para dejar que cada pieza abra su propia pregunta. Si tu trabajo transita lo íntimo, lo urbano o lo que no se deja atrapar, hay lugar.</p>
       <a class="btn solid" href="mailto:hola@jcmachado.com?subject=${encodeURIComponent('Convocatoria Deriva — propuesta de obra')}">Enviar propuesta</a>
     </div>
   </div>
@@ -254,7 +256,7 @@ const HTML = `<!DOCTYPE html>
 
 <footer>
   <div class="wrap">
-    <span>Deriva · galería nómada — proyecto de <a class="mail" href="https://jcmachado.com/">Julio C. Machado</a></span>
+    <span>Deriva · galería nómada — colectivo abierto</span>
     <span>Curaduría asistida por IA · Córdoba, Argentina</span>
     <span class="colab">Colaboración: <a class="mail" href="https://github.com/pmachadojulio" target="_blank" rel="noopener">Arvure · Soluciones integrales</a></span>
   </div>
