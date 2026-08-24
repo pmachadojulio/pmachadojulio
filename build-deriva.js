@@ -220,6 +220,7 @@ const HTML = `<!DOCTYPE html>
       <div class="prose">
         <p>Deriva toma su nombre de la <strong>dérive</strong> de Guy Debord (1958): el "pasaje rápido por ambientes variados", abandonar la ruta y dejarse llevar por el encuentro. Una respuesta a la ciudad que nos enumera y al white cube que nos enmarca.</p>
         <p style="margin-top:14px">Partimos de un hecho simple: el arte no cabe en una pared. Toda obra es un <em>rostro</em> (Levinas) que nos interroga antes de que lo nombremos; un decir que se resiste a lo indecible (Lacan) y a lo que el inconsciente no entrega (Freud). Por eso no "mostramos": ponemos en circulación —la obra como <em>trace</em> (Derrida), que circula y significa aun ausente quien la firmó. El visitante no es cliente sino <strong>espectador emancipado</strong> (Rancière) —y la galería, un campo abierto, no la reserva de clase que denunciaba Bourdieu.</p>
+        <p style="margin-top:14px">La sensibilidad de la casa: figuraciones que miden lo inmaterial —una soledad en metros, un reloj derretido, polvo cósmico en los ojos. Buscamos obras con <strong>peso de materia</strong>: textura, temperatura y escala para lo que no la tiene.</p>
         <p style="margin-top:14px">La primera deriva se armó sobre la serie <strong>Ascenso</strong> de Julio C. Machado —pintor y sociólogo— como nodo fundador. Pero Deriva no le pertenece: crece con cada artista que entra. (Más adelante exploraremos el <em>trabajo de cara</em>: el frente y el telón de fondo de toda presentación, como señalaba Goffman.)</p>
       </div>
     </div>
