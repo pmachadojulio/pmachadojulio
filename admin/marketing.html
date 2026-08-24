@@ -385,7 +385,7 @@ async function loadEmails() {
       const lista = await res.json();
       return lista.map(d => ({ ...d, tanda: cfg.tanda }));
     }));
-    drafts = resultados.flat();
+    drafts = resultados.flat().map(d => (d.id = d.id || ('x-' + (d.email || d.empresa || Math.random()).toLowerCase().replace(/[^a-z0-9]+/g, '-')), d));
     renderEmails();
   } catch (e) {
     body.innerHTML = '<tr><td colspan="5"><div class="empty">Error: ' + e.message + '</div></td></tr>';
