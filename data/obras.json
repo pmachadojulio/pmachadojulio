@@ -314,14 +314,16 @@
       "precio": "$100.000",
       "print_precio": "$30.000",
       "mercadopago_original": "",
-      "paypal_original": "",
+      "paypal_original": "https://www.paypal.com/paypalme/Jcmachadoart/60",
       "mercadopago_print": "https://mpago.la/33VsNcZ",
-      "paypal_print": "",
+      "paypal_print": "https://www.paypal.com/paypalme/Jcmachadoart/18",
       "disponible": true,
       "vendida": true,
       "qr_url": "",
       "certificado": "",
-      "youtube_url": "https://www.youtube.com/@Jcmachadoart/shorts/-xtw_0asCKM"
+      "youtube_url": "https://www.youtube.com/@Jcmachadoart/shorts/-xtw_0asCKM",
+      "edicion_total": null,
+      "prints_vendidos": null
     },
     {
       "titulo": "Catriel y Paco",
