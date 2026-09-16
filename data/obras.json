@@ -755,6 +755,30 @@
       "certificado": "",
       "coleccion": "ascenso",
       "youtube_url": "https://www.youtube.com/@Jcmachadoart/shorts/zdS1HWr2EPM"
+    },
+    {
+      "titulo": "La luz Mala",
+      "id": "JM-2026-205",
+      "tipo": "original",
+      "categoria": "paisaje",
+      "anio": null,
+      "tecnica": "",
+      "ancho_cm": 30,
+      "alto_cm": 40,
+      "descripcion": "Luz mala",
+      "imagen": "/imagenes/la-luz-mala-1789583257824.webp",
+      "precio": "",
+      "print_precio": "",
+      "mercadopago_original": "",
+      "paypal_original": "",
+      "mercadopago_print": "",
+      "paypal_print": "",
+      "edicion_total": null,
+      "prints_vendidos": null,
+      "disponible": true,
+      "vendida": false,
+      "qr_url": "",
+      "certificado": ""
     }
   ]
 }
