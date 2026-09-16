@@ -589,14 +589,16 @@
       "precio": "$800.000",
       "print_precio": "$30.000",
       "mercadopago_original": "https://mpago.la/1FmRXMo",
-      "paypal_original": "",
+      "paypal_original": "https://www.paypal.com/paypalme/Jcmachadoart/480",
       "mercadopago_print": "https://mpago.la/33VsNcZ",
-      "paypal_print": "",
+      "paypal_print": "https://www.paypal.com/paypalme/Jcmachadoart/18",
       "disponible": true,
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "youtube_url": "https://www.youtube.com/shorts/usv2tsFuxkI"
+      "youtube_url": "https://www.youtube.com/shorts/usv2tsFuxkI",
+      "edicion_total": null,
+      "prints_vendidos": null
     },
     {
       "titulo": "Ascenso: Raiz",
