@@ -1,4 +1,5 @@
 .DS_Store
+._*
 whatsapp/.sessions/
 whatsapp/waha/.env
 whatsapp/waha/env/
@@ -9,3 +10,4 @@ marketing/mercadolibre/ml_log.json
 marketing/pinterest/pinterest_tokens.json
 marketing/pinterest/pinterest_log.json
 .github/
+admin/emails-b2b/
