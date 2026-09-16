@@ -564,14 +564,16 @@
       "precio": "$700.000",
       "print_precio": "$30.000",
       "mercadopago_original": "https://mpago.la/1bk6V8H",
-      "paypal_original": "",
+      "paypal_original": "https://www.paypal.com/paypalme/Jcmachadoart/420",
       "mercadopago_print": "https://mpago.la/33VsNcZ",
-      "paypal_print": "",
+      "paypal_print": "https://www.paypal.com/paypalme/Jcmachadoart/18",
       "disponible": true,
       "vendida": false,
       "qr_url": "",
       "certificado": "",
-      "youtube_url": "https://www.youtube.com/@Jcmachadoart/shorts/Dv-BGd5Ztsw"
+      "youtube_url": "https://www.youtube.com/@Jcmachadoart/shorts/Dv-BGd5Ztsw",
+      "edicion_total": null,
+      "prints_vendidos": null
     },
     {
       "titulo": "A las margaritas 1",
