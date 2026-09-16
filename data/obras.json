@@ -90,13 +90,15 @@
       "mercadopago_original": "",
       "paypal_original": "",
       "mercadopago_print": "https://mpago.la/33VsNcZ",
-      "paypal_print": "",
+      "paypal_print": "https://www.paypal.com/paypalme/Jcmachadoart/18",
       "disponible": false,
       "vendida": true,
       "qr_url": "",
       "certificado": "",
       "tipo": "original",
-      "youtube_url": "https://www.youtube.com/@Jcmachadoart"
+      "youtube_url": "https://www.youtube.com/@Jcmachadoart",
+      "edicion_total": null,
+      "prints_vendidos": null
     },
     {
       "titulo": "Ray L.",
