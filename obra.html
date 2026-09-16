@@ -227,20 +227,22 @@
     let accionesHTML = '';
     const usdOriginal = paypalUSD(o.paypal_original);
     const usdPrint = paypalUSD(o.paypal_print);
+    const printMP = (o.print_precio && o.mercadopago_print)
+      ? `<a href="${o.mercadopago_print}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 con Mercado Pago <span>${o.print_precio}</span></a>` : '';
     const printPP = (o.print_precio && o.paypal_print)
       ? `<a href="${o.paypal_print}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 con PayPal <span>${usdPrint ? 'USD ' + usdPrint : o.print_precio}</span></a>` : '';
     if (o.vendida) {
-      if (o.print_precio && o.mercadopago_print) accionesHTML += `<a href="${o.mercadopago_print}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${o.print_precio}</span></a>`;
+      accionesHTML += printMP;
       accionesHTML += printPP;
       accionesHTML += `<a href="/#contacto" class="btn-wsp">→ Consultame por una obra similar</a>`;
     } else if (esSoloPrint) {
-      if (o.print_precio && o.mercadopago_print) accionesHTML += `<a href="${o.mercadopago_print}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${o.print_precio}</span></a>`;
+      accionesHTML += printMP;
       accionesHTML += printPP;
       accionesHTML += `<a href="https://wa.me/5493534018769?text=Hola%20Julio!%20Me%20interesa%20el%20print%20de%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
     } else {
       if (o.mercadopago_original) accionesHTML += `<a href="${o.mercadopago_original}" class="btn-mp" target="_blank" rel="noopener">Comprar con Mercado Pago</a>`;
       if (o.paypal_original) accionesHTML += `<a href="${o.paypal_original}" class="btn-pp" target="_blank" rel="noopener">Pagar con PayPal${usdOriginal ? ' · USD ' + usdOriginal : ''}</a>`;
-      if (o.print_precio && o.mercadopago_print) accionesHTML += `<a href="${o.mercadopago_print}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${o.print_precio}</span></a>`;
+      accionesHTML += printMP;
       accionesHTML += printPP;
       accionesHTML += `<a href="https://wa.me/5493534018769?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
     }
