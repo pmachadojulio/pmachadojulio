@@ -42,6 +42,18 @@ function precioNumero(precioStr) {
   return n ? parseInt(n, 10) : null;
 }
 
+// Monto USD al final de un link paypal.me/.../<monto> (ej: /jmachadoart/300 → 300)
+function paypalUSD(url) {
+  if (!url) return null;
+  const m = String(url).match(/\/(\d+)\/?$/);
+  return m ? parseInt(m[1], 10) : null;
+}
+
+function usdSpan(n) {
+  if (!n) return '';
+  return ` <span style="font-size:14px;color:var(--ink-3);letter-spacing:1px;">· USD ${n}</span>`;
+}
+
 function youtubeLink(o) {
   const url = o.youtube_url || YOUTUBE_URL;
   if (!url) return '';
@@ -224,8 +236,9 @@ function buildObraHTML(o) {
     if (o.vendida) {
       acciones = `<a href="/#contacto" class="btn-wsp">→ Consultame por una obra similar</a>`;
     } else {
+      const usdOriginal = paypalUSD(o.paypal_original);
       if (o.mercadopago_original) acciones += `<a href="${escapeHtml(o.mercadopago_original)}" class="btn-mp" target="_blank" rel="noopener">Comprar con Mercado Pago</a>`;
-      if (o.paypal_original) acciones += `<a href="${escapeHtml(o.paypal_original)}" class="btn-pp" target="_blank" rel="noopener">Pagar con PayPal</a>`;
+      if (o.paypal_original) acciones += `<a href="${escapeHtml(o.paypal_original)}" class="btn-pp" target="_blank" rel="noopener">Pagar con PayPal${usdOriginal ? ` · USD ${usdOriginal}` : ''}</a>`;
       acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20la%20obra%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp antes de comprar</a>`;
     }
 
@@ -233,7 +246,7 @@ function buildObraHTML(o) {
       <div class="compra-block">
         <div class="compra-head">
           <span class="compra-label">Obra original</span>
-          ${o.precio ? `<span class="compra-precio">${escapeHtml(o.precio)}</span>` : ''}
+          ${o.precio ? `<span class="compra-precio">${escapeHtml(o.precio)}${usdSpan(paypalUSD(o.paypal_original))}</span>` : ''}
         </div>
         ${estadoTag}
         <div class="acciones">${acciones}</div>
@@ -251,8 +264,9 @@ function buildObraHTML(o) {
   let bloquePrint = '';
   if (tienePrint) {
     let acciones = '';
+    const usdPrint = paypalUSD(o.paypal_print);
     if (o.mercadopago_print) acciones += `<a href="${escapeHtml(o.mercadopago_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
-    if (o.paypal_print) acciones += `<a href="${escapeHtml(o.paypal_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
+    if (o.paypal_print) acciones += `<a href="${escapeHtml(o.paypal_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 con PayPal <span>${usdPrint ? `USD ${usdPrint}` : escapeHtml(o.print_precio)}</span></a>`;
     acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20el%20print%20de%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
 
     const edicionHTML = o.edicion_total ? (() => {
@@ -266,7 +280,7 @@ function buildObraHTML(o) {
       <div class="compra-block">
         <div class="compra-head">
           <span class="compra-label">Print A3</span>
-          <span class="compra-precio">${escapeHtml(o.print_precio)}</span>
+          <span class="compra-precio">${escapeHtml(o.print_precio)}${usdSpan(paypalUSD(o.paypal_print))}</span>
         </div>
         ${edicionHTML}
         <div class="acciones">${acciones}</div>
