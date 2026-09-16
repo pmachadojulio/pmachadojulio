@@ -265,7 +265,7 @@ function buildObraHTML(o) {
   if (tienePrint) {
     let acciones = '';
     const usdPrint = paypalUSD(o.paypal_print);
-    if (o.mercadopago_print) acciones += `<a href="${escapeHtml(o.mercadopago_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 <span>${escapeHtml(o.print_precio)}</span></a>`;
+    if (o.mercadopago_print) acciones += `<a href="${escapeHtml(o.mercadopago_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 con Mercado Pago <span>${escapeHtml(o.print_precio)}</span></a>`;
     if (o.paypal_print) acciones += `<a href="${escapeHtml(o.paypal_print)}" class="btn-print" target="_blank" rel="noopener">Comprar Print A3 con PayPal <span>${usdPrint ? `USD ${usdPrint}` : escapeHtml(o.print_precio)}</span></a>`;
     acciones += `<a href="https://wa.me/${WHATSAPP}?text=Hola%20Julio!%20Me%20interesa%20el%20print%20de%20${encodeURIComponent(o.titulo)}" class="btn-wsp" target="_blank" rel="noopener">→ Consultar por WhatsApp</a>`;
 
