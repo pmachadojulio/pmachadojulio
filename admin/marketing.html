@@ -205,6 +205,9 @@ docker compose up -d</code></pre>
     2) Clic en <strong>🚀 Enviar en Gmail</strong> — se abre Gmail con destinatario, asunto y saludo
     listos · 3) Revisá y enviá. <strong>Máx 20/día.</strong> Los borradores ya saludan por nombre
     (ej. "Hola Alexandro," / "Hola Estudio Liberté,") y marcan ✔ lo que ya enviaste.
+    Los 10 envíos del agente (Día 1, 16–17 sep) ya vienen marcados ✔ desde el registro del
+    servidor — pasá el mouse por el saludo para ver fecha y origen. El ✔ manual de este
+    navegador suma, no reemplaza.
   </div>
   <div class="card">
     <h2>Campaña de emails — 40 borradores personalizados</h2>
@@ -320,6 +323,10 @@ const CAMPAIGN_JSONS = [
   { file: '/marketing/campanas/campana_emails_t1-aprobados_2026-08-05.json', tanda: '1', key: '2026-08-05' },
   { file: '/marketing/campanas/campana_emails_t2-aprobados_2026-08-22.json', tanda: '2', key: 'tanda2-2026-08-22' }
 ];
+// Registro del agente (Día 1, 16–17 sep 2026): solo cid+estado+fecha, sin emails.
+// Se combina con el localStorage: el servidor es la base, el ✔ manual suma.
+const ENVIO_ESTADO_JSON = '/marketing/campanas/envio-dia1-estado.json';
+let estadoServidor = {};
 let drafts = [];
 let borradorActual = '';
 
@@ -368,6 +375,12 @@ function getEnviados(tanda) {
 }
 function setEnviados(lista, tanda) { localStorage.setItem(enviadosKey(tanda), JSON.stringify(lista)); }
 
+// Estado registrado por el agente (servidor). null si no hay registro.
+function estadoAgente(id) { return (estadoServidor[id] && estadoServidor[id].estado) || null; }
+function fechaAgente(id) { return (estadoServidor[id] && estadoServidor[id].fecha) || ''; }
+// Enviado efectivo = registro del servidor O ✔ manual en este navegador.
+function esEnviado(d) { return estadoAgente(d.id) === 'enviado' || getEnviados(d.tanda).includes(d.id); }
+
 function gmailUrl(d) {
   const body = 'ASUNTO: ' + (d.asunto || '') + '\n\n' + (d.cuerpo || '');
   return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(d.email || '')}&su=${encodeURIComponent(d.asunto || '')}&body=${encodeURIComponent(body)}`;
@@ -386,6 +399,12 @@ async function loadEmails() {
       return lista.map(d => ({ ...d, tanda: cfg.tanda }));
     }));
     drafts = resultados.flat().map(d => (d.id = d.id || ('x-' + (d.email || d.empresa || Math.random()).toLowerCase().replace(/[^a-z0-9]+/g, '-')), d));
+    try {
+      const rEst = await fetch(ENVIO_ESTADO_JSON);
+      const arrEst = await rEst.json();
+      estadoServidor = {};
+      (Array.isArray(arrEst) ? arrEst : []).forEach(e => { if (e && e.cid) estadoServidor[e.cid] = e; });
+    } catch (e) { estadoServidor = {}; }
     renderEmails();
   } catch (e) {
     body.innerHTML = '<tr><td colspan="5"><div class="empty">Error: ' + e.message + '</div></td></tr>';
@@ -396,7 +415,7 @@ function renderEmails() {
   const lista = drafts.filter(d => {
     if (q && !(d.empresa + ' ' + (d.ciudad || '') + ' ' + (d.email || '') + ' ' + d.asunto + ' ' + (d.categoria || '')).toLowerCase().includes(q)) return false;
     const cat = (d.categoria || '');
-    if (filtroCat === 'enviados') return getEnviados(d.tanda).includes(d.id);
+    if (filtroCat === 'enviados') return esEnviado(d);
     if (filtroCat === 'all') return true;
     return cat.includes(filtroCat);
   });
@@ -404,10 +423,13 @@ function renderEmails() {
   document.getElementById('emails-count').textContent = `${lista.length} de ${drafts.length} borradores`;
   if (!lista.length) { body.innerHTML = '<tr><td colspan="5"><div class="empty">Sin resultados.</div></td></tr>'; return; }
   body.innerHTML = lista.map(d => {
-    const ya = getEnviados(d.tanda).includes(d.id);
+    const ya = esEnviado(d);
+    const est = estadoAgente(d.id);
+    const tipAgente = est ? ` title="Registro del agente: ${est}${fechaAgente(d.id) ? ' ' + fechaAgente(d.id) : ''}"` : '';
+    const badgeRebote = est === 'rebotado' ? ` <span class="badge" style="background:rgba(239,68,68,.15);color:#fca5a5;"${tipAgente}>rebotado</span>` : '';
     return `
     <tr style="${ya ? 'opacity:.5;' : ''}">
-      <td><span class="badge ${ya ? 'ok' : 'info'}">${saludoDe(d) || '—'}</span></td>
+      <td><span class="badge ${ya ? 'ok' : 'info'}"${tipAgente}>${saludoDe(d) || '—'}</span>${badgeRebote}</td>
       <td><strong>${d.empresa || ''}</strong>${d.tanda === '2' ? ' <span class="badge info">T2</span>' : ''}<br><span class="muted" style="font-size:.72rem;">${d.categoria || ''}</span></td>
       <td>${d.ciudad || '—'}</td>
       <td>${d.email || '—'}</td>
