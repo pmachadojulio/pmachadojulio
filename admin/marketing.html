@@ -207,7 +207,8 @@ docker compose up -d</code></pre>
     (ej. "Hola Alexandro," / "Hola Estudio Liberté,") y marcan ✔ lo que ya enviaste.
     Los 10 envíos del agente (Día 1, 16–17 sep) ya vienen marcados ✔ desde el registro del
     servidor — pasá el mouse por el saludo para ver fecha y origen. El ✔ manual de este
-    navegador suma, no reemplaza.
+    navegador suma, no reemplaza. Los 10 del Día 2 salen programados el mar 22-sep 8:00
+    (badge celeste "programado").
   </div>
   <div class="card">
     <h2>Campaña de emails — 40 borradores personalizados</h2>
@@ -427,9 +428,10 @@ function renderEmails() {
     const est = estadoAgente(d.id);
     const tipAgente = est ? ` title="Registro del agente: ${est}${fechaAgente(d.id) ? ' ' + fechaAgente(d.id) : ''}"` : '';
     const badgeRebote = est === 'rebotado' ? ` <span class="badge" style="background:rgba(239,68,68,.15);color:#fca5a5;"${tipAgente}>rebotado</span>` : '';
+    const badgeProg = est === 'programado' ? ` <span class="badge info"${tipAgente}>programado</span>` : '';
     return `
     <tr style="${ya ? 'opacity:.5;' : ''}">
-      <td><span class="badge ${ya ? 'ok' : 'info'}"${tipAgente}>${saludoDe(d) || '—'}</span>${badgeRebote}</td>
+      <td><span class="badge ${ya ? 'ok' : 'info'}"${tipAgente}>${saludoDe(d) || '—'}</span>${badgeRebote}${badgeProg}</td>
       <td><strong>${d.empresa || ''}</strong>${d.tanda === '2' ? ' <span class="badge info">T2</span>' : ''}<br><span class="muted" style="font-size:.72rem;">${d.categoria || ''}</span></td>
       <td>${d.ciudad || '—'}</td>
       <td>${d.email || '—'}</td>
