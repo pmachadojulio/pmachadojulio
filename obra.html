@@ -64,7 +64,12 @@
 
   /* IMAGEN */
   .obra-img-wrap { position: sticky; top: 100px; background: var(--paper-2); border-radius: 4px; overflow: hidden; }
-  .obra-img-wrap img { width: 100%; height: auto; object-fit: contain; max-height: 75vh; }
+  .obra-img-wrap img { width: 100%; height: auto; object-fit: contain; max-height: 75vh; cursor: zoom-in; }
+  .zoom-hint { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; text-align: center; }
+  .zoom-veil { position: fixed; inset: 0; z-index: 1000; background: rgba(26,24,20,.94); display: none; align-items: center; justify-content: center; padding: 4vmin; cursor: zoom-out; }
+  .zoom-veil.open { display: flex; }
+  .zoom-veil img { width: auto; height: auto; max-width: 94vw; max-height: 92vh; object-fit: contain; }
+  .zoom-x { position: fixed; top: 18px; right: 22px; color: #f5f2ed; font-family: var(--sans); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid rgba(245,242,237,.4); border-radius: 2px; padding: 8px 14px; background: transparent; cursor: pointer; }
 
   /* DETALLE */
   .obra-detail { padding: 8px 0; }
@@ -293,7 +298,8 @@
     document.getElementById('main').innerHTML = `
       <div class="obra-grid">
         <div class="obra-img-wrap">
-          <img src="${o.imagen || ''}" alt="${o.titulo} — Julio Machado">
+          <img id="obraZoomImg" src="${o.imagen || ''}" alt="${o.titulo} — Julio Machado" title="Clic para ampliar">
+          <div class="zoom-hint">Clic para ampliar</div>
         </div>
         <div class="obra-detail">
           <p class="obra-eyebrow">${o.categoria ? o.categoria.charAt(0).toUpperCase() + o.categoria.slice(1) : 'Obra'} · Julio Machado</p>
@@ -384,6 +390,46 @@
         title: o.titulo + ' — Julio Machado', text: shareText, url: shareUrl
       }).catch(() => {}));
     }
+    initZoom();
+  }
+
+  // Vista ampliada de la obra (click en la imagen). Sin dependencias.
+  function initZoom() {
+    var img = document.getElementById('obraZoomImg');
+    if (!img || document.getElementById('zoomVeil')) return;
+    var veil = document.createElement('div');
+    veil.id = 'zoomVeil';
+    veil.className = 'zoom-veil';
+    veil.setAttribute('role', 'dialog');
+    veil.setAttribute('aria-label', 'Vista ampliada de la obra');
+    var big = document.createElement('img');
+    big.alt = img.alt || 'Obra ampliada';
+    var x = document.createElement('button');
+    x.className = 'zoom-x';
+    x.type = 'button';
+    x.textContent = '✕ Cerrar';
+    veil.appendChild(big);
+    veil.appendChild(x);
+    document.body.appendChild(veil);
+    function open() {
+      var src = img.currentSrc || img.getAttribute('src');
+      if (!src) return;
+      big.src = src;
+      veil.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (window.gtag) gtag('event', 'zoom_obra', { page: location.pathname });
+    }
+    function close() {
+      veil.classList.remove('open');
+      document.body.style.overflow = '';
+      big.removeAttribute('src');
+    }
+    img.addEventListener('click', open);
+    x.addEventListener('click', function (e) { e.stopPropagation(); close(); });
+    veil.addEventListener('click', function (e) { if (e.target === veil) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && veil.classList.contains('open')) close();
+    });
   }
 
   function mostrarError() {
