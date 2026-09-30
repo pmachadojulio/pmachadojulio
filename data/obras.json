@@ -805,6 +805,30 @@
       "vendida": false,
       "qr_url": "",
       "certificado": ""
+    },
+    {
+      "titulo": "Las penas son de nosotros, las vaquitas son ajenas",
+      "id": "JM-2026-206",
+      "tipo": "original",
+      "categoria": "paisaje",
+      "anio": 2026,
+      "tecnica": "",
+      "ancho_cm": 30,
+      "alto_cm": 40,
+      "descripcion": "",
+      "imagen": "/imagenes/las-penas-son-de-nosotros-las-vaquitas-son-ajenas-1790727613273.webp",
+      "precio": "$150000",
+      "print_precio": "30000",
+      "mercadopago_original": "",
+      "paypal_original": "",
+      "mercadopago_print": "",
+      "paypal_print": "",
+      "edicion_total": null,
+      "prints_vendidos": null,
+      "disponible": true,
+      "vendida": false,
+      "qr_url": "",
+      "certificado": ""
     }
   ]
 }
