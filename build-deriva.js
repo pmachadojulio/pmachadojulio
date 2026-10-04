@@ -117,6 +117,7 @@ const HTML = `<!DOCTYPE html>
     --line:#2a2620; --accent:#c8a24a; --accent-2:#e9c878; --white:#faf6ec;
     --mono:'Space Mono',monospace; --serif:'Cormorant Garamond',Georgia,serif;
     --max:1180px; --gap:clamp(20px,4vw,48px);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --dur-fast: 150ms; --dur-med: 250ms;
   }
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
@@ -136,7 +137,7 @@ const HTML = `<!DOCTYPE html>
   .hero h1 em{font-style:italic;color:var(--accent-2);}
   .hero p.lede{max-width:620px;margin-top:26px;color:var(--ink-2);font-size:16px;line-height:1.7;}
   .hero .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;}
-  .btn{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:14px 24px;border:1px solid var(--accent);color:var(--accent-2);transition:.2s;}
+  .btn{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:14px 24px;border:1px solid var(--accent);color:var(--accent-2);transition:background var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);}
   .btn:hover{background:var(--accent);color:var(--bg);}
   .btn.solid{background:var(--accent);color:var(--bg);border-color:var(--accent);}
   .btn.solid:hover{background:var(--accent-2);border-color:var(--accent-2);}
@@ -154,7 +155,7 @@ const HTML = `<!DOCTYPE html>
   .toolbar{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:30px;}
   .count{color:var(--ink-3);font-size:12px;letter-spacing:.1em;}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;}
-  .card{border:1px solid var(--line);background:var(--bg-2);display:flex;flex-direction:column;transition:.2s;}
+  .card{border:1px solid var(--line);background:var(--bg-2);display:flex;flex-direction:column;transition:border-color var(--dur-med) var(--ease-out),transform var(--dur-med) var(--ease-out);}
   .card:hover{border-color:var(--accent);transform:translateY(-3px);}
   .card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#000;}
   .card-img img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -167,7 +168,7 @@ const HTML = `<!DOCTYPE html>
   .card-meta{font-size:11px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;}
   .card-tec{font-size:12px;color:var(--ink-2);}
   .card-precio{font-size:14px;color:var(--accent-2);margin-top:4px;}
-  .card-cta{margin-top:auto;display:inline-block;text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:10px 14px;border:1px solid var(--accent);color:var(--accent-2);transition:.2s;}
+  .card-cta{margin-top:auto;display:inline-block;text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:10px 14px;border:1px solid var(--accent);color:var(--accent-2);transition:background var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);}
   .card-cta:hover{background:var(--accent);color:var(--bg);}
   .card-cta-disabled{border-color:var(--line);color:var(--ink-3);cursor:default;}
   /* convocatoria */
@@ -178,6 +179,12 @@ const HTML = `<!DOCTYPE html>
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
   footer .colab{color:var(--accent);}
   a.mail{color:var(--accent-2);}
+  /* MOTION — tokens + accesibilidad (criterio design-motion-principles MIT: sin bounce en marca editorial, sin fades de montaje, easing propio, reduced-motion obligatorio) */
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto !important; }
+  }
 </style>
 </head>
 <body>

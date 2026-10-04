@@ -154,6 +154,9 @@ const SHARED_STYLE = `
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
     --max: 760px; --gap: clamp(24px, 5vw, 60px);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --dur-fast: 150ms;
+    --dur-med: 250ms;
   }
   html { scroll-behavior: smooth; }
   body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.7; }
@@ -172,6 +175,12 @@ const SHARED_STYLE = `
   .footer-brand span { display: block; font-family: var(--sans); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,242,237,0.4); margin-top: 2px; }
   .footer-copy { font-size: 11px; color: rgba(245,242,237,0.3); }
   @media (max-width: 720px) { body { font-size: 15px; } }
+  /* MOTION — tokens + accesibilidad (criterio design-motion-principles MIT: sin bounce en marca editorial, sin fades de montaje, easing propio, reduced-motion obligatorio) */
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto !important; }
+  }
 `;
 
 const POST_STYLE = `
@@ -199,12 +208,12 @@ const POST_STYLE = `
   .post-cta .btn.wsp { background: transparent; color: var(--paper); border: 1px solid rgba(245,242,237,0.3); }
   .post-cta .btn.wsp:hover { border-color: var(--accent-light); color: var(--accent-light); }
   .post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(26,24,20,0.1); }
-  .post-tags .tag { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-2); border: 1px solid rgba(26,24,20,0.15); border-radius: 40px; padding: 6px 14px; text-decoration: none; transition: all 0.2s; }
+  .post-tags .tag { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-2); border: 1px solid rgba(26,24,20,0.15); border-radius: 40px; padding: 6px 14px; text-decoration: none; transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out); }
   .post-tags .tag:hover { border-color: var(--accent); color: var(--accent); }
   .post-obras { margin-top: 28px; }
   .post-obras h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 14px; }
   .post-obras .obras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
-  .post-obras .obra-card { display: block; background: var(--paper-2); border-radius: 4px; overflow: hidden; border: none; transition: transform 0.2s, box-shadow 0.2s; }
+  .post-obras .obra-card { display: block; background: var(--paper-2); border-radius: 4px; overflow: hidden; border: none; transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out); }
   .post-obras .obra-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,24,20,0.1); }
   .post-obras .obra-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
   .post-obras .obra-card span { display: block; padding: 10px 12px; font-family: var(--serif); font-size: 16px; color: var(--ink); }

@@ -66,6 +66,9 @@
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
     --max: 1200px; --gap: clamp(24px, 5vw, 60px);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --dur-fast: 150ms;
+    --dur-med: 250ms;
   }
   html { scroll-behavior: smooth; }
   body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
@@ -98,7 +101,7 @@
   .nav-cta-blog { background: transparent !important; color: var(--ink) !important; border: 1px solid var(--ink-3) !important; padding: 9px 20px !important; }
   .nav-cta-blog:hover { border-color: var(--accent) !important; color: var(--accent) !important; background: transparent !important; }
   .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-  .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
+  .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--ink); transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out), background-color 0.3s var(--ease-out); }
 
   /* HERO */
   #inicio { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
@@ -109,14 +112,14 @@
   .hero-title em { font-style: italic; color: var(--accent); display: block; }
   .hero-desc { font-size: 14px; color: var(--ink-2); line-height: 1.8; max-width: 360px; margin-bottom: 40px; font-weight: 300; }
   .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-  .btn-primary { background: var(--ink); color: var(--paper); padding: 14px 28px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.25s, transform 0.15s; }
+  .btn-primary { background: var(--ink); color: var(--paper); padding: 14px 28px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.25s var(--ease-out), transform 0.15s var(--ease-out); }
   .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
   .btn-secondary { font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-2); border-bottom: 1px solid var(--ink-3); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; text-decoration: none; }
   .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
-  .btn-tiktok { display: inline-flex; align-items: center; gap: 10px; background: #111; color: #fff; padding: 12px 24px; border-radius: 2px; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .btn-tiktok { display: inline-flex; align-items: center; gap: 10px; background: #111; color: #fff; padding: 12px 24px; border-radius: 2px; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: background 0.2s var(--ease-out), transform 0.15s var(--ease-out); }
   .btn-tiktok:hover { background: #2a2a2a; transform: translateY(-1px); }
   .btn-tiktok svg { width: 14px; height: 14px; flex-shrink: 0; }
-  .wsp-float { position: fixed; right: 20px; bottom: 20px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: transform 0.2s; }
+  .wsp-float { position: fixed; right: 20px; bottom: 20px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: transform 0.2s var(--ease-out); }
   .wsp-float:hover { transform: translateY(-2px) scale(1.05); }
   .hero-right { background: var(--paper-2); display: flex; align-items: center; justify-content: center; padding: 40px var(--gap); overflow: hidden; position: relative; }
   .hero-img-wrap { width: auto; max-width: 420px; max-height: 70vh; background: transparent; overflow: visible; position: relative; }
@@ -147,7 +150,7 @@
   /* PORTFOLIO / GALLERY */
   #portfolio { padding: clamp(60px,10vh,120px) 0; }
   .filter-bar { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
-  .filter-btn { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(26,24,20,0.2); border-radius: 40px; background: transparent; color: var(--ink-2); cursor: pointer; transition: all 0.2s; }
+  .filter-btn { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(26,24,20,0.2); border-radius: 40px; background: transparent; color: var(--ink-2); cursor: pointer; transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out); }
   .filter-btn:hover, .filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
   .gallery-sub { margin-bottom: 64px; }
@@ -162,7 +165,7 @@
   .gallery-item .thumb img {width: 100%; height: 100%; object-fit: contain; /* Ajusta la imagen completa sin recortarla ni estirarla */display: block;}
   .gallery-overlay { position: absolute; inset: 0; background: rgba(26,24,20,0); display: flex; align-items: flex-end; padding: 20px; transition: background 0.3s; }
   .gallery-item:hover .gallery-overlay { background: rgba(26,24,20,0.5); }
-  .gallery-info { transform: translateY(8px); opacity: 0; transition: all 0.3s; }
+  .gallery-info { transform: translateY(8px); opacity: 0; transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out); }
   .gallery-item:hover .gallery-info { transform: translateY(0); opacity: 1; }
   .gallery-info h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--paper); line-height: 1.2; }
   .gallery-info p { font-size: 11px; color: rgba(245,242,237,0.7); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
@@ -185,7 +188,7 @@
   /* MODAL */
   .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(26,24,20,0.82); z-index: 200; backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 24px; }
   .modal-backdrop.open { display: flex; }
-  .modal { background: var(--white); border-radius: 4px; max-width: 860px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; position: relative; animation: modalIn 0.28s ease; }
+  .modal { background: var(--white); border-radius: 4px; max-width: 860px; width: 100%; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; position: relative; animation: modalIn 0.28s var(--ease-out); }
   @keyframes modalIn { from { opacity:0; transform:scale(0.97) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
   .modal-img { background: var(--paper-2); overflow: hidden; border-radius: 4px 0 0 4px; min-height: 380px; display: flex; align-items: center; justify-content: center; }
   .modal-img img { width: 100%; height: 100%; object-fit: contain; }
@@ -205,7 +208,7 @@
   .modal-btn-mp:hover { background: #007ab8; }
   .modal-btn-pp { display: flex; align-items: center; justify-content: center; gap: 8px; background: #1a2f6e; color: #fff; padding: 13px 20px; border-radius: 2px; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
   .modal-btn-pp:hover { background: #0f1f4d; }
-  .modal-btn-print { display: flex; align-items: center; justify-content: space-between; background: transparent; color: var(--ink-2); border: 1px solid rgba(26,24,20,0.15); padding: 11px 20px; border-radius: 2px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+  .modal-btn-print { display: flex; align-items: center; justify-content: space-between; background: transparent; color: var(--ink-2); border: 1px solid rgba(26,24,20,0.15); padding: 11px 20px; border-radius: 2px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out); }
   .modal-btn-print:hover { background: var(--paper); }
   .modal-btn-print span { font-family: var(--serif); font-size: 16px; font-weight: 300; color: var(--accent); letter-spacing: 0; text-transform: none; }
   .modal-btn-wsp { display: block; text-align: center; color: var(--ink-3); font-size: 11px; letter-spacing: 0.5px; padding: 8px; transition: color 0.2s; text-decoration: none; }
@@ -258,7 +261,7 @@
   .contact-text .section-title { margin: 16px 0 24px; }
   .contact-body { font-size: 14px; color: var(--ink-2); line-height: 1.8; font-weight: 300; margin-bottom: 36px; }
   .contact-methods { display: flex; flex-direction: column; gap: 16px; }
-  .contact-method { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--white); border-radius: 4px; text-decoration: none; color: var(--ink); transition: background 0.2s, transform 0.2s; border: 1px solid rgba(26,24,20,0.06); }
+  .contact-method { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--white); border-radius: 4px; text-decoration: none; color: var(--ink); transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out); border: 1px solid rgba(26,24,20,0.06); }
   .contact-method:hover { transform: translateX(4px); background: var(--paper); }
   .contact-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--paper-2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .contact-icon svg { width: 18px; height: 18px; stroke: var(--ink-2); fill: none; stroke-width: 1.5; }
@@ -297,7 +300,7 @@
   .mobile-close { position: absolute; top: 20px; right: var(--gap); background: none; border: none; font-size: 28px; color: var(--ink); cursor: pointer; line-height: 1; }
 
   /* FADE-IN */
-  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
@@ -322,6 +325,13 @@
     .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
     .footer-links { display: none; }
   }
+  /* MOTION — tokens + accesibilidad (criterio design-motion-principles MIT: sin bounce en marca editorial, sin fades de montaje, easing propio, reduced-motion obligatorio) */
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -951,6 +961,9 @@
     .then(data => {
       const gridObras = document.getElementById('gridObras');
       const obras = (data.obras || []).slice().reverse();
+      // Disponibles arriba: originales comprables (!vendida) primero, orden curatorial estable dentro de cada grupo (sort estable).
+      // El print va consecutivo a su original, así los prints de obra vendida quedan abajo con ella.
+      obras.sort((a, b) => Number(!b.vendida) - Number(!a.vendida));
 
       if (obras.length === 0) {
         emptyState(gridObras, 'No hay obras disponibles todavía.');
