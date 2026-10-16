@@ -79,6 +79,27 @@
     </div>
 
     <div class="card">
+      <h2>Nueva obra</h2>
+      <p class="hint">La crea en el catálogo y la suma directo a la curaduría. La foto se sube al repo (máx ~2 MB).</p>
+      <label class="lbl" for="n-titulo">Título *</label>
+      <input type="text" id="n-titulo" placeholder="Sin título">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label class="lbl" for="n-tecnica">Técnica</label><input type="text" id="n-tecnica" placeholder="Óleo sobre panel"></div>
+        <div><label class="lbl" for="n-precio">Precio</label><input type="text" id="n-precio" placeholder="$100.000"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label class="lbl" for="n-ancho">Ancho (cm)</label><input type="text" id="n-ancho" inputmode="numeric" placeholder="30"></div>
+        <div><label class="lbl" for="n-alto">Alto (cm)</label><input type="text" id="n-alto" inputmode="numeric" placeholder="40"></div>
+      </div>
+      <label class="lbl" for="n-desc">Descripción</label>
+      <textarea id="n-desc" style="min-height:70px"></textarea>
+      <label class="lbl" for="n-img">Foto de la obra</label>
+      <input type="file" id="n-img" accept="image/*" style="padding:10px">
+      <div style="margin-top:16px"><button class="btn" id="btn-nueva">Crear obra y sumar a Deriva</button></div>
+      <div class="msg" id="nueva-msg"></div>
+    </div>
+
+    <div class="card">
       <h2>Colección</h2>
       <label class="lbl" for="f-titulo">Título de la colección</label>
       <input type="text" id="f-titulo">
@@ -243,6 +264,50 @@
     sessionStorage.removeItem('deriva_token');
     panel.style.display = 'none';
     loginBox.style.display = 'block';
+  });
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve(String(r.result).split(',')[1] || '');
+      r.onerror = reject;
+      r.readAsDataURL(file);
+    });
+  }
+
+  $('btn-nueva').addEventListener('click', async () => {
+    const btn = $('btn-nueva');
+    msg($('nueva-msg'), '');
+    const titulo = $('n-titulo').value.trim();
+    if (!titulo) { msg($('nueva-msg'), 'Falta el título', 'err'); return; }
+    btn.disabled = true;
+    msg($('nueva-msg'), 'Creando…');
+    try {
+      let imagen = null;
+      const f = $('n-img').files[0];
+      if (f) {
+        if (f.size > 2 * 1024 * 1024) { msg($('nueva-msg'), 'Imagen muy pesada (máx ~2 MB)', 'err'); btn.disabled = false; return; }
+        imagen = { base64: await fileToBase64(f), filename: f.name };
+      }
+      const obra = {
+        titulo,
+        tecnica: $('n-tecnica').value.trim(),
+        ancho_cm: $('n-ancho').value.trim(),
+        alto_cm: $('n-alto').value.trim(),
+        precio: $('n-precio').value.trim(),
+        descripcion: $('n-desc').value.trim()
+      };
+      const r = await api({ action: 'nueva_obra', obra, imagen });
+      if (!r.ok) { msg($('nueva-msg'), r.error || 'Error al crear', 'err'); return; }
+      msg($('nueva-msg'), '✓ Obra creada (' + r.obra.id + ') y sumada a Deriva. Visible en 1-2 minutos.', 'ok');
+      ['n-titulo', 'n-tecnica', 'n-precio', 'n-ancho', 'n-alto', 'n-desc'].forEach(id => { $(id).value = ''; });
+      $('n-img').value = '';
+      enter();
+    } catch (e) {
+      msg($('nueva-msg'), 'Error de conexión: ' + e.message, 'err');
+    } finally {
+      btn.disabled = false;
+    }
   });
 
   if (token) enter();

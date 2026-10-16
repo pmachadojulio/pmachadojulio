@@ -1,4 +1,4 @@
-import { respond, ghGet, ghPut, encodeB64, decodeB64 } from './_lib.js';
+import { respond, ghGet, ghPut, encodeB64, decodeB64, mutateObras, cleanObraFields, nextId } from './_lib.js';
 
 // Admin Deriva: login con clave SEPARADA (DERIVA_PASSWORD) + guardado de
 // data/deriva.json vía GitHub API. No toca el admin general (auditoría aparte).
@@ -75,6 +75,49 @@ export async function onRequestPost({ request, env }) {
         `Admin Deriva: curaduría (${clean.curaduria.length}) + textos`, sha);
       if (!res.ok) return respond({ ok: false, error: `GitHub rechazó el guardado (${res.data?.message || res.status})` }, 500);
       return respond({ ok: true, n: clean.curaduria.length });
+    } catch (err) {
+      return respond({ ok: false, error: String(err.message || err) }, 500);
+    }
+  }
+
+  if (body.action === 'nueva_obra') {
+    if (!(await verifyToken(env, request.headers.get('Authorization')))) {
+      return respond({ ok: false, error: 'No autorizado' }, 401);
+    }
+    if (!env.GITHUB_TOKEN) return respond({ ok: false, error: 'GITHUB_TOKEN no configurado en Cloudflare' }, 500);
+    try {
+      const obra = cleanObraFields(body.obra || {});
+      if (!obra.titulo) return respond({ ok: false, error: 'Falta título' }, 400);
+      if (body.imagen && body.imagen.base64 && body.imagen.filename) {
+        if (body.imagen.base64.length > 3 * 1024 * 1024) {
+          return respond({ ok: false, error: 'Imagen muy pesada (máx ~2 MB)' }, 400);
+        }
+        const safe = String(body.imagen.filename).replace(/[^a-zA-Z0-9._-]/g, '').slice(-60);
+        const filename = `deriva-${Date.now()}-${safe || 'obra.jpg'}`;
+        const up = await ghPut(env, `imagenes/${filename}`, body.imagen.base64, `Admin Deriva: imagen ${filename}`, null);
+        if (!up.ok) return respond({ ok: false, error: `No pude subir la imagen (${up.data?.message || up.status})` }, 500);
+        obra.imagen = `/imagenes/${filename}`;
+      }
+      obra.disponible = true;
+      obra.vendida = false;
+      const out = await mutateObras(env, current => {
+        const obras = current.obras || [];
+        const nueva = { ...obra, id: obra.id || nextId(obras) };
+        obras.push(nueva);
+        return { json: { obras }, message: `Admin Deriva: nueva obra "${nueva.titulo}"`, obra: nueva };
+      });
+      const nid = out.result.obra.id;
+      const cur = await ghGet(env, 'data/deriva.json');
+      if (cur.ok) {
+        try {
+          const cfg = JSON.parse(decodeB64(cur.data.content));
+          if (!cfg.curaduria.includes(nid)) cfg.curaduria.push(nid);
+          await ghPut(env, 'data/deriva.json',
+            encodeB64(JSON.stringify(cleanConfig(cfg), null, 2) + '\n'),
+            `Admin Deriva: suma "${out.result.obra.titulo}" a curaduría`, cur.data.sha);
+        } catch { /* la obra ya quedó creada; la curaduría se suma a mano */ }
+      }
+      return respond({ ok: true, obra: out.result.obra });
     } catch (err) {
       return respond({ ok: false, error: String(err.message || err) }, 500);
     }
