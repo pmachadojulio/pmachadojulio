@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Deriva · Admin</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#0e0d0b; --bg-2:#16140f; --ink:#e9e3d6; --ink-2:#b3a892; --ink-3:#7c7464;
+    --line:#2a2620; --accent:#c8a24a; --accent-2:#e9c878; --white:#faf6ec; --red:#d76a6a; --green:#7fc97f;
+    --mono:'Space Mono',ui-monospace,monospace; --serif:'Cormorant Garamond',Georgia,serif;
+    --max:860px; --gap:clamp(20px,4vw,48px);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --dur-fast: 150ms; --dur-med: 250ms;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--mono); background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.6; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 48px var(--gap) 80px; }
+  .eyebrow { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  h1 { font-family: var(--serif); font-size: clamp(32px,5vw,52px); font-weight: 500; line-height: 1.05; }
+  h1 em { font-style: italic; color: var(--accent-2); }
+  .sub { color: var(--ink-2); margin-top: 10px; font-size: 13px; }
+  .card { border: 1px solid var(--line); background: var(--bg-2); border-radius: 6px; padding: 24px; margin-top: 28px; }
+  .card h2 { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 6px; }
+  .hint { font-size: 12px; color: var(--ink-3); margin-bottom: 16px; }
+  label.lbl { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-2); margin: 16px 0 6px; }
+  input[type=text], input[type=password], textarea { width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; font-family: var(--mono); font-size: 13px; color: var(--ink); outline: none; transition: border-color var(--dur-fast) var(--ease-out); }
+  input:focus, textarea:focus { border-color: var(--accent); }
+  textarea { min-height: 90px; resize: vertical; line-height: 1.7; }
+  .btn { display: inline-block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; padding: 14px 28px; border: 1px solid var(--accent); background: transparent; color: var(--accent-2); border-radius: 4px; cursor: pointer; font-family: var(--mono); transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+  .btn:hover { background: var(--accent); color: var(--bg); }
+  .btn.solid { background: var(--accent); color: var(--bg); }
+  .btn.solid:hover { background: var(--accent-2); border-color: var(--accent-2); }
+  .btn:disabled { opacity: .45; cursor: wait; }
+  .msg { margin-top: 14px; font-size: 13px; min-height: 22px; }
+  .msg.ok { color: var(--green); } .msg.err { color: var(--red); }
+  #login-box { max-width: 420px; margin: 0 auto; }
+  #panel { display: none; }
+  .obra-row { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 4px; margin-bottom: 8px; background: var(--bg); }
+  .obra-row.in { border-color: var(--accent); }
+  .obra-row img { width: 44px; height: 44px; object-fit: cover; border-radius: 3px; flex-shrink: 0; }
+  .obra-row .t { flex: 1; min-width: 0; }
+  .obra-row .t b { display: block; font-weight: 400; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .obra-row .t span { font-size: 11px; color: var(--ink-3); }
+  .obra-row .ord { font-size: 11px; color: var(--accent-2); min-width: 26px; text-align: right; }
+  .mini { background: transparent; border: 1px solid var(--line); color: var(--ink-2); border-radius: 4px; padding: 5px 9px; font-family: var(--mono); font-size: 12px; cursor: pointer; transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
+  .mini:hover { border-color: var(--accent); color: var(--accent-2); }
+  .mini.on { border-color: var(--accent); color: var(--accent-2); background: rgba(200,162,74,.12); }
+  .chk { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+  .foot { margin-top: 40px; font-size: 12px; color: var(--ink-3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Deriva · galería nómada</div>
+  <h1>Panel <em>admin.</em></h1>
+  <p class="sub">Curaduría y textos de /deriva. Cambios en vivo ~1 minuto después de guardar.</p>
+
+  <div class="card" id="login-box">
+    <h2>Acceso</h2>
+    <p class="hint">Solo para la administradora de Deriva. Esta clave no abre el resto del sitio.</p>
+    <label class="lbl" for="pw">Clave</label>
+    <input type="password" id="pw" autocomplete="current-password" placeholder="••••••••">
+    <div style="margin-top:16px"><button class="btn solid" id="btn-login">Entrar</button></div>
+    <div class="msg" id="login-msg"></div>
+  </div>
+
+  <div id="panel">
+    <div class="card">
+      <h2>Curaduría</h2>
+      <p class="hint">Tildá las obras que van en Deriva. <span style="color:var(--accent-2)">↑ ↓</span> ordenan. Las vendidas se muestran como colección, las disponibles para circular.</p>
+      <div id="obras"></div>
+    </div>
+
+    <div class="card">
+      <h2>Colección</h2>
+      <label class="lbl" for="f-titulo">Título de la colección</label>
+      <input type="text" id="f-titulo">
+      <label class="lbl" for="f-intro">Texto introductorio (acepta &lt;strong&gt; y &lt;em&gt;)</label>
+      <textarea id="f-intro"></textarea>
+    </div>
+
+    <div class="card">
+      <h2>Manifiesto</h2>
+      <label class="lbl" for="f-man1">Párrafo 1</label>
+      <textarea id="f-man1"></textarea>
+      <label class="lbl" for="f-man2">Párrafo 2</label>
+      <textarea id="f-man2"></textarea>
+    </div>
+
+    <div class="card">
+      <h2>Convocatoria</h2>
+      <label class="lbl" for="f-conv1">Párrafo 1</label>
+      <textarea id="f-conv1"></textarea>
+      <label class="lbl" for="f-conv2">Párrafo 2</label>
+      <textarea id="f-conv2"></textarea>
+    </div>
+
+    <div class="card">
+      <h2>Guardar</h2>
+      <p class="hint">Escribe en el repo y Pages deploya solo. Verificá /deriva en 1-2 minutos.</p>
+      <button class="btn solid" id="btn-save">Guardar cambios</button>
+      <button class="btn" id="btn-logout" style="margin-left:12px">Salir</button>
+      <div class="msg" id="save-msg"></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Deriva · admin separada</span><span>jcmachado.com/deriva</span></div>
+</div>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const loginBox = $('login-box'), panel = $('panel');
+  let token = sessionStorage.getItem('deriva_token') || '';
+  let obras = [], orden = [];
+
+  const msg = (el, txt, cls) => { el.textContent = txt; el.className = 'msg' + (cls ? ' ' + cls : ''); };
+
+  async function api(body) {
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) headers.Authorization = 'Bearer ' + token;
+    const res = await fetch('/api/deriva', { method: 'POST', headers, body: JSON.stringify(body) });
+    return res.json();
+  }
+
+  function render() {
+    const box = $('obras'); box.innerHTML = '';
+    const inSet = new Set(orden);
+    const sorted = obras.slice().sort((a, b) => {
+      const ia = orden.indexOf(a.id), ib = orden.indexOf(b.id);
+      if (ia >= 0 && ib >= 0) return ia - ib;
+      if (ia >= 0) return -1;
+      if (ib >= 0) return 1;
+      return 0;
+    });
+    sorted.forEach(o => {
+      const isIn = inSet.has(o.id);
+      const row = document.createElement('div');
+      row.className = 'obra-row' + (isIn ? ' in' : '');
+      const pos = orden.indexOf(o.id);
+      row.innerHTML =
+        '<input type="checkbox" class="chk"' + (isIn ? ' checked' : '') + ' aria-label="Incluir">' +
+        (o.imagen ? '<img src="' + o.imagen + '" alt="" loading="lazy">' : '') +
+        '<div class="t"><b></b><span>' + (o.tecnica || '') + ' · ' + (o.precio || 'Consultar') + (o.vendida ? ' · vendida' : '') + '</span></div>' +
+        '<span class="ord">' + (pos >= 0 ? (pos + 1) : '') + '</span>' +
+        '<button class="mini" data-mv="-1" title="Subir">↑</button>' +
+        '<button class="mini" data-mv="1" title="Bajar">↓</button>';
+      row.querySelector('b').textContent = o.titulo || o.id;
+      const chk = row.querySelector('.chk');
+      chk.addEventListener('change', () => {
+        if (chk.checked) { if (!orden.includes(o.id)) orden.push(o.id); }
+        else { orden = orden.filter(x => x !== o.id); }
+        render();
+      });
+      row.querySelectorAll('[data-mv]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = orden.indexOf(o.id);
+          if (i < 0) return;
+          const j = i + Number(btn.dataset.mv);
+          if (j < 0 || j >= orden.length) return;
+          [orden[i], orden[j]] = [orden[j], orden[i]];
+          render();
+        });
+      });
+      box.appendChild(row);
+    });
+  }
+
+  async function enter() {
+    loginBox.style.display = 'none';
+    panel.style.display = 'block';
+    try {
+      const [jo, jd] = await Promise.all([
+        fetch('/data/obras.json').then(r => r.json()),
+        fetch('/data/deriva.json').then(r => r.json())
+      ]);
+      obras = jo.obras || [];
+      orden = (jd.curaduria || []).filter(id => obras.some(o => o.id === id));
+      $('f-titulo').value = jd.coleccion_titulo || '';
+      $('f-intro').value = jd.coleccion_intro || '';
+      $('f-man1').value = jd.manifiesto_p1 || '';
+      $('f-man2').value = jd.manifiesto_p2 || '';
+      $('f-conv1').value = jd.convocatoria_p1 || '';
+      $('f-conv2').value = jd.convocatoria_p2 || '';
+      render();
+    } catch (e) {
+      msg($('save-msg'), 'No pude cargar los datos: ' + e.message, 'err');
+    }
+  }
+
+  $('btn-login').addEventListener('click', async () => {
+    const btn = $('btn-login');
+    msg($('login-msg'), '');
+    btn.disabled = true;
+    try {
+      const r = await api({ action: 'login', password: $('pw').value });
+      if (!r.ok) { msg($('login-msg'), r.error || 'Clave incorrecta', 'err'); return; }
+      token = r.token;
+      sessionStorage.setItem('deriva_token', token);
+      $('pw').value = '';
+      enter();
+    } catch (e) {
+      msg($('login-msg'), 'Error de conexión: ' + e.message, 'err');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+  $('pw').addEventListener('keydown', e => { if (e.key === 'Enter') $('btn-login').click(); });
+
+  $('btn-save').addEventListener('click', async () => {
+    const btn = $('btn-save');
+    msg($('save-msg'), 'Guardando…');
+    btn.disabled = true;
+    const data = {
+      curaduria: orden,
+      coleccion_titulo: $('f-titulo').value,
+      coleccion_intro: $('f-intro').value,
+      manifiesto_p1: $('f-man1').value,
+      manifiesto_p2: $('f-man2').value,
+      convocatoria_p1: $('f-conv1').value,
+      convocatoria_p2: $('f-conv2').value
+    };
+    try {
+      const r = await api({ action: 'save', data });
+      if (!r.ok) { msg($('save-msg'), r.error || 'Error al guardar', 'err'); return; }
+      msg($('save-msg'), '✓ Guardado (' + r.n + ' obras). Visible en /deriva en 1-2 minutos.', 'ok');
+    } catch (e) {
+      msg($('save-msg'), 'Error de conexión: ' + e.message, 'err');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  $('btn-logout').addEventListener('click', () => {
+    token = '';
+    sessionStorage.removeItem('deriva_token');
+    panel.style.display = 'none';
+    loginBox.style.display = 'block';
+  });
+
+  if (token) enter();
+})();
+</script>
+</body>
+</html>

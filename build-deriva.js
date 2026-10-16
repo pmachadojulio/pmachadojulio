@@ -225,8 +225,8 @@ const HTML = `<!DOCTYPE html>
         </div>
       </div>
       <div class="prose">
-        <p>Deriva es una galería sin paredes. El nombre viene de la <strong>dérive</strong> de Guy Debord (1958): caminar sin ruta y dejarse llevar por el encuentro. Eso hacemos con obras: la primera deriva se armó sobre la serie <strong>Ascenso</strong> de Julio C. Machado. La próxima, sobre quien se sume.</p>
-        <p style="margin-top:14px">Si pintás y te interesa sumar, escribinos con tres piezas y una línea sobre tu ruta.</p>
+        <p id="manifiesto-p1">Deriva es una galería sin paredes. El nombre viene de la <strong>dérive</strong> de Guy Debord (1958): caminar sin ruta y dejarse llevar por el encuentro. Eso hacemos con obras: la primera deriva se armó sobre la serie <strong>Ascenso</strong> de Julio C. Machado. La próxima, sobre quien se sume.</p>
+        <p id="manifiesto-p2" style="margin-top:14px">Si pintás y te interesa sumar, escribinos con tres piezas y una línea sobre tu ruta.</p>
       </div>
     </div>
   </div>
@@ -237,12 +237,12 @@ const HTML = `<!DOCTYPE html>
     <div class="toolbar">
       <div>
         <div class="sec-label">Curaduría inaugural</div>
-        <h2>Ascenso, Monoblocks y Margaritas</h2>
+        <h2 id="coleccion-titulo">Ascenso, Monoblocks y Margaritas</h2>
       </div>
-      <div class="count">2 disponibles hoy · 7 ya en colección</div>
+      <div class="count" id="coleccion-count">2 disponibles hoy · 7 ya en colección</div>
     </div>
-    <p class="prose" style="margin-bottom:28px">La primera deriva se armó sobre la serie <strong>Ascenso</strong> (los 7 chakras) y se abrió a <strong>Monoblocks</strong> y <strong>A las margaritas 1</strong>. No es un catálogo de autor: es el punto de partida de un colectivo. Las ya en colección se muestran como memoria de la casa; las disponibles, para circular.</p>
-    <div class="grid">
+    <p class="prose" id="coleccion-intro" style="margin-bottom:28px">La primera deriva se armó sobre la serie <strong>Ascenso</strong> (los 7 chakras) y se abrió a <strong>Monoblocks</strong> y <strong>A las margaritas 1</strong>. No es un catálogo de autor: es el punto de partida de un colectivo. Las ya en colección se muestran como memoria de la casa; las disponibles, para circular.</p>
+    <div class="grid" id="deriva-grid">
       ${cards}
     </div>
   </div>
@@ -253,8 +253,8 @@ const HTML = `<!DOCTYPE html>
     <div class="conv">
       <div class="sec-label">Convocatoria abierta</div>
       <h2>Derivá con nosotros</h2>
-      <p class="prose" style="margin-bottom:24px">Buscamos obras de autor para futuras derivas: pintura, dibujo, gráfica, objeto. No pedimos exposición fija ni exclusividad. Pedimos intención.</p>
-      <p class="prose" style="margin-bottom:24px">Creemos que toda obra dice algo que su autor no controla del todo —lo que el psicoanálisis llama lo <em>inconsciente</em> y la antropología, el <em>habitus</em> que nos habita antes de la voluntad. Por eso convocamos desde la sociología y el psicoanálisis: no para etiquetar, sino para dejar que cada pieza abra su propia pregunta. Si tu trabajo transita lo íntimo, lo urbano o lo que no se deja atrapar, hay lugar.</p>
+      <p class="prose" id="convocatoria-p1" style="margin-bottom:24px">Buscamos obras de autor para futuras derivas: pintura, dibujo, gráfica, objeto. No pedimos exposición fija ni exclusividad. Pedimos intención.</p>
+      <p class="prose" id="convocatoria-p2" style="margin-bottom:24px">Creemos que toda obra dice algo que su autor no controla del todo —lo que el psicoanálisis llama lo <em>inconsciente</em> y la antropología, el <em>habitus</em> que nos habita antes de la voluntad. Por eso convocamos desde la sociología y el psicoanálisis: no para etiquetar, sino para dejar que cada pieza abra su propia pregunta. Si tu trabajo transita lo íntimo, lo urbano o lo que no se deja atrapar, hay lugar.</p>
       <a class="btn solid" href="mailto:hola@jcmachado.com?subject=${encodeURIComponent('Convocatoria Deriva — propuesta de obra')}">Enviar propuesta</a>
     </div>
   </div>
@@ -268,6 +268,45 @@ const HTML = `<!DOCTYPE html>
   </div>
 </footer>
 
+<script>
+(function () {
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  var WA = '5493534018769';
+  function waLink(o) {
+    return 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Hola, escribo desde Deriva. Me interesa la obra "' + (o.titulo || '') + '" (' + (o.precio || 'consultar') + '). ¿Podés darme más info?');
+  }
+  function badge(o) {
+    if (o.vendida) return '<span class="badge badge-sold">Vendido</span>';
+    if (o.disponible) return '<span class="badge badge-ok">Disponible</span>';
+    return '<span class="badge badge-coll">En colección</span>';
+  }
+  function card(o) {
+    var dl = (o.disponible && !o.vendida)
+      ? '<a class="card-cta" href="' + waLink(o) + '" target="_blank" rel="noopener">Consultar</a>'
+      : '<span class="card-cta card-cta-disabled">No disponible</span>';
+    return '<article class="card"><div class="card-img"><img src="' + esc(o.imagen) + '" alt="' + esc(o.titulo) + '" loading="lazy" onerror="this.style.opacity=0.15;this.alt=\'Imagen no disponible\';">' + badge(o) + '</div><div class="card-body"><h3>' + esc(o.titulo || 'Sin título') + '</h3><p class="card-meta">' + esc(o.categoria || '') + (o.anio ? ' \u00b7 ' + esc(o.anio) : '') + '</p><p class="card-tec">' + esc(o.tecnica || '') + '</p><p class="card-precio">' + esc(o.precio || 'Consultar') + '</p>' + dl + '</div></article>';
+  }
+  function set(id, v, html) { var el = document.getElementById(id); if (el && v != null && v !== '') { if (html) el.innerHTML = v; else el.textContent = v; } }
+  fetch('/data/deriva.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (cfg) {
+    return fetch('/data/obras.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (jo) {
+      var byId = {}; (jo.obras || []).forEach(function (o) { byId[o.id] = o; });
+      var ids = (cfg.curaduria || []).filter(function (id) { return byId[id]; });
+      if (!ids.length) return;
+      var grid = document.getElementById('deriva-grid');
+      if (grid) grid.innerHTML = ids.map(function (id) { return card(byId[id]); }).join('\n');
+      var disp = ids.filter(function (id) { return byId[id].disponible && !byId[id].vendida; }).length;
+      set('coleccion-titulo', cfg.coleccion_titulo);
+      set('coleccion-intro', cfg.coleccion_intro, true);
+      set('manifiesto-p1', cfg.manifiesto_p1, true);
+      set('manifiesto-p2', cfg.manifiesto_p2, true);
+      set('convocatoria-p1', cfg.convocatoria_p1, true);
+      set('convocatoria-p2', cfg.convocatoria_p2, true);
+      var count = document.getElementById('coleccion-count');
+      if (count) count.textContent = disp + (disp === 1 ? ' disponible hoy' : ' disponibles hoy') + ' \u00b7 ' + (ids.length - disp) + ' ya en colección';
+    });
+  }).catch(function () {});
+})();
+</script>
 </body>
 </html>`;
 
