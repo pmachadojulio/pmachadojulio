@@ -489,7 +489,6 @@ ${!esSoloPrint ? `<script>
       }).catch(function () {});
     });
   }
-  initZoom();
 })();
 </script>
 

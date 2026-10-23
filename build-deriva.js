@@ -284,7 +284,7 @@ const HTML = `<!DOCTYPE html>
     var dl = (o.disponible && !o.vendida)
       ? '<a class="card-cta" href="' + waLink(o) + '" target="_blank" rel="noopener">Consultar</a>'
       : '<span class="card-cta card-cta-disabled">No disponible</span>';
-    return '<article class="card"><div class="card-img"><img src="' + esc(o.imagen) + '" alt="' + esc(o.titulo) + '" loading="lazy" onerror="this.style.opacity=0.15;this.alt=\'Imagen no disponible\';">' + badge(o) + '</div><div class="card-body"><h3>' + esc(o.titulo || 'Sin título') + '</h3><p class="card-meta">' + esc(o.categoria || '') + (o.anio ? ' \u00b7 ' + esc(o.anio) : '') + '</p><p class="card-tec">' + esc(o.tecnica || '') + '</p><p class="card-precio">' + esc(o.precio || 'Consultar') + '</p>' + dl + '</div></article>';
+    return '<article class="card"><div class="card-img"><img src="' + esc(o.imagen) + '" alt="' + esc(o.titulo) + '" loading="lazy" onerror="this.style.opacity=0.15;this.alt=&#39;Imagen no disponible&#39;;">' + badge(o) + '</div><div class="card-body"><h3>' + esc(o.titulo || 'Sin título') + '</h3><p class="card-meta">' + esc(o.categoria || '') + (o.anio ? ' \u00b7 ' + esc(o.anio) : '') + '</p><p class="card-tec">' + esc(o.tecnica || '') + '</p><p class="card-precio">' + esc(o.precio || 'Consultar') + '</p>' + dl + '</div></article>';
   }
   function set(id, v, html) { var el = document.getElementById(id); if (el && v != null && v !== '') { if (html) el.innerHTML = v; else el.textContent = v; } }
   fetch('/data/deriva.json', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (cfg) {
